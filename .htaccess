@@ -1,0 +1,17 @@
+Options -Indexes
+
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Redirect root to index.php if not already there
+    RewriteCond %{REQUEST_URI} ^/?$
+    RewriteRule ^ /index.php [L,R=301]
+
+    # Standard front controller (optional but recommended)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>

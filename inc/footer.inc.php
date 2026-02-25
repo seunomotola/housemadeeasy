@@ -50,6 +50,8 @@
                             
                             <li><a href="login.php" style="text-decoration: none; ">Login</a></li>
                             <li><a href="register.php" style="text-decoration: none; ">Register</a></li>
+                            <li><a href="privacypolicy.php" style="text-decoration: none; ">Privacy Policy</a></li>
+                            <li><a href="termsofservice.php" style="text-decoration: none; ">Terms of Service</a></li>
                        </ul>
                     </div>
                     <!--Footer Widget end-->    
@@ -86,7 +88,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="copyright text-center">
-                            <p>Copyright &copy;<?php echo date('Y')?> Housemadeeasy. All rights reserved.<br> Designed by <a href="https://wa.me/+2347044206267?text=I+want+design+a+website..." style="font-weight:bolder; color: red; font-size: 15px">codon</a></p>
+                            <p>Copyright &copy;<?php echo date('Y')?> Housemadeeasy. All rights reserved. | 
+                                <a href="privacypolicy.php" style="color: #ccc;">Privacy Policy</a> | 
+                                <a href="termsofservice.php" style="color: #ccc;">Terms of Service</a><br> 
+                                Designed by <a href="https://wa.me/+2347044206267?text=I+want+design+a+website..." style="font-weight:bolder; color: red; font-size: 15px">codon</a></p>
                         </div>
                     </div>
                 </div>

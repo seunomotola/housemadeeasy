@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacist Interventions in Preventing DDIs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: white;
+            display: none;
+            padding: 60px 80px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 40px;
+            margin: -60px -80px 40px -80px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .slide-number {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        .slide-header h1 {
+            color: white;
+            font-size: 2.2em;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: #764ba2;
+            margin: 20px 0 10px 0;
+        }
+
+        .content {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .title-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .title-slide h1 {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .authors {
+            font-size: 1.1em;
+            margin-top: 40px;
+            opacity: 0.9;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .column {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .highlight-box {
+            background: #fff5f5;
+            border-left: 5px solid #f56565;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .success-box {
+            background: #f0fff4;
+            border-left: 5px solid #48bb78;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .key-point {
+            background: #ebf8ff;
+            border-left: 5px solid #4299e1;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+
+        li:before {
+            content: "▸";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: 10px;
+            font-size: 1.3em;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background: #f7fafc;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        @media print {
+            .controls, .progress-bar {
+                display: none;
+            }
+            .slide {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>Pharmacist Interventions in Preventing Clinically Significant Drug-Drug Interactions in Hospitalized Patients</h1>
+            <div class="subtitle">
+                A Critical Review of Current Evidence and Practice
+            </div>
+            <div class="authors">
+                Hani Mowanes W Alrawili et al.<br>
+                International Journal of Computational and Experimental Science and Engineering<br>
+                Vol. 10-No.4 (2024) pp. 2658-2666
+            </div>
+        </div>
+
+        <!-- Slide 2: Overview -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 2 of 15</div>
+                <h1>Presentation Overview</h1>
+            </div>
+            <div class="content">
+                <h2>What We'll Cover Today</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>The Problem</h3>
+                        <ul>
+                            <li>Polypharmacy in hospitals</li>
+                            <li>The burden of drug-drug interactions</li>
+                            <li>Patient safety implications</li>
+                            <li>Economic impact</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>The Solution</h3>
+                        <ul>
+                            <li>Pharmacist-led interventions</li>
+                            <li>Integration into healthcare teams</li>
+                            <li>Evidence-based strategies</li>
+                            <li>Measurable outcomes</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="key-point">
+                    <strong>Key Message:</strong> Pharmacists play an indispensable role in preventing adverse drug events and improving patient outcomes through systematic medication management.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Problem Statement -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 3 of 15</div>
+                <h1>The Growing Challenge</h1>
+            </div>
+            <div class="content">
+                <h2>Polypharmacy in Modern Healthcare</h2>
+                <div class="stat-box">
+                    <div class="stat-number">>60%</div>
+                    <div class="stat-label">of patients on general medical wards experience polypharmacy</div>
+                </div>
+                <div class="two-column">
+                    <div class="stat-box" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <div class="stat-number">~100%</div>
+                        <div class="stat-label">in critically ill or elderly populations</div>
+                    </div>
+                    <div class="stat-box" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">medications defines polypharmacy</div>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h3>⚠️ The Risk</h3>
+                    <p>Complex pharmacological regimens create fertile ground for adverse drug events, particularly drug-drug interactions (DDIs)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Impact of DDIs -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 4 of 15</div>
+                <h1>The Burden of Drug-Drug Interactions</h1>
+            </div>
+            <div class="content">
+                <h2>Clinical Impact Statistics</h2>
+                <div class="two-column">
+                    <div>
+                        <div class="stat-box" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <div class="stat-number">1-3%</div>
+                            <div class="stat-label">of all hospital admissions caused by DDIs</div>
+                        </div>
+                        <div class="stat-box" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                            <div class="stat-number">15%</div>
+                            <div class="stat-label">in elderly populations</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="stat-box" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                            <div class="stat-number">15-20%</div>
+                            <div class="stat-label">of inpatients experience at least one clinically significant DDI</div>
+                        </div>
+                        <div class="stat-box" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                            <div class="stat-number">1-2%</div>
+                            <div class="stat-label">of in-hospital deaths involve DDIs</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <strong>Economic Impact:</strong> Billions of dollars annually in global healthcare expenditures managing DDI-related morbidity
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: High-Risk Interactions -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 5 of 15</div>
+                <h1>High-Risk Drug Interactions</h1>
+            </div>
+            <div class="content">
+                <h2>Common Dangerous Combinations</h2>
+                <table>
+                    <tr>
+                        <th>Interaction Type</th>
+                        <th>Drug Combination</th>
+                        <th>Risk</th>
+                    </tr>
+                    <tr>
+                        <td><strong>QT Prolongation</strong></td>
+                        <td>Amiodarone + Azithromycin</td>
+                        <td>Torsades de Pointes (fatal arrhythmia)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anticoagulation</strong></td>
+                        <td>Warfarin + Antibiotics</td>
+                        <td>Catastrophic bleeding or thrombosis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Renal Toxicity</strong></td>
+                        <td>ACE inhibitor + NSAID + Diuretic</td>
+                        <td>Acute kidney injury ("Triple Whammy")</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Electrolyte</strong></td>
+                        <td>Spironolactone + ACE inhibitor</td>
+                        <td>Dangerous hyperkalemia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Serotonin Syndrome</strong></td>
+                        <td>SSRI + Tramadol + Linezolid</td>
+                        <td>Life-threatening toxicity</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 6: Why DDIs Occur -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 6 of 15</div>
+                <h1>Root Causes in Hospital Settings</h1>
+            </div>
+            <div class="content">
+                <h2>Multifactorial Genesis of DDIs</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>System Factors</h3>
+                        <ul>
+                            <li>Multiple prescribers without comprehensive review</li>
+                            <li>High-stress, fast-paced environment</li>
+                            <li>Frequent care transitions (ICU to ward)</li>
+                            <li>Shift changes and handoffs</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Patient Factors</h3>
+                        <ul>
+                            <li>Advanced age</li>
+                            <li>Multiple comorbidities</li>
+                            <li>Reduced organ function</li>
+                            <li>Complex medication regimens</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h3>The "Prescribing Cascade"</h3>
+                    <p>Specialists prescribe medications without a comprehensive review of the patient's complete drug profile, increasing oversight likelihood</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Pharmacist Interventions Overview -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 7 of 15</div>
+                <h1>Pharmacist-Led Interventions</h1>
+            </div>
+            <div class="content">
+                <h2>Multifaceted Approach to Prevention</h2>
+                <div class="key-point">
+                    <strong>🎯 Core Strategy:</strong> Systematic screening and intervention at multiple stages of the medication-use process
+                </div>
+                <ul style="font-size: 1.1em;">
+                    <li><strong>Prospective Order Review:</strong> Screening all new medication orders against existing profile using clinical decision support and expert judgment</li>
+                    <li><strong>Interprofessional Rounds:</strong> Active participation in treatment discussions, offering alternatives and monitoring recommendations</li>
+                    <li><strong>Medication Reconciliation:</strong> Documenting home medications, reconciling across transitions to identify discrepancies</li>
+                    <li><strong>Therapeutic Drug Monitoring:</strong> Recommending and interpreting serum levels, monitoring for early toxicity signs</li>
+                    <li><strong>Patient Education:</strong> Counseling on medication risks and signs of adverse interactions at discharge</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 8: Evidence of Effectiveness -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 8 of 15</div>
+                <h1>Evidence-Based Outcomes</h1>
+            </div>
+            <div class="content">
+                <h2>Proven Impact on Patient Safety</h2>
+                <div class="success-box">
+                    <h3>✅ Key Research Findings</h3>
+                    <div class="two-column" style="margin-top: 20px;">
+                        <div>
+                            <div class="stat-box" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                                <div class="stat-number">>80%</div>
+                                <div class="stat-label">of potential DDIs identified and resolved before reaching patient</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="stat-box" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                                <div class="stat-number">50%</div>
+                                <div class="stat-label">reduction in actual harm from DDIs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="key-point">
+                    <strong>Systematic Review Evidence:</strong> Pharmacist involvement in hospital ward teams significantly reduced medication errors and adverse drug events, with pronounced effect on preventing clinically significant DDIs
+                </div>
+                <ul>
+                    <li>Improved patient outcomes in high-risk areas (ICU, oncology, cardiology)</li>
+                    <li>Reduced length of hospital stay</li>
+                    <li>Decreased healthcare costs</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 9: Prospective Order Review -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 9 of 15</div>
+                <h1>First Line of Defense: Order Review</h1>
+            </div>
+            <div class="content">
+                <h2>Prospective Medication Screening</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>The Process</h3>
+                        <ul>
+                            <li>Systematic screening of every new order</li>
+                            <li>Review against complete patient profile</li>
+                            <li>Clinical decision support systems</li>
+                            <li>Expert pharmacological assessment</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Beyond Automation</h3>
+                        <ul>
+                            <li>Human intelligence layer</li>
+                            <li>Evaluating clinical context</li>
+                            <li>Assessing severity and evidence</li>
+                            <li>Patient-specific factors consideration</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h3>🔍 Example Case</h3>
+                    <p><strong>Alert:</strong> Atorvastatin + Clarithromycin<br>
+                    <strong>Pharmacist Action:</strong> Reviews liver function, antibiotic duration, statin dose → Recommends temporarily holding statin or switching to pravastatin<br>
+                    <strong>Outcome:</strong> Prevents rhabdomyolysis without discontinuing chronic therapy</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Therapeutic Alternatives -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 10 of 15</div>
+                <h1>Solution-Oriented Approach</h1>
+            </div>
+            <div class="content">
+                <h2>Evidence-Based Alternative Recommendations</h2>
+                <div class="key-point">
+                    The pharmacist's role is not just to warn—but to provide safe and effective solutions
+                </div>
+                <h3>Clinical Examples</h3>
+                <table>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Problem Interaction</th>
+                        <th>Pharmacist Solution</th>
+                    </tr>
+                    <tr>
+                        <td>Pain management</td>
+                        <td>Warfarin + NSAID</td>
+                        <td>Recommend acetaminophen or short-course opioid with INR monitoring</td>
+                    </tr>
+                    <tr>
+                        <td>Anticoagulation</td>
+                        <td>Dabigatran + Verapamil</td>
+                        <td>Switch to amlodipine or adjust dose based on renal function</td>
+                    </tr>
+                    <tr>
+                        <td>Infection treatment</td>
+                        <td>SSRI + Linezolid</td>
+                        <td>Alternative antibiotic or temporary SSRI discontinuation with monitoring</td>
+                    </tr>
+                </table>
+                <div class="success-box">
+                    This approach ensures continuity of effective treatment while enhancing patient safety and achieves higher physician acceptance rates
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Team Integration -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 11 of 15</div>
+                <h1>Integration into Healthcare Teams</h1>
+            </div>
+            <div class="content">
+                <h2>Collaborative Care Model</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>📋 Interprofessional Rounds</h3>
+                        <ul>
+                            <li>Real-time therapeutic input</li>
+                            <li>Proactive DDI prevention</li>
+                            <li>Immediate recommendations</li>
+                            <li>Shared decision-making</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>🔄 Medication Reconciliation</h3>
+                        <ul>
+                            <li>Admission assessment</li>
+                            <li>Transfer reviews</li>
+                            <li>Discharge planning</li>
+                            <li>Continuity of care</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h3>Impact of Rounding Participation</h3>
+                    <p>Units with pharmacist participation in rounds experience <strong>significant reductions</strong> in preventable adverse drug events compared to those without pharmacist involvement</p>
+                </div>
+                <div class="success-box">
+                    <strong>Specialized Services:</strong> Oncology, infectious diseases, anticoagulation, and psychiatry pharmacists provide deep expertise for complex medication regimens
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Transitions of Care -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 12 of 15</div>
+                <h1>Critical Transition Points</h1>
+            </div>
+            <div class="content">
+                <h2>Medication Reconciliation at Key Junctures</h2>
+                <div class="key-point">
+                    Transitions of care are the most vulnerable periods for medication errors, including overlooked DDIs
+                </div>
+                <h3>🏥 Admission</h3>
+                <ul>
+                    <li>Detailed patient interview for best possible medication history (BPMH)</li>
+                    <li>Uncover undocumented medications and supplements</li>
+                    <li>Identify pre-existing long-term DDIs</li>
+                    <li>Establish accurate baseline</li>
+                </ul>
+                <h3>🚪 Discharge</h3>
+                <ul>
+                    <li>Reconcile pre-admission, in-hospital, and discharge medications</li>
+                    <li>Resolve unintended discrepancies</li>
+                    <li>Prevent new DDIs from continuing post-discharge</li>
+                    <li>Explicit follow-up planning (e.g., INR monitoring for warfarin + amiodarone)</li>
+                </ul>
+                <div class="success-box">
+                    <strong>Result:</strong> Prevents post-discharge adverse events and reduces hospital readmissions
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Challenges & Barriers -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 13 of 15</div>
+                <h1>Implementation Challenges</h1>
+            </div>
+            <div class="content">
+                <h2>Barriers to Optimal Pharmacy Services</h2>
+                <div class="two-column">
+                    <div class="highlight-box">
+                        <h3>⚠️ Current Barriers</h3>
+                        <ul>
+                            <li>Understaffing of clinical pharmacists</li>
+                            <li>Lack of EHR integration</li>
+                            <li>Interprofessional communication gaps</li>
+                            <li>Alert fatigue from CPOE systems</li>
+                            <li>Low specificity of automated alerts</li>
+                        </ul>
+                    </div>
+                    <div class="success-box">
+                        <h3>✅ Solutions Needed</h3>
+                        <ul>
+                            <li>Increased pharmacy staffing</li>
+                            <li>Better EHR integration</li>
+                            <li>Structured communication protocols</li>
+                            <li>Refined clinical decision support</li>
+                            <li>Interprofessional education</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="key-point">
+                    <strong>The Challenge:</strong> To fully leverage the pharmacist's expertise in a systematic way across all healthcare settings
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Future Directions -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 14 of 15</div>
+                <h1>Future of Pharmacist-Led DDI Prevention</h1>
+            </div>
+            <div class="content">
+                <h2>Emerging Strategies & Technologies</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>🧬 Pharmacogenetics</h3>
+                        <ul>
+                            <li>Personalized DDI risk assessment</li>
+                            <li>CYP enzyme polymorphism consideration</li>
+                            <li>Population-based to individual approach</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>💻 Technology Integration</h3>
+                        <ul>
+                            <li>Advanced AI-powered screening</li>
+                            <li>Enhanced EHR systems</li>
+                            <li>Real-time monitoring tools</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="success-box">
+                    <h3>Standardized Protocols</h3>
+                    <ul>
+                        <li>Institution-wide DDI screening guidelines</li>
+                        <li>Evidence-based monitoring parameters</li>
+                        <li>Embedded safety checks in routine care</li>
+                        <li>Reduced practice variation</li>
+                    </ul>
+                </div>
+                <div class="key-point">
+                    <strong>Vision:</strong> Moving from reactive intervention to proactive, personalized medication safety management
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Conclusion -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">Slide 15 of 15</div>
+                <h1>Conclusion & Key Takeaways</h1>
+            </div>
+            <div class="content">
+                <h2>The Indispensable Role of Pharmacists</h2>
+                <div class="success-box">
+                    <h3>✅ Major Findings</h3>
+                    <ol style="list-style: decimal; padding-left: 40px;">
+                        <li style="padding-left: 0;"><strong>Burden is Substantial:</strong> csDDIs contribute to increased stays, costs, and preventable mortality</li>
+                        <li style="padding-left: 0;"><strong>Pharmacists are Effective:</strong> >80% of potential DDIs identified and resolved, 50% reduction in harm</li>
+                        <li style="padding-left: 0;"><strong>Integration is Key:</strong> Greatest impact when pharmacists are embedded in care teams</li>
+                        <li style="padding-left: 0;"><strong>Multiple Touchpoints:</strong> Prevention requires intervention at all stages of medication use</li>
+                    </ol>
+                </div>
+                <div class="two-column">
+                    <div class="key-point">
+                        <h3>For Healthcare Systems</h3>
+                        <p>Prioritize formal integration of clinical pharmacists into patient care teams, especially in high-risk areas</p>
+                    </div>
+                    <div class="key-point">
+                        <h3>For Pharmacy Practice</h3>
+                        <p>Continue developing expertise, leveraging technology, and advocating for medication safety</p>
+                    </div>
+                </div>
+                <div class="highlight-box" style="text-align: center; font-size: 1.2em; margin-top: 30px;">
+                    <strong>💊 Pharmacists are guardians of medication safety and indispensable members of the interprofessional healthcare team</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            
+            if (n >= totalSlides) {
+                currentSlide = 0;
+            } else if (n < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = n;
+            }
+            
+            slides[currentSlide].classList.add('active');
+            
+            // Update progress bar
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (event.key === 'ArrowRight' || event.key === ' ') {
+                changeSlide(1);
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

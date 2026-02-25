@@ -13,7 +13,7 @@ include ('inc/session.php');
 
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:25:19 GMT -->
 <head>
-  
+   
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,12 +32,15 @@ include ('inc/session.php');
     <link rel="stylesheet" href="assets/css/helper.css">
     <link rel="stylesheet" href="assets/css/style.css"> 
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">   
-
  
 
-    
+
+      
+
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- Google API -->
+    <script src="https://apis.google.com/js/api.js"></script>
 </head>
 
 
@@ -46,7 +49,7 @@ include ('inc/session.php');
 <body>
 
 
-    
+
 <div id="main-wrapper">
    
     <!--Header section start-->
@@ -71,7 +74,7 @@ include ('inc/session.php');
                                    
                                 </li>
 
-                                 
+                                  
 
                                 <li class="active"><a href="upload-house.php" style="text-decoration: none;">Upload House</a>
                                    
@@ -89,13 +92,13 @@ include ('inc/session.php');
 
                                    }else{?>
 
-                                             <li ><a href="login.php" style="text-decoration: none;">Login</a> </li>
-                                 <li ><a href="register.php" style="text-decoration: none;">Register</a>   </li>  
-                                   <?php } ?>
+                                              <li ><a href="login.php" style="text-decoration: none;">Login</a> </li>
+                                  <li ><a href="register.php" style="text-decoration: none;">Register</a>   </li>  
+                                    <?php } ?>
                                
-                                
                                   
-                               
+                                    
+                                
                             </ul> 
                         </nav>
                     </div>
@@ -149,28 +152,30 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
     </div>
     <!--Page Banner Section end-->
 
-  
+   
 
+  
+ 
 
  <!-- Upload House -->
 
 
 <!--Add Properties section start-->
-    <div class="add-properties-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
+    <div class="add-properties-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pt-md-70 pt-sm-60 pt-xs-50">
         <div class="container">
             <div class="row">
                 <div class="add-property-wrap col">
                     
-              
+               
 
                     <p style="text-align:center; color: red; font-weight: bolder; background-color: whitesmoke; padding: 15px;"> Upload the Details of the House </p>
 
                     <div class="add-property-form tab-content">
 
                        
-                            
+                              
 
-                               <form method="POST" action="upload-house.php" class="form-horizontal" enctype="multipart/form-data">
+                                <form method="POST" action="upload-house.php" id="upload-house-form" class="form-horizontal" enctype="multipart/form-data">
                                     <div class="row">
 
 
@@ -184,25 +189,25 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                                           <div class="col-12 mb-30"> 
                                             <label for="property_address">House Type</label> 
                                              <select name="house_type" id="class_school" required class="form-control" ><!-- form-control Begin -->
-                              
-                              <option selected disabled> Select House Type </option>
+                               
+                               <option selected disabled> Select House Type </option>
 
-                              <option value="Single Room">Single Room</option>
+                               <option value="Single Room">Single Room</option>
 
-                              <option value="Self contain">Self contain</option>
- 
-                              <option value="1 Bedroom Flat">1 Bedroom Flat</option>
+                               <option value="Self contain">Self contain</option>
+  
+                               <option value="1 Bedroom Flat">1 Bedroom Flat</option>
 
-                             
-                              
-                             <option value="2 Bedroom Flat">2 Bedroom Flat</option>
+                               
+                               
+                              <option value="2 Bedroom Flat">2 Bedroom Flat</option>
 
-                             <option value="3 Bedroom Flat">3 Bedroom Flat</option>
+                              <option value="3 Bedroom Flat">3 Bedroom Flat</option>
 
-                             <option value="4 Bedroom Flat">4 Bedroom Flat</option>
+                              <option value="4 Bedroom Flat">4 Bedroom Flat</option>
 
-                             
-                              
+                               
+                               
                           </select><!-- form-control Finish -->
                                         </div>
 
@@ -217,6 +222,7 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                                         </div>
 
                                        
+
                        
                        
                       
@@ -240,7 +246,7 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
 
                       
                        
-                   
+                    
 
                 <div class="col-md-4 col-12 mb-30">
                                             <label for="property_price">House Location</label>
@@ -251,16 +257,16 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                                  
                        <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
                       <label class=" control-label"> House Image 1 </label> 
-                      
+                       
                           <input name="house_img1" type="file" class="form-control" required>
                           
                       </div><!-- col-md-6 Finish -->
                        
-                   
-                   
-                   
-                       
                      
+                     
+                     
+                        
+                       
                       
                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
                          <label class=" control-label"> House Image 2 </label> 
@@ -269,28 +275,28 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                           
                       </div><!-- col-md-6 Finish -->
                        
-                   
-                   
-                   <div class="col-md-4 col-12 mb-30"><!-- form-group Begin -->
-                       
+                     
+                     
+                    <div class="col-md-4 col-12 mb-30"><!-- form-group Begin -->
+                         
                       <label class="control-label"> House Image 3 </label> 
                       
- 
-                          <input name="house_img3" type="file" class="form-control form-height-custom" required>
- 
-                   </div><!-- form-group Finish -->
+
+                         <input name="house_img3" type="file" class="form-control form-height-custom" required>
+  
+                    </div><!-- form-group Finish -->
 
 
                       <div class="col-md-4 col-12 mb-30"><!-- form-group Begin -->
-                       
+                         
                       <label class="control-label"> House Image 4 </label> 
-                       
+                      
                           <input name="house_img4" type="file" class="form-control form-height-custom" required>
-     
-                   </div><!-- form-group Finish -->
+      
+                    </div><!-- form-group Finish -->
 
 
-  
+   
                       
                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
 
@@ -304,18 +310,18 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
 
                               <option value="Pit latrine">Pit latrine</option>
 
-                             
+                              
                               
                           </select><!-- form-control Finish -->
                           
                       </div><!-- col-md-6 Finish -->
 
 
-
-                     
+  
                        
-                      
-                      
+                        
+                        
+                        
                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
                         <label class=" control-label"> House Label </label> 
                           
@@ -325,22 +331,22 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                               
                              <option value="Hot">Hot</option>
 
-                              <option value="New">New</option>
+                             <option value="New">New</option>
 
-                             <option value="Old">Old</option>
+                            <option value="Old">Old</option>
                               
                           </select><!-- form-control Finish -->
                           
                       </div><!-- col-md-6 Finish -->
                        
-                   
-
-                      
-                       
                      
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                          
+
+                        
+                        
+                       
+                       
+                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
+                            
                           <label class=" control-label"> Distance to school</label> 
 
                            <select name="distance" class="form-control"><!-- form-control Begin -->
@@ -349,32 +355,32 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                               
                              <option value="Treakable">Treakable</option>
 
-                              <option value="Not Treakable">Not Treakable</option>
+                             <option value="Not Treakable">Not Treakable</option>
 
-                             
+                              
                               
                           </select><!-- form-control Finish -->
                           
                       </div><!-- col-md-6 Finish -->
                        
-                  
+                    
 
+                        
+                        
                        
                        
-                      
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
+                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
                         <label class=" control-label"> How many kitchen does the house has </label> 
                           
                           <input name="kitchen" type="text" class="form-control" placeholder="how many kitchen is in there" required>
                           
                       </div><!-- col-md-6 Finish -->
                        
-                   
+                     
 
-                      
-                       
-                       
+                        
+                        
+                         
                       
                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
                         <label class="control-label"> How many bathroom does the house has </label>
@@ -383,15 +389,15 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                           
                       </div><!-- col-md-6 Finish -->
                        
-                  
+                    
 
-                      
-                       
-                       
+                        
+                        
+                         
                       
                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                          
-                           <label class=" control-label"> Is the house Tiled </label>
+                            
+                           <label class=" control-label"> Is the house Tiled </label> 
 
                            <select name="door" required class="form-control"><!-- form-control Begin -->
                               
@@ -399,23 +405,23 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                               
                              <option value="yes">yes</option>
 
-                              <option value="no">no</option>
+                             <option value="no">no</option>
 
-                             
+                              
                               
                           </select><!-- form-control Finish -->
 
                           
                       </div><!-- col-md-6 Finish -->
                        
-                  
+                    
 
-                      
+                        
+                        
                        
-                      
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                          
+                       
+                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
+                            
                           <label class="control-label"> Is the house fence </label> 
 
                           <select name="fence" required class="form-control"><!-- form-control Begin -->
@@ -424,26 +430,26 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                               
                              <option value="yes">yes</option>
 
-                              <option value="no">no</option>
+                             <option value="no">no</option>
 
-                             
+                              
                               
                           </select><!-- form-control Finish -->
 
                           
                       </div><!-- col-md-6 Finish -->
                        
-                   
+                     
 
 
 
-                       
-                       
-                      
+                        
+                        
+                    
                       
                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                          
-                           <label class=" control-label"> Electricity</label>
+                            
+                           <label class=" control-label"> Electricity</label> 
 
                           <select name="electricity" required class="form-control"><!-- form-control Begin -->
                               
@@ -451,25 +457,25 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                               
                              <option value="Prepaid">Prepaid</option>
 
-                              <option value="Postpaid">Postpaid</option>
+                             <option value="Postpaid">Postpaid</option>
 
-                             
+                              
                               
                           </select><!-- form-control Finish -->
 
                           
                       </div><!-- col-md-6 Finish -->
                        
-                  
+                    
 
 
 
-                       
-                       
-                  
+                    
+
+                    
                       
                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                          
+                            
                               <label class=" control-label"> Is the house Gated </label> 
 
                           <select name="gated" required class="form-control"><!-- form-control Begin -->
@@ -478,24 +484,26 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                               
                              <option value="Gated">Gated</option>
 
-                              <option value="Not Gated">Not Gated</option>
+                             <option value="Not Gated">Not Gated</option>
 
-                             
+                              
                               
                           </select><!-- form-control Finish -->
 
                           
                       </div><!-- col-md-6 Finish -->
                        
-                   
+                     
 
 
-                   
+
+                    
+                        
                        
-                      
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                          
+                       
+                       
+                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
+                            
                           <label class=" control-label"> Gender Required</label> 
 
                           <select name="gender" required class="form-control"><!-- form-control Begin -->
@@ -504,55 +512,58 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                               
                              <option value="All Gender">All Gender</option>
 
-                              <option value="Male">Male</option>
+                             <option value="Male">Male</option>
 
 
-                              <option value="Female">Female</option>
+                             <option value="Female">Female</option>
 
-                             
+                              
                               
                           </select><!-- form-control Finish -->
 
                           
                       </div><!-- col-md-6 Finish -->
                        
-                  
+                    
 
 
-                   
+
+                    
+                        
                        
-                     
+                         
                       
                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                          
+                            
                            <label class=" control-label"> Is Roommate Allowed</label> 
 
                           <select name="roommate" required class="form-control"><!-- form-control Begin -->
                               
                               <option selected disabled> Choose an option </option>
                               
-                             
 
                               <option value="Allowed">Allowed</option>
 
 
                               <option value="Not Allowed">Not Allowed</option>
 
-                             
+                              
                               
                           </select><!-- form-control Finish -->
 
                           
                       </div><!-- col-md-6 Finish -->
                        
-                   
+                    
 
-                      
-                       
-                       
+
+
+                        
+                        
+                         
                       
                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                          
+                            
                          <label class=" control-label"> Water-Source </label> 
 
 
@@ -562,38 +573,43 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                               
                              <option value="Running Water">Running Water</option>
 
-                              <option value="Well">Well</option>
+                             <option value="Well">Well</option>
 
-                              <option value="Running Water & Well">Running Water & Well</option>
+                             <option value="Running Water & Well">Running Water & Well</option>
 
-                             
+                              
                               
                           </select><!-- form-control Finish -->
 
                           
                       </div><!-- col-md-6 Finish -->
                        
-                  
+                    
 
-                   
+
+
+                    
                        
-                     
-                      
-                     <!--  <div class="col-md-4 col-12 mb-30">
-                           <label class=" control-label">Total Package for First Year Rent </label> 
+                       
+                       
+                       <!--  <div class="col-md-4 col-12 mb-30">
+                            <label class=" control-label">Total Package for First Year Rent </label> 
                           <input name="first" type="text" class="form-control" placeholder="Enter total package for the first year" required>
                           
                       </div> -->
 
                       <!-- col-md-6 Finish --> 
                        
-                   
+                     
 
-                   
+
+
+                    
+                        
                        
-                      
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
+                       
+                       
+                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
 
                         <label class=" control-label"> House Rent </label> 
                           
@@ -601,106 +617,125 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                           
                       </div><!-- col-md-6 Finish -->
                        
-                 
+                   
 
-                    
+                      
+                        
                        
-                      
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
+                       
+                       
+                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
                         <label class=" control-label"> Agreement & Commission </label> 
                           
                           <input name="agreement" placeholder="Enter the Agreement & Comission" type="text" class="form-control" >
                           
                       </div><!-- col-md-6 Finish -->
                        
-                  
-
-
                     
+
+
+
+                      
+                        
                        
-                      
-                      
-                     <!--  <div class="col-md-4 col-12 mb-30">
+                       
+                       
+                       <!--  <div class="col-md-4 col-12 mb-30">
                         <label class="control-label"> Agent Fees </label> 
                           
                           <input name="agent_fees" type="text" class="form-control" required>
                           
                       </div> -->
                        
-                   
+                     
+
 
 
                     
+                        
                        
                        
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
+                       
+                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
                         <label class=" control-label"> Nepa bills </label>
                           
                           <input name="nepa" type="text" class="form-control" placeholder="Enter the Nepa bills">
                           
                       </div><!-- col-md-6 Finish -->
                        
-                   
-
                     
+
+
+
+                      
+                        
                        
-                      
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
+                       
+                       
+                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
                         <label class=" control-label"> Cleaning Fees </label> 
                           
                           <input name="clean" type="text" class="form-control" placeholder="Enter the Cleaning Fees">
                           
                       </div><!-- col-md-6 Finish -->
                        
-                  
-
                     
+
+
+
+                      
+                        
                        
-                      
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
+                       
+                       
+                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
                         <label class=" control-label"> Damage Fees </label> 
                           
                           <input name="damage" type="text" class="form-control" placeholder="Enter the Damage Fees">
                           
                       </div><!-- col-md-6 Finish -->
                        
-                   
-
                     
+
+
+
+                      
+                        
                        
-                      
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
+                       
+                       
+                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
                          <label class=" control-label"> Security Fees </label>
                           
                           <input name="security" type="text" class="form-control" placeholder="Enter the Security Fees">
                           
                       </div><!-- col-md-6 Finish -->
                        
-                   
+                    
 
-                     
+
+
+                      
+                        
                        
-                      
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
+                       
+                       
+                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
                         <label class=" control-label"> Second Year Rent </label> 
                           
                           <input name="second" type="text" class="form-control" placeholder="Enter the Subsquent Year Rent" required>
                           
                       </div><!-- col-md-6 Finish -->
                        
-                   
+                    
 
-                      
+
+
+                        
+                        
                        
-                      
-                      
-                     <div class="col-md-4 col-12 mb-30">
+                       
+                       <div class="col-md-4 col-12 mb-30">
     <label class="control-label">Is the house a Multiple Room</label>
     <select name="multiple_room" required class="form-control">
         <option selected disabled>Choose an option</option>
@@ -709,26 +744,29 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
     </select>
 </div>
                        
-                   
+                     
+
+
 
                     
+                        
                        
-                      
-                      
-                      <div class="col-md-4 col-12 mb-30">
+                       
+                       <div class="col-md-4 col-12 mb-30">
     <label class="control-label">How many Multiple Room</label>
     <input name="how_many_multiple_room" type="text" placeholder="How many Multiple room (in number)" class="form-control" required>
 </div>
                        
-                  
-
-
-                   
-                       
                     
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                          
+
+
+
+                    
+                        
+                       
+                       
+                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
+                            
                             <label class="control-label"> Does Landlord reside in the house </label> 
 
                           <select name="landlord_reside" required class="form-control"><!-- form-control Begin -->
@@ -737,9 +775,9 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                               
                              <option value="yes">yes</option>
 
-                              <option value="no">no</option>
+                             <option value="no">no</option>
 
-                             
+                              
                               
                           </select><!-- form-control Finish -->
 
@@ -747,57 +785,78 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                           
                       </div><!-- col-md-6 Finish -->
                        
-                  
+                    
 
 
-                     
+
+                        
+                        
                        
-                      
-                      
-                     <!--  <div class="col-md-4 col-12 mb-30">
-                          
-                         <label class=" control-label"> As the house being paid for  </label> 
+                       
+                       
+                      <!--  <div class="col-md-4 col-30">
+                           
+                          <label class=" control-label"> As the house being paid for  </label> 
 
                            <select name="status" required class="form-control">
                               
                               <option selected disabled> Choose an option </option>
                               
-                            
 
                               <option value="no">no</option>
 
-                             
+                              
                               
                           </select>
                           
                       </div> --> 
                        
-                  
-
-
-                     
-                       
-                      
-                      
                     
+
+
+
+                        
+                        
                        
+                       
+                       
+                     
+                         
 
                         <div class="col-md-4 col-12 mb-30"><!-- form-group Begin -->
-                       
-                      <label class=" control-label"> Youtube link for house video  </label> 
+                        
+                      <label class=" control-label"> House Video Upload  </label> 
                       
-                     
+                      <div id="video-upload-section">
+                          <!-- Google Authentication Button -->
+                          <div id="google-auth-section" class="mb-3">
+                              <button type="button" id="google-auth-btn" class="btn btn-danger" style="margin-bottom: 10px;" onclick="startGoogleOAuth()">
+                                  <i class="fab fa-google"></i> Connect to Google
+                              </button>
+                              <div id="auth-status" class="alert alert-info" style="display: none; margin-bottom: 10px;"></div>
+                          </div>
                           
-                          <input name="youtube" type="text" class="form-control" required placeholder="Paste the video link for this house ">
-                          
-                      
+                          <input type="file" id="house_video" name="house_video" accept="video/*" class="form-control" style="margin-bottom: 10px;" disabled>
+                          <button type="button" id="upload-to-youtube" class="btn btn-secondary" style="margin-bottom: 10px; display: none;">Upload to YouTube</button>
+                          <div id="upload-progress" style="display: none;">
+                              <div class="progress" style="margin-bottom: 10px;">
+                                  <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                              </div>
+                              <span id="upload-status">Uploading...</span>
+                          </div>
+                          <div id="youtube-link-section" style="display: block;">
+                              <input type="text" id="youtube_link" name="youtube" class="form-control" placeholder="Paste the video link for this house " readonly>
+                          </div>
+                      </div>
+                           
                        
-                   </div>                  
+                        
+                    </div>                  
 
-                      
-        
-                     
-                      
+                        
+          
+                       
+                        
                       <div class="col-md-4 col-12 mb-30">
                         <label class=" control-label"> House  Description </label> 
                           
@@ -805,25 +864,27 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                           
                       </div>
                        
-                   
+                    
 
 
-                      
-                                      
+
+                                        
+                                        
 
                                         <div class="nav d-flex justify-content-end col-12 mb-30 pl-15 pr-15">
-                                           
+                                             
 
                                              <input name="submit" id="hidebutton" value="Upload House" type="submit" class="btn btn-primary form-control"> 
 
                                              
                                         </div>
 
-                                        
-                                    
+                                          
+                                      
                                 </form>
 
-                           
+                            
+
 
                     </div>
 
@@ -838,14 +899,65 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
 
 
 
-
   <?php  include ('inc/footer.inc.php');  ?> 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/youtube-upload.js"></script>
 
 
 <script>
     $(document).ready(function() {
+        // Handle OAuth callback parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Check for OAuth success
+        if (urlParams.get('oauth') === 'success') {
+            console.log('OAuth successful, updating UI...');
+            
+            // Hide the Google auth section
+            $('#google-auth-section').hide();
+            
+            // Enable video upload
+            $('#house_video').prop('disabled', false);
+            
+            // Show success message
+            const successMsg = '<div class="alert alert-success" style="margin-bottom: 10px;"><i class="fab fa-google"></i> Google connected successfully! You can now upload videos.</div>';
+            $('#google-auth-section').after(successMsg);
+            
+            // Clean up URL parameters
+            const cleanUrl = window.location.origin + window.location.pathname;
+            window.history.replaceState({}, document.title, cleanUrl);
+        }
+        
+        // Check for OAuth error
+        if (urlParams.get('oauth') === 'failed') {
+            const errorMsg = '<div class="alert alert-danger" style="margin-bottom: 10px;">Google connection failed. Please try again.</div>';
+            $('#google-auth-section').after(errorMsg);
+            
+            // Clean up URL parameters
+            const cleanUrl = window.location.origin + window.location.pathname;
+            window.history.replaceState({}, document.title, cleanUrl);
+        }
+        
+        // Function to start Google OAuth
+        window.startGoogleOAuth = function() {
+            // Generate state parameter for security
+            const state = 'upload-house.php';
+            const scope = 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.force-ssl';
+            
+            // Google OAuth URL
+            const googleAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth?' +
+                'client_id=488890072316-a367l4n2ns3l17o0unoab7jp9t4mgd52.apps.googleusercontent.com&' +
+                'redirect_uri=' + encodeURIComponent('https://housemadeeasy.com.ng/hmeaffilate/callback.php') + '&' +
+                'response_type=code&' +
+                'scope=' + encodeURIComponent(scope) + '&' +
+                'access_type=offline&' +
+                'prompt=consent&' +
+                'state=' + encodeURIComponent(state);
+            
+            // Redirect to Google OAuth
+            window.location.href = googleAuthUrl;
+        };
         // Listen for changes on the "Is the house a Multiple Room" dropdown
         $('select[name="multiple_room"]').on('change', function() {
             var value = $(this).val(); // Get the selected value
@@ -859,22 +971,136 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                 howManyField.removeAttr('readonly'); // Make it editable again
             }
         });
+
+        // Video upload handling
+        $('#house_video').on('change', function() {
+            if (this.files.length > 0) {
+                $('#upload-to-youtube').show();
+            } else {
+                $('#upload-to-youtube').hide();
+                $('#youtube-link-section').hide();
+                $('#upload-progress').hide();
+            }
+        });
+
+        // YouTube upload handling
+        $('#upload-to-youtube').on('click', function() {
+            const videoFile = $('#house_video')[0].files[0];
+            if (!videoFile) {
+                alert('Please select a video file first.');
+                return;
+            }
+
+            // Check file size (100MB limit)
+            const maxSize = 100 * 1024 * 1024; // 100MB
+            if (videoFile.size > maxSize) {
+                alert('File too large. Maximum size is 100MB.');
+                return;
+            }
+
+            // Check file type
+            const allowedTypes = ['video/mp4', 'video/avi', 'video/mov', 'video/wmv', 'video/flv', 'video/webm'];
+            if (!allowedTypes.includes(videoFile.type)) {
+                alert('Invalid file type. Please upload a video file.');
+                return;
+            }
+
+            $('#upload-progress').show();
+            $('#upload-to-youtube').prop('disabled', true);
+            $('#upload-status').text('Preparing upload...');
+
+            // Create form data for video upload
+            const formData = new FormData();
+            formData.append('video', videoFile);
+            formData.append('action', 'upload_to_youtube');
+
+            console.log('Uploading video:', {
+                name: videoFile.name,
+                size: videoFile.size,
+                type: videoFile.type
+            });
+
+            // Upload video via AJAX
+            $.ajax({
+                url: 'callback.php',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                xhr: function() {
+                    const xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function(evt) {
+                        if (evt.lengthComputable) {
+                            const percentComplete = evt.loaded / evt.total * 100;
+                            $('#progress-bar').css('width', percentComplete + '%');
+                            $('#upload-status').text('Uploading... ' + Math.round(percentComplete) + '%');
+                        }
+                    }, false);
+                    return xhr;
+                },
+                success: function(response) {
+                    console.log('Upload response:', response);
+                    
+                    // jQuery automatically parses JSON, so response is already an object
+                    let result;
+                    try {
+                        if (typeof response === 'string') {
+                            result = JSON.parse(response);
+                        } else {
+                            result = response;
+                        }
+                        
+                        if (result.success) {
+                            $('#youtube_link').val(result.youtube_url);
+                            $('#youtube-link-section').show();
+                            $('#upload-status').text('Upload completed successfully!');
+                            $('#progress-bar').css('width', '100%');
+                            
+                            // Hide progress after a delay
+                            setTimeout(function() {
+                                $('#upload-progress').hide();
+                            }, 2000);
+                        } else {
+                            alert('Upload failed: ' + (result.error || 'Unknown error'));
+                            $('#upload-progress').hide();
+                        }
+                    } catch (e) {
+                        console.error('Response processing error:', e);
+                        console.log('Raw response:', response);
+                        alert('Error processing upload response: ' + e.message);
+                        $('#upload-progress').hide();
+                    }
+                    $('#upload-to-youtube').prop('disabled', false);
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', {xhr, status, error});
+                    let errorMsg = 'Upload failed: ' + error;
+                    if (xhr.responseText) {
+                        console.log('Error response:', xhr.responseText);
+                        errorMsg += '\nServer response: ' + xhr.responseText.substring(0, 200);
+                    }
+                    alert(errorMsg);
+                    $('#upload-progress').hide();
+                    $('#upload-to-youtube').prop('disabled', false);
+                }
+            });
+        });
     });
 </script>
 
 
 
 
-
+   
  
 
-
-   <script type="text/javascript">
+   
+    <script type="text/javascript">
     
 
     $(document).ready(function() {
     // Show modal on button click
-  
+   
          // Function to update subjects based on class selection
     function updateSubjectOptions() {
         var classValue = $('#class_school').val();
@@ -933,31 +1159,24 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
     
 
    
-
   
 
-  
 });
 
-
-
-
+ 
 
 
 </script>
 
-
-
-<?php 
+<?php
 
 function val($data){
     $data= trim($data);
     $data= stripslashes($data);
     $data =strip_tags($data);
-    
+
     return $data;
 }
-
 
 
 
@@ -990,7 +1209,6 @@ $agentaffilate_id=$row2['agentaffilate_id'];
     
 
     $multiple_room = $_POST['multiple_room'];
-    // $youtube = $_POST['youtube'];
      $how_many_multiple_room = $_POST['how_many_multiple_room'];
      //$how_many_multiple_room_new=$how_many_multiple_room
 
@@ -1016,7 +1234,7 @@ $agentaffilate_id=$row2['agentaffilate_id'];
         $second = $_POST['second'];
 
          $agreement = $_POST['agreement'];
-        
+          
          $nepa = $_POST['nepa'];
         $clean = $_POST['clean'];
          $damage = $_POST['damage'];
@@ -1163,8 +1381,8 @@ $house_img4 = $uploadedImages['house_img4'] ?? '';
     // $temp_name5 = $_FILES['agent_img']['tmp_name'];
     $house_id= bin2hex(random_bytes(4));
     $house_id_short= bin2hex(random_bytes(4));
-    
- 
+     
+  
 
    //  $house_id_short= bin2hex(random_bytes(4));
 
@@ -1175,11 +1393,79 @@ $house_img4 = $uploadedImages['house_img4'] ?? '';
     $run_product1 = mysqli_query($con,$insert_product);
 
         $insert_product2 = "INSERT into short_term_rentals_properties (agent, agent_img, agent_pno, agent_email, location, house_location, type, date, house_name, house_img1, house_img2, house_img3, house_img4, house_desc, amenities, house_label, distance, kitchen, bathroom, door, fence, water_source, status,date_due, house_id,multiple_room,how_many_multiple_room, house_owner, youtube_link) values ('$agent_fname', '', '$whatapp','$agent_email', '$location', '$house_location', '$house_type', NOW(),'$house_name','$house_img1','$house_img2','$house_img3','$house_img4','$house_desc','$amenities','$house_label','$distance', '$kitchen', '$bathroom', '$door', '$fence', '$water_source', 'no', '', '$house_id_short', '$multiple_room', '$how_many_multiple_room', '$landlord_reside', '$youtube')";
-    
+     
      $run_product2 = mysqli_query($con,$insert_product2);
 
     
-   if ($run_product1 && $run_product2) {  
+   if ($run_product1 && $run_product2) {
+       // Update YouTube video metadata if video was uploaded
+       if (!empty($youtube)) {
+           $accessToken = null;
+           if (isset($_SESSION['google_access_token'])) {
+               $accessToken = $_SESSION['google_access_token'];
+           } elseif (isset($_SESSION['agentaffilate_id'])) {
+               $tokens = getGoogleTokens($_SESSION['agentaffilate_id']);
+               if ($tokens && isTokenValid($tokens['google_token_expires_at'])) {
+                   $accessToken = $tokens['google_access_token'];
+               }
+           }
+
+           if ($accessToken) {
+               // Extract video_id from YouTube URL
+               $url = $youtube;
+               $query = [];
+               parse_str(parse_url($url, PHP_URL_QUERY), $query);
+               $video_id = $query['v'] ?? '';
+
+               if (!empty($video_id)) {
+                   // Construct SEO-friendly title
+                   $title = $house_label . ' ' . $house_type . ' in ' . $house_location . ', ' . $location . ' - ₦' . number_format($house_rent) . ' per year';
+
+                   // Construct detailed SEO-friendly description
+                   $description = "🏠 Discover this amazing " . $house_type . " located in " . $house_location . ", " . $location . ".\n\n";
+                   $description .= "📝 Description: " . $house_desc . "\n\n";
+                   $description .= "✨ Key Features:\n";
+                   $description .= "• Toilet Type: " . $amenities . "\n";
+                   $description .= "• Kitchen: " . $kitchen . " kitchen(s)\n";
+                   $description .= "• Bathroom: " . $bathroom . " bathroom(s)\n";
+                   $description .= "• Tiled: " . ($door == 'yes' ? 'Yes' : 'No') . "\n";
+                   $description .= "• Fenced: " . ($fence == 'yes' ? 'Yes' : 'No') . "\n";
+                   $description .= "• Electricity: " . $electricity . "\n";
+                   $description .= "• Gated: " . $gated . "\n";
+                   $description .= "• Gender Requirement: " . $gender . "\n";
+                   $description .= "• Roommate Allowed: " . $roommate . "\n";
+                   $description .= "• Water Source: " . $water_source . "\n";
+                   $description .= "• Landlord Resides: " . $landlord_reside . "\n";
+                   $description .= "• Distance to School: " . $distance . "\n";
+                   $description .= "• Multiple Rooms: " . $multiple_room;
+                   if ($multiple_room == 'yes') {
+                       $description .= " (" . $how_many_multiple_room . " rooms)";
+                   }
+                   $description .= "\n\n";
+                   $description .= "💰 Pricing Details:\n";
+                   $description .= "• Annual Rent: ₦" . number_format($house_rent) . "\n";
+                   $description .= "• Agreement & Commission: ₦" . number_format($agreement_new) . "\n";
+                   $description .= "• NEPA Bills: ₦" . number_format($nepa) . "\n";
+                   $description .= "• Cleaning Fees: ₦" . number_format($clean) . "\n";
+                   $description .= "• Damage Fees: ₦" . number_format($damage) . "\n";
+                   $description .= "• Security Fees: ₦" . number_format($security) . "\n";
+                   $description .= "• Second Year Rent: ₦" . number_format($second) . "\n\n";
+                   $description .= "📞 Contact Information:\n";
+                   $description .= "WhatsApp: " . $whatapp . "\n\n";
+                   $description .= "🔗 View full details and book this house: https://housemadeeasy.com.ng/details.php?id=" . $house_id . "\n\n";
+                   $description .= "#HouseMadeEasy #HouseForRent #" . str_replace(' ', '', $location) . " #" . str_replace(' ', '', $house_type) . " #StudentHousing #OlabisiOnabanjoUniversity";
+
+                   // Update video metadata
+                   $updateResult = updateVideoMetadata($accessToken, $video_id, $title, $description);
+                   if ($updateResult) {
+                       error_log("Successfully updated YouTube video metadata for video ID: " . $video_id);
+                   } else {
+                       error_log("Failed to update YouTube video metadata for video ID: " . $video_id);
+                   }
+               }
+           }
+       }
+
     echo "<script>alert('Your House has been uploaded Successfully')</script>";
     echo "<script>window.open('my-account.php')</script>";
 }
@@ -1192,8 +1478,3 @@ else{
 
 
 ?>
-
-
- 
-
-   
