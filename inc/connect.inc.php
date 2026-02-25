@@ -1,4 +1,5 @@
 <?php
+// Central database connection file for all modules
 // Load environment variables
 require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
