@@ -1,6 +1,5 @@
  <?php
-	include ('inc/connect.inc.php'); 
-
+	include("../inc/connect.inc.php")'); 
 function val($data){
 	$data= trim($data);
 	$data= stripslashes($data);
@@ -8,12 +7,9 @@ function val($data){
 	
 	return $data;
 }
-
  
-
 	//$id='';
 	if(isset($_POST['submitrequest'])){
-
 		$lname=mysqli_real_escape_string($con, $_POST['lname']);
 		$fname=mysqli_real_escape_string($con, $_POST['fname']);
 		$pno=mysqli_real_escape_string($con, $_POST['pno']);
@@ -30,9 +26,6 @@ function val($data){
     
     //move_uploaded_file($temp_name1,"assets/images/market_place_sell_item/$imageitem");
    //move_uploaded_file($_FILES['photo']['tmp_name'], 'assets/images/market_place_sell_item/'.$photo); 
-
-
-
 		if (empty($kindofapartment && $lname && $pno && $email && $fname && $location )) { 
 			  echo  "<script>
              alert('Fill in all Fields');
@@ -43,37 +36,20 @@ function val($data){
 		
     
 		else{  
-
 			 $query = "INSERT into home_repair_booking(lname, fname, email, pno, location, description, photo1, photo2, photo3, photo4, kindofapartment, date_booked) values('$lname', '$fname', '$email', '$pno', '$location', '', '', '','','', '$kindofapartment', '$date_booked')";
 			  mysqli_query($con, $query);
-
-
 // i we direct the customer to the appointment page
 include 'home-repair-painting-services-mail-me.php'; 
 include 'home-repair-painting-services-mail-customer.php'; 
-
 include 'request_sms_home_repair_services_paint_customer.php';
  
-
 include 'request_sms_home_repair_services_paint_to_me.php';
 include 'request_sms_home_repair_services_paint_to_sammy.php';
-
  echo  "<script>
              alert('Your Request was made Successful, Kindly check your mail or sms);
              window.location.href='index.php';
     </script>";
-
  
-
-
-
-
-
-
-
-
-
-
 		
 		}	// else end
 		
@@ -84,7 +60,5 @@ include 'request_sms_home_repair_services_paint_to_sammy.php';
     </script>";
 	}
 	
-
 	
-
 ?>

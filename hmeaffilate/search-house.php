@@ -1,28 +1,18 @@
 <?php
-include('inc/connect.inc.php');
-
+include("../inc/connect.inc.php")');
 if (isset($_POST['house_type'])) { 
     $house_type = $_POST['house_type'];
-
    $stmt = $con->prepare("SELECT * FROM properties WHERE type = ? AND status = 'no' LIMIT 1000");
 $stmt->bind_param("s", $house_type);
 $stmt->execute();
 $result = $stmt->get_result();
-
-
     if (mysqli_num_rows($result) > 0) {
         echo '<div class="list-group">';
         while ($row = mysqli_fetch_assoc($result)) {
-
              $first_year_rent = (int)str_replace(',', '', $row['first_year_rent']); 
       $agent_fees = (int)str_replace(',', '', $row['agent_fees']);
-
-
-
 $initial_payment2 = $first_year_rent - $agent_fees;
-
 $initial_payment=number_format($initial_payment2);
-
             $house_link="https://www.housemadeeasy.com.ng/details.php?id=" . $row['id'];
             echo '<div class="list-group-item">';
             echo '<h5>' . htmlspecialchars($row['house_name']) . '</h5>';

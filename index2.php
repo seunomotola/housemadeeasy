@@ -25,7 +25,6 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     <h2 class="text-center">Your Referral Codes</h2>
     <div id="referral-table" class="table-container">
@@ -45,8 +44,6 @@
         </table>
     </div>
 </div>
-
-
 <script type="text/javascript">
 $(document).ready(function() {
     // Load referral data via AJAX
@@ -59,7 +56,6 @@ $(document).ready(function() {
                 let html = '';
                 data.forEach(function(referral) {
                     let actionButton = '';
-
                     if (referral.payment_status === 'paid') {
                         actionButton = '<button class="btn btn-success withdraw-btn" data-code="' + referral.referral_code + '">Withdraw</button>';
                     } else if (referral.used_by === 'Not used') {
@@ -67,7 +63,6 @@ $(document).ready(function() {
                     } else {
                         actionButton = '<button class="btn btn-danger" disabled>You can\'t withdraw the money yet</button>';
                     }
-
                     html += `
                         <tr>
                             <td>${referral.referral_code}</td>
@@ -81,9 +76,7 @@ $(document).ready(function() {
             }
         });
     }
-
     loadReferrals();
-
     // Handle withdraw button click
     $(document).on('click', '.withdraw-btn', function() {
         const referralCode = $(this).data('code');

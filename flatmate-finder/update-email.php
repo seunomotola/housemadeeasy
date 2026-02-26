@@ -1,6 +1,5 @@
  <?php
 include ('inc/session.php');  
-
 function val($data){
 	$data= trim($data);
 	$data= stripslashes($data);
@@ -8,7 +7,6 @@ function val($data){
 	$data =ucwords($data);
 	return $data;
 }
-
 	//$id='';
 	if(isset($_POST['update-user'])){
 		
@@ -21,9 +19,7 @@ function val($data){
 		//$query = mysqli_query($con,"SELECT portalstatus FROM student_login_details WHERE portalid = '$portalid'"); 
 		//$row = mysqli_fetch_assoc($query);
 		//$portalstatus1 = $row['portalstatus'];
-
 	
-
 		if (empty($email )) {
 			exit('<div style="color:red; text-align:center; font-size:15px;">Fill in all Fields</div>');
 			
@@ -34,7 +30,6 @@ function val($data){
 	
     
 		else{
-
  
  $sql = "UPDATE user SET email='$email' WHERE id = '$id'";
 		if(mysqli_query($con, $sql)){ 
@@ -61,7 +56,5 @@ function val($data){
     </script>";
 	}
 	
-
 	
-
 ?>

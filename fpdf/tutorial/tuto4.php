@@ -1,16 +1,13 @@
 <?php
 require('../fpdf.php');
-
 class PDF extends FPDF
 {
 protected $col = 0; // Current column
 protected $y0;      // Ordinate of column start
-
 function Header()
 {
 	// Page header
 	global $title;
-
 	$this->SetFont('Arial','B',15);
 	$w = $this->GetStringWidth($title)+6;
 	$this->SetX((210-$w)/2);
@@ -23,7 +20,6 @@ function Header()
 	// Save ordinate
 	$this->y0 = $this->GetY();
 }
-
 function Footer()
 {
 	// Page footer
@@ -32,7 +28,6 @@ function Footer()
 	$this->SetTextColor(128);
 	$this->Cell(0,10,'Page '.$this->PageNo(),0,0,'C');
 }
-
 function SetCol($col)
 {
 	// Set position at a given column
@@ -41,7 +36,6 @@ function SetCol($col)
 	$this->SetLeftMargin($x);
 	$this->SetX($x);
 }
-
 function AcceptPageBreak()
 {
 	// Method accepting or not automatic page break
@@ -62,7 +56,6 @@ function AcceptPageBreak()
 		return true;
 	}
 }
-
 function ChapterTitle($num, $label)
 {
 	// Title
@@ -73,7 +66,6 @@ function ChapterTitle($num, $label)
 	// Save ordinate
 	$this->y0 = $this->GetY();
 }
-
 function ChapterBody($file)
 {
 	// Read text file
@@ -89,7 +81,6 @@ function ChapterBody($file)
 	// Go back to first column
 	$this->SetCol(0);
 }
-
 function PrintChapter($num, $title, $file)
 {
 	// Add chapter
@@ -98,7 +89,6 @@ function PrintChapter($num, $title, $file)
 	$this->ChapterBody($file);
 }
 }
-
 $pdf = new PDF();
 $title = '20000 Leagues Under the Seas';
 $pdf->SetTitle($title);

@@ -1,11 +1,7 @@
 <?php 
-
    $con = mysqli_connect("localhost","root","","housemadeeasy");
-
 ?> 
-
 <?php 
-
     if(isset($_GET['house_id'])){ 
         
         $house_id = $_GET['house_id'];
@@ -33,12 +29,6 @@
     }
         
        
-
-
-
-
-
-
                                
                             
                                 $get_c = "select * from user";
@@ -66,10 +56,3 @@
                                 
                                     }
                        
-
-
-
-
-
-
-

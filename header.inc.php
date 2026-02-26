@@ -1,50 +1,38 @@
 <?php 
 session_start();
 ob_start();
-include ('./inc/connect.inc.php'); ?>
-
+include("../inc/connect.inc.php")'); ?>
  <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
   <title>Mamaluku</title>
   <link rel="icon" href="img/logo.png" type="image/png">
-
   <!-- Google font -->
   <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
-
   <!-- Bootstrap -->
   <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-
   <!-- Slick -->
   <link type="text/css" rel="stylesheet" href="css/slick.css" />
   <link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
-
   <!-- nouislider -->
   <link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
-
   <!-- Font Awesome Icon -->
   <link rel="stylesheet" href="css/font-awesome.min.css">
-
   <!-- Custom stlylesheet -->
   <link type="text/css" rel="stylesheet" href="css/style.css" />
-
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     
  <script src="js/jquery-3.2.0.min.js"></script>
 </head>
-
 <body>
   <!-- HEADER -->
   <header>
@@ -65,8 +53,6 @@ include ('./inc/connect.inc.php'); ?>
       </div>
     </div>
     <!-- /top Header -->
-
-
     <!-- header -->
     <div id="header">
       <div class="container">
@@ -78,7 +64,6 @@ include ('./inc/connect.inc.php'); ?>
             </a>
           </div>
           <!-- /Logo -->
-
           <!-- Search -->
           <div class="header-search">
             <form action="search_item.php" method="get">
@@ -93,19 +78,15 @@ include ('./inc/connect.inc.php'); ?>
         <div class="pull-right">
           <ul class="header-btns">
             <!-- Account -->
-
-
                 <?php
  if(isset($_SESSION["id"])){
   
   $user_id = $_SESSION["id"];
-
   $query = mysqli_query($con,"SELECT * FROM users WHERE user_id = '$user_id' "); 
   $row = mysqli_fetch_assoc($query);
   $fname = $row['fname'];
   $lname = $row['lname'];
 }
-
                 ?>
             <li class="header-account dropdown default-dropdown">
               <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
@@ -119,7 +100,6 @@ include ('./inc/connect.inc.php'); ?>
                  <?php endif; ?>
               </div>
             
-
              
               <ul class="dropdown-menu">
                
@@ -188,7 +168,6 @@ include ('./inc/connect.inc.php'); ?>
               </div>
             </li>
             <!-- /Cart -->
-
             <!-- Mobile nav toggle-->
             <li class="nav-toggle">
               <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
@@ -203,7 +182,6 @@ include ('./inc/connect.inc.php'); ?>
   </header>
   <!-- /HEADER -->
  
-
   <!-- NAVIGATION -->
   <div id="navigation">
     <!-- container -->
@@ -217,7 +195,6 @@ include ('./inc/connect.inc.php'); ?>
         <?php endif; ?>
           <span class="category-header">Categories <i class="fa fa-list"></i></span>
           <ul class="category-list">
-
           	<li class="dropdown side-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Fashion<i class="fa fa-angle-right"></i></a>
               <div class="custom-menu">
                 <div class="row">
@@ -247,8 +224,6 @@ include ('./inc/connect.inc.php'); ?>
                 </div>
               </div>
             </li>
-
-
             <li class="dropdown side-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Electronics<i class="fa fa-angle-right"></i></a>
               <div class="custom-menu">
                 <div class="row">
@@ -276,8 +251,6 @@ include ('./inc/connect.inc.php'); ?>
                 </div>
               </div>
             </li>
-
-
              <li class="dropdown side-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Phones<i class="fa fa-angle-right"></i></a>
               <div class="custom-menu">
                 <div class="row">
@@ -305,12 +278,6 @@ include ('./inc/connect.inc.php'); ?>
                 </div>
               </div>
             </li>
-
-
-
-
-
-
             <li><a href="products-category.php?cat=4&sub_cat=12">Health & Beauty</a></li>
            
             <li class="dropdown side-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Grocery<i class="fa fa-angle-right"></i></a>
@@ -341,8 +308,6 @@ include ('./inc/connect.inc.php'); ?>
                 </div>
               </div>
             </li>
-
-
            
             <li class="dropdown side-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Home, Furniture & Appliances<i class="fa fa-angle-right"></i></a>
               <div class="custom-menu">
@@ -377,14 +342,12 @@ include ('./inc/connect.inc.php'); ?>
             </li>
             
             <li><a href="products-category.php?cat=7&sub_cat=24">Baby Products</a></li>
-
             <li><a href="products-category.php?cat=8&sub_cat=25">Computers & Accessories</a></li>
             
             <li><a href="products.php">View All</a></li>
           </ul>
         </div>
         <!-- /category nav -->
-
         <!-- menu nav -->
         <div class="menu-nav">
           <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
@@ -410,7 +373,6 @@ include ('./inc/connect.inc.php'); ?>
                                             </div>
                                     </div>
                                 </li>
-
                         <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Electronics <i class="fa fa-caret-down"></i>
@@ -427,7 +389,6 @@ include ('./inc/connect.inc.php'); ?>
                                             </div>
                                     </div>
                                 </li>
-
                        <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Phones <i class="fa fa-caret-down"></i>
@@ -444,13 +405,8 @@ include ('./inc/connect.inc.php'); ?>
                                             </div>
                                     </div>
                                 </li>
-
           
-
-
             <li><a href="products-category.php?cat=4&sub_cat=12">Health & Beauty</a></li>
-
-
                           <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Grocery <i class="fa fa-caret-down"></i>
@@ -468,9 +424,6 @@ include ('./inc/connect.inc.php'); ?>
                                             </div>
                                     </div>
                                 </li>
-
-
-
             <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Home, Furniture & Appliances  <i class="fa fa-caret-down"></i>
@@ -491,12 +444,8 @@ include ('./inc/connect.inc.php'); ?>
                                             </div>
                                     </div>
                                 </li>
-
             
-
-
             <li><a href="products-category.php?cat=7&sub_cat=24">Baby Products</a></li>
-
             <li><a href="products-category.php?cat=8&sub_cat=25">Computers & Accessories</a></li>
             
             <li><a href="products.php">View All</a></li>
@@ -520,7 +469,6 @@ function getCat() {
       }
   var cat_id = document.getElementById('cat_id').value;
   
-
   xmlhttp.onreadystatechange = function(){
     if(xmlhttp.readyState==4){
       document.getElementById('subcat_list').innerHTML = xmlhttp.responseText;

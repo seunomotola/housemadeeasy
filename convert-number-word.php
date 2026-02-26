@@ -56,17 +56,13 @@ function convertNumberToWords($number) {
         );
         return false;
     }
-
     if ($number < 0) {
         return $negative . convertNumberToWords(abs($number));
     }
-
     $string = $fraction = null;
-
     if (strpos($number, '.') !== false) {
         list($number, $fraction) = explode('.', $number);
     }
-
     switch (true) {
         case $number < 21:
             $string = $dictionary[$number];
@@ -98,7 +94,6 @@ function convertNumberToWords($number) {
             }
             break;
     }
-
     if (null !== $fraction && is_numeric($fraction)) {
         $string .= $decimal;
         $words = [];
@@ -107,16 +102,12 @@ function convertNumberToWords($number) {
         }
         $string .= implode(' ', $words);
     }
-
     return $string;
 }
-
 // Define the amount in Naira
 $amountInNaira = $total_price;
-
 // Convert the amount to words
 $amountInWords = convertNumberToWords($amountInNaira) . " naira";
-
 // Display the amount in words
 //echo $amountInWords;
 ?>

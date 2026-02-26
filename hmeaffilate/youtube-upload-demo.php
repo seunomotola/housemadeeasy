@@ -62,7 +62,6 @@ include('inc/session.php');
                 </div>
             </div>
         </div>
-
         <!-- Demo Features -->
         <div class="row mb-5">
             <div class="col-md-4">
@@ -93,7 +92,6 @@ include('inc/session.php');
                 </div>
             </div>
         </div>
-
         <!-- Upload Demo -->
         <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -112,13 +110,11 @@ include('inc/session.php');
                                     <i class="fas fa-folder-open"></i> Browse Files
                                 </button>
                             </div>
-
                             <div id="video-preview" style="display: none;">
                                 <h6>Selected Video:</h6>
                                 <video id="preview-video" class="video-preview" controls></video>
                                 <div id="video-info" class="mb-3"></div>
                             </div>
-
                             <div id="upload-controls" style="display: none;">
                                 <button class="btn btn-success btn-lg" id="upload-to-youtube">
                                     <i class="fab fa-youtube"></i> Upload to YouTube
@@ -127,7 +123,6 @@ include('inc/session.php');
                                     <i class="fas fa-times"></i> Clear
                                 </button>
                             </div>
-
                             <div id="upload-progress" style="display: none;">
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated" 
@@ -137,7 +132,6 @@ include('inc/session.php');
                                     <span id="progress-text">Uploading...</span>
                                 </div>
                             </div>
-
                             <div id="youtube-link-section" style="display: none;">
                                 <div class="alert alert-success">
                                     <h6><i class="fab fa-youtube"></i> Upload Successful!</h6>
@@ -148,7 +142,6 @@ include('inc/session.php');
                                 </div>
                             </div>
                         </div>
-
                         <div id="auth-section" class="mt-4">
                             <div class="alert alert-info">
                                 <h6><i class="fab fa-google"></i> Google Authentication Required</h6>
@@ -162,7 +155,6 @@ include('inc/session.php');
                 </div>
             </div>
         </div>
-
         <!-- Instructions -->
         <div class="row mt-5">
             <div class="col-lg-10 mx-auto">
@@ -206,7 +198,6 @@ include('inc/session.php');
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/youtube-upload.js"></script>
     <script>
@@ -218,7 +209,6 @@ include('inc/session.php');
                     showVideoPreview(file);
                 }
             });
-
             // Drag and drop handling
             const uploadArea = $('#upload-area');
             
@@ -226,12 +216,10 @@ include('inc/session.php');
                 e.preventDefault();
                 $(this).addClass('dragover');
             });
-
             uploadArea.on('dragleave', function(e) {
                 e.preventDefault();
                 $(this).removeClass('dragover');
             });
-
             uploadArea.on('drop', function(e) {
                 e.preventDefault();
                 $(this).removeClass('dragover');
@@ -242,12 +230,10 @@ include('inc/session.php');
                     showVideoPreview(files[0]);
                 }
             });
-
             // Click to browse
             uploadArea.on('click', function() {
                 $('#video-file').click();
             });
-
             // Upload handling
             $('#upload-to-youtube').on('click', function() {
                 if (window.youtubeUploadHandler && window.youtubeUploadHandler.isReady()) {
@@ -258,7 +244,6 @@ include('inc/session.php');
                     demoUpload();
                 }
             });
-
             // Clear selection
             $('#clear-selection').on('click', function() {
                 $('#video-file').val('');
@@ -266,7 +251,6 @@ include('inc/session.php');
                 $('#upload-controls').hide();
                 $('#youtube-link-section').hide();
             });
-
             // Google authentication
             $('#auth-google').on('click', function() {
                 if (window.youtubeUploadHandler) {
@@ -276,12 +260,10 @@ include('inc/session.php');
                     simulateAuth();
                 }
             });
-
             function showVideoPreview(file) {
                 const video = document.getElementById('preview-video');
                 const url = URL.createObjectURL(file);
                 video.src = url;
-
                 $('#video-info').html(`
                     <div class="row">
                         <div class="col-sm-6">
@@ -294,26 +276,20 @@ include('inc/session.php');
                         </div>
                     </div>
                 `);
-
                 $('#video-preview').show();
                 $('#upload-controls').show();
                 $('#youtube-link-section').hide();
             }
-
             function demoUpload() {
                 const file = $('#video-file')[0].files[0];
                 if (!file) return;
-
                 $('#upload-progress').show();
                 let progress = 0;
-
                 const interval = setInterval(() => {
                     progress += Math.random() * 15;
                     if (progress > 100) progress = 100;
-
                     $('.progress-bar').css('width', progress + '%');
                     $('#progress-text').text(`Uploading... ${Math.round(progress)}%`);
-
                     if (progress >= 100) {
                         clearInterval(interval);
                         setTimeout(() => {
@@ -337,7 +313,6 @@ include('inc/session.php');
                     }
                 }, 200);
             }
-
             function simulateAuth() {
                 $('#auth-section .alert').removeClass('alert-info').addClass('alert-success');
                 $('#auth-google').text('Google Connected').prop('disabled', true);
@@ -349,7 +324,6 @@ include('inc/session.php');
                     `);
                 }, 1000);
             }
-
             function generateRandomVideoId() {
                 const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
                 let result = '';

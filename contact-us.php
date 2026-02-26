@@ -23,7 +23,6 @@ session_start();
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--New property section start-->
     <div class="contact-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20">
         <div class="container">
@@ -60,7 +59,6 @@ session_start();
         </div>
     </div>
     <!--New property section end-->
-
     <!--New property section start-->
     <div class="contact-section section bg-gray pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">

@@ -5,9 +5,7 @@
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?>
-
 <div class="row"><!-- row 1 begin -->
     <div class="col-lg-12"><!-- col-lg-12 begin -->
         <ol class="breadcrumb"><!-- breadcrumb begin -->
@@ -19,7 +17,6 @@
         </ol><!-- breadcrumb finish -->
     </div><!-- col-lg-12 finish -->
 </div><!-- row 1 finish -->
-
 <div class="row"><!-- row 2 begin -->
     <div class="col-lg-12"><!-- col-lg-12 begin -->
         <div class="panel panel-default"><!-- panel panel-default begin -->
@@ -86,7 +83,6 @@
                                 
                                 <td> <?php echo $pno; ?> </td>
                               <!--   <td> 
-
                                        <form method="post" class="form-horizontal" enctype="multipart/form-data">
                    
                  
@@ -100,7 +96,6 @@
                    
                    
                </form>
-
                                  </td> -->
                                 
                                 <td> 
@@ -125,23 +120,15 @@
         </div><!-- panel panel-default finish -->
     </div><!-- col-lg-12 finish -->
 </div><!-- row 2 finish -->
-
-
 <?php
-
-
 if(isset($_POST['send'])){
     
     
     // $query = mysqli_query($con,"SELECT * FROM user"); 
     //     $row = mysqli_fetch_assoc($query);
     //     $pno = $row['pno'];
-
-
-
 // $sql = "SELECT * FROM user ";
 //         $result= mysqli_query($con, $sql);
-
 //         if ($result->num_rows > 0) {        
 //             $found_user= mysqli_fetch_array($result);
 //             $pno = $found_user['pno'];
@@ -149,22 +136,8 @@ if(isset($_POST['send'])){
             include 'send-sms-to-all-client.php';
        echo "<script>alert('SMS sent sucessfully')</script>";
         
-
-
-
-
-
         //echo "<script>window.open('index.php?dashboard','_self')</script>";
-
-
-
-
-
     
 }
-
 ?>
-
-
-
 <?php } ?>

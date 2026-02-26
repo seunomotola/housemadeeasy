@@ -1,11 +1,5 @@
-
 <?php
-
 include ('inc/session.php'); 
-
-
-
-
    //date_default_timezone_set('Africa/Lagos');
 $house_price_session=$_SESSION['house_price'];
      $house_id1=$_SESSION['house_id'];
@@ -24,10 +18,8 @@ $house_price_session=$_SESSION['house_price'];
         $reference= $row['reference'];
         $payment_expire= $row['payment_expire'];
        // $link_expire=$payment_expire+5*24*60*60;
-
         $datetoday=strtotime($payment_expire);
         
-
          //$payment_expire=strtotime($payment_expire);
          //$current_time= time();
           $current_time= time();
@@ -37,10 +29,7 @@ $house_price_session=$_SESSION['house_price'];
           // add the payment_expire to give_customer
           //$datetoday2=$payment_expire+$give_customer; 
           //$new=
-
        
-
-
     if( $current_time < $date){
         
         include ('appointment_continue.php'); 

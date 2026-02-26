@@ -1,4 +1,3 @@
-
 <?php
 if(isset($_GET['house_id'])){ 
 include ('inc/session.php');
@@ -34,7 +33,6 @@ include ('inc/session.php');
         .modal-content {
             margin: auto;
         }
-
         .cart-icon {
             position: relative;
             display: inline-block;
@@ -59,10 +57,7 @@ include ('inc/session.php');
         }
     </style>
 <?php
-
-
    
-
 /*
 if(isset($_GET['date'])){
     $date = $_GET['date'];
@@ -76,7 +71,6 @@ $result = mysqli_query($mysqli,$sql);
         }
        
     }
-
 /*
     $stmt = $mysqli->prepare("select * from bookings where date = ?");
     $stmt->bind_param('s', $date);
@@ -91,7 +85,6 @@ $result = mysqli_query($mysqli,$sql);
         }
     }
     
-
 }else{
     header('location:index.php');
 }
@@ -110,7 +103,6 @@ $result = mysqli_query($con,$sql);
         }
        
     } 
-
 global $timeslot;
 if(isset($_POST['submit'])){
     $name = $_POST['name'];
@@ -118,8 +110,6 @@ if(isset($_POST['submit'])){
     
      $timeslot = $_POST['timeslot'];
    
-
-
 if ($multiple_room=='yes') {
     $sql ="SELECT * from bookings where  timeslot='$timeslot' AND multiple_room='$multiple_room'";
 $result = mysqli_query($con,$sql); 
@@ -129,17 +119,12 @@ $result = mysqli_query($con,$sql);
     }else{
           
         include 'book_continue_urgent_referral.php';
-
    
     }
-
 }elseif ($multiple_room=='no'){
-
      
         include 'book_continue_urgent_referral.php';
-
   
-
     
    } 
  
@@ -161,30 +146,18 @@ $result = mysqli_query($con,$sql);
         }
     }
     */
-
 } 
-
 $duration = 60;
 $cleanup = 10;
 $start = "09:00";
 $end = "18:00";
-
 /*
-
-
 The $duration variable specifies the duration of a timeslot. In our case, the duration of a slot is 15 minutes.
-
 $cleanup variable is used to add gap between two timeslots. If $cleanup is equal is 10. Then the function will add 10 minutes gap between two timeslots. For example, the first slot is 9am to 9.15am, then the next slot will start from 9.25am.
-
 $start variable specifies start of the timeslots.
-
 $end variable specifies end of the timeslots.
-
 Then we'll create a function to generate timeslots using the variables above.
-
-
 */
-
 function timeslots($duration, $cleanup, $start, $end){
     $start = new DateTime($start);
     $end = new DateTime($end);
@@ -205,7 +178,6 @@ function timeslots($duration, $cleanup, $start, $end){
     
     return $slots;
 }
-
 ?>
  
   <!--Page Banner Section start-->
@@ -223,7 +195,6 @@ function timeslots($duration, $cleanup, $start, $end){
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container" style="margin-right:65px; ">
@@ -234,7 +205,6 @@ function timeslots($duration, $cleanup, $start, $end){
         <h1 class="text-center" style="text-align:center; font-weight: bolder; font-size: 20px;">Your Appointment Date is: <?php echo date('F, d, Y'); ?></h1>
         <p style="text-align:center; font-weight: bolder; font-size: 15px">Pick a Time for your Appointment</p>
         <hr>
-
         <center>
        <div class="row">
    <div class="col-sm-12 col-md-12 col-xs-12 col-xl-12 col-lg-12">
@@ -244,7 +214,6 @@ function timeslots($duration, $cleanup, $start, $end){
         foreach($timeslots as $ts){
     ?>
     <div class=" col-sm-4 col-md-4 col-xs-6 col-lg-2  ">
-
         <div class="form-group">
             <?php 
             if ($multiple_room=='yes') {
@@ -261,22 +230,15 @@ function timeslots($duration, $cleanup, $start, $end){
     }else{ ?>
        <button class="btn btn-success book" data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
        <?php }
-
-
 }elseif ($multiple_room=='no'){
-
   if(in_array($ts, $bookings)){ ?>
        <button class="btn btn-danger"><?php echo $ts; ?></button>
        <?php }else{ ?>
        <button class="btn btn-success book" data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
        <?php }
-
 }
-
-
              ?>
           
-
         </div>
     
     </div>
@@ -289,12 +251,9 @@ function timeslots($duration, $cleanup, $start, $end){
         </div>
     </div>
     <!--Login & Register Section end-->
-
-
     <!---modal begin --->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -320,15 +279,12 @@ function timeslots($duration, $cleanup, $start, $end){
                 </div>
                 
             </div>
-
         </div>
     </div>
     <!---modal end --->
-
         <!---modal begin --->
     <div id="myModal3" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -345,11 +301,9 @@ function timeslots($duration, $cleanup, $start, $end){
                 </div>
                 
             </div>
-
         </div>
     </div>
     <!---modal end --->
-
    
     
     <?php  include ('inc/footer.inc.php');   ?>
@@ -363,7 +317,6 @@ $(".book").click(function(){
    
     $("#myModal").modal("show");
 });
-
 $(".book3").click(function(){
     
    

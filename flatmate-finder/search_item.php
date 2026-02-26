@@ -2,8 +2,6 @@
 $page_title = 'Mamaluku Products';
 ?>
 <?php  include ('./inc/header.inc.php'); ?>
-
-
 <!-- BREADCRUMB -->
 	<div id="breadcrumb">
 		<div class="container">
@@ -14,7 +12,6 @@ $page_title = 'Mamaluku Products';
 		</div>
 	</div>
 	<!-- /BREADCRUMB -->
-
 	<!-- section -->
 	<div class="section">
 		<!-- container -->
@@ -25,9 +22,7 @@ $page_title = 'Mamaluku Products';
 				<div id="aside" class="col-md-3">
 					
 					<div class="aside">
-
 						
-
 						
 						
 						
@@ -35,7 +30,6 @@ $page_title = 'Mamaluku Products';
 					<!-- /aside widget -->
 				</div>
 				<!-- /ASIDE -->
-
 				<!-- MAIN -->
 				<div id="main" class="col-md-9">
 					<!-- store top filter -->
@@ -46,12 +40,7 @@ $page_title = 'Mamaluku Products';
 						</div>
 					</div>
 					<!-- /store top filter -->
-
-
 <h5>Your advance search results</h5>
-
-
-
 <?php
     
 $button = $_GET ['submit'];
@@ -101,16 +90,10 @@ $start=0;
 $getproduct = mysqli_query($con,"SELECT * FROM products WHERE $construct LIMIT $start, $per_page");
   
 ?>
-
-
-
-
-
 <!-- STORE -->
 					<div id="store">
 						<!-- row -->
 						<div class="row">
-
 							<?php while($runrows = mysqli_fetch_assoc($getproduct)) : ?>
 						<?php
 							$product_id = $runrows['product_id'];
@@ -127,10 +110,8 @@ $getproduct = mysqli_query($con,"SELECT * FROM products WHERE $construct LIMIT $
 							$pdate = $runrows ['time'];
 							
 							$date = date('m/d/y');	
-
 							 $days =	abs(strtotime($date) - strtotime($pdate));
 							$passdays  = 10 * 24 * 60 * 60;
-
 							//to calculate the percentage.....
 							if($oprice != 0){
 								$percentage = ($oprice - $nprice)/$oprice * 100;
@@ -172,42 +153,11 @@ $getproduct = mysqli_query($con,"SELECT * FROM products WHERE $construct LIMIT $
 							</a>
 							<!-- /Product Single -->
 							<?php endwhile; ?>
-
 							
 						</div>
 						<!-- /row -->
 					</div>
 					<!-- /STORE -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  </div> 
 <div class="col-lg-12">
 <?php
@@ -285,7 +235,6 @@ echo " <a href='search_item.php?search=$search&submit=Submit&start=0'>1</a> ";
 echo " <a href='search_item.php?search=$search&submit=Submit&start=$per_page'>2</a> .... ";
  
 $i = $start;                
-
 for ($counter = ($start / $per_page) + 1; $counter <= $max_pages; $counter++)
 {
 if ($i == $start){
@@ -321,6 +270,4 @@ echo " <a href='search_item.php?search=$search&submit=Submit&start=$next'style='
 	</div>
 	<!-- /section -->
 																			
-
-
 <?php  include ('./inc/footer.inc.php'); ?>

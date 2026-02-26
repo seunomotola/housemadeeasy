@@ -1,6 +1,4 @@
-
 <?php
-
 include ('inc/session.php'); 
       $query = mysqli_query($con,"SELECT * FROM payment_history WHERE user_email = '$email2'"); 
         $row = mysqli_fetch_assoc($query);
@@ -32,7 +30,6 @@ $db_host = 'localhost';
 if(mysqli_connect_errno()){
     echo 'Failed to connect to the MYSQL: '.mysqli_connect_error();
     }
-
 if(isset($_GET['date'])){
     $date = $_GET['date'];
 $bookings = array();
@@ -45,7 +42,6 @@ $result = mysqli_query($mysqli,$sql);
         }
        
     }
-
 /*
     $stmt = $mysqli->prepare("select * from bookings where date = ?");
     $stmt->bind_param('s', $date);
@@ -60,30 +56,24 @@ $result = mysqli_query($mysqli,$sql);
         }
     }
     */
-
 }else{
     header('location:index.php');
 }
-
 if(isset($_POST['submit'])){
     $name = $_POST['name'];
     $email = $_POST['email'];
     $timeslot = $_POST['timeslot'];
-
      $house_name_session=$_SESSION['house_name'];
                        $house_agent_session=$_SESSION['agent'];
                        $house_agent_img_session=$_SESSION['agent_img'];
                         $house_location_session=$_SESSION['location'];
                          $house_exact_session=$_SESSION['house_location'];
                           $house_type=$_SESSION['type'];
-
  $sql ="SELECT * from bookings where date='$date' AND timeslot='$timeslot'";
 $result = mysqli_query($mysqli,$sql);
-
  $sql2 ="SELECT * from bookings where date='$date' AND timeslot='$timeslot' AND house_location='$house_exact_session' AND house_name='$house_name_session' AND location='$house_location_session'";
 $result2 = mysqli_query($mysqli,$sql2);
 //$totalbookings = 0;
-
   if($result->num_rows>0){
        $msg = "<div class='alert alert-danger'>This Time slot is Already Booked</div>";
        
@@ -92,7 +82,6 @@ elseif ($result2->num_rows>0) {
     $msg = "<div class='alert alert-danger'>You have already booked $timeslots for $house_name_session in $house_exact_session</div>";
 }
     else{
-
              //$amount2=$_SESSION['amount'];
     $house_img1=$_SESSION['house_img1'];
                  $house_label_session=$_SESSION['house_label'];
@@ -108,7 +97,6 @@ elseif ($result2->num_rows>0) {
                      $house_img2_session=$_SESSION['house_img2'];
                      $house_img3_session=$_SESSION['house_img3'];
                      $house_img4_session=$_SESSION['house_img4'];
-
                      $house_desc_session=$_SESSION['house_desc'];
                      $amenities_session=$_SESSION['amenities'];
                      $distance_session=$_SESSION['distance'];
@@ -141,9 +129,7 @@ elseif ($result2->num_rows>0) {
              //window.location.href='my-account.php';
     //</script>";
              $bookings[] = $timeslot;
-
                    //// send email to agent
-
              $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
           
            <div class="email-container" style="max-width: 600px;background: white; color: black; font-family: Tahoma, Geneva, sans-serif;margin: 0 auto;overflow: hidden;border-radius: 5px; padding: 20px;">
@@ -152,7 +138,6 @@ elseif ($result2->num_rows>0) {
 <br>
  
 Dear <b>$house_agent_session</b>,<br><br>
-
 Please Note that one of your apartment at $house_exact_session have been booked for checking..<br><br> Below are the Details of the Customer that want to come and check it..<br><br>
 <ol>
     <li> Date Booked for: $date</li>
@@ -165,46 +150,26 @@ Please Note that one of your apartment at $house_exact_session have been booked 
         <li>House Price: $house_price_session</li>
         
 </ol><br>
-
-
-
-
 <b>SUPPORT:</b> <br>
 For any issues with you contacting the customer, you can always contact us on housemadeeasy@gmail.com<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';  
     
     
   $subject = "Checking of Apartment";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "housemadeeasy.com.ng";
 $to = $agent_email;
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
 //mail($to, $subject, $body, $headers);
 echo $body;
-
-
-
              ////end send email to agent
-
-
-
       //// send email to customer
-
              $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
           
             <div class="email-container" style="max-width: 600px;background: white; color: black; font-family: Tahoma, Geneva, sans-serif;margin: 0 auto;overflow: hidden;border-radius: 5px; padding: 20px;">
@@ -213,7 +178,6 @@ echo $body;
 <br>
  
 Dear <b>$lname</b>,<br><br>
-
 Thank you for finding your desire House on Housemadeeasy...<br> Below are the details of the House and agent of the House:<br><br>
 <ol>
 <div >Agent Picture<br><br>
@@ -226,56 +190,33 @@ Thank you for finding your desire House on Housemadeeasy...<br> Below are the de
     <li>House Type: $house_name_session </li>
       <li>House Location: $house_exact_session </li>
         <li>House Price: $house_price_session</li>
-
        
 </ol><br>
-
-
 <b>SUPPORT:</b> <br>
 For any issues with you contacting the agent of the house, you can always contact us on housemadeeasy@gmail.com<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';  
     
     
   $subject = "House Booking Request";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "housemadeeasy.com.ng";
 $to = $email;
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
 //mail($to, $subject, $body, $headers);
 echo $body;
-
-
-
              ////end send email to customer
-
 // send sms to the user
-
 //include 'sms.php';
-
 // end send sms to the user
-
-
-
        
          }else{
-
             $msg = "<div class='alert alert-danger'>Booking not Successfull</div>";
-
          }
     }
  
@@ -297,30 +238,18 @@ echo $body;
         }
     }
     */
-
 }
-
 $duration = 30;
 $cleanup = 10;
 $start = "09:00";
 $end = "15:00";
-
 /*
-
-
 The $duration variable specifies the duration of a timeslot. In our case, the duration of a slot is 15 minutes.
-
 $cleanup variable is used to add gap between two timeslots. If $cleanup is equal is 10. Then the function will add 10 minutes gap between two timeslots. For example, the first slot is 9am to 9.15am, then the next slot will start from 9.25am.
-
 $start variable specifies start of the timeslots.
-
 $end variable specifies end of the timeslots.
-
 Then we'll create a function to generate timeslots using the variables above.
-
-
 */
-
 function timeslots($duration, $cleanup, $start, $end){
     $start = new DateTime($start);
     $end = new DateTime($end);
@@ -341,7 +270,6 @@ function timeslots($duration, $cleanup, $start, $end){
     
     return $slots;
 }
-
 ?>
  
   <!--Page Banner Section start-->
@@ -359,7 +287,6 @@ function timeslots($duration, $cleanup, $start, $end){
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container" style="margin-right:65px; ">
@@ -370,7 +297,6 @@ function timeslots($duration, $cleanup, $start, $end){
         <h1 class="text-center" style="text-align:center; font-weight: bolder; font-size: 20px;">You Picked Date: <?php echo date('F d, Y', strtotime($date)); ?></h1>
         <p style="text-align:center; font-weight: bolder; font-size: 15px">Pick a Time for your Appointment</p>
         <hr>
-
         <center>
       <div class="row">
    <div class="col-sm-12 col-md-12 col-xs-12 col-xl-12 col-lg-12">
@@ -380,7 +306,6 @@ function timeslots($duration, $cleanup, $start, $end){
         foreach($timeslots as $ts){
     ?>
     <div class=" col-sm-4 col-md-4 col-xs-6 col-lg-2  ">
-
         <div class="form-group">
             <?php if(in_array($ts, $bookings)){ ?>
        <button class="btn btn-danger"><?php echo $ts; ?></button>
@@ -388,7 +313,6 @@ function timeslots($duration, $cleanup, $start, $end){
        <button class="btn btn-success book" data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
        <?php }  ?>
           
-
         </div>
     
     </div>
@@ -400,12 +324,9 @@ function timeslots($duration, $cleanup, $start, $end){
         </div>
     </div>
     <!--Login & Register Section end-->
-
-
     <!---modal begin --->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -431,11 +352,9 @@ function timeslots($duration, $cleanup, $start, $end){
                 </div>
                 
             </div>
-
         </div>
     </div>
     <!---modal end --->
-
    
     
     <?php  include ('inc/footer.inc.php');   ?>

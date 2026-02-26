@@ -2,14 +2,11 @@
 /**
  * Test script to verify legal pages are working correctly
  */
-
 echo "<h2>Legal Pages Test</h2>";
-
 $pages = [
     'privacypolicy.php' => 'Privacy Policy',
     'termsofservice.php' => 'Terms of Service'
 ];
-
 foreach ($pages as $file => $title) {
     echo "<h3>Testing: $title</h3>";
     
@@ -49,7 +46,6 @@ foreach ($pages as $file => $title) {
     
     echo "<br>";
 }
-
 echo "<h3>Footer Links Test</h3>";
 if (file_exists('inc/footer.inc.php')) {
     $footerContent = file_get_contents('inc/footer.inc.php');
@@ -61,19 +57,16 @@ if (file_exists('inc/footer.inc.php')) {
 } else {
     echo "❌ Footer file not found<br>";
 }
-
 echo "<h3>Summary</h3>";
 echo "<p>✅ <strong>Privacy Policy</strong> - Comprehensive privacy policy covering data collection, usage, sharing, and user rights<br>";
 echo "✅ <strong>Terms of Service</strong> - Complete terms covering user conduct, service descriptions, and legal compliance<br>";
 echo "✅ <strong>Footer Integration</strong> - Links added to website footer for easy access<br>";
 echo "✅ <strong>Legal Compliance</strong> - Designed to comply with Nigerian data protection laws</p>";
-
 echo "<h3>Access Your Legal Pages:</h3>";
 echo "<ul>";
 echo "<li><a href='privacypolicy.php' target='_blank'>View Privacy Policy</a></li>";
 echo "<li><a href='termsofservice.php' target='_blank'>View Terms of Service</a></li>";
 echo "</ul>";
-
 echo "<h3>Next Steps:</h3>";
 echo "<ol>";
 echo "<li>Review both pages and customize contact information as needed</li>";
@@ -82,7 +75,6 @@ echo "<li>Consider adding these links to your registration forms</li>";
 echo "<li>Test the pages on different devices and browsers</li>";
 echo "</ol>";
 ?>
-
 <style>
 body { 
     font-family: Arial, sans-serif; 

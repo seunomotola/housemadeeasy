@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <!-- Mirrored from preview.colorlib.com/theme/plataforma/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 25 Jan 2024 14:42:23 GMT -->
 <head>
 <title>Beyond Books - Housemadeeasy Workshop 1.0</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&amp;display=swap" rel="stylesheet">
-
  <!-- Place favicon.ico in the root directory -->
     <link rel="icon" href="images/easy.png" type="image/x-icon">
 <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">

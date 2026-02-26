@@ -1,6 +1,5 @@
 <?php
 require('../fpdf.php');
-
 class PDF extends FPDF
 {
 // Load data
@@ -13,7 +12,6 @@ function LoadData($file)
 		$data[] = explode(';',trim($line));
 	return $data;
 }
-
 // Simple table
 function BasicTable($header, $data)
 {
@@ -29,7 +27,6 @@ function BasicTable($header, $data)
 		$this->Ln();
 	}
 }
-
 // Better table
 function ImprovedTable($header, $data)
 {
@@ -51,7 +48,6 @@ function ImprovedTable($header, $data)
 	// Closing line
 	$this->Cell(array_sum($w),0,'','T');
 }
-
 // Colored table
 function FancyTable($header, $data)
 {
@@ -85,7 +81,6 @@ function FancyTable($header, $data)
 	$this->Cell(array_sum($w),0,'','T');
 }
 }
-
 $pdf = new PDF();
 // Column headings
 $header = array('Country', 'Capital', 'Area (sq km)', 'Pop. (thousands)');

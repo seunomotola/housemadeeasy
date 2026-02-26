@@ -1,13 +1,12 @@
   <?php
   session_start();
-  include ('inc/connect.inc.php'); 
+  include("../inc/connect.inc.php")'); 
       function val($data){
   $data= trim($data);
   $data= stripslashes($data);
   $data =strip_tags($data);
   return $data;
 }
-
   //$id='';
   if(isset($_POST['resetpassword'])){
     $email = mysqli_real_escape_string($con, $_POST['email']);
@@ -19,7 +18,6 @@
     $lname = $row['lname'];
     $email2 = $row['email'];
   
-
   
     if (empty($email)) {
       exit('<div style="color:red; text-align:center; font-size:15px;">Fill in all Fields</div>');
@@ -32,7 +30,6 @@
     if ($email!==$email2) {
       exit('<div style="color:red; text-align:center; font-size:15px;">Email not Found</div>');
     }
-
     else{
         //now send email to the user
         $str = "0123456789qwertzuioplkjhgfdsayxcvbnm";
@@ -48,37 +45,24 @@ $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
 Dear <b>$lname</b>,<br><br><br>
  
 Please click on the link below:<br><br>
-
 <a href='https://www.housemadeeasy.org/confirm_password.php?email=$email&token=$str'>Reset Your Password</a><br>
-
 To Reset Your Password<br><br>
-
-
 <b>SUPPORT:</b> <br>
 For any issues with your login Details, you can always contact us on support@housemadeeasy.com.ng or call 07037092267, 08160852570<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';   
     
     
   $subject = "Forgot Password";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "housemadeeasy";
 $to = $email;
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
  if(mail($to, $subject, $body, $headers)){
   $sql= "UPDATE user SET token='$str' WHERE email='$email'";
          mysqli_query($con, $sql);
@@ -88,11 +72,8 @@ exit('<div style="color:green; text-align:center; font-size:15px;">Pls Check you
   exit('<div style="color:red; text-align:center; font-size:15px;">Email not sent Successfully.... </div>');
 }
 //email ends here........................... 
-
-
     
     } 
     
   }
-
       ?>

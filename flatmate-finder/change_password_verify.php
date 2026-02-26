@@ -6,7 +6,6 @@ include ('inc/session.php');
 	$data =strip_tags($data);
 	return $data;
 }
-
 	//$id='';
 	if(isset($_POST['user_login'])){
 		$old = mysqli_real_escape_string($con, $_POST['old']);
@@ -46,5 +45,4 @@ include ('inc/session.php');
     window.location.href='index.php';
     </script>";
 	}
-
         ?>

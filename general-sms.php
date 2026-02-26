@@ -20,10 +20,7 @@
                                       include 'send-properties-sms-to-all-client.php';
                                        include 'send-properties-whatapp-to-all-client.php'; 
                                       include 'send-properties-mail-to-all-client.php'; 
-
-
                                       // begin
-
                                       $get_c = "select * from contact_all_student";
                                 
                                 $run_c = mysqli_query($con,$get_c);
@@ -50,22 +47,8 @@
                                 
                                     }
                                       // end
-
-
-
-
-
-
-
                                        //echo "<script>window.open('index.php?view_products','_self')</script>";
        
                                 
                                     }
                        
-
-
-
-
-
-
-

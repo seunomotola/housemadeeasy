@@ -1,14 +1,11 @@
 <?php
 // include('inc/session.php');
 // include('config.php');
-
 // if (!isset($_SESSION['user_id'])) {
 //     header('Location: login.php');
 //     exit();
 // }
-
 $user_id = $_SESSION['user_id'];
-
 // Fetch the user's current balance
 $stmt = $con->prepare("SELECT balance FROM user WHERE user_id = ?");
 $stmt->bind_param('s', $user_id);
@@ -17,7 +14,6 @@ $stmt->bind_result($balance);
 $stmt->fetch();
 $stmt->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,13 +25,10 @@ $stmt->close();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <div class="container">
     <h2 class="text-center">Withdraw Your Funds</h2>
     <p>Your current balance is: <strong>#<?php echo number_format($balance, 2); ?></strong></p>
-
     <div id="alert-placeholder"></div>
-
     <form id="withdraw-form">
         <div class="form-group">
             <label for="withdraw_amount">Enter Amount to Withdraw:</label>
@@ -44,22 +37,18 @@ $stmt->close();
         <button type="submit" class="btn btn-primary" style="border-radius:20px">Withdraw</button>
     </form>
 </div>
-
 <script>
 $(document).ready(function() {
     $('#withdraw-form').submit(function(event) {
         event.preventDefault();
-
         $.ajax({
             url: 'process_withdraw.php',
             type: 'POST',
             data: $(this).serialize(),
             success: function(response) {
                 $('#alert-placeholder').html(response);
-
                  // Clear the input field after successful withdrawal
                 $('#withdraw_amount').val('');
-
                 // Refresh the balance by making another AJAX call
                 $.ajax({
                     url: 'get_balance.php',
@@ -79,6 +68,5 @@ $(document).ready(function() {
     });
 });
 </script>
-
 </body>
 </html>

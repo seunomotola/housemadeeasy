@@ -2,7 +2,6 @@
 session_start();
   include ('inc/header.inc.php');   ?>
     
-
       <?php 
              
                 if(isset($_GET["page"]) && isset($_GET['price'])  && isset($_GET['type'])&& isset($_GET['location']) ) { 
@@ -13,7 +12,6 @@ session_start();
                                              $post_type=$_SESSION['type'];
                                              $post_location=$_SESSION['location'];
                                              //$post_price=$_SESSION['price'];
-
                                              $postTitle="You searched For '" . $post_type . "' in '". $post_location."'" ;
                                              }
                                              else{
@@ -24,7 +22,6 @@ session_start();
      $sql ="SELECT  * from properties WHERE location='$post_location' AND type='$post_type'   order by id desc LIMIT $start_from, $num_per_page ";
 $result = mysqli_query($con,$sql); 
               
-
               ?> 
     <!--Page Banner Section start-->
     <div class="page-banner-section section">
@@ -41,7 +38,6 @@ $result = mysqli_query($con,$sql);
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--New property section start-->
     <div class="property-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -62,7 +58,6 @@ if (mysqli_num_rows($result) > 0){
            $house_name2=$row2['house_name'];
            $house_name2=str_replace(" ", "-", $house_name2);
             $multiple_room=$row2['multiple_room'];
-
                        $bathroom6=$row2['bathroom'];
                       $kitchen6=$row2['kitchen'];
                        $distance6=$row2['distance'];
@@ -72,36 +67,28 @@ if (mysqli_num_rows($result) > 0){
                      $query3 = mysqli_query($con,"SELECT * FROM bookings WHERE house_id='$house_id1'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $house_id11=$row3['house_id'];
-
                     ?>
                 <!--Property start-->
                 <div class="property-item col-lg-4 col-md-6 col-12 mb-40">
                     <div class="property-inner">
                         <div class="image">
-
                                <?php 
-
                                if ($multiple_room=='yes') {
                                 // code...
                             
                                 if ($how_many_multiple_room==0) {
                                     //it will display an image of allbooked
                                     ?>
-
                                  <a href="details.php?id=<?php echo $id; ?>" >
                                 <span class="label2">
                                <img src="assets/images/notavailable/4new.png" style=" height: 150px; margin: 50px 0px 0px 30px; padding: 5px; text-align:center" > 
                                 </span>
                                 </a>
-
-
                            <?php }
                             
                         }//end of multiple room
-
                          //begin of not multiple room
                         elseif ($multiple_room=='no'){
-
                             if ($house_id1==$house_id11) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -122,9 +109,7 @@ if (mysqli_num_rows($result) > 0){
                                 </span>
                                 </a> 
                                <?php }
-
                            }// end
-
                                /// working for label
                              if(!empty($house_label)){?>
                                 <span class="label"><?php echo $house_label?></span>
@@ -156,7 +141,6 @@ if (mysqli_num_rows($result) > 0){
                                     <a href="details.php?id=<?php echo $id; ?>"> <span class="type">View</span> </a>
                                 </div>
                             </div>
-
                               <?php 
                              if ($multiple_room=='yes') {?>
                                 <p class="text-center" style="font-weight:bolder;"><?php echo $how_many_multiple_room ?> Self Contained Room left</p>
@@ -165,7 +149,6 @@ if (mysqli_num_rows($result) > 0){
                              }
                             
                             ?>
-
                         </div>
                     </div>
                 </div>
@@ -182,10 +165,6 @@ if (mysqli_num_rows($result) > 0){
             </div>
             
                  <?php
-
-
-
-
                                 
                                      $sql_total = "SELECT * FROM properties where status='no' ";
                                     $records = mysqli_query($con,$sql_total);           
@@ -196,7 +175,6 @@ if (mysqli_num_rows($result) > 0){
                                      $previous= $page - 1;
                                      $Next=$page + 1;
                                      ?>
-
            <div class="row mt-20">
                 <div class="col">
                     <ul class="page-pagination">
@@ -217,8 +195,6 @@ if (mysqli_num_rows($result) > 0){
                                 
                                     <li><a href="search-new.php?page=<?php echo $Next; ?>&price=<?php echo $price ;?>&type=<?php echo $type?>&location=<?php echo $location;?>"><i class="fa fa-angle-right"></i> Next</a></li>
                                <?php }
-
-
                        ?>
                     </ul>
                 </div>
@@ -227,7 +203,6 @@ if (mysqli_num_rows($result) > 0){
         </div>
     </div>
     <!--New property section end-->
-
        <!--whatapp chat icon-->
       <span class="sticky_whatsapp" style=" background-color: rgba(200, 200, 200, 0.6); border-radius: 20px; text-align: center;padding: 5px; "><img src="whatsapp2.png" height="20" width="20" style=""> <a href="https://wa.me/+2348156896939?text=%2AMOLAR+CLOTHING+HELP+LINE+CHAT%2A.+Molar+Clothing+is+a+Women%27s+Wear+Brand+with+a+special+regard+for+Modest+Ladies.+Our+designs+are+generally+comfortable+and+versatile+pieces+with+emphasis+on+style+and+coverage.+We+pay+great+attention+to+detail+to+ensure+that+the+Molar+Queen+stands+out+at+all+times." style="color: #183153"><b>Need help?</b></a> </span>
       <!--whatapp chat icon end-->

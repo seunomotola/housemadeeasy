@@ -6,12 +6,9 @@ session_start();
 //     window.location.href='index.php';
 //     </script>";
 //   }
-
  ('inc/connect.inc.php');   ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
-
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:25:19 GMT -->
 <head>
     <meta charset="utf-8">
@@ -20,9 +17,7 @@ session_start();
     <title>Search your desire house easily || Housemadeeasy - Helping you to find your desire house easily</title>
     <meta name="description" content="Search your desire house easily in sagamu campus of olabisi onabanjo University  on housemadeeasy. housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University.....">
     
-
     <meta content="Search your desire house easily in sagamu campus of olabisi onabanjo University  on housemadeeasy. housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University....." name="keywords">
-
     <!-- Place favicon.ico in the root directory -->
     <link href="assets/images/easy.png" type="img/x-icon" rel="shortcut icon">
     <!-- All css files are included here. -->
@@ -32,7 +27,6 @@ session_start();
     <link rel="stylesheet" href="assets/css/helper.css">
     <link rel="stylesheet" href="assets/css/style.css"> 
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">   
-
   <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -46,12 +40,10 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
-
     
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
 <body>
     
 <div id="main-wrapper">
@@ -80,11 +72,9 @@ s0.parentNode.insertBefore(s1,s0);
                                 <li class=""><a href="view-all-properties.php" style="text-decoration: none;">View all Houses</a>
                                   
                                 </li>
-
                                <!--  <li ><a href="how-it-works.php" style="text-decoration: none;">How it Works</a>
                                  
                                 </li> -->
-
                                  <li ><a href="about-us.php" style="text-decoration: none;">About Us</a>
                                  
                                 </li>
@@ -97,9 +87,7 @@ s0.parentNode.insertBefore(s1,s0);
                                 <li ><a href="logout.php" style="text-decoration: none;">logout</a>   </li>
                                    <?php 
                                    
-
                                     }else{?>
-
                                              <li ><a href="login.php" style="text-decoration: none;">Login</a> </li>
                                 <li ><a href="register.php" style="text-decoration: none;">Register</a>   </li> 
                                   <?php } ?>
@@ -119,8 +107,6 @@ s0.parentNode.insertBefore(s1,s0);
                            
                         </div>
                     </div>
-
-
                     <!--User end-->
                 </div>
                 
@@ -152,12 +138,7 @@ s0.parentNode.insertBefore(s1,s0);
         </div>
     </div>
     <!--Page Banner Section end-->
-
    
-
-
-
-
        <!--Search Section section start-->
     <div class="search-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -179,12 +160,9 @@ s0.parentNode.insertBefore(s1,s0);
                     <div class="property-search">
                         <center>
                         <form action="search.php" method="POST" >
-
                             
-
                             <div class="form-group">
                    
-
                     
                    <select class="form-control" name="location" required>
                                     <option value="" required>Location</option>
@@ -195,14 +173,12 @@ s0.parentNode.insertBefore(s1,s0);
                                 </select>
                     
                 </div>
-
                            <!-- <div>
                                 <select class="nice-select">
                                     <option>For Rent</option>
                                     <option>For Sale</option>
                                 </select>
                             </div>-->
-
                             <div class="form-group">
                                 <select class="form-control" name="type" required>
                                     <option value="" required>Type</option>
@@ -216,7 +192,6 @@ s0.parentNode.insertBefore(s1,s0);
                                 </select>
                             </div>
                          
-
                   
                            <!---- <div class="form-group">
                                 <select class="form-control" name="price" required>
@@ -245,20 +220,15 @@ s0.parentNode.insertBefore(s1,s0);
                                     
                                 </select>
                             </div>
-
                           
-
                             <div>
                                 <div id="search-price-range"></div>
                             </div>--->
-
                             <div class="form-group">
                                  <button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-search"></i> Search</button>
                             </div>
-
                         </form>
                     </center>
-
                     </div>
                     <!--Property Search end-->
                     
@@ -268,9 +238,6 @@ s0.parentNode.insertBefore(s1,s0);
         </div>
     </div>
     <!--Search Section section end-->
-
-
-
       <!--CTA Section start-->
     <div class="cta-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50" style="background-image: url(assets/images/bg/cta-bg.jpg)">
         <div class="container">
@@ -293,10 +260,6 @@ s0.parentNode.insertBefore(s1,s0);
         </div>
     </div>
     <!--CTA Section end-->
-
-
-
-
        
     <!--Brand section start-->
     <div class="brand-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
@@ -320,7 +283,6 @@ s0.parentNode.insertBefore(s1,s0);
                     
                     <div class="brand col"><img src="assets/images/brands/nunsa1.jpg" style="width: 150px; height:120px" alt=""></div>
                     <div class="brand col"><img src="assets/images/brands/RoyalJoyLogo.png" style="width: 150px; height:120px" alt=""></div>
-
                      <div class="brand col"><img src="assets/images/brands/PANSlogo.png" style="width: 160px; height:160px" alt=""></div>
                     <div class="brand col"><img src="assets/images/brands/Picture1.png" style="width: 150px; height:150px" alt=""></div>
                    

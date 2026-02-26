@@ -1,7 +1,6 @@
 <?php
 session_start();
-include 'inc/connect.inc.php';
-
+include("../inc/connect.inc.php")';
 // Test function to simulate video upload and database saving
 function testVideoDatabaseSave() {
     global $con;
@@ -46,7 +45,6 @@ function testVideoDatabaseSave() {
         echo json_encode(array('success' => false, 'error' => 'Failed to save video information to database'));
     }
 }
-
 // Test function to check what videos are saved in database for current user
 function testGetUserVideos() {
     global $con;
@@ -83,7 +81,6 @@ function testGetUserVideos() {
         echo json_encode(array('success' => false, 'error' => 'Database query failed'));
     }
 }
-
 // Handle different test actions
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
@@ -208,7 +205,6 @@ if (isset($_GET['action'])) {
             
             <div id="test-result" class="result" style="display:none;"></div>
         </div>
-
         <script>
             function runTest(action) {
                 const resultDiv = document.getElementById('test-result');
@@ -259,7 +255,6 @@ if (isset($_GET['action'])) {
     </html>
     <?php
 }
-
 // Handle session setting
 if (isset($_POST['set_session'])) {
     $_SESSION['agentaffilate_id'] = $_POST['set_session'];

@@ -1,15 +1,10 @@
 <?php   
-include ('inc/connect.inc.php');
+include("../inc/connect.inc.php")');
  session_start(); 
-
  
  // include ('inc/header.inc.php');   ?>
-
-
  <!doctype html>
 <html class="no-js" lang="zxx">
-
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:25:19 GMT -->
 <head>
     <meta charset="utf-8">
@@ -18,9 +13,7 @@ include ('inc/connect.inc.php');
     <title>HMEAffilate || Helping you to Make Money Easily</title>
     <meta name="description" content="housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University.....">
     
-
     <meta content="housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University....." name="keywords">
-
     <!-- Place favicon.ico in the root directory -->
     <link href="assets/images/easy.png" type="img/x-icon" rel="shortcut icon">
     <!-- All css files are included here. -->
@@ -30,14 +23,11 @@ include ('inc/connect.inc.php');
     <link rel="stylesheet" href="assets/css/helper.css">
     <link rel="stylesheet" href="assets/css/style.css"> 
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">   
-
  
-
     
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
 <body>
     
 <div id="main-wrapper">
@@ -63,15 +53,11 @@ include ('inc/connect.inc.php');
                                 <li ><a href="index.php" style="text-decoration: none;">Home</a>
                                    
                                 </li>
-
                                  
-
                                <!--  <li ><a href="upload-house.php" style="text-decoration: none;">Upload House</a>
                                    
                                 </li> -->
-
                                
-
                                
                                 <?php
         if (isset($_SESSION['agentaffilate_id'])){?> 
@@ -79,9 +65,7 @@ include ('inc/connect.inc.php');
                                 <li ><a href="logout.php" style="text-decoration: none;">logout</a>   </li>  
                                   <?php 
                                    
-
                                    }else{?>
-
                                              <li ><a href="index.php" style="text-decoration: none;">Login</a> </li>
                                  <li class="active"><a href="register.php" style="text-decoration: none;">Register</a>   </li>  
                                    <?php } ?>
@@ -101,8 +85,6 @@ include ('inc/connect.inc.php');
                            
                         </div>
                     </div>
-
-
                     <!--User end-->
                 </div>
                 
@@ -134,7 +116,6 @@ include ('inc/connect.inc.php');
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -147,7 +128,6 @@ include ('inc/connect.inc.php');
                     </ul>
                     <?php
                     $pno='';
-
                     ?>
                     
                     
@@ -155,27 +135,20 @@ include ('inc/connect.inc.php');
                                 
                                 <div class="row">
                                     <div class="col-12 mb-30"><input required type="text" placeholder="First Name" name="fname">
-
                                     </div>
                                     <div class="col-12 mb-30"><input required type="text" placeholder="Last Name" name="lname" ></div>
-
                                     <div class="col-12 mb-30">
                                        <label for="edit_lastname" class="col-12 control-label" style="font-weight:bolder;">Upload a Profile picture</label>
                                         <input type="file" required class="form-control"  name="picture" >
                                         </div>
-
                                     <div class="col-12 mb-30"><input required type="email" placeholder="Email" name="email" value=""></div>
                                     <div class="col-12 mb-30"><input required type="text" placeholder="Enter your Phone number" name="pno"></div>
                                     <div class="col-12 mb-30"><input required type="password" placeholder="Password" name="pass"></div>
                                     <div class="col-12 mb-30"><input required type="password" placeholder="Confirm Password"  name="confpass"></div>
-
                                      <div class="col-12 mb-30"><input required type="text" placeholder="Enter your Bank Name e.g Gtb, Polaris etc" name="bankname"></div>
-
                                       <div class="col-12 mb-30"><input required type="text" placeholder="Enter your Account Name" name="accountname"></div>
-
                                        <div class="col-12 mb-30"><input required type="text" placeholder="Enter your Account Number" name="accountno"></div>
                                    
-
                                     <!--<div class="col-12 mb-30">
                                         <ul>
                                             <li><input type="radio" name="account_type" id="register_normal" checked><label for="register_normal">Normal</label></li>
@@ -185,7 +158,6 @@ include ('inc/connect.inc.php');
                                     </div>-->
                                     
                                     <div class="nav d-flex justify-content-end col-12 mb-30 pl-15 pr-15"><input name="submit" value="Register" type="submit" class="btn btn-primary form-control">
-
                                          
                                         <br>
                                     </div>
@@ -193,14 +165,11 @@ include ('inc/connect.inc.php');
                                          
                                         <p style="text-align: center;">By clicking Register, you accept our <a href="#myModal" data-toggle="modal">terms and conditions</a></p>
                                     </div> -->
-
                                   
-
                                      <div class="col-12 mb-30">
                                          <hr>
                                         <p style="text-align: center; font-weight: bolder;"><span>Already Register?&nbsp; <a  href="index.php" style="font-weight:bolder;">Login!</a></span></p>
                                     </div>
-
                                 </div>
                             </form>
                         </div>
@@ -211,8 +180,6 @@ include ('inc/connect.inc.php');
         </div>
     </div>
     <!--Login & Register Section end-->
-
-
   <!-- Modal -->
         <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
           <div class="modal-dialog modal-lg">
@@ -229,8 +196,6 @@ include ('inc/connect.inc.php');
                     <li>Please note that every houses and agent Information on this website are not counterfeit. They are simply the same house you would see hen you come for the checking of the House</li>
                     <li>Customer are not allowed to follow agent to check a House that is not available on the website</li>
                 </ol>
-
-
                  <ol>
                     <p style="font-weight:bolder; text-align: center; ">Refund Condition Policy</p>
                     <hr>
@@ -248,10 +213,5 @@ include ('inc/connect.inc.php');
           </div>
         </div>
         <!-- modal -->
-
-
-
-
    <?php  include ('inc/footer.inc.php');   ?>
-
    

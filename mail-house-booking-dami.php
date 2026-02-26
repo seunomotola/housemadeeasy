@@ -7,7 +7,6 @@
 <br> 
  
 Dear <b>Dami</b>,<br><br>
-
 Please Note that an apartment at $house_exact_session have been booked for checking..<br><br> Below are the Details of the Customer that want to come and check it..<br><br>
 <ol>
  <li> Agent Name: $house_agent_session</li>
@@ -22,34 +21,21 @@ Please Note that an apartment at $house_exact_session have been booked for check
         <li>House Negotiable: $negotiable</li>
         
 </ol><br>
-
-
-
-
 <b>SUPPORT:</b> <br>
 For any issues with you contacting the customer, you can always contact us on support@housemadeeasy.org or 08160852570, 07037092267<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';  
     
     
   $subject = "Checking of Apartment";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "housemadeeasy";
 $to = "hmehousing@gmail.com";
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
 mail($to, $subject, $body, $headers);
 //echo $body;

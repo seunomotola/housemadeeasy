@@ -1,14 +1,11 @@
-
             <div class="row"> 
                  <?php 
                     $sql = "SELECT * FROM market_place_properties where item_status='no' and item_cat='Table'"; 
                     $query = $con->query($sql);
                      if ($query->num_rows > 0) {
                     while($row2 = $query->fetch_assoc()){
-
                          $item_img1=$row2['item_img1'];
                     
-
                       $item_label=$row2['item_label'];
                       $item_price=$row2['item_price'];
                     
@@ -19,25 +16,19 @@
                       $item_status=$row2['item_status'];
                       $item_location=$row2['item_location'];
                        
-
                    
                      ?>  
                 <?php 
                      $query3 = mysqli_query($con,"SELECT * FROM market_place_properties_booking WHERE item_id='$item_id1'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $item_id_renew=$row3['item_id'];
-
                     ?>
                 <!--Property start-->
                 <div class="property-item col-lg-4 col-md-6 col-12 mb-40"> 
                     <div class="property-inner">
                         <div class="image">
-
                              <?php 
-
-
                       
-
                             if ($item_id1==$item_id_renew) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -58,9 +49,7 @@
                                 </span>
                                 </a> 
                                <?php }
-
                           
-
                                /// working for label
                              if(!empty($item_label)){?>
                                 <span class="label"><?php echo $item_label?></span>
@@ -92,9 +81,7 @@
                                     <a href="marketyard-details.php?id=<?php echo $id; ?>"> <span class="type">View</span> </a>
                                 </div>
                             </div>
-
                              
-
                         </div>
                     </div>
                 </div>

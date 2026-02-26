@@ -1,5 +1,4 @@
 <?php 
-
 if(isset($_GET['electrical'])){ 
    if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
     session_start();
@@ -10,8 +9,6 @@ if(isset($_GET['electrical'])){
 } else {
     session_start();
 }  
-
-
 include ('inc/header.inc.php');   ?>
     
     <!--Page Banner Section start-->
@@ -29,7 +26,6 @@ include ('inc/header.inc.php');   ?>
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -47,78 +43,51 @@ include ('inc/header.inc.php');   ?>
                             <form action="home-repair-services-electrical-process.php" method="POST" enctype="multipart/form-data">
                                   
                                 <div class="row">
-
-
                                      <div class="col-12 mb-30">
                                         <input type="text" name="lname" class="form-control form-height-custom" required placeholder="Your Last name" >
                                         </div> 
-
-
                                         <div class="col-12 mb-30">
                                         <input type="text" name="fname" class="form-control form-height-custom" required placeholder="Your First name">
                                         </div> 
-
-
                                         <div class="col-12 mb-30">
                                         <input type="text" name="pno"  class="form-control form-height-custom" required placeholder="Your Phone Number"> 
                                         </div> 
-
-
                                         <div class="col-12 mb-30">
                                         <input type="email" name="email" class="form-control form-height-custom" required placeholder="Your E-mail">
                                         </div> 
-
                                     
-
                                      <div class="col-12 mb-30">
                                         <input type="text" name="location" class="form-control form-height-custom" required placeholder="location of the Apartment in Sagamu?">
                                         </div> 
-
-
                                          <div class="col-12 mb-30">
                                        <label for="edit_lastname" class="col-12 control-label" style="font-weight:bolder;">Upload a picture of the Electrical work to be done 1</label>
                                         <input type="file" required class="form-control"  name="photo1" >
                                         </div>
-
                                          <div class="col-12 mb-30">
                                        <label for="edit_lastname" class="col-12 control-label" style="font-weight:bolder;">Upload a picture of the Electrical work to be done 2</label>
                                         <input type="file"  class="form-control"  name="photo2" >
                                         </div>
-
                                          <div class="col-12 mb-30">
                                        <label for="edit_lastname" class="col-12 control-label" style="font-weight:bolder;">Upload a picture of the Electrical work to be done 3</label>
                                         <input type="file"  class="form-control"  name="photo3" >
                                         </div>
-
                                          <div class="col-12 mb-30">
                                        <label for="edit_lastname" class="col-12 control-label" style="font-weight:bolder;">Upload a picture of the Electrical work to be done 4</label>
                                         <input type="file"  class="form-control"  name="photo4" >
                                         </div>
-
                                         <div class="col-12 mb-30">
                                             <textarea required name="description" class="form-control form-height-custom" placeholder="Describe the Electrical work you want to do e.g wall socket etc?"></textarea>
                                         
                                         </div> 
-
-
                                         
-
-
             
                                     
                                    
                                     <div class="col-12 mb-30"><input type="submit" value="Submit Request" class="btn btn-lg btn-theme btn-block btn-flat" name="submitrequest"> </div>
-
                                     
                                  </div>
-
                                 <!-- modal --->
              <!-- Button to Open the Modal -->
-
-
-
-
-
                             </form>
                         </div>
                    
@@ -135,9 +104,7 @@ include ('inc/header.inc.php');   ?>
       <!--whatapp chat icon end-->
     
     <?php  include ('inc/footer.inc.php');
-
     }else{
         header('location:index.php');
     }   ?>
-
      

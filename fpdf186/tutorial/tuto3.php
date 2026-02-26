@@ -1,12 +1,10 @@
 <?php
 require('../fpdf.php');
-
 class PDF extends FPDF
 {
 function Header()
 {
 	global $title;
-
 	// Arial bold 15
 	$this->SetFont('Arial','B',15);
 	// Calculate width of title and position
@@ -23,7 +21,6 @@ function Header()
 	// Line break
 	$this->Ln(10);
 }
-
 function Footer()
 {
 	// Position at 1.5 cm from bottom
@@ -35,7 +32,6 @@ function Footer()
 	// Page number
 	$this->Cell(0,10,'Page '.$this->PageNo(),0,0,'C');
 }
-
 function ChapterTitle($num, $label)
 {
 	// Arial 12
@@ -47,7 +43,6 @@ function ChapterTitle($num, $label)
 	// Line break
 	$this->Ln(4);
 }
-
 function ChapterBody($file)
 {
 	// Read text file
@@ -62,7 +57,6 @@ function ChapterBody($file)
 	$this->SetFont('','I');
 	$this->Cell(0,5,'(end of excerpt)');
 }
-
 function PrintChapter($num, $title, $file)
 {
 	$this->AddPage();
@@ -70,7 +64,6 @@ function PrintChapter($num, $title, $file)
 	$this->ChapterBody($file);
 }
 }
-
 $pdf = new PDF();
 $title = '20000 Leagues Under the Seas';
 $pdf->SetTitle($title);

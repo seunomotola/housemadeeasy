@@ -1,11 +1,9 @@
  <?php 
-
     if(!isset($_SESSION['admin_email'])){
         
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?>
  
 <!DOCTYPE html>
@@ -67,7 +65,6 @@
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
-
                    
                  <div class="form-group"><!-- form-group Begin -->
                        
@@ -80,21 +77,13 @@
                               <option selected disabled> Select an Item </option> 
                               
                              <option value="Wardrobe">Wardrobe&Shelves</option>
-
                               <option value="Table&Chair">Table&Chair</option>
-
                              <option value="Cooking">Cooking Utensils</option>
-
                              <option value="Bedding">Bedding</option>
-
                              <option value="Books">Books</option>
-
                              <option value="Appliances">Appliances</option>
-
                              <option value="bathing">Bathing Needs</option>
-
                               <option value="Floor">Floor Material</option>
-
                             
                               
                           </select><!-- form-control Finish -->
@@ -102,11 +91,8 @@
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
-
                  
-
                    
-
                     <div class="form-group"><!-- form-group Begin -->
                        
                       <label class="col-md-3 control-label"> Item Image 1 </label>  
@@ -143,7 +129,6 @@
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
-
                       <div class="form-group"><!-- form-group Begin -->
                        
                       <label class="col-md-3 control-label"> Item Image 4 </label> 
@@ -155,9 +140,7 @@
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
-
                    
-
                     <div class="form-group"><!-- form-group Begin -->
                        
                       <label class="col-md-3 control-label"> Item_location </label> 
@@ -169,8 +152,6 @@
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
-
-
                      <div class="form-group"><!-- form-group Begin -->
                        
                       <label class="col-md-3 control-label"> Item Desc </label> 
@@ -182,9 +163,7 @@
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
-
                     
-
                       <div class="form-group"><!-- form-group Begin -->
                        
                       <label class="col-md-3 control-label"> Item Label </label> 
@@ -196,9 +175,7 @@
                               <option selected disabled> Select a Label Product </option>
                               
                              <option value="Hot">Hot</option>
-
                               <option value="New">New</option>
-
                              <option value="Old">Old</option>
                               
                           </select><!-- form-control Finish -->
@@ -206,9 +183,7 @@
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
-
   
-
                      <div class="form-group"><!-- form-group Begin -->
                        
                       <label class="col-md-3 control-label"> Item Price </label> 
@@ -220,7 +195,6 @@
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
-
                      
           
                      <div class="form-group"><!-- form-group Begin -->
@@ -230,15 +204,12 @@
                       <div class="col-md-6"><!-- col-md-6 Begin -->
                           
                          
-
                            <select name="status" required class="form-control"><!-- form-control Begin -->
                               
                               <option selected disabled> Choose an option </option>
                               
                             
-
                               <option value="no">no</option>
-
                              
                               
                           </select><!-- form-control Finish -->
@@ -246,8 +217,6 @@
                       </div><!-- col-md-6 Finish --> 
                        
                    </div><!-- form-group Finish -->
-
-
                     <div class="form-group"><!-- form-group Begin -->
                        
                       <label class="col-md-3 control-label"> Youtube link for Item video  </label> 
@@ -259,7 +228,6 @@
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
-
                    
                
     
@@ -289,10 +257,7 @@
     <script>tinymce.init({ selector:'textarea'});</script>
 </body>
 </html>
-
-
 <?php 
-
 if(isset($_POST['submit'])){
     
     $item_name = $_POST['item_name'];
@@ -307,13 +272,10 @@ if(isset($_POST['submit'])){
     $item_img4 = $_FILES['item_img4']['name'];
     
     $youtube = $_POST['youtube'];
-
      $item_price = $_POST['item_price'];
     $item_desc = $_POST['item_desc'];
     $item_label = $_POST['item_label'];
-
       $status = $_POST['status'];
-
       
         
     
@@ -330,9 +292,7 @@ if(isset($_POST['submit'])){
     move_uploaded_file($temp_name3,"../marketplace/assets/images/market_place_sell_item/$item_img3");
     move_uploaded_file($temp_name4,"../marketplace/assets/images/market_place_sell_item/$item_img4");
    
-
     //give house an id, which is unique to it
-
     $item_id = "0123456789qwertzuioplkjhgfdsayxcvbnmABCDEFGHIKLMNOPQRSTUVZ";
       $item_id = str_shuffle($item_id);
       $item_id = substr($item_id, 0, 10);
@@ -342,7 +302,6 @@ if(isset($_POST['submit'])){
     $run_product = mysqli_query($con,$insert_product);
     
     if($run_product){?>
-
          <script>
              alert('Student Item has been inserted sucessfully...');
              window.location.href='market-place-sell-item-sms.php?item_id=<?php echo $item_id; ?>';  
@@ -355,8 +314,5 @@ if(isset($_POST['submit'])){
     }
     
 }
-
 ?>
-
-
 <?php } ?>

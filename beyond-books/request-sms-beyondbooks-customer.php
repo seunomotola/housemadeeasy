@@ -1,9 +1,6 @@
  
-
 <?php
-
 $curl = curl_init();
-
 curl_setopt_array($curl, array(
   CURLOPT_URL => 'https://my.kudisms.net/api/sms',
   CURLOPT_RETURNTRANSFER => true,
@@ -18,12 +15,8 @@ Dear $lname
 Thank you for registering for Housemadeeasy workshop 1.0...
 Beyond Books: Building wealth through Housemadeeasy.
 Holding at Adebola Adegunwa Audio Visual Hall Nursing Department OOUTH on 9th of February, 2024 by 10am.
-
-
   	",'gateway' => '1'), 
 ));
-
 $response = curl_exec($curl);
-
 curl_close($curl);
 //echo $response;

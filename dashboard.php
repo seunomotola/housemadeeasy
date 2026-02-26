@@ -1,20 +1,16 @@
 <?php
 include('inc/session.php');
-
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
 }
-
 $user_id = $_SESSION['user_id'];
-
 // Fetch only non-expired referrals
 $stmt = $con->prepare("SELECT * FROM referrals WHERE user_id = ? AND expires_at > NOW() ORDER BY expires_at DESC");
 $stmt->bind_param('s', $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $referrals = $result->fetch_all(MYSQLI_ASSOC);
-
 $can_generate = true;
 if (!empty($referrals)) {
     $expires_at = new DateTime($referrals[0]['expires_at']);
@@ -26,12 +22,10 @@ if (!empty($referrals)) {
 } else {
     $_SESSION['referral_message_visible'] = true;
 }
-
 if (!isset($_SESSION['referral_message_visible'])) {
     $_SESSION['referral_message_visible'] = true;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +36,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
 <div class="container">
     <h2>Generate Referral Link</h2>
     <?php if ($_SESSION['referral_message_visible']): ?>
@@ -54,7 +47,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
             <p class="text-danger">You cannot generate a new referral link until the current one expires.</p>
         <?php endif; ?>
     </div>
-
     <h2>Your Referral Links</h2>
     <ul id="referral-list" class="list-group">
         <?php foreach ($referrals as $referral): 
@@ -69,7 +61,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
         <?php endforeach; ?>
     </ul>
 </div>
-
 <!-- Success Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -89,7 +80,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
         </div>
     </div>
 </div>
-
 <!-- Add to Cart Modal -->
 <div class="modal fade" id="generatereferral" tabindex="-1" aria-labelledby="generatereferral" aria-hidden="true">
   <div class="modal-dialog">
@@ -110,7 +100,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
   </div>
 </div>
 <!-- Add to cart modal end -->
-
 <!-- Share Modal -->
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -137,7 +126,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
   </div>
 </div>
 <!-- Share modal end -->
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
@@ -146,7 +134,6 @@ $(document).ready(function() {
         function updateCountdown() {
             var now = new Date().getTime();
             var distance = new Date(expiresAt).getTime() - now;
-
             if (distance < 0) {
                 clearInterval(interval);
                 element.closest('li').remove();
@@ -168,16 +155,13 @@ $(document).ready(function() {
                 element.text('Expires in: ' + hours + 'h ' + minutes + 'm ' + seconds + 's');
             }
         }
-
         updateCountdown();
         var interval = setInterval(updateCountdown, 1000);
     }
-
     $('.expires-at').each(function() {
         var expiresAt = $(this).data('expires-at');
         startCountdown($(this), expiresAt);
     });
-
     $('#generate-referral').click(function() {
         $.ajax({
             url: 'generate_referral.php',
@@ -211,7 +195,6 @@ $(document).ready(function() {
             }
         });
     });
-
     $(document).on('click', '.copy-link', function(event) {
         event.preventDefault();
         var referralLink = $(this).data('link');
@@ -222,7 +205,6 @@ $(document).ready(function() {
         tempInput.remove();
         $('#successModal').modal('show');
     });
-
     $(document).on('click', '.share-link', function(event) {
         event.preventDefault();
         var referralLink = $(this).data('link');
@@ -232,11 +214,9 @@ $(document).ready(function() {
         $('#share-twitter').attr('href', 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(referralLink) + '&text=Check out this referral link!');
         $('#share-whatsapp').attr('href', 'https://wa.me/?text=' + encodeURIComponent('Check out this referral link: ' + referralLink));
         $('#share-linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(referralLink) + '&title=Referral Link');
-
         $('#shareModal').modal('show');
     });
 });
 </script>
-
 </body>
 </html>

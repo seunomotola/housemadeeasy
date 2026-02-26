@@ -7,38 +7,26 @@ $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
 <br>
  
 Dear <b>Elijah</b>,<br><br><br>
-
 A customer is requesting for the services of a cleaner via housemadeeasy.<br><br>
 Below are the Details of the customer:<br><br>
-
 Name of Customer:  $lname $fname<br><br>
 Phone Number:  $pno <br><br>
 Type of Apartment for cleaning: $kindofapartment<br><br>
 Location of Apartment: $location<br><br>
-
 <b>SUPPORT:</b> <br>
 For any issues with your login Details, you can always contact us on support@housemadeeasy.org or call 07037092267, 08160852570<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';   
     
     
   $subject = "Housemadeeasy Cleaning Services";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "housemadeeasy";
 $to = "housemadeeasy@gmail.com";
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
  mail($to, $subject, $body, $headers);

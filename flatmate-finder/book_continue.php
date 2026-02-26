@@ -23,7 +23,6 @@
                      $house_img2_session=$_SESSION['house_img2'];
                      $house_img3_session=$_SESSION['house_img3'];
                      $house_img4_session=$_SESSION['house_img4'];
-
                      $house_desc_session=$_SESSION['house_desc'];
                      $amenities_session=$_SESSION['amenities'];
                      $distance_session=$_SESSION['distance'];
@@ -37,7 +36,6 @@
                      $first_year_rent_session=$_SESSION['first_year_rent'];
                      $second_year_rent_session=$_SESSION['second_year_rent'];
                      $house_id=$_SESSION['house_id'];
-
                      $house_owner=$_SESSION['house_owner'];
                     
                       $id=$_SESSION['id'];
@@ -45,7 +43,6 @@
                        $multiple_room=$_SESSION['multiple_room'];
                      $how_many_multiple_room=$_SESSION['how_many_multiple_room'];
                       $how_many_multiple_room_new_many= --$how_many_multiple_room;
-
          $sql= "UPDATE properties set  how_many_multiple_room='$how_many_multiple_room_new_many' where house_id='$house_id'";
         mysqli_query($con, $sql);
        
@@ -58,9 +55,7 @@
              window.location.href='index.php';
     </script>";
              $bookings[] = $timeslot;
-
                    //// send email to agent
-
              $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
           
            <div class="email-container" style="max-width: 600px;background: white; color: black; font-family: Tahoma, Geneva, sans-serif;margin: 0 auto;overflow: hidden;border-radius: 5px; padding: 20px;">
@@ -69,7 +64,6 @@
 <br>
  
 Dear <b>$house_agent_session</b>,<br><br>
-
 Please Note that one of your apartment at $house_exact_session have been booked for checking..<br><br> Below are the Details of the Customer that want to come and check it..<br><br>
 <ol>
     <li> Date Booked for: $date_new</li>
@@ -82,46 +76,26 @@ Please Note that one of your apartment at $house_exact_session have been booked 
         <li>House Price: $house_price_session</li>
         
 </ol><br>
-
-
-
-
 <b>SUPPORT:</b> <br>
 For any issues with you contacting the customer, you can always contact us on support@housemadeeasy.org or 08160852570, 07037092267<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';  
     
     
   $subject = "Checking of Apartment";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "support@housemadeeasy.org";
 $to = $agent_email;
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
 //mail($to, $subject, $body, $headers);
 echo $body;
-
-
-
              ////end send email to agent
-
-
-
       //// send email to customer
-
              $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
           
             <div class="email-container" style="max-width: 600px;background: white; color: black; font-family: Tahoma, Geneva, sans-serif;margin: 0 auto;overflow: hidden;border-radius: 5px; padding: 20px;">
@@ -130,7 +104,6 @@ echo $body;
 <br>
  
 Dear <b>$lname</b>,<br><br>
-
 Thank you for finding your desire House on Housemadeeasy...<br> Below are the details of the House and agent of the House:<br><br>
 <ol>
 <div >Agent Picture<br><br>
@@ -143,62 +116,36 @@ Thank you for finding your desire House on Housemadeeasy...<br> Below are the de
     <li>House Type: $house_name_session </li>
       <li>House Location: $house_exact_session,$location_session </li>
         <li>House Price: $house_price_session</li>
-
        
 </ol><br>
-
-
 <b>SUPPORT:</b> <br>
 For any issues with you contacting the agent of the house, you can always contact us on support@housemadeeasy.org or 08160852570, 07037092267<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';  
     
     
   $subject = "House Booking Request";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "support@housemadeeasy.org";
 $to = $email2;
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
 //mail($to, $subject, $body, $headers);
 echo $body;
-
-
-
              ////end send email to customer
-
 // send sms to the user 
-
 include 'sms_customer.php';
-
 // end send sms to the user
-
 // send sms to the agent 
-
 include 'sms_agent.php';
-
 // end send sms to the agent
-
-
-
        
          }else{
-
             //die(mysqli_error($con));
             $msg = "<div class='alert alert-danger'>Booking not Successfull</div>";
-
          }
 ?>

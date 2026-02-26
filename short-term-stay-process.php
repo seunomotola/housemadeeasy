@@ -1,6 +1,5 @@
    <?php
     include ('inc/session.php');  
-
 function val($data){
 	$data= trim($data);
 	$data= stripslashes($data);
@@ -8,12 +7,8 @@ function val($data){
 	
 	return $data;
 }
-
-
-
 	//$id='';
 	if(isset($_POST['submitrequest'])){
-
 		  $multiple_room_session=$_SESSION['multiple_room']; 
     $how_many_multiple_room_session=$_SESSION['how_many_multiple_room'];
      $house_name_session=$_SESSION['house_name'];
@@ -38,7 +33,6 @@ function val($data){
                      $house_img2_session=$_SESSION['house_img2'];
                      $house_img3_session=$_SESSION['house_img3'];
                      $house_img4_session=$_SESSION['house_img4'];
-
                      $house_desc_session=$_SESSION['house_desc'];
                      $amenities_session=$_SESSION['amenities'];
                      $distance_session=$_SESSION['distance'];
@@ -51,7 +45,6 @@ function val($data){
                      $agent_email=$_SESSION['agent_email'];
                    
                      $house_id=$_SESSION['house_id'];
-
                      $house_owner=$_SESSION['house_owner'];
                     
                       $id=$_SESSION['id'];
@@ -67,9 +60,6 @@ function val($data){
 		$dateneeded=mysqli_real_escape_string($con, $_POST['dateneeded']);
 		
 		
-
-
-
 		if (empty($people && $monthofstay && $dateneeded )) {
 			  echo  "<script>
              alert('Fill in all Fields');
@@ -81,7 +71,6 @@ function val($data){
 		
     
 		else{
-
 			 $query = "INSERT into short_term_rentals_bookings (fname, lname, email, pno, agent, agent_img, agent_pno, agent_email, location, house_location, type, house_name, house_img1, house_img2, house_img3, house_img4, house_desc, amenities, house_label, distance, kitchen, bathroom, door, fence, water_source, house_id, date_booked, multiple_room, how_many_multiple_room, house_owner, user_id, people, monthofstay, dateneeded) values('$fname', '$lname', '$email2', '$pno', '$house_agent_session', '$house_agent_img_session', '$agent_pno', '$agent_email', '$house_location_session', '$house_exact_session', '$house_type', '$house_name_session', '$house_img1',  '$house_img2_session', '$house_img3_session', '$house_img4_session',  '$house_desc_session', '$amenities_session', '$house_label_session', '$distance_session', '$kitchen_session', '$bathroom_session', '$door_session', '$fence_session', '$water_source_session', '$house_id', '$date_booked', '$multiple_room', '$how_many_multiple_room_new_many', '$house_owner', '$user_id', '$people', '$monthofstay', '$dateneeded')";
 // 			 if(mysqli_query($con, $query)){
  // echo  "<script>
@@ -91,9 +80,7 @@ function val($data){
 // 			 }else{
 // 			 	die(mysqli_error(con));
 // 			 }
-
 			 mysqli_query($con, $query);
-
 include 'short_term_stay_mail_customer.php';
 include 'short_term_stay_mail_me.php';
 include 'request_sms_short_term_stay_customer.php'; 
@@ -105,13 +92,8 @@ include 'request_sms_short_term_stay_to_me.php';
               window.location.href='index.php';
              
     </script>";     
-
 // i we direct the customer to the appointment page
-
-
-
  }
-
 	
 		
 		
@@ -122,7 +104,5 @@ include 'request_sms_short_term_stay_to_me.php';
     </script>";
 	}
 	
-
 	
-
 ?>

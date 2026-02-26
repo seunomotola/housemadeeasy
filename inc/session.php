@@ -1,6 +1,6 @@
 <?php
 	 
-		include ('inc/connect.inc.php'); 
+		include("inc/connect.inc.php"); 
 		 if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
     session_start();
     $_SESSION['user_id'] = $_COOKIE['user_id'];
@@ -12,7 +12,6 @@
 } 
 set_time_limit(500); // Set the execution time limit to 500 seconds
 	if(isset($_SESSION['user_id'])) {
-
 		$query = mysqli_query($con,"SELECT * FROM user WHERE user_id = '".$_SESSION['user_id']."'"); 
 		$row = mysqli_fetch_assoc($query);
 		$email2 = $row['email'];
@@ -30,8 +29,5 @@ set_time_limit(500); // Set the execution time limit to 500 seconds
     // </script>";
 		
 	// }
-
 ?>
-
-
  

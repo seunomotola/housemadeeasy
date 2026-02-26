@@ -5,11 +5,8 @@
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?>
-
 <?php 
-
     if(isset($_GET['delete_logistics'])){
         
         $delete_logistics = $_GET['delete_logistics'];
@@ -27,7 +24,5 @@
         }
         
     }
-
 ?>
-
 <?php } ?>

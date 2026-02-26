@@ -3,10 +3,8 @@
  * Test script to verify the OAuth UI fix works correctly
  * This simulates the OAuth callback scenario
  */
-
 session_start();
 $_SESSION['agentaffilate_id'] = 'test_user_123'; // Simulate logged-in user
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,20 +65,17 @@ $_SESSION['agentaffilate_id'] = 'test_user_123'; // Simulate logged-in user
             <button type="button" id="upload-to-youtube" class="btn btn-secondary" style="margin-bottom: 10px; display: none;">Upload to YouTube</button>
         </div>
     </div>
-
     <script>
         $(document).ready(function() {
             updateUrlStatus();
             handleOAuthCallback();
         });
-
         function updateUrlStatus() {
             $('#current-url').text(window.location.href);
             const urlParams = new URLSearchParams(window.location.search);
             $('#oauth-param').text(urlParams.get('oauth') || 'None');
             $('#db-save-param').text(urlParams.get('db_save') || 'None');
         }
-
         function testOAuthSuccess() {
             const url = new URL(window.location.href);
             url.searchParams.set('oauth', 'success');
@@ -90,7 +85,6 @@ $_SESSION['agentaffilate_id'] = 'test_user_123'; // Simulate logged-in user
             updateUrlStatus();
             handleOAuthCallback();
         }
-
         function testOAuthFailure() {
             const url = new URL(window.location.href);
             url.searchParams.set('oauth', 'failed');
@@ -100,7 +94,6 @@ $_SESSION['agentaffilate_id'] = 'test_user_123'; // Simulate logged-in user
             updateUrlStatus();
             handleOAuthCallback();
         }
-
         function clearUrl() {
             const cleanUrl = window.location.origin + window.location.pathname;
             window.history.pushState({}, '', cleanUrl);
@@ -111,7 +104,6 @@ $_SESSION['agentaffilate_id'] = 'test_user_123'; // Simulate logged-in user
             $('#upload-to-youtube').hide();
             $('.alert-success, .alert-danger').remove();
         }
-
         function handleOAuthCallback() {
             const urlParams = new URLSearchParams(window.location.search);
             
@@ -150,12 +142,10 @@ $_SESSION['agentaffilate_id'] = 'test_user_123'; // Simulate logged-in user
                 }, 3000);
             }
         }
-
         // Function to start Google OAuth
         window.startGoogleOAuth = function() {
             alert('This would redirect to Google OAuth in the real application.');
         };
-
         // Video upload handling
         $('#house_video').on('change', function() {
             if (this.files.length > 0) {

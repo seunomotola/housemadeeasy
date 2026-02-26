@@ -1,12 +1,11 @@
 <?php  
 include ('inc/session.php');  
-//include ('inc/connect.inc.php'); 
+//include("../inc/connect.inc.php")'); 
 $basename= basename($_SERVER['PHP_SELF']);
 $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']); 
     ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/single-properties-gallery.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:26:05 GMT -->
 <head>
     <meta charset="utf-8"> 
@@ -35,7 +34,6 @@ $result = mysqli_query($con,$sql);
                     $_SESSION['item_label']=$post['item_label'];
                      $_SESSION['item_cat']=$post['item_cat'];
                     // $_SESSION['second_year_rent']=$post['second_year_rent'];
-
                     $_SESSION['item_id']=$post['item_id'];
                  
                    
@@ -43,15 +41,12 @@ $result = mysqli_query($con,$sql);
                       $id=$post['id'];
                       $item_id1=$post['item_id'];
                       $item_status=$post['item_status'];
-
                         
                      $query3 = mysqli_query($con,"SELECT * FROM market_place_properties_booking WHERE item_id='$item_id1'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $item_id_renew=$row3['item_id'];
-
                     
                       //exit();
-
            ?>
     <title><?php echo $post['item_name'] ?> | Housemadeeasy - Helping you to find your desire house easily</title>
     <meta name="description" content="">
@@ -64,14 +59,11 @@ $result = mysqli_query($con,$sql);
     <link rel="stylesheet" href="<?php  echo $domain; ?>assets/css/plugins.css">
     <link rel="stylesheet" href="<?php  echo $domain; ?>assets/css/helper.css">
     <link rel="stylesheet" href="<?php  echo $domain; ?>assets/css/style.css">   
-
     
-
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <base href="<?php  echo $domain; ?>">
 </head>
-
 <body>
      
 <div id="main-wrapper">
@@ -98,42 +90,32 @@ $result = mysqli_query($con,$sql);
                                 <li ><a href="index.php" style="text-decoration: none;">Home</a>
                                    
                                 </li>
-
                                 
-
                                 <li ><a href="../make-money-with-housemadeeasy.php" style="text-decoration: none;">Make Money</a>
                                    
                                 </li>
-
                                 
-
                                 <li ><a href="../home-repair/index.php" style="text-decoration: none;">Home Repair</a>
                                    
                                 </li>
-
                                  <li class="active"><a href="../marketplace/index.php" style="text-decoration: none;">Campus Yard</a>
                                    
                                 </li> 
-
                                 <li ><a href="index.php" style="text-decoration: none;">Flatmate Finder</a>
                                    
                                 </li> 
-
                                <li ><a href="../short-term-stay.php" style="text-decoration: none;">Short term Rentals</a>
                                    
                                 </li> 
-
                                 <li ><a href="../housemadeeasy-logistics.php" style="text-decoration: none;">Logistics</a>
                                    
                                 </li>
                                 <!-- <li class=""><a href="view-all-properties.php" style="text-decoration: none;">View all Houses</a>
                                   
                                 </li> -->
-
                                <!--  <li ><a href="how-it-works.php" style="text-decoration: none;">How it Works</a>
                                  
                                 </li> -->
-
                                 <!--  <li ><a href="about-us.php" style="text-decoration: none;">About Us</a>
                                  
                                 </li>
@@ -146,9 +128,7 @@ $result = mysqli_query($con,$sql);
                                 <li ><a href="../logout.php" style="text-decoration: none;">logout</a>   </li> --> 
                                   <?php 
                                    
-
                                    //}else{?>
-
                                      <!--         <li ><a href="../login.php" style="text-decoration: none;">Login</a> </li>
                                  <li ><a href="../register.php" style="text-decoration: none;">Register</a>   </li>  -->
                                    <?php //} ?>
@@ -168,8 +148,6 @@ $result = mysqli_query($con,$sql);
                            
                         </div>
                     </div>
-
-
                     <!--User end-->
                 </div>
                 
@@ -201,7 +179,6 @@ $result = mysqli_query($con,$sql);
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--New property section start-->
     <div class="property-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -210,7 +187,6 @@ $result = mysqli_query($con,$sql);
             <!--display Property start-->
                 <div class="col-lg-8 col-12 order-1 order-lg-2 mb-sm-50 mb-xs-50">
                     <div class="row">
-
                         <!--Property start-->
                         <div class="single-property col-12 mb-50">
                             <div class="property-inner">
@@ -226,17 +202,14 @@ $result = mysqli_query($con,$sql);
                                             <span class="price">#<?php echo ucwords($post['item_price']); ?></span>
                                             
                                             <span class="type"><?php echo ucwords($post['item_label']); ?></span>
-
                                         </div>
                                     </div>
                                 </div>
                                 
                                 
-
                                 <div class="image mb-30"> 
                                                 <?php 
                                      
-
                         //begin of not multiple room
                         
                             if ($item_id1==$item_id_renew) {
@@ -260,7 +233,6 @@ $result = mysqli_query($con,$sql);
                                
                                <?php }
                            
-
                                ?>
                                     <div class="single-property-gallery">
                                         <div class="item"><img src="assets/images/market_place_sell_item/<?php echo $post['item_img1']; ?>" alt=""></div>
@@ -305,7 +277,6 @@ $result = mysqli_query($con,$sql);
                                             </div>
                                         </div>
                                     </div>-->
-
                                     <!-- Breakdown of House Rent begin--->
                                     
                                  
@@ -324,21 +295,15 @@ $result = mysqli_query($con,$sql);
                                                 
                                             </span>
                                            <span style="text-align: center; font-weight:bolder; color: red">N.B : <a href="<?php echo ucwords($post['youtube_link']); ?>" >Click me to watch video</a> </span>
-
                                     <!-- Breakdown of House Rent end--->
                                         <br>
-
                                         <br>
-
                                
                                        
                                               <div>
                                                  <?php 
-
                                                 
-
                         
-
                             if ($item_id1==$item_id_renew || $item_status=='yes') {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -348,16 +313,13 @@ $result = mysqli_query($con,$sql);
                                  
                                 
                             <?php }else{?>
-
                                 <?php if(isset($_SESSION['email']) ) { ?>
                                     <a  class="btn btn-primary btn-flat click" style="text-align: center; color: white;" onclick="alertconfirmation()" ><i class="fa fa-calendar"></i> Click to inspect and buy this Item</a>
                                  <script src="https://js.paystack.co/v1/inline.js"></script>
-
                                <?php  }else{ ?> 
                                     <a  class="btn btn-primary btn-flat center btn-lg" style="text-align: center; color: white;" onclick="notyetloginin()" ><i class="fa fa-calendar"></i> Click to inspect and buy this Item</a>
                                 <?php }
                                   
-
                                
                                
       
@@ -365,17 +327,9 @@ $result = mysqli_query($con,$sql);
                                                  
                                  
                                   }//end
-
                          
-
-
-
-
                             ?>
-
-
           
-
                             </div>
                                     <!-- end of booking an apartment--->
                                 </div>
@@ -385,7 +339,6 @@ $result = mysqli_query($con,$sql);
                     endforeach;
                         ?>
                         
-
                     </div>
                 </div> <!--display house end-->
                 
@@ -398,17 +351,11 @@ $result = mysqli_query($con,$sql);
                     
                         <!--Property Search start-->
                         <div class="property-search sidebar-property-search">
-
                         <form action="search-item-quickly.php" method="POST" >
-
                             
-
                        
-
                             <div class="form-group">
-
                                 <input type="text"  class="form-control" name="item_name" required placeholder="Search your desired student item easily ?">
-
                                <!--  <select class="form-control" name="item_name" required>
                                     <option value="" required>Select the item you are looking for</option>
                                              <?php 
@@ -435,7 +382,6 @@ $result = mysqli_query($con,$sql);
                                    
                                 </select> -->
                             </div>
-
                            <!---- <div class="form-group">
                                 <select class="form-control" name="price" required>
                                     <option value="" required>Price</option>
@@ -461,19 +407,14 @@ $result = mysqli_query($con,$sql);
                               ?>
                                 </select>
                             </div>
-
                           
-
                             <div>
                                 <div id="search-price-range"></div>
                             </div>--->
-
                             <div class="form-group">
                                  <button type="submit" class="btn btn-primary btn-flat" name="search-item-quickly"><i class="fa fa-search"></i> Search</button>
                             </div>
-
                         </form>
-
                         </div>
                         <!--Property Search end-->
                         
@@ -492,10 +433,8 @@ $result = mysqli_query($con,$sql);
                     $query = $con->query($sql);
                      if ($query->num_rows > 0) {
                     while($row2 = $query->fetch_assoc()){
-
                         $item_img1=$row2['item_img1'];
                     
-
                       $item_label=$row2['item_label'];
                       $item_price=$row2['item_price'];
                     
@@ -506,18 +445,14 @@ $result = mysqli_query($con,$sql);
                       $item_status=$row2['item_status'];
                       $item_location=$row2['item_location'];
                             ?>
-
                               <?php 
                      $query3 = mysqli_query($con,"SELECT * FROM market_place_properties_booking WHERE item_id='$item_id1'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $item_id_renew=$row3['item_id'];
-
                     ?>
                             <div class="sidebar-property">
                                 <div class="image">
-
                                      <?php 
-
                             if ($item_id1==$item_id_renew) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -538,12 +473,9 @@ $result = mysqli_query($con,$sql);
                                 </span>
                                 </a> 
                                <?php }
-
-
                                         if(!empty($item_label)){?>
                                 <span class="type"><?php echo $item_label?></span>
                             <?php }else{
-
                             }
                                 ?>
                                     <a href="marketyard-details.php?id=<?php echo $id; ?>"><img src='assets/images/market_place_sell_item/<?php echo $item_img1; ?>' alt=""></a>
@@ -578,10 +510,8 @@ $result = mysqli_query($con,$sql);
                     $query = $con->query($sql);
                     if ($query->num_rows > 0) {
                     while($row2 = $query->fetch_assoc()){
-
                          $item_img1=$row2['item_img1'];
                     
-
                       $item_label=$row2['item_label'];
                       $item_price=$row2['item_price'];
                     
@@ -592,18 +522,14 @@ $result = mysqli_query($con,$sql);
                       $item_status=$row2['item_status'];
                       $item_location=$row2['item_location'];
                             ?>
-
                                    <?php 
                        $query3 = mysqli_query($con,"SELECT * FROM market_place_properties_booking WHERE item_id='$item_id1'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $item_id_renew=$row3['item_id'];
-
                     ?>
                              <div class="sidebar-property">
                                 <div class="image">
-
                                      <?php 
-
                             if ($item_id1==$item_id_renew) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -624,12 +550,9 @@ $result = mysqli_query($con,$sql);
                                 </span>
                                 </a> 
                                <?php }
-
-
                                         if(!empty($item_label)){?>
                                 <span class="type"><?php echo $item_label?></span>
                             <?php }else{
-
                             }
                                 ?>
                                     <a href="marketyard-details.php?id=<?php echo $id; ?>"><img src='assets/images/market_place_sell_item/<?php echo $item_img1; ?>' alt=""></a>
@@ -656,7 +579,6 @@ $result = mysqli_query($con,$sql);
                       $row = mysqli_fetch_assoc($query2);
                       $_SESSION['amount']=$row['amount'];
                       $amount2=$_SESSION['amount'];
-
                     ?>
                     <!--Sidebar start-->
                     <div class="sidebar">
@@ -685,24 +607,18 @@ $result = mysqli_query($con,$sql);
         </div>
     </div>
     <!--New property section end-->
-
     <!--whatapp chat icon-->
    
       <span class="sticky_whatsapp" style=" background-color: rgba(200, 200, 200, 0.6); border-radius: 20px; text-align: center;padding: 5px; "><img src="whatsapp2.png" height="20" width="20" style=""> <a href="https://wa.me/+2348160852570?text=Welcome+to+Housemadeeasy+Customer+Care,+Drop+your+Complain+here+and+we+would+respond+to+them+as+soon+as+Possible..." style="color: #183153"><b>Need help?</b></a> </span>
       <!--whatapp chat icon end-->
-
     <?php  include ('inc/footer.inc.php');   ?>
-
     <script type="text/javascript">
         function notyetloginin(){
-
 alert('Login/Register first before you can book an appointment with the seller of this item ...');
                                          window.location.href='../login.php';
          }
     </script>
-
 <script type="text/javascript">
-
     window.addEventListener('load', function(){
       });
     function alertconfirmation(){
@@ -711,7 +627,6 @@ alert('Login/Register first before you can book an appointment with the seller o
   text: "You have clicked to buy this item and  you will need to book an appointment with the seller of this item  by picking a time that is convience for you to come and check this item. If you agree with this kindly click on 'I Agree' else if not click on 'Cancel'",
   buttons: [true, "I Agree!"],
   dangerMode: true,
-
 })
 .then((willDelete) => { 
   if (willDelete) {
@@ -720,16 +635,10 @@ alert('Login/Register first before you can book an appointment with the seller o
     //swal("Your imaginary file is safe!");
   }
 });
-
     
-
     }
 </script> 
-
     <script>
-
-
-
 // function payWithPaystack(e) {
 //   let handler = PaystackPop.setup({
 //     key: 'pk_test_ac9ec15d0168a4feddced75826c3ea5488056c46', // Replace with your public key 

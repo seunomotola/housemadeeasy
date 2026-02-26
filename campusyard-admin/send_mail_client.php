@@ -1,11 +1,9 @@
 <?php 
-
     if(!isset($_SESSION['admin_email'])){
         
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?>
    
     
@@ -48,7 +46,6 @@
                <form method="post" class="form-horizontal" enctype="multipart/form-data"><!-- form-horizontal Begin -->
                    
                    
-
              
                  
                  
@@ -83,24 +80,15 @@
     </div><!-- col-lg-12 Finish -->
     
 </div><!-- row Finish -->
-
-
 <?php 
-
-
-
   
           
                             
                         
-
-
-
 if(isset($_POST['send'])){
     
     
   
-
                                
                             
                                 $get_c = "select * from user";
@@ -126,14 +114,7 @@ if(isset($_POST['send'])){
                                     }
                          include 'send-sms-to-all-client.php';
        echo "<script>alert('SMS sent sucessfully')</script>";
-
-
-
-
     
 }
-
 ?>
-
-
 <?php } ?>

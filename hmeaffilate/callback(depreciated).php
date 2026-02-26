@@ -1,21 +1,17 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-
 // Load environment variables
 require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
-
 // Configuration
 define('GOOGLE_CLIENT_ID', $_ENV['GOOGLE_CLIENT_ID']);
 define('GOOGLE_CLIENT_SECRET', $_ENV['GOOGLE_CLIENT_SECRET']);
 define('CALLBACK_URL', $_ENV['CALLBACK_URL']);
 define('GOOGLE_REDIRECT_URI', CALLBACK_URL);
-
 // YouTube API scopes
 define('YOUTUBE_UPLOAD_SCOPE', 'https://www.googleapis.com/auth/youtube.upload');
-
 function getAccessToken($code) {
     $data = array(
         'code' => $code,
@@ -42,7 +38,6 @@ function getAccessToken($code) {
     
     return json_decode($result, true);
 }
-
 function uploadVideoToYouTube($accessToken, $videoFile, $title, $description = '') {
     // Create multipart body for video upload
     $boundary = uniqid();
@@ -94,7 +89,6 @@ function uploadVideoToYouTube($accessToken, $videoFile, $title, $description = '
     
     return json_decode($response, true);
 }
-
 function getVideoStatus($accessToken, $videoId) {
     $context = stream_context_create(array(
         'http' => array(
@@ -111,7 +105,6 @@ function getVideoStatus($accessToken, $videoId) {
     
     return json_decode($response, true);
 }
-
 function getVideoLink($accessToken, $videoId) {
     $context = stream_context_create(array(
         'http' => array(
@@ -136,7 +129,6 @@ function getVideoLink($accessToken, $videoId) {
     
     return false;
 }
-
 // Handle different actions
 if (isset($_POST['action'])) {
     switch ($_POST['action']) {

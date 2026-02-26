@@ -1,7 +1,6 @@
 <?php
 include('inc/session.php'); // Include session
 //include('inc/db_connection.php'); // Include your database connection file
-
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
     

@@ -7,45 +7,28 @@ $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
 <br>
  
 Dear <b>Elijah</b>,<br><br><br>
-
-
 A customer is using housemadeeasy as means to look for a short term stay.<br><br> 
  
 Below are the Details of the customer, house and location of Preference of the house:<br><br> 
-
 Name of Customer:  $lname $fname<br><br> 
 Phone Number:  $pno <br><br> 
-
 How many people will be staying in the apartment: $people<br><br> 
 Duration of stay: $monthofstay<br><br> 
 Date the house will be needed: $dateneeded<br><br>
-
-
-
-
 <b>SUPPORT:</b> <br>
 For any issues with your login Details, you can always contact us on support@housemadeeasy.org or call 07037092267, 08160852570<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';   
     
     
   $subject = "Short Term Rentals  ";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "housemadeeasy";
 $to = "housemadeeasy@gmail.com";
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
  mail($to, $subject, $body, $headers);

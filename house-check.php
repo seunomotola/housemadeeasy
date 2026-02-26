@@ -1,13 +1,11 @@
 <?php  
 include ('inc/session.php'); 
-//include ('inc/connect.inc.php'); 
+//include("../inc/connect.inc.php")'); 
 $basename= basename($_SERVER['PHP_SELF']);
 $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']); 
     ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
-
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/single-properties-gallery.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:26:05 GMT -->
 <head>
     <meta charset="utf-8"> 
@@ -29,7 +27,6 @@ $result = mysqli_query($con,$sql);
                      $_SESSION['house_name']=$post['house_name'];
                        $_SESSION['agent']=$post['agent'];
                        $_SESSION['agent_img']=$post['agent_img'];
-
                        $_SESSION['location']=$post['location'];
                          $_SESSION['house_location']=$post['house_location'];
                           $_SESSION['type']=$post['type'];
@@ -52,7 +49,6 @@ $result = mysqli_query($con,$sql);
                    
                     
                       $id=$post['id'];
-
            ?>
     <title><?php echo $post['house_name'] ?> | Housemadeeasy - Helping you to find your desire house easily</title>
     <meta name="description" content="">
@@ -69,7 +65,6 @@ $result = mysqli_query($con,$sql);
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <base href="<?php  echo $domain; ?>">
 </head>
-
 <body>
      
 <div id="main-wrapper">
@@ -98,11 +93,9 @@ $result = mysqli_query($con,$sql);
                                 <li class=""><a href="view-all-properties.php">View all Houses</a>
                                   
                                 </li>
-
                                  <!--<li ><a href="how-it-works.php" style="text-decoration: none;">How it Works</a>
                                  
                                 </li>-->
-
                                  <li ><a href="about-us.php" style="text-decoration: none;">About Us</a>
                                  
                                 </li>
@@ -116,9 +109,7 @@ $result = mysqli_query($con,$sql);
                                 <li ><a href="logout.php">logout</a>   </li>
                                    <?php 
                                    
-
                                     }else{?>
-
                                              <li ><a href="login.php">Login</a> </li>
                                 <li ><a href="register.php">Register</a>   </li> 
                                   <?php } ?>
@@ -138,8 +129,6 @@ $result = mysqli_query($con,$sql);
                            
                         </div>
                     </div>
-
-
                     <!--User end-->
                 </div>
                 
@@ -171,7 +160,6 @@ $result = mysqli_query($con,$sql);
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--New property section start-->
     <div class="property-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -180,7 +168,6 @@ $result = mysqli_query($con,$sql);
             <!--display Property start-->
                 <div class="col-lg-8 col-12 order-1 order-lg-2 mb-sm-50 mb-xs-50">
                     <div class="row">
-
                         <!--Property start-->
                         <div class="single-property col-12 mb-50">
                             <div class="property-inner">
@@ -239,14 +226,11 @@ $result = mysqli_query($con,$sql);
                                                <ul class="amenities-list">
                                                 
                                                 
-
                                                 <li> Water Source - <?php echo $post['water_source']; ?></li>
                                                 
                                                 <li><?php // door is tiles
                                                 echo $post['door']; ?></li>
-
                                                 <li><?php echo $post['fence']; ?></li>
-
                                                 <li><?php echo $post['kitchen']; ?> Kitchen</li>
                                                
                                                 <li><?php echo $post['bathroom']; ?> Bathroom  <!--Bathroom containig shower or tap--></li><br>
@@ -254,7 +238,6 @@ $result = mysqli_query($con,$sql);
                                                 
                                                 
                                                 <li>Toilet- <?php // amenities is type of toilet
-
                                                 echo $post['amenities']; ?><!--water closet, pit latrine--></li>
                                                
                                                 
@@ -278,7 +261,6 @@ $result = mysqli_query($con,$sql);
                                             </div>
                                         </div>
                                     </div>-->
-
                                     <!-- begin of booking an apartment--->
                                     <h4>Thank You For Booking this Apartment.</h4><br> <p>Below are the details of the house and agent of the house:</p>
                                      
@@ -288,7 +270,6 @@ $result = mysqli_query($con,$sql);
                                                 <li>Agent Name: <?php echo ucwords($_SESSION['agent']); ?></li>
                                                 <li>Agent Phone Number: <?php echo $_SESSION['agent_pno']; ?></li>
                                                 <li>Agent E-mail: <?php echo $_SESSION['agent_email']; ?></li>
-
                                                 <li>House Type: <?php echo $_SESSION['house_name']; ?> </li>
                                                 <li>Location: <?php echo $_SESSION['house_location']; ?></li>
                                                 <li>First Year Price: #<?php echo $_SESSION['first_year_rent']; ?></li>
@@ -316,7 +297,6 @@ $result = mysqli_query($con,$sql);
                         <!--Comment start-->
                        <!-- <div class="comment-wrap col-12">
                             <h3>3 Feedback</h3>
-
                             <ul class="comment-list">
                                 <li>
                                     <div class="comment">
@@ -366,9 +346,7 @@ $result = mysqli_query($con,$sql);
                                     </div>
                                 </li>
                             </ul>
-
                             <h3>Leave a Feedback</h3>
-
                             <div class="comment-form">
                                 <form action="#">
                                     <div class="row">
@@ -382,7 +360,6 @@ $result = mysqli_query($con,$sql);
                         
                         </div>--->
                         <!--Comment end-->
-
                     </div>
                 </div> <!--display house end-->
                 
@@ -395,14 +372,10 @@ $result = mysqli_query($con,$sql);
                     
                         <!--Property Search start-->
                         <div class="property-search sidebar-property-search">
-
                             <form action="search.php" method="POST" >
-
                             
-
                             <div class="form-group">
                    
-
                     
                    <select class="form-control" name="location" required>
                                     <option value="" required>Location</option>
@@ -412,14 +385,12 @@ $result = mysqli_query($con,$sql);
                                 </select>
                     
                 </div>
-
                            <!-- <div>
                                 <select class="nice-select">
                                     <option>For Rent</option>
                                     <option>For Sale</option>
                                 </select>
                             </div>-->
-
                             <div class="form-group">
                                 <select class="form-control" name="type" required>
                                     <option value="" required>Type</option>
@@ -432,7 +403,6 @@ $result = mysqli_query($con,$sql);
                                    
                                 </select>
                             </div>
-
                             <!----  <div class="form-group">
                                 <select class="form-control" name="price" required>
                                     <option value="" required>Price</option>
@@ -458,19 +428,14 @@ $result = mysqli_query($con,$sql);
                               ?>
                                 </select>
                             </div>
-
                           
-
                           <div>
                                 <div id="search-price-range"></div>
                             </div>--->
-
                             <div class="form-group">
                                  <button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-search"></i> Search</button>
                             </div>
-
                         </form>
-
                         </div>
                         <!--Property Search end-->
                         
@@ -488,10 +453,8 @@ $result = mysqli_query($con,$sql);
                               $sql = "SELECT * FROM properties where type='$defined' and status='no' order by id ASC";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       $house_label=$row2['house_label'];
                       $house_price=$row2['house_price'];
                      $location=$row2['location'];
@@ -536,10 +499,8 @@ $result = mysqli_query($con,$sql);
                               $sql = "SELECT * FROM properties where status='no' order by rand() LIMIT 0,3";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       $house_label=$row2['house_label'];
                       $house_price=$row2['house_price'];
                      $location=$row2['location'];
@@ -577,7 +538,6 @@ $result = mysqli_query($con,$sql);
                       $row = mysqli_fetch_assoc($query2);
                       $_SESSION['amount']=$row['amount'];
                       $amount2=$_SESSION['amount'];
-
                     ?>
                     <!--Sidebar start-->
                     <div class="sidebar">

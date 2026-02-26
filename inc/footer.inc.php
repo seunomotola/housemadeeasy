@@ -45,7 +45,6 @@
                                  
                                 </li> -->
                             <li><a href="contact-us.php" style="text-decoration: none; ">Contact Us</a></li>
-
                             <li><a href="view-all-properties.php" style="text-decoration: none; ">Browse all our Apartments</a></li>
                             
                             <li><a href="login.php" style="text-decoration: none; ">Login</a></li>
@@ -80,7 +79,6 @@
             </div>
         </div>
         <!--Footer Top end-->
-
        
         <!--Footer bottom start-->
         <div class="footer-bottom section">
@@ -97,15 +95,12 @@
                 </div>
             </div>
         </div>
-
         <!--Footer bottom end-->
         
      </footer>
      <!--Footer section end-->
 </div>
-
 <!-- Placed js at the end of the document so the pages load faster -->
-
 <!-- All jquery file included here -->
 <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22&amp;key=AIzaSyDAq7MrCR1A2qIShmjbtLHSKjcEIEBEEwM"></script>
 <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
@@ -116,13 +111,7 @@
 <script src="assets/js/map-place.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/sweetalert.min.js"></script>
-
-
-
    <!--  -->
-
 </body>
-
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/login-register.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:26:31 GMT -->
 </html>

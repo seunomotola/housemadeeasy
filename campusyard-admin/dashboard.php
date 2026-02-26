@@ -5,9 +5,7 @@
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?> 
-
 <div class="row"><!-- row no: 1 begin -->
     <div class="col-lg-12"><!-- col-lg-12 begin -->
         <h1 class="page-header"> Dashboard </h1>
@@ -22,12 +20,10 @@
         
     </div><!-- col-lg-12 finish -->
 </div><!-- row no: 1 finish -->
-
 <div class="row"><!-- row no: 2 begin -->
    
    
    
-
    
    
     <div class="col-lg-3 col-md-6"><!-- col-lg-3 col-md-6 begin -->
@@ -71,7 +67,6 @@
     </div><!-- col-lg-3 col-md-6 finish -->
     
 </div><!-- row no: 2 finish -->
-
 <div class="row"><!-- row no: 3 begin -->
     <div class="col-lg-8"><!-- col-lg-8 begin -->
         <div class="panel panel-primary"><!-- panel panel-primary begin -->
@@ -96,7 +91,6 @@
                                   <th> Date Booked: </th>
                                 
                                 <th> Phone Number: </th>
-
                                 <th> Location: </th>
                                 
                                 <th> Tool: </th>
@@ -121,11 +115,9 @@
                                     $id = $row_order['id'];
                                     
                                     $item_name = $row_order['item_name'];
-
                                     $item_location = $row_order['item_location'];
                                     
                                     $date = $row_order['date_booked'];
-
                                      $item_price = $row_order['item_price'];
                                     
                                     
@@ -133,9 +125,7 @@
                                     $item_location = $row_order['item_location'];
                                     
                                     $pno = $row_order['pno'];
-
                                     $fname = $row_order['fname'];
-
                                     $lname = $row_order['lname'];
                                     
                                     
@@ -181,7 +171,6 @@
         <div class="panel"><!-- panel begin -->
             <div class="panel-body"><!-- panel-body begin -->
                 <div class="mb-md thumb-info"><!-- mb-md thumb-info begin -->
-
                     <img src="admin_images/HouseMadeEasylogo.jpg" alt="<?php echo $admin_image; ?>" class="rounded img-responsive">
                     
                     <div class="thumb-info-title"><!-- thumb-info-title begin -->
@@ -190,7 +179,6 @@
                         <!-- <span class="thumb-info-type"> <?php //echo $admin_job; ?> </span> -->
                         
                     </div><!-- thumb-info-title finish -->
-
                 </div><!-- mb-md thumb-info finish -->
                 
                 <div class="mb-md"><!-- mb-md begin -->
@@ -217,6 +205,4 @@
     </div><!-- col-md-4 finish -->
     
 </div><!-- row no: 3 finish -->
-
-
 <?php } ?>

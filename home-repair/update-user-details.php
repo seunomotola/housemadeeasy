@@ -1,6 +1,5 @@
  <?php
 include ('inc/session.php');  
-
 function val($data){
 	$data= trim($data);
 	$data= stripslashes($data);
@@ -8,7 +7,6 @@ function val($data){
 	$data =ucwords($data);
 	return $data;
 }
-
 	//$id='';
 	if(isset($_POST['update-user'])){
 		$fname = val(mysqli_real_escape_string($con, $_POST['fname']));
@@ -22,9 +20,7 @@ function val($data){
 		//$query = mysqli_query($con,"SELECT portalstatus FROM student_login_details WHERE portalid = '$portalid'"); 
 		//$row = mysqli_fetch_assoc($query);
 		//$portalstatus1 = $row['portalstatus'];
-
 	
-
 		if (empty($fname && $lname && $email && $cust_no )) {
 			exit('<div style="color:red; text-align:center; font-size:15px;">Fill in all Fields</div>');
 			
@@ -34,11 +30,9 @@ function val($data){
 	
     
 		else{
-
  
  $sql = "UPDATE user SET fname = '$fname', lname = '$lname', email='$email' , pno='$cust_no' WHERE id = '$id'";
 		if(mysqli_query($con, $sql)){ 
-
 			        echo  "<script>
     alert('Details Updated successfully  ...');
     window.location.href='https://www.housemadeeasy.com.ng/my-account.php';
@@ -59,7 +53,5 @@ function val($data){
     </script>";
 	}
 	
-
 	
-
 ?>

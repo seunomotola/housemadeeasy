@@ -1,6 +1,5 @@
  <?php
-	include ('inc/connect.inc.php'); 
-
+	include("../inc/connect.inc.php")'); 
 function val($data){
 	$data= trim($data);
 	$data= stripslashes($data);
@@ -8,12 +7,9 @@ function val($data){
 	
 	return $data;
 }
-
  
-
 	//$id='';
 	if(isset($_POST['submitrequest'])){
-
 		$lname=mysqli_real_escape_string($con, $_POST['lname']);
 		$fname=mysqli_real_escape_string($con, $_POST['fname']);
 		$pno=mysqli_real_escape_string($con, $_POST['pno']);
@@ -33,9 +29,6 @@ function val($data){
    move_uploaded_file($_FILES['photo']['tmp_name'], 'assets/images/market_place_sell_item/'.$photo); 
    move_uploaded_file($_FILES['photo2']['tmp_name'], 'assets/images/market_place_sell_item/'.$photo2); 
     move_uploaded_file($_FILES['photo3']['tmp_name'], 'assets/images/market_place_sell_item/'.$photo3); 
-
-
-
 		if (empty($kindofitem && $lname && $pno && $fname && $photo &&  $photo2 && $photo3 && $howmuch)) { 
 			  echo  "<script>
              alert('Fill in all Fields');
@@ -46,17 +39,12 @@ function val($data){
 		
     
 		else{ 
-
-
-
             $sql = "INSERT into market_place(lname, fname, pno, email, kindofitem, imageitem1, imageitem2, imageitem3, howmuch) values('$lname', '$fname',  '$pno',  '$email', '$kindofitem', '$photo', '$photo2', '$photo3', '$howmuch')";
-
             if(mysqli_query($con, $sql)){  
              echo  "<script>
              alert('Your Request was made Successfull');
              window.location.href='index.php';
     </script>";
-
 // i we direct the customer to the appointment page
 include 'Sell-item-market-place-mail-me.php';
 include 'Sell-item-market-place-mail-dami.php';
@@ -64,25 +52,14 @@ include 'Sell-item-market-place-mail-customer.php';
 include 'request_sms_market_place_customer.php';
 include 'request_sms_market_place_to_me.php';
 include 'request_sms_market_place_to_dami.php'; 
-
  }
 else{
-
      echo" <script>
              alert('Your Request was not made Successfull, Try again');
              window.location.href='index.php';
     </script>";
                 //die(mysqli_error($con));
             }// end of payment not succesful
-
-
-
-
-
-
-
-
-
 		
 		}	// else end
 		
@@ -93,7 +70,5 @@ else{
     </script>";
 	}
 	
-
 	
-
 ?>

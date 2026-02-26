@@ -1,8 +1,7 @@
   <?php
   ob_start();
 	session_start(); 
-	include ('inc/connect.inc.php'); 
-
+	include("../inc/connect.inc.php")'); 
 function val($data){
 	$data= trim($data);
 	$data= stripslashes($data);
@@ -10,7 +9,6 @@ function val($data){
 	
 	return $data;
 }
-
 	//$id='';
 	if(isset($_POST['submit'])){
 		
@@ -25,36 +23,28 @@ function val($data){
 		$accountno = mysqli_real_escape_string($con, $_POST['accountno']);
 		//$register_agree = $_POST['register_agree']=isset($_POST['register_agree']) ? 1 : 0;
 		$hashedpassword=md5($pass);
-
 		 $picture = $_FILES['picture']['name'];
     
     $temp_name1 = $_FILES['picture']['tmp_name'];
     ;
     
     move_uploaded_file($temp_name1,"assets/images/hmeaffilate_img/$picture");
-
     	 $sql_l ="SELECT * FROM hmeaffilate_user WHERE email='$email'";
   	$re_l =mysqli_query($con, $sql_l);
-
   	 $sql_p ="SELECT * FROM hmeaffilate_user WHERE password='$hashedpassword'";
   	$re_p =mysqli_query($con, $sql_p);
-
 		if (empty($fname && $lname && $email && $pass && $confpass && $pno && $bankname && $accountname && $accountno)) {
-
 			echo '<script>
              alert("Fill in all Fields...");
              window.location.href="register.php";
               </script>';
 	}
-
 		if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-
 			echo '<script>
              alert("Email must be valid...");
              window.location.href="register.php";
               </script>';
        }
-
       if(mysqli_num_rows($re_l)>0){
 		echo '<script>
              alert("Email not Available...");
@@ -62,7 +52,6 @@ function val($data){
               </script>';
 		
 	}
-
 	 if(mysqli_num_rows($re_p)>0){
     	
 		echo '<script>
@@ -70,7 +59,6 @@ function val($data){
              window.location.href="register.php";
               </script>';
 		}
-
     elseif ($pass!==$confpass) { 
     	
     	echo '<script>
@@ -78,9 +66,7 @@ function val($data){
              window.location.href="register.php";
              </script>';
     }
-
     else{ 
-
 			     //Code for USER ID
 $count_my_page = ("userid.txt");
 $hits = file($count_my_page);
@@ -89,23 +75,16 @@ $fp = fopen($count_my_page , "w");
 fputs($fp , "$hits[0]");
 fclose($fp); 
 $agentaffilate_id= $hits[0]; 
-
  $sql = "INSERT into hmeaffilate_user(fname, lname, email, password, pno, token, agentaffilate_id, picture, bankname, accountname, accountno) values('$fname', '$lname', '$email','$hashedpassword', '$pno', '', '$agentaffilate_id', '$picture', '$bankname', '$accountname', '$accountno')";
 		mysqli_query($con, $sql);
-
 		
-
-
 		// 	if(mysqli_query($con, $sql)){
-
 		// 	exit('<div style="color:green; text-align:center; font-size:15px;">Registration successful...please Login in with your new E-mail and Password</div>');
 		// }else{
 		// 	exit('<div style="color:red; text-align:center; font-size:15px;">Incorrect Details</div>');	
 		// }
-
 		$sql_login = "SELECT * FROM hmeaffilate_user WHERE email = '$email' AND password='$hashedpassword' AND agentaffilate_id='$agentaffilate_id'";
 		$result_login= mysqli_query($con, $sql_login);
-
 		if ($result_login->num_rows > 0) {		
 			$found_user= mysqli_fetch_array($result_login);
 			$_SESSION['id']=$found_user['id'];
@@ -115,7 +94,6 @@ $agentaffilate_id= $hits[0];
 			$_SESSION['pno']=$found_user['pno'];
 			$_SESSION['agentaffilate_id']=$found_user['agentaffilate_id']; 
 			 
-
 			     echo  "<script>
     alert('Registration successful...logging you In...');
     window.location.href='upload-house.php';
@@ -127,14 +105,8 @@ $agentaffilate_id= $hits[0];
     // window.location.href='register.php';
     // </script>";	
 		}
-
-
-
-
-
 		
 		}	// else end
-
 		
 	}else{
 		 echo  "<script>
@@ -143,7 +115,5 @@ $agentaffilate_id= $hits[0];
     </script>";
 	}
 	
-
 	
-
 ?>

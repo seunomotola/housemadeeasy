@@ -1,5 +1,4 @@
   <?php 
-
     session_start();
     include("includes/db.php"); 
     
@@ -24,7 +23,6 @@
         $admin_email = $row_admin['admin_email'];
         
         
-
         $admin_contact = $row_admin['admin_contact']; 
         
        
@@ -52,9 +50,7 @@
         $run_pending_orders = mysqli_query($con,$get_pending_orders);
         
         $count_agent = mysqli_num_rows($run_pending_orders);
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,7 +63,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
     <div id="wrapper"><!-- #wrapper begin -->
        
        <?php include("includes/sidebar.php"); ?>
@@ -96,9 +91,7 @@
                         
                 } 
                
-
                 
-
                 if(isset($_GET['delete-hmeaffilate-house'])){
                         
                         include("delete-hmeaffilate-house.php");
@@ -108,34 +101,27 @@
                         include("view-uploaded-house.php");
                         
                 } 
-
                   if(isset($_GET['view-hmeaffilate-agent'])){
                         
                         include("view-hmeaffilate-agent.php");
                         
                 } 
-
                 if(isset($_GET['delete_hmeaffilateagent'])){
                         
                         include("delete_hmeaffilateagent.php");
                         
                 } 
                
-
-
         
                 ?>
                 
             </div><!-- container-fluid finish -->
         </div><!-- #page-wrapper finish -->
     </div><!-- wrapper finish -->
-
 <script src="js/jquery-331.min.js"></script>     
 <script src="js/bootstrap-337.min.js"></script>   
-
    <script>
     $(document).ready(function(){
-
     $(document).on('click', '#getUser', function(e){
   
      e.preventDefault();
@@ -155,15 +141,11 @@ success:function(data)
    $("#content").html(data);
 },
      })
-
     });
 })
   </script>
-
-
    <script>
     $(document).ready(function(){
-
     $(document).on('click', '#getlogistics', function(e){
   
      e.preventDefault();
@@ -183,16 +165,11 @@ success:function(data)
    $("#content").html(data);
 },
      })
-
     });
 })
   </script>
-
-
-
      <script>
     $(document).ready(function(){
-
     $(document).on('click', '#getrepair', function(e){
   
      e.preventDefault();
@@ -212,15 +189,11 @@ success:function(data)
    $("#content").html(data);
 },
      })
-
     });
 })
   </script>
-
-
   <script>
     $(document).ready(function(){
-
     $(document).on('click', '#getyard', function(e){
   
      e.preventDefault();
@@ -240,16 +213,11 @@ success:function(data)
    $("#content").html(data);
 },
      })
-
     });
 })
   </script>
-
-
-
   <script>
     $(document).ready(function(){
-
     $(document).on('click', '#gethmeaffilate', function(e){
   
      e.preventDefault();
@@ -269,16 +237,11 @@ success:function(data)
    $("#content").html(data);
 },
      })
-
     });
 })
   </script>
-
-
-
    <script>
     $(document).ready(function(){
-
     $(document).on('click', '#gethmeaffilateagent', function(e){
   
      e.preventDefault();
@@ -298,14 +261,9 @@ success:function(data)
    $("#content").html(data);
 },
      })
-
     });
 })
   </script>
-
-
 </body>
 </html>
-
-
 <?php } ?>

@@ -1,5 +1,4 @@
  <?php 
-
     session_start();
     include("includes/db.php"); 
     
@@ -25,7 +24,6 @@
         $admin_type = $row_admin['admin_type'];
         
         
-
         $admin_contact = $row_admin['admin_contact'];
         
        
@@ -35,9 +33,6 @@
         $run_products = mysqli_query($con,$get_products);
         
         $count_bookings = mysqli_num_rows($run_products);
-
-
-
          $get_products = "select * from logistics_booking";
         
         $run_products = mysqli_query($con,$get_products);
@@ -45,9 +40,7 @@
         $count_logistics_bookings = mysqli_num_rows($run_products);
         
        
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,7 +53,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
     <div id="wrapper"><!-- #wrapper begin -->
        
        <?php include("includes/sidebar.php"); ?>
@@ -79,25 +71,21 @@
                         include("view-booking-home-repair.php");
                         
                 } 
-
                  if(isset($_GET['admin_profile'])){
                         
                         include("admin_profile.php"); 
                         
                 } 
-
                  if(isset($_GET['change_password'])){
                         
                         include("change_password.php");
                         
                 }  
-
                  if(isset($_GET['delete_home_repair'])){
                         
                         include("delete_home_repair.php"); 
                         
                 } 
-
                  if(isset($_GET['delete_logistics'])){
                         
                         include("delete_logistics.php");
@@ -107,21 +95,16 @@
                         include("view-booking-logistics.php");
                         
                 } 
-
-
         
                 ?>
                 
             </div><!-- container-fluid finish -->
         </div><!-- #page-wrapper finish -->
     </div><!-- wrapper finish -->
-
 <script src="js/jquery-331.min.js"></script>     
 <script src="js/bootstrap-337.min.js"></script>   
-
    <script>
     $(document).ready(function(){
-
     $(document).on('click', '#getlogistics', function(e){
   
      e.preventDefault();
@@ -141,16 +124,11 @@ success:function(data)
    $("#content").html(data);
 },
      })
-
     });
 })
   </script>
-
-
-
      <script>
     $(document).ready(function(){
-
     $(document).on('click', '#getrepair', function(e){
   
      e.preventDefault();
@@ -170,15 +148,9 @@ success:function(data)
    $("#content").html(data);
 },
      })
-
     });
 })
   </script>
-
-
-
 </body>
 </html>
-
-
 <?php } ?>

@@ -1,5 +1,4 @@
 <?php
-
              $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
           
             <div class="email-container" style="max-width: 600px;background: white; color: black; font-family: Tahoma, Geneva, sans-serif;margin: 0 auto;overflow: hidden;border-radius: 5px; padding: 20px;">
@@ -8,7 +7,6 @@
 <br>
  
 Dear <b>$lname</b>,<br><br>
-
 Thank you for finding your desire House on Housemadeeasy...<br> Below are the details of the House and agent of the House:<br><br>
 <ol>
 <br>
@@ -20,35 +18,23 @@ Thank you for finding your desire House on Housemadeeasy...<br> Below are the de
     <li>House Type: $house_name_session </li>
       <li>House Location: $house_exact_session,$house_location_session </li>
         <li>House Price: $first_year_rent_session</li>
-
        
 </ol><br>
-
-
 <b>SUPPORT:</b> <br>
 For any issues with you contacting the agent of the house, you can always contact us on support@housemadeeasy.org or 08160852570, 07037092267<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';  
     
     
   $subject = "House Booking Request";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "housemadeeasy";
 $to = $email2;
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
 mail($to, $subject, $body, $headers);
 //echo $body;

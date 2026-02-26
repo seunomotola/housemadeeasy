@@ -1,7 +1,5 @@
 <?php
-
 $curl = curl_init();
-
 curl_setopt_array($curl, array(
   CURLOPT_URL => 'https://my.kudisms.net/api/sms',
   CURLOPT_RETURNTRANSFER => true,
@@ -12,15 +10,10 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'POST',
   CURLOPT_POSTFIELDS => array('token' => 'bCSnXjYpRZHQE9v5gusm4ThtV3dDwlM70oGKIzOF6kaU8PNceyf2qxLJiWr1AB','senderID' => 'HouseMadeE','recipients' => '08160852570','message' => "
-
-
 Hello Elijah,
 A customer is requesting for the services of a Plumber via housemadeeasy. Kindly check housemadeeasy mail or admin dashboard.
-
   	",'gateway' => '1'),
 ));
-
 $response = curl_exec($curl);
-
 curl_close($curl);
 //echo $response;

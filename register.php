@@ -1,5 +1,5 @@
 <?php   
-include ('inc/connect.inc.php');
+include("../inc/connect.inc.php")');
   if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
     session_start();
     $_SESSION['user_id'] = $_COOKIE['user_id'];
@@ -15,12 +15,8 @@ if(isset($_SESSION['user_id'])){
   }
  
  // include ('inc/header.inc.php');   ?>
-
-
  <!doctype html>
 <html class="no-js" lang="zxx">
-
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:25:19 GMT -->
 <head>
     <meta charset="utf-8">
@@ -29,9 +25,7 @@ if(isset($_SESSION['user_id'])){
     <title>Housemadeeasy--Register || Helping you to find your desire house easily</title>
     <meta name="description" content="housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University.....">
     
-
     <meta content="housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University....." name="keywords">
-
     <!-- Place favicon.ico in the root directory -->
     <link href="assets/images/easy.png" type="img/x-icon" rel="shortcut icon">
     <!-- All css files are included here. -->
@@ -41,7 +35,6 @@ if(isset($_SESSION['user_id'])){
     <link rel="stylesheet" href="assets/css/helper.css">
     <link rel="stylesheet" href="assets/css/style.css"> 
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">   
-
       <style>
          .modal-dialog {
             display: flex;
@@ -51,7 +44,6 @@ if(isset($_SESSION['user_id'])){
         .modal-content {
             margin: auto;
         }
-
         .cart-icon {
             position: relative;
             display: inline-block;
@@ -74,16 +66,12 @@ if(isset($_SESSION['user_id'])){
             padding: 5px 10px;
             font-size: 14px;
         }
-
     </style>
-
  
-
     
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
 <body>
     
 <div id="main-wrapper">
@@ -109,42 +97,32 @@ if(isset($_SESSION['user_id'])){
                                 <li class="active"><a href="index.php" style="text-decoration: none;">Home</a>
                                    
                                 </li>
-
                                  
-
                                 <li ><a href="make-money-with-housemadeeasy.php" style="text-decoration: none;">Make Money</a>
                                    
                                 </li>
-
                                
-
                                 <li ><a href="../housemadeeasy/home-repair/index.php" style="text-decoration: none;">Home Repair</a>
                                    
                                 </li>
-
                                  <li ><a href="../housemadeeasy/marketplace/index.php" style="text-decoration: none;">Campus Yard</a>
                                    
                                 </li> 
-
                                 <li ><a href="../housemadeeasy/flatmate-finder/index.php" style="text-decoration: none;">Flatmate Finder</a>
                                    
                                 </li> 
-
                                 <li ><a href="short-term-stay.php" style="text-decoration: none;">Short term Rentals</a>
                                    
                                 </li> 
-
                                  <li ><a href="housemadeeasy-logistics.php" style="text-decoration: none;">Logistics</a>
                                    
                                 </li>
                                 <!-- <li class=""><a href="view-all-properties.php" style="text-decoration: none;">View all Houses</a>
                                   
                                 </li> -->
-
                                <!--  <li ><a href="how-it-works.php" style="text-decoration: none;">How it Works</a>
                                  
                                 </li> -->
-
                                 <!--  <li ><a href="about-us.php" style="text-decoration: none;">About Us</a>
                                  
                                 </li>
@@ -157,7 +135,6 @@ if(isset($_SESSION['user_id'])){
                                 <li ><a href="logout.php" style="text-decoration: none;">logout</a>   </li> --> 
                                   <?php 
                                    
-
                                    //}else{?>
 <!-- 
                                              <li ><a href="login.php" style="text-decoration: none;">Login</a> </li>
@@ -184,8 +161,6 @@ if(isset($_SESSION['user_id'])){
                            
                         </div>
                     </div>
-
-
                     <!--User end-->
                 </div>
                 
@@ -201,7 +176,6 @@ if(isset($_SESSION['user_id'])){
         </div>
     </header>
     <!--Header section end-->
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     $(document).ready(function() {
@@ -222,7 +196,6 @@ if(isset($_SESSION['user_id'])){
                 }
             });
         }
-
         // Update cart count on page load
         updateCartCount();
     });
@@ -243,7 +216,6 @@ if(isset($_SESSION['user_id'])){
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -260,7 +232,6 @@ if(isset($_SESSION['user_id'])){
                                 <p id="response" style="font-weight:bolder;"></p>
                                 <div class="row">
                                     <div class="col-12 mb-30"><input type="text" placeholder="First Name" id="fname">
-
                                     </div>
                                     <div class="col-12 mb-30"><input type="text" placeholder="Last Name" id="lname" ></div>
                                     <div class="col-12 mb-30"><input type="email" placeholder="Email" id="email" ></div>
@@ -268,7 +239,6 @@ if(isset($_SESSION['user_id'])){
                                     <div class="col-12 mb-30"><input type="password" placeholder="Password" id="pass"></div>
                                     <div class="col-12 mb-30"><input type="password" placeholder="Confirm Password"  id="confpass"></div>
                                    
-
                                     <!--<div class="col-12 mb-30">
                                         <ul>
                                             <li><input type="radio" name="account_type" id="register_normal" checked><label for="register_normal">Normal</label></li>
@@ -285,14 +255,11 @@ if(isset($_SESSION['user_id'])){
                                          
                                         <p style="text-align: center;">By clicking Register, you accept our <a href="#myModal" data-toggle="modal">terms and conditions</a></p>
                                     </div>
-
                                   
-
                                      <div class="col-12 mb-30">
                                          <hr>
                                         <p style="text-align: center; font-weight: bolder;"><span>Registered already?&nbsp; <a  href="login.php" style="font-weight:bolder;">Login!</a></span></p>
                                     </div>
-
                                 </div>
                             </form>
                         </div>
@@ -303,8 +270,6 @@ if(isset($_SESSION['user_id'])){
         </div>
     </div>
     <!--Login & Register Section end-->
-
-
   <!-- Modal -->
         <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
           <div class="modal-dialog modal-lg">
@@ -321,8 +286,6 @@ if(isset($_SESSION['user_id'])){
                     <li>Please note that every houses and agent Information on this website are not counterfeit. They are simply the same house you would see hen you come for the checking of the House</li>
                     <li>Customer are not allowed to follow agent to check a House that is not available on the website</li>
                 </ol>
-
-
                  <ol>
                     <p style="font-weight:bolder; text-align: center; ">Refund Condition Policy</p>
                     <hr>
@@ -340,14 +303,8 @@ if(isset($_SESSION['user_id'])){
           </div>
         </div>
         <!-- modal -->
-
-
-
-
    <?php  include ('inc/footer.inc.php');   ?>
-
     <script type="text/javascript">
-
         $(document).ready(function(){
             
              // when user click the post button
@@ -378,7 +335,6 @@ if(isset($_SESSION['user_id'])){
                          'pno':pno,
                          'redirect_url': redirect_url
                          
-
                          
                     }, // if  successful
                     success: function(response){
@@ -389,19 +345,15 @@ if(isset($_SESSION['user_id'])){
                         
                     },
                     dataType: 'text'
-
-
                    });
                  // End of else
               
         
          });
              });
-
             //forgot password begin
           //   $(document).ready(function(){
           //    $('#forgotportalid').on('click', function(){
-
           //        var email = $('#email').val();           
               
           //         $.ajax({
@@ -413,7 +365,6 @@ if(isset($_SESSION['user_id'])){
           //               'resetportalid' : 1,
           //                'email' : email
                          
-
                          
           //           }, // if  successful
           //           success: function(response2){
@@ -424,16 +375,9 @@ if(isset($_SESSION['user_id'])){
                         
           //           },
           //           dataType: 'text'
-
-
           //          });
-
-
           //    });
-
           // });
            //forgot password end
-
-
          
     </script> 

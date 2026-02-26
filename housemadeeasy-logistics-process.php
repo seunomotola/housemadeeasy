@@ -1,6 +1,5 @@
  <?php
-	include ('inc/connect.inc.php'); 
-
+	include("../inc/connect.inc.php")'); 
 function val($data){
 	$data= trim($data);
 	$data= stripslashes($data);
@@ -8,12 +7,8 @@ function val($data){
 	
 	return $data;
 }
-
-
-
 	//$id='';
 	if(isset($_POST['submitload'])){
-
 		$lname=mysqli_real_escape_string($con, $_POST['lname']);
 		$fname=mysqli_real_escape_string($con, $_POST['fname']);
 		$pno=mysqli_real_escape_string($con, $_POST['pno']);
@@ -40,9 +35,6 @@ function val($data){
 		
 		
 		
-
-
-
 		if (empty( $lname && $pno && $fname  && $locationofload && $destinationofload && $email  && $datetransport && $photo1 && $photo2 && $photo3 && $photo4 && $itemDescription)) {
 			  echo  "<script>
              alert('Fill in all Fields');
@@ -54,20 +46,15 @@ function val($data){
 		
     
 		else{
-
 			 $query = "INSERT into logistics_booking(lname, fname, email, pno, locationofload, destinationofload, datetransport, date_booked, photo1, photo2, photo3, photo4, itemDescription) values('$lname', '$fname', '$email', '$pno', '$locationofload', '$destinationofload', '$datetransport', '$date_booked', '$photo1', '$photo2', '$photo3', '$photo4', '$itemDescription')";
 			  if(mysqli_query($con, $query)){
 			  
 			  
-
 			include 'housemadeeasy-logistics-process-email-customer.php'; 
 			include 'housemadeeasy-logistics-process-email-me.php';
 			include 'housemadeeasy-logistics-process-email-sammy.php'; 
-
-
 include 'request_sms_housemadeeasy_logistics_customer.php'; 
  
-
 include 'request_sms_housemadeeasy_logistics-me.php';
 include 'request_sms_housemadeeasy_logistics-sammy.php';
              echo  "<script>
@@ -80,22 +67,8 @@ include 'request_sms_housemadeeasy_logistics-sammy.php';
              window.location.href='index.php';
     </script>";
 }
-
 // i we direct the customer to the appointment page
-
-
-
  }
-
-
-
-
-
-
-
-
-
-
 		
 		
 		
@@ -106,7 +79,5 @@ include 'request_sms_housemadeeasy_logistics-sammy.php';
     </script>";
 	}
 	
-
 	
-
 ?>

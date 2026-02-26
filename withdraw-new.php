@@ -3,16 +3,13 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
 }
-
 $user_id = $_SESSION['user_id'];
-
 // Fetch all referral codes created by the current user
 $stmt = $con->prepare("SELECT * FROM referrals WHERE user_id = ?");
 $stmt->bind_param('s', $user_id);
 $stmt->execute();
 $referrals = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +37,6 @@ $referrals = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     </style>
 </head>
 <body>
-
 <?php
 // Fetch the user's current balance
 $stmt = $con->prepare("SELECT balance FROM user WHERE user_id = ?");
@@ -50,14 +46,11 @@ $stmt->bind_result($balance);
 $stmt->fetch();
 $stmt->close();
 ?>
-
 <div class="container">
     <h2 class="text-center">Your Referral Codes</h2>
     <p style="text-align:center;">Your Total balance is: <strong>#<span id="user-balance"><?php echo number_format($balance, 2); ?></span></strong></p>
-
     <!-- Alert Messages Container -->
     <div class="alert-container"></div>
-
     <div class="table-container">
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
@@ -73,13 +66,11 @@ $stmt->close();
                     <?php
                     foreach ($referrals as $referral) {
                         $referral_code = $referral['referral_code'];
-
                         // Check if the referral code has been used
                         $stmt = $con->prepare("SELECT * FROM referral_uses WHERE referral_code = ?");
                         $stmt->bind_param('s', $referral_code);
                         $stmt->execute();
                         $uses = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-
                         if (empty($uses)) {
                             echo "<tr><td>{$referral_code}</td><td>Not used</td><td>N/A</td><td><button class='btn btn-danger withdraw-warning' data-referral='{$referral_code}'>Withdraw</button></td></tr>";
                         } else {
@@ -88,7 +79,6 @@ $stmt->close();
                                 $date_used = $use['used_at'];
                                 $payment_status = $use['payment_status'];
                                 $withdrawn = $use['withdrawn'];
-
                                 if ($withdrawn) {
                                     echo "<tr>
                                     <td>{$referral_code}</td>
@@ -120,7 +110,6 @@ $stmt->close();
         </div>
     </div>
 </div>
-
 <!-- Modal for Account Details -->
 <div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-labelledby="withdrawModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -155,7 +144,6 @@ $stmt->close();
         </div>
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
@@ -166,18 +154,15 @@ $(document).ready(function() {
         $('#modal-referral-code').val(referralCode);
         $('#withdrawModal').modal('show');
     });
-
     // Handle form submission
     $('#withdrawForm').submit(function(event) {
         event.preventDefault();
-
         $.ajax({
             url: 'process_withdrawal.php',
             method: 'POST',
             data: $(this).serialize(),
             success: function(response) {
                 $('#withdrawModal').modal('hide');
-
                 if (response.includes('successful')) {
                     showAlert('success', 'Withdrawal successful.');
                     updateBalance();
@@ -191,12 +176,10 @@ $(document).ready(function() {
             }
         });
     });
-
     // Handle withdraw warning button click
     $('.withdraw-warning').click(function() {
         showAlert('warning', 'You can\'t withdraw the money yet until the house has been paid.');
     });
-
     // Function to show alerts
     function showAlert(type, message) {
         var alertHtml = '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">' +
@@ -204,14 +187,11 @@ $(document).ready(function() {
                         '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                         '<span aria-hidden="true">&times;</span>' +
                         '</button></div>';
-
         $('.alert-container').html(alertHtml);
-
         setTimeout(function() {
             $('.alert').alert('close');
         }, 5000);
     }
-
     // Function to update the user's balance
     function updateBalance() {
         $.ajax({

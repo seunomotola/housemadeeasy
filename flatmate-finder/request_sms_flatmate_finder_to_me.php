@@ -1,11 +1,7 @@
  
-
  
-
 <?php
-
 $curl = curl_init();
-
 curl_setopt_array($curl, array(
   CURLOPT_URL => 'https://my.kudisms.net/api/sms',
   CURLOPT_RETURNTRANSFER => true,
@@ -18,40 +14,9 @@ curl_setopt_array($curl, array(
   CURLOPT_POSTFIELDS => array('token' => 'bCSnXjYpRZHQE9v5gusm4ThtV3dDwlM70oGKIzOF6kaU8PNceyf2qxLJiWr1AB','senderID' => 'HouseMadeE','recipients' => "08160852570",'message' => "
 Dear Elijah,
 Kindly note that a customer is using housemadeeasy as means to look for a flat mate for  his/her house.. Kindly check housemadeeasy mail for details.
-
-
 Thank You 
-
     ",'gateway' => '1'), 
 ));
-
 $response = curl_exec($curl);
-
 curl_close($curl);
 //echo $response;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

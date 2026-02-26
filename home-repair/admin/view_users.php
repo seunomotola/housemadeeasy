@@ -5,9 +5,7 @@
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?>
-
 <div class="row"><!-- row 1 begin -->
     <div class="col-lg-12"><!-- col-lg-12 begin -->
         <ol class="breadcrumb"><!-- breadcrumb begin -->
@@ -19,7 +17,6 @@
         </ol><!-- breadcrumb finish -->
     </div><!-- col-lg-12 finish -->
 </div><!-- row 1 finish -->
-
 <div class="row"><!-- row 2 begin -->
     <div class="col-lg-12"><!-- col-lg-12 begin -->
         <div class="panel panel-default"><!-- panel panel-default begin -->
@@ -122,5 +119,4 @@
         </div><!-- panel panel-default finish -->
     </div><!-- col-lg-12 finish -->
 </div><!-- row 2 finish -->
-
 <?php } ?>

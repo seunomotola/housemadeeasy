@@ -7,7 +7,6 @@ session_start();
 //     </script>";
 //   }
  include ('inc/header.inc.php');   ?> 
-
   <!--Page Banner Section start-->
     <div class="page-banner-section section">
         <div class="container">
@@ -23,7 +22,6 @@ session_start();
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Welcome Khonike - Real Estate Bootstrap 4 Templatesection-->
     <div class="feature-section feature-section-border-top section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-60 pb-lg-40 pb-md-30 pb-sm-20 pb-xs-10">
         <div class="container">
@@ -54,7 +52,6 @@ session_start();
                                         <h4>Reliable</h4>
                                     </li>
                                       
-
                                     <li>
                                         <i class="pe-7s-cart"></i>
                                         <h4>Online Catalog</h4>
@@ -70,8 +67,6 @@ session_start();
                                         <h4>House finding Made easy</h4>
                                     </li>
                                     
-
-
                                 </ul>
                                 
                             </div>
@@ -84,8 +79,6 @@ session_start();
         </div>
     </div>
     <!--Welcome Khonike - Real Estate Bootstrap 4 Templatesection end-->
-
-
         <!-- begin of booking an apartment--->
                                     <h4>Step to Book an Apartment</h4>
                                     <hr>

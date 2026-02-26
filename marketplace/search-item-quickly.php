@@ -10,7 +10,6 @@
 } 
   include ('inc/header.inc.php');   ?> 
    
-
       <?php 
       
               if (isset($_POST['search-item-quickly'])) {
@@ -20,7 +19,6 @@
             $_SESSION['item_name']=$_POST['item_name']; 
           
            
-
        $postTitle = "<div style='font-size:20px'>You searched for '" . $_POST['item_name'] . "'</div>" ;  
      //$session=$postTitle;
     
@@ -28,7 +26,6 @@
          $sql ="SELECT  * from market_place_properties WHERE item_name LIKE '%$item_name%' AND item_status='no'";
 $result = mysqli_query($con,$sql);
               }
-
               ?> 
     <!--Page Banner Section start-->
     <div class="page-banner-section section">
@@ -45,7 +42,6 @@ $result = mysqli_query($con,$sql);
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--New property section start-->
     <div class="property-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -57,7 +53,6 @@ if (mysqli_num_rows($result) > 0){
       while($row2 = mysqli_fetch_array($result)) {
         $item_img1=$row2['item_img1'];
                     
-
                       $item_label=$row2['item_label'];
                       $item_price=$row2['item_price'];
                     
@@ -68,23 +63,17 @@ if (mysqli_num_rows($result) > 0){
                       $item_status=$row2['item_status'];
                       $item_location=$row2['item_location'];
              ?>
-
               <?php 
                      $query3 = mysqli_query($con,"SELECT * FROM market_place_properties_booking WHERE item_id='$item_id1'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $item_id_renew=$row3['item_id'];
-
                     ?>
                 <!--Property start-->
                 <div class="property-item col-lg-4 col-md-6 col-12 mb-40"> 
                     <div class="property-inner">
                         <div class="image">
-
                              <?php 
-
-
                       
-
                             if ($item_id1==$item_id_renew) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -105,9 +94,7 @@ if (mysqli_num_rows($result) > 0){
                                 </span>
                                 </a> 
                                <?php }
-
                           
-
                                /// working for label
                              if(!empty($item_label)){?>
                                 <span class="label"><?php echo $item_label?></span>
@@ -139,9 +126,7 @@ if (mysqli_num_rows($result) > 0){
                                     <a href="marketyard-details.php?id=<?php echo $id; ?>"> <span class="type">View</span> </a>
                                 </div>
                             </div>
-
                              
-
                         </div>
                     </div>
                 </div>
@@ -155,9 +140,7 @@ if (mysqli_num_rows($result) > 0){
               ?> 
                 
             </div>
-
           
-
          
             
         </div>

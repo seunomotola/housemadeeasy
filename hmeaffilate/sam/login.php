@@ -1,8 +1,6 @@
 <?php 
-
     session_start();
     include("includes/db.php");
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,10 +35,7 @@
     
 </body>
 </html>
-
-
 <?php 
-
     if(isset($_POST['admin_login'])){
         
         $admin_email = mysqli_real_escape_string($con,$_POST['admin_email']);
@@ -69,5 +64,4 @@
         }
         
     }
-
 ?>

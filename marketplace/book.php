@@ -1,4 +1,3 @@
-
 <?php
 if(isset($_GET['item_id1'])){
 include ('inc/session.php'); 
@@ -7,8 +6,6 @@ include ('inc/session.php');
  include ('inc/header.inc.php');   ?> 
  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <?php
-
-
         $db_host = 'localhost';
     $db_user = 'root';
     $db_pass = '';
@@ -17,7 +14,6 @@ include ('inc/session.php');
 if(mysqli_connect_errno()){
     echo 'Failed to connect to the MYSQL: '.mysqli_connect_error();
     }
-
 /*
 if(isset($_GET['date'])){
     $date = $_GET['date'];
@@ -31,7 +27,6 @@ $result = mysqli_query($mysqli,$sql);
         }
        
     }
-
 /*
     $stmt = $mysqli->prepare("select * from bookings where date = ?");
     $stmt->bind_param('s', $date);
@@ -46,13 +41,11 @@ $result = mysqli_query($mysqli,$sql);
         }
     }
     
-
 }else{
     header('location:index.php');
 }
 */
 date_default_timezone_set('Africa/Lagos');
-
  $date_new=date('Y-m-d', strtotime('tomorrow'));
 $bookings = array();
  $sql ="SELECT * from market_place_properties_booking where date='$date_new' ";
@@ -64,7 +57,6 @@ $result = mysqli_query($mysqli,$sql);
         }
        
     } 
-
 global $timeslot;
 if(isset($_POST['submit'])){
     $name = $_POST['name'];
@@ -72,9 +64,6 @@ if(isset($_POST['submit'])){
     
      $timeslot = $_POST['timeslot'];
    
-
-
-
     $sql ="SELECT * from market_place_properties_booking where  timeslot='$timeslot'";
 $result = mysqli_query($mysqli,$sql); 
  if($result->num_rows>0){
@@ -83,7 +72,6 @@ $result = mysqli_query($mysqli,$sql);
     }else{
          include 'book_continue.php';
     }
-
  
  
 /*
@@ -104,30 +92,18 @@ $result = mysqli_query($mysqli,$sql);
         }
     }
     */
-
 } 
-
 $duration = 30;
 $cleanup = 10;
 $start = "09:00";
 $end = "18:00";
-
 /*
-
-
 The $duration variable specifies the duration of a timeslot. In our case, the duration of a slot is 15 minutes.
-
 $cleanup variable is used to add gap between two timeslots. If $cleanup is equal is 10. Then the function will add 10 minutes gap between two timeslots. For example, the first slot is 9am to 9.15am, then the next slot will start from 9.25am.
-
 $start variable specifies start of the timeslots.
-
 $end variable specifies end of the timeslots.
-
 Then we'll create a function to generate timeslots using the variables above.
-
-
 */
-
 function timeslots($duration, $cleanup, $start, $end){
     $start = new DateTime($start);
     $end = new DateTime($end);
@@ -148,7 +124,6 @@ function timeslots($duration, $cleanup, $start, $end){
     
     return $slots;
 }
-
 ?>
  
   <!--Page Banner Section start-->
@@ -166,7 +141,6 @@ function timeslots($duration, $cleanup, $start, $end){
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container" style="margin-right:65px; ">
@@ -177,7 +151,6 @@ function timeslots($duration, $cleanup, $start, $end){
         <h1 class="text-center" style="text-align:center; font-weight: bolder; font-size: 20px;">Your Appointment Date is: <?php echo date('F, d, Y', strtotime('tomorrow')); ?></h1>
         <p style="text-align:center; font-weight: bolder; font-size: 15px">Pick a Time for your Appointment</p>
         <hr>
-
         <center>
        <div class="row">
    <div class="col-sm-12 col-md-12 col-xs-12 col-xl-12 col-lg-12">
@@ -187,23 +160,15 @@ function timeslots($duration, $cleanup, $start, $end){
         foreach($timeslots as $ts){
     ?>
     <div class=" col-sm-4 col-md-4 col-xs-6 col-lg-2  ">
-
         <div class="form-group">
             <?php 
-
-
   if(in_array($ts, $bookings)){ ?> 
        <button class="btn btn-danger" ><?php echo $ts; ?></button>
        <?php }else{ ?>
        <button class="btn btn-success book" data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
        <?php }
-
-
-
-
              ?>
           
-
         </div>
     
     </div>
@@ -215,12 +180,9 @@ function timeslots($duration, $cleanup, $start, $end){
         </div>
     </div>
     <!--Login & Register Section end-->
-
-
     <!---modal begin --->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -246,11 +208,9 @@ function timeslots($duration, $cleanup, $start, $end){
                 </div>
                 
             </div>
-
         </div>
     </div>
     
-
    
     
     <?php  include ('inc/footer.inc.php');   ?>
@@ -264,7 +224,6 @@ $(".book").click(function(){
    
     $("#myModal").modal("show");
 });
-
 </script>
 <?php }else{
     header('location:../index.php');

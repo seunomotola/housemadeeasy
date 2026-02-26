@@ -1,5 +1,5 @@
 <?php session_start();
-  include ('inc/connect.inc.php');   
+  include("../inc/connect.inc.php")');   
 //include 'inc/session.php';
 if(!isset($_SESSION['email'])){
 header("location:index.php");
@@ -22,14 +22,10 @@ if(isset($_POST['reset'])){
                 }
     }
     
-
   }
-
   ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
-
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:25:19 GMT -->
 <head>
     <meta charset="utf-8">
@@ -38,9 +34,7 @@ if(isset($_POST['reset'])){
     <title>Housemadeeasy || Helping you to find your desire house easily</title>
     <meta name="description" content="housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University.....">
     
-
     <meta content="housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University....." name="keywords">
-
     <!-- Place favicon.ico in the root directory -->
     <link href="assets/images/easy.png" type="img/x-icon" rel="shortcut icon">
     <!-- All css files are included here. -->
@@ -50,14 +44,11 @@ if(isset($_POST['reset'])){
     <link rel="stylesheet" href="assets/css/helper.css">
     <link rel="stylesheet" href="assets/css/style.css"> 
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">   
-
  
-
     
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
 <body>
     
 <div id="main-wrapper">
@@ -82,42 +73,32 @@ if(isset($_POST['reset'])){
                                 <li class="active"><a href="index.php" style="text-decoration: none;">Home</a>
                                    
                                 </li>
-
                                  
-
                                 <li ><a href="make-money-with-housemadeeasy.php" style="text-decoration: none;">Make Money</a>
                                    
                                 </li>
-
                                
-
                                 <li ><a href="../housemadeeasy/home-repair/index.php" style="text-decoration: none;">Home Repair</a>
                                    
                                 </li>
-
                                  <li ><a href="../housemadeeasy/marketplace/index.php" style="text-decoration: none;">Campus Yard</a>
                                    
                                 </li> 
-
                                 <li ><a href="../housemadeeasy/flatmate-finder/index.php" style="text-decoration: none;">Flatmate Finder</a>
                                    
                                 </li> 
-
                                 <li ><a href="short-term-stay.php" style="text-decoration: none;">Short term Rentals</a>
                                    
                                 </li> 
-
                                  <li ><a href="housemadeeasy-logistics.php" style="text-decoration: none;">Logistics</a>
                                    
                                 </li>
                                 <!-- <li class=""><a href="view-all-properties.php" style="text-decoration: none;">View all Houses</a>
                                   
                                 </li> -->
-
                                <!--  <li ><a href="how-it-works.php" style="text-decoration: none;">How it Works</a>
                                  
                                 </li> -->
-
                                 <!--  <li ><a href="about-us.php" style="text-decoration: none;">About Us</a>
                                  
                                 </li>
@@ -130,7 +111,6 @@ if(isset($_POST['reset'])){
                                 <li ><a href="logout.php" style="text-decoration: none;">logout</a>   </li> --> 
                                   <?php 
                                    
-
                                    //}else{?>
 <!-- 
                                              <li ><a href="login.php" style="text-decoration: none;">Login</a> </li>
@@ -152,8 +132,6 @@ if(isset($_POST['reset'])){
                            
                         </div>
                     </div>
-
-
                     <!--User end-->
                 </div>
                 
@@ -184,7 +162,6 @@ if(isset($_POST['reset'])){
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -205,16 +182,10 @@ if(isset($_POST['reset'])){
                                     <div class="col-12 mb-30"><input type="password" id="password" autofocus placeholder="Enter your New Password"></div>
                                     
                                     <div class="col-12 mb-30"><button type="button" class="btn btn-theme btn-block btn-flat" id="reset"><i class="fa fa-sign-in"></i> Reset Password</button></div>
-
                                    
                                 </div>
-
                                 <!-- modal --->
              <!-- Button to Open the Modal -->
-
-
-
-
                             </form>
                         </div>
                    
@@ -225,18 +196,14 @@ if(isset($_POST['reset'])){
         </div>
     </div>
     <!--Login & Register Section end-->
-
       
     
     <?php  include ('inc/footer.inc.php');   ?>
-
      <script type="text/javascript">
-
        
             //forgot password begin
             $(document).ready(function(){
              $('#reset').on('click', function(){
-
                  var password = $('#password').val();           
               
                   $.ajax({
@@ -248,7 +215,6 @@ if(isset($_POST['reset'])){
                         'reset' : 1,
                          'password' : password
                          
-
                          
                     }, // if  successful
                     success: function(response){
@@ -259,16 +225,9 @@ if(isset($_POST['reset'])){
                         
                     },
                     dataType: 'text'
-
-
                    });
-
-
              });
-
           });
            //forgot password end
-
-
          
     </script>

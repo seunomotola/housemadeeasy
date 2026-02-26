@@ -1,18 +1,15 @@
 <?php 
-
     if(!isset($_SESSION['admin_email'])){
         
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?>
    
 <?php 
 $oldpass='';
 $newpass='';
 $confpass='';
-
     if(isset($_GET['change_password'])){
         
         $change_password = $_GET['change_password'];
@@ -32,7 +29,6 @@ $confpass='';
        
         
     }
-
 ?>
     
 <div class="row"><!-- row Begin -->
@@ -84,7 +80,6 @@ $confpass='';
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
-
              
                  
                    
@@ -141,10 +136,7 @@ $confpass='';
     </div><!-- col-lg-12 Finish -->
     
 </div><!-- row Finish -->
-
-
 <?php 
-
 if(isset($_POST['update'])){ 
     
       $oldpass = mysqli_real_escape_string($con,$_POST['oldpass']);
@@ -153,12 +145,9 @@ if(isset($_POST['update'])){
     $confpass = mysqli_real_escape_string($con,$_POST['confpass']);
     $hashedpassword=md5($newpass);
     $_SESSION['admin_email']=$admin_email;
-
     $query = mysqli_query($con,"SELECT admin_pass FROM admins WHERE admin_id = '$admin_id' and admin_type='home-repair'"); 
         $row = mysqli_fetch_assoc($query);
         $admin_pass = $row['admin_pass'];
-
-
         if (empty($oldpass && $newpass && $confpass)) {
             echo "<script>alert('Fill in all Fields')</script>";
             
@@ -172,7 +161,6 @@ if(isset($_POST['update'])){
             
         }
         if ($newpass!==$confpass) {
-
             echo "<script>alert('Confirm Password is not correct')</script>";
             
             echo "<script>window.open('index.php?change_password','_self')</script>";
@@ -186,13 +174,7 @@ if(isset($_POST['update'])){
         }
     
     
-
-
-
     
 }
-
 ?>
-
-
 <?php } ?>

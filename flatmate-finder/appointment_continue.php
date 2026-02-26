@@ -1,22 +1,15 @@
  <?php include ('inc/header.inc.php');   ?> 
-
  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-
  <style type="text/css">
  
 .today{
 background:yellow;
 }
  </style>
-
  <?php 
-
-
-
 function build_calendar($month, $year){
 //$mysqli = new mysqli('localhost', 'root', '', 'bookingcalendar');
     
-
 $db_host = 'localhost';
     $db_user = 'root';
     $db_pass = '';
@@ -26,43 +19,30 @@ if(mysqli_connect_errno()){
     echo 'Failed to connect to the MYSQL: '.mysqli_connect_error();
     }
     
-
-
-
-
-
     $daysOfWeek = array('Sunday', 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
     $firstdayofmonth= mktime(0, 0, 0,$month, 1, $year);
     $numberdays= date('t', $firstdayofmonth);
      $dateComponents = getdate($firstdayofmonth);
      $monthName= $dateComponents['month'];
-
      // What is the index value (0-6) of the first day of the
 // month in question.
 $dayOfWeek = $dateComponents['wday'];
-
 // Create the table tag opener and day headers 
 $datetoday = date('Y-m-d'); 
 $prev_month = date('m', mktime(0, 0, 0, $month-1, 1, $year));
 $prev_year = date('Y', mktime(0, 0, 0, $month-1, 1, $year));
 $next_month = date('m', mktime(0, 0, 0, $month+1, 1, $year));
 $next_year = date('Y', mktime(0, 0, 0, $month+1, 1, $year));
-
-
 $calendar="<center><h2>$monthName $year</h2>";
 $calendar.="<a class='btn btn-primary btn-xs' style='margin-right:10px' href='appointment.php?month=".$prev_month."&year=".$prev_year."'>Prev Month</a>";
-
 $calendar.="<a class='btn btn-primary btn-xs' style='margin-right:10px' href='appointment.php?month=".date('m')."&year=".date('Y')."'>Current Month</a>";
-
 $calendar.="<a class='btn btn-primary btn-xs' style='margin-right:10px' href='appointment.php?month=".$next_month."&year=".$next_year."'>Next Month</a></center>";
-
 $calendar.= "<br><table class='table table-bordered' >"; 
 $calendar .= "<tr style='padding:10px; font-size: 8px;'>"; 
 // Create the calendar headers 
 foreach($daysOfWeek as $day) { 
      $calendar .= "<th class='header'>$day</th>"; 
 } 
-
 $calendar.="</tr><tr>";
 $currentDay = 1;
 // The variable $dayOfWeek is used to 
@@ -73,7 +53,6 @@ if($dayOfWeek > 0) {
         $calendar .= "<td class='empty'></td>"; 
     } 
 }
-
 $month = str_pad($month, 2, "0", STR_PAD_LEFT);
 while ($currentDay <= $numberdays) { 
     //Seventh column (Saturday) reached. Start a new row. 
@@ -97,16 +76,13 @@ while ($currentDay <= $numberdays) {
   //  $calendar.="<td class='$today'><h4>$currentDay</h4> <button class='btn btn-danger btn-xs'>Already Booked</button>";
 //}
 else{
-
     $totalbookings=checkslots($mysqli, $date);
     if($totalbookings==4){
-
     $calendar.="<td class='$today' ><h4>$currentDay</h4> <a href='#' class='btn btn-primary  btn-xs' style=' font-size: 10px;'>All Booked</a>";
 }else{
     $availableslots= 15- $totalbookings;
  $calendar.="<td class='$today'><h4>$currentDay</h4> <a href='book.php?date=".$date."' class='btn btn-success btn-xs' style=' font-size: 10px;'>Book</a><small><i>$availableslots slots left</li></small>";
 }
-
 }// end of else
     
    
@@ -122,20 +98,11 @@ if ($dayOfWeek<= 7) {
         $calendar .= "<td class='empty'></td>"; 
     } 
 } 
-
 $calendar .= "</tr></table>"; 
-
-
-
 return $calendar;
-
-
  
 }
-
-
 function checkslots($mysqli, $date){
-
    $sql ="SELECT * from bookings where date='$date'";
 $result = mysqli_query($mysqli,$sql);
 $totalbookings = 0;
@@ -158,11 +125,8 @@ if($stmt->execute()){
         $stmt->close();
     }
 }*/
-
 return $totalbookings;
 }
-
-
 ?>
  
   <!--Page Banner Section start-->
@@ -180,7 +144,6 @@ return $totalbookings;
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container" style="margin-right:55px; ">
@@ -206,7 +169,6 @@ return $totalbookings;
      ?> 
       </center>
     </div> 
-
 </div>
 </div>
                     
@@ -215,9 +177,6 @@ return $totalbookings;
         </div>
     </div>
     <!--Login & Register Section end-->
-
-
-
   
     
     <?php  include ('inc/footer.inc.php');

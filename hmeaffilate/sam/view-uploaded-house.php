@@ -5,9 +5,7 @@
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{ 
-
 ?>
-
 <div class="row"><!-- row 1 begin -->
     <div class="col-lg-12"><!-- col-lg-12 begin -->
         <ol class="breadcrumb"><!-- breadcrumb begin -->
@@ -19,7 +17,6 @@
         </ol><!-- breadcrumb finish -->
     </div><!-- col-lg-12 finish -->
 </div><!-- row 1 finish -->
-
 <div class="row"><!-- row 2 begin -->
     <div class="col-lg-12"><!-- col-lg-12 begin -->
         <div class="panel panel-default"><!-- panel panel-default begin -->
@@ -63,19 +60,16 @@
                                 while($row_pro=mysqli_fetch_array($run_pro)){
                                     
                                     $id = $row_pro['id'];
-
                                     $agent_fname = $row_pro['agent_fname'];
                                     $house_name = $row_pro['house_name'];
                                      $agent_lname = $row_pro['agent_lname'];
                                     
                                     $house_location = $row_pro['house_location'];
-
                                     $type = $row_pro['house_type'];
                                     
                                     $house_img1 = $row_pro['house_img1'];
                                     
                                     
-
                                      $house_id = $row_pro['house_id'];
                                     
                                     $i++;
@@ -127,8 +121,6 @@
         </div><!-- panel panel-default finish -->
     </div><!-- col-lg-12 finish -->
 </div><!-- row 2 finish -->
-
-
  <div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-dialog"> 
                <div class="modal-content modal-lg">  
@@ -147,5 +139,4 @@
               </div> 
             </div>
           </div> 
-
 <?php } ?>

@@ -7,33 +7,21 @@ $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
 <br>
  
 Dear <b>Elijah</b>,<br><br><br>
-
 Kindly note that a student has register for Housemadeeasy Workshop 1.0 making it a total of $count_register student that have register..<br>
-
-
 <b>SUPPORT:</b> <br>
 For any issues locating the venue,you can always contact us on support@housemadeeasy.org or call 07037092267, 08160852570<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';   
     
     
   $subject = "Beyond Books ";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "housemadeeasy";
 $to = "housemadeeasy@gmail.com";
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
  mail($to, $subject, $body, $headers);

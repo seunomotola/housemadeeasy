@@ -1,15 +1,12 @@
 <?php 
-
     if(!isset($_SESSION['admin_email'])){
         
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?>
    
 <?php 
-
     if(isset($_GET['admin_profile'])){
         
         $edit_admin = $_GET['admin_profile'];
@@ -31,7 +28,6 @@
        
         
     }
-
 ?>
     
 <div class="row"><!-- row Begin -->
@@ -83,7 +79,6 @@
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
-
              
                  
                    
@@ -140,10 +135,7 @@
     </div><!-- col-lg-12 Finish -->
     
 </div><!-- row Finish -->
-
-
 <?php 
-
 if(isset($_POST['update'])){
     
       $admin_name = $_POST['admin_name'];
@@ -152,8 +144,6 @@ if(isset($_POST['update'])){
     $admin_email = $_POST['admin_email'];
     
     
-
-
      $update_user = "update admins set admin_name='$admin_name',admin_email='$admin_email', admin_contact='$admin_contact' where admin_id='$admin_id' and admin_type='loghome'";
     
     $run_user = mysqli_query($con,$update_user);
@@ -166,13 +156,7 @@ if(isset($_POST['update'])){
         
         
     }
-
-
-
     
 }
-
 ?>
-
-
 <?php } ?>

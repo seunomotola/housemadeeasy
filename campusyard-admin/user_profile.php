@@ -1,15 +1,12 @@
 <?php 
-
     if(!isset($_SESSION['admin_email'])){
         
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?>
    
 <?php 
-
     if(isset($_GET['user_profile'])){
         
         $edit_user = $_GET['user_profile'];
@@ -35,7 +32,6 @@
         $img = $row_users['img'];
         
     }
-
 ?>
     
 <div class="row"><!-- row Begin -->
@@ -87,7 +83,6 @@
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
-
                    <div class="form-group"><!-- form-group Begin -->
                        
                       <label class="col-md-3 control-label"> Last Name </label> 
@@ -177,10 +172,7 @@
     </div><!-- col-lg-12 Finish -->
     
 </div><!-- row Finish -->
-
-
 <?php 
-
 if(isset($_POST['update'])){
     
       $fname = $_POST['fname'];
@@ -209,10 +201,8 @@ if(isset($_POST['update'])){
         
     }
 }
-
 // when no image was updated
 else{
-
      $update_user = "update agent set fname='$fname',lname='$lname',username='$user',agent_no='$agent_no',agent_email='$agent_email' where id='$id'";
     
     $run_user = mysqli_query($con,$update_user);
@@ -225,13 +215,8 @@ else{
         
         
     }
-
-
 }
     
 }
-
 ?>
-
-
 <?php } ?>

@@ -1,14 +1,11 @@
 <?php
 session_start();
-include ('inc/connect.inc.php');
-
+include("../inc/connect.inc.php")');
 // Check if user is logged in
 if (!isset($_SESSION['agentaffilate_id'])) {
     die('<h2>Access Denied</h2><p>You must be logged in to check token status.</p>');
 }
-
 $userId = $_SESSION['agentaffilate_id'];
-
 function formatTimeRemaining($seconds) {
     if ($seconds <= 0) return 'Expired';
     
@@ -21,7 +18,6 @@ function formatTimeRemaining($seconds) {
         return $minutes . ' minute' . ($minutes != 1 ? 's' : '');
     }
 }
-
 function getTokenStatus() {
     global $con, $userId;
     
@@ -78,9 +74,7 @@ function getTokenStatus() {
     
     return $status;
 }
-
 $tokenStatus = getTokenStatus();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -175,7 +169,6 @@ $tokenStatus = getTokenStatus();
         <div class="status-item info">
             <strong>User ID:</strong> <?php echo htmlspecialchars($userId); ?>
         </div>
-
         <?php if (isset($tokenStatus['error'])): ?>
             <div class="status-item error">
                 <strong>Error:</strong> <?php echo htmlspecialchars($tokenStatus['error']); ?>
@@ -192,7 +185,6 @@ $tokenStatus = getTokenStatus();
                     <?php endif; ?>
                 </span>
             </div>
-
             <div class="status-item <?php echo $tokenStatus['has_refresh_token'] ? 'success' : 'warning'; ?>">
                 <span class="label">Refresh Token:</span>
                 <span class="value">
@@ -203,7 +195,6 @@ $tokenStatus = getTokenStatus();
                     <?php endif; ?>
                 </span>
             </div>
-
             <div class="status-item <?php echo $tokenStatus['token_valid'] ? 'success' : 'warning'; ?>">
                 <span class="label">Token Validity:</span>
                 <span class="value">
@@ -220,28 +211,24 @@ $tokenStatus = getTokenStatus();
                     <?php endif; ?>
                 </span>
             </div>
-
             <?php if ($tokenStatus['token_expires_at']): ?>
             <div class="status-item info">
                 <span class="label">Expiry Date:</span>
                 <span class="value"><?php echo htmlspecialchars($tokenStatus['token_expires_at']); ?></span>
             </div>
             <?php endif; ?>
-
             <?php if ($tokenStatus['token_updated_at']): ?>
             <div class="status-item info">
                 <span class="label">Last Updated:</span>
                 <span class="value"><?php echo htmlspecialchars($tokenStatus['token_updated_at']); ?></span>
             </div>
             <?php endif; ?>
-
             <?php if ($tokenStatus['token_scope']): ?>
             <div class="status-item info">
                 <span class="label">Token Scope:</span>
                 <span class="value"><?php echo htmlspecialchars($tokenStatus['token_scope']); ?></span>
             </div>
             <?php endif; ?>
-
             <div class="status-item <?php echo $tokenStatus['token_valid'] ? 'success' : 'error'; ?>">
                 <span class="label">Overall Status:</span>
                 <span class="value">
@@ -254,9 +241,7 @@ $tokenStatus = getTokenStatus();
                     <?php endif; ?>
                 </span>
             </div>
-
         <?php endif; ?>
-
         <div style="margin-top: 30px; text-align: center;">
             <a href="callback.php?auth=logout" class="button danger" onclick="return confirm('Are you sure you want to disconnect Google OAuth?')">
                 Disconnect Google Account
@@ -265,7 +250,6 @@ $tokenStatus = getTokenStatus();
                 Back to Upload Page
             </a>
         </div>
-
         <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
             <h3>Debug Information:</h3>
             <p><strong>Session Status:</strong> <?php echo session_status() === PHP_SESSION_ACTIVE ? 'Active' : 'Inactive'; ?></p>

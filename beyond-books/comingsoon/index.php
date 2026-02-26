@@ -6,33 +6,24 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <title>beyondbooks || HouseMadeeasy Workshop 1.0</title>
-
     <meta name="description" content="">
     <meta name="author" content="">
-
     <!-- Responsive View Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Place favicon.ico in the root directory -->
     <link rel="icon" href="easy.png" type="image/x-icon">
-
     <!-- Animate.CSS -->
     <link rel="stylesheet" href="css/animate.css"> 
-
     <!-- Font Aewsome Style -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
-
 	<!-- Fullscreen Background Slider -->
     <link href="css/jquery.maximage.min.css" rel="stylesheet">
     
     <!-- Bootstrap Style -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
     <!-- Reset Style -->
     <link rel="stylesheet" href="css/normalize.css">
-
     <!-- Main Style -->
     <link rel="stylesheet" href="css/main.css">
     
@@ -54,11 +45,9 @@
     <link href="css/colors/red.css" rel="stylesheet">
     <link href="css/colors/red.css" rel="stylesheet">
     <link href="css/colors/default-color.css" rel="stylesheet"><!-- alternate style end -->
-
     <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
@@ -72,7 +61,6 @@
     <!-- preload status start -->
     <div id="preload-status"></div><!-- preload status end -->
 </div><!-- preload end -->
-
 <!-- === Header Section === -->
 <div id="container">
 	<!-- +++ Intro Section ++++ -->
@@ -94,13 +82,11 @@
 				</div><!-- /End logo -->							
 				<!-- ==== Main Heading ==== -->												
 				<h1 class="intro-title">Coming Soon<span class="obak">!</span></h1>
-
 				<!--Spin Clock -->
 				<i class="fa fa-clock-o fa-spin fa-4x fa-clock-spin"></i>
 						
 				<!-- ====+++ Countdown Timer +++==== -->						
 				<ul class="countdown">
-
 			        <li>
 			            <span id="demo" ></span>
 			            
@@ -113,7 +99,6 @@
 				
 				<div class="intro-subtitle">
 					<p>We are currently Creating Something Awesome.</p>
-
 					<p>Registration Start Soon!!!</p>
 				</div>							
 						
@@ -123,10 +108,8 @@
 		<div class="container-bottom-content">					
 			<!-- ==== Social Links ==== -->
 			 <!-- /End Social Links -->
-
 			<!-- ==== Notify Section ==== -->
 			
-
 			<!-- ==== Trigger Button ==== -->										
 			<button class="trigger">
 				
@@ -134,13 +117,9 @@
 			</button>											
 		</div> <!-- /End Intro Section Bottom Content -->			
 	</section><!-- /end intro section -->
-
 	<!-- +++ Trigger After Content +++ -->
 	
 </div> 
-
-
-
 <!-- jQuery Library -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
@@ -160,7 +139,6 @@
 <!-- Contact Form JS -->
 <script src="js/form-contact.js"></script>
 <!-- Goole map API -->
-
 <!-- Google map js -->
 <script src="js/gmaps.js"></script>
 <!-- Nice Scroll JS -->
@@ -180,15 +158,11 @@
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
 </script>
-
-
 <script>
 // Set the date we're counting down to
 var countDownDate = new Date("february 9, 2024 10:00:00").getTime();
-
 // Update the count down every 1 second
 var x = setInterval(function() {
-
   // Get today's date and time
   var now = new Date().getTime();
     

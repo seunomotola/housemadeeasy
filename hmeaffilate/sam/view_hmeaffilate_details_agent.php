@@ -1,9 +1,7 @@
  <div class="modal-body"> 
-
     <?php
     include 'includes/db.php';
     $id = $_POST['id'];
-
   if($_POST['id']){
     $sql = mysqli_query($con, $sql = "SELECT * FROM hmeaffilate_user where id='$id' order by id ASC");
     while($row = mysqli_fetch_assoc($sql)){
@@ -14,13 +12,9 @@
       
      ?>
          <input type="hidden" name="id" value="<?php echo $id ?>">
-
            <table class="table table-striped">
-
-
             <tr col-span="1" class="pull-right">
             <center style="margin: 10px">
-
                  <?php
              if($picture==''){
               echo "<a href='#edit_photo' data-toggle='modal' class=' photo' data-id='".$row['id']."'><span class='fa fa-edit' style='font-size:21px;'></span></a>";
@@ -40,77 +34,49 @@
             </center>
           </tr>
          
-
           <tr>
             <td class="text-center">Agent last Name</td>
             <td><?php echo $row['lname'] ?></td>
           </tr>
-
            <tr>
             <td class="text-center">Agent first Name</td>
             <td><?php echo $row['fname'] ?></td>
           </tr>
-
            <tr>
             <td class="text-center">Agent Phone Number</td>
             <td><?php echo $row['pno'] ?></td>
           </tr>
-
           <tr>
             <td class="text-center">Agent ID</td>
             <td><?php echo $row['agentaffilate_id'] ?></td>
           </tr>
-
            <tr>
             <td class="text-center">E-mail</td>
             <td><?php echo $row['email'] ?></td>
           </tr>
-
-
           <tr>
             <td class="text-center">Bank Name</td>
             <td><?php echo $row['bankname'] ?></td>
           </tr>
-
           <tr>
             <td class="text-center">Account Name</td>
             <td><?php echo $row['accountname'] ?></td>
           </tr>
-
           <tr>
             <td class="text-center">Account Number</td>
             <td><?php echo $row['accountno'] ?></td>
           </tr>
-
-           
-
            
            
-
+           
          
-
-
-
-
-
-
         
-
-
-
           
-
-
           
-
            
-
          
            
          </table>
-
-
-
     
          <div class="modal-footer">
            
@@ -119,14 +85,9 @@
          </div>
         
        
-
         
-
     <?php
     }
     } mysqli_close($con);
      ?>
-
-
-
  

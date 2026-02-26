@@ -31,9 +31,6 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
         </div>
     </div>
     <!--Page Banner Section end-->
-
-
-
     <!--New property section start-->
     <div class="property-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -54,15 +51,11 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
             CASE WHEN p.status = 'no' THEN 1 ELSE 0 END DESC,
             CASE WHEN bu.house_id IS NULL AND b.house_id IS NULL THEN 0 ELSE 1 END ASC
     ";
-
-
                     $query = $con->query($sql);
                      if ($query->num_rows > 0) {
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       $house_label=$row2['house_label'];
                       $first_year_rent=$row2['first_year_rent'];
                      $location=$row2['location'];
@@ -77,7 +70,6 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                       $kitchen6=$row2['kitchen'];
                        $distance6=$row2['distance'];
                        $how_many_multiple_room=$row2['how_many_multiple_room'];
-
                     $house_name2=str_replace(" ", "-", $house_name2);
                      ?> 
                 <?php 
@@ -88,36 +80,28 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                     }
                     $row3 = mysqli_fetch_assoc($query3);
                     $house_id11 = $row3['house_id'] ?? null;
-
                     ?>
                 <!--Property start-->
                 <div class="property-item col-lg-4 col-md-6 col-12 mb-40"> 
                     <div class="property-inner">
                         <div class="image">
-
                              <?php 
-
                                if ($multiple_room=='yes') {
                                 // code...
                             
                                 if ($how_many_multiple_room==0) {
                                     //it will display an image of allbooked
                                     ?>
-
                                  <a href="details.php?id=<?php echo $id; ?>" >
                                 <span class="label2">
                                <img src="assets/images/notavailable/4new.png" style=" height: 150px; margin: 50px 0px 0px 30px; padding: 5px; text-align:center" > 
                                 </span>
                                 </a>
-
-
                            <?php }
                             
                         }//end of multiple room
-
                          //begin of not multiple room
                         elseif ($multiple_room=='no'){
-
                             if ($house_id1==$house_id11) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -138,9 +122,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                                 </span>
                                 </a> 
                                <?php }
-
                            }// end
-
                                /// working for label
                              if(!empty($house_label)){?>
                                 <span class="label"><?php echo $house_label?></span>
@@ -176,12 +158,10 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                                
                                 
                                 <?php }else{ 
-
                                 }
                                     ?>
                                 </div>
                             </div>
-
                                <?php 
                              if ($multiple_room=='yes' &&$how_many_multiple_room!=0) {?>
                                 <p class="text-center" style="font-weight:bolder;"><?php echo $how_many_multiple_room ?>  Room left</p>
@@ -190,7 +170,6 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                              }
                             
                             ?>
-
                         </div>
                     </div>
                 </div>
@@ -200,15 +179,12 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                 
             </div>
             
-
              
-
            
             
         </div>
     </div>
     <!--New property section end-->
-
        <!--whatapp chat icon-->
        <span class="sticky_whatsapp" style=" background-color: rgba(200, 200, 200, 0.6); border-radius: 20px; text-align: center;padding: 5px; "><img src="whatsapp2.png" height="20" width="20" style=""> <a href="https://wa.me/+2348160852570?text=Welcome+to+Housemadeeasy+Customer+Care,+I+need+the+Video+of+this+House+as+soon+as+Possible..." style="color: #183153"><b>Need help?</b></a> </span>
       <!--whatapp chat icon end-->

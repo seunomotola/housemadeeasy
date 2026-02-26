@@ -2,8 +2,6 @@
 include ('inc/session.php');    ?>
 <!doctype html> 
 <html class="no-js" lang="zxx">
-
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:25:19 GMT -->
 <head>
     <meta charset="utf-8">
@@ -12,9 +10,7 @@ include ('inc/session.php');    ?>
     <title>Search your desire house easily || Housemadeeasy - Helping you to find your desire house easily</title>
     <meta name="description" content="Search your desire house easily in sagamu campus of olabisi onabanjo University  on housemadeeasy. housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University.....">
     
-
     <meta content="Search your desire house easily in sagamu campus of olabisi onabanjo University  on housemadeeasy. housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University....." name="keywords">
-
     <!-- Place favicon.ico in the root directory -->
     <link href="assets/images/easy.png" type="img/x-icon" rel="shortcut icon">
     <!-- All css files are included here. -->
@@ -24,7 +20,6 @@ include ('inc/session.php');    ?>
     <link rel="stylesheet" href="assets/css/helper.css">
     <link rel="stylesheet" href="assets/css/style.css"> 
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">    
-
    <style>
          .modal-dialog {
             display: flex;
@@ -34,7 +29,6 @@ include ('inc/session.php');    ?>
         .modal-content {
             margin: auto;
         }
-
         .cart-icon {
             position: relative;
             display: inline-block;
@@ -57,26 +51,21 @@ include ('inc/session.php');    ?>
             padding: 5px 10px;
             font-size: 14px;
         }
-
        .blinking-text2 {
         animation: blinkTextOnly2 1.5s infinite; /* Adjust speed as needed */
         color: red; /* Initial text color */
         font-weight: bold; /* Optional: Add emphasis */
     }
-
     @keyframes blinkTextOnly2 {
         0% { color: red; }
         50% { color: transparent; } /* Makes the text disappear */
         100% { color: red; }
     }
-
     </style>
-
     
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
 <body>
     
 <div id="main-wrapper">
@@ -102,42 +91,32 @@ include ('inc/session.php');    ?>
                                 <li class="active"><a href="index.php" style="text-decoration: none;">Home</a>
                                    
                                 </li>
-
                                  
-
                                 <li ><a href="make-money-with-housemadeeasy.php" style="text-decoration: none;">Make Money</a>
                                    
                                 </li>
-
                                
-
                                 <li ><a href="../home-repair/index.php" style="text-decoration: none;">Home Repair</a>
                                    
                                 </li>
-
                                  <li ><a href="../marketplace/index.php" style="text-decoration: none;">Campus Yard</a>
                                    
                                 </li> 
-
                                 <li ><a href="../flatmate-finder/index.php" style="text-decoration: none;">Flatmate Finder</a>
                                    
                                 </li> 
-
                                 <li ><a href="short-term-stay.php" style="text-decoration: none;">Short term Rentals</a>
                                    
                                 </li> 
-
                                  <li ><a href="housemadeeasy-logistics.php" style="text-decoration: none;">Logistics</a>
                                    
                                 </li>
                                 <!-- <li class=""><a href="view-all-properties.php" style="text-decoration: none;">View all Houses</a>
                                   
                                 </li> -->
-
                                <!--  <li ><a href="how-it-works.php" style="text-decoration: none;">How it Works</a>
                                  
                                 </li> -->
-
                                 <!--  <li ><a href="about-us.php" style="text-decoration: none;">About Us</a>
                                  
                                 </li>
@@ -150,7 +129,6 @@ include ('inc/session.php');    ?>
                                 <li ><a href="logout.php" style="text-decoration: none;">logout</a>   </li> --> 
                                   <?php 
                                    
-
                                    //}else{?>
 <!-- 
                                              <li ><a href="login.php" style="text-decoration: none;">Login</a> </li>
@@ -172,7 +150,6 @@ include ('inc/session.php');    ?>
 $cart_count_result = mysqli_query($con, $cart_count_query);
 $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
 ?>
-
   <div class="col mr-sm-50 mr-xs-50">
                         <div class="header-user">
                           <div class="cart-icon">
@@ -184,9 +161,7 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
                            
                         </div>
                     </div>
-
                <?php }else{?>
-
                    
                        <div class="col mr-sm-50 mr-xs-50">
                         <div class="header-user">
@@ -200,13 +175,9 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
                         </div>
                     </div>
                     
-
                <?php }
                
-
-
 ?>
-
                     <!--User end-->
                 </div>
                 
@@ -238,12 +209,7 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
         </div>
     </div>
     <!--Page Banner Section end-->
-
    
-
-
-
-
        <!--Search Section section start-->
     <div class="search-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -265,12 +231,9 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
                     <div class="property-search">
                         <center>
                         <form action="search.php" method="POST" > 
-
                             
-
                             <div class="form-group">
                    
-
                     
                    <select class="form-control" name="location" required>
                                     <option value="" required>Location</option>
@@ -281,14 +244,12 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
                                 </select>
                     
                 </div>
-
                            <!-- <div>
                                 <select class="nice-select">
                                     <option>For Rent</option>
                                     <option>For Sale</option>
                                 </select>
                             </div>-->
-
                             <div class="form-group">
                                 <select class="form-control" name="type" required>
                                     <option value="" required>Type</option>
@@ -303,7 +264,6 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
                                 </select>
                             </div>
                          
-
                   
                            <!---- <div class="form-group">
                                 <select class="form-control" name="price" required>
@@ -332,20 +292,15 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
                                     
                                 </select>
                             </div>
-
                           
-
                             <div>
                                 <div id="search-price-range"></div>
                             </div>--->
-
                             <div class="form-group">
                                  <button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-search"></i> Search</button>
                             </div>
-
                         </form>
                     </center>
-
                     </div>
                     <!--Property Search end-->
                     
@@ -355,9 +310,6 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
         </div>
     </div>
     <!--Search Section section end-->
-
-
-
       <!--CTA Section start-->
     <div class="cta-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50" style="background-image: url(assets/images/bg/cta-bg.jpg)">
         <div class="container">
@@ -380,8 +332,6 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
         </div>
     </div>
     <!--CTA Section end-->
-
-
  <!--New property section start-->
     <div class="property-section section bg-gray pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-60 pb-lg-40 pb-md-30 pb-sm-20 pb-xs-10">
         <div class="container">
@@ -397,7 +347,6 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
             <!--Section Title end-->
             
             <div class="row">
-
                   <?php 
                     //$sql = "SELECT * FROM properties where house_label='hot' and status='no' order by id ASC";
                        $sql="SELECT p.*, 
@@ -415,11 +364,9 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
     ";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                          $house_img2=$row2['house_img2'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       $house_label=$row2['house_label'];
                       $first_year_rent=$row2['first_year_rent'];
                       $second_year_rent = $row2['second_year_rent'];
@@ -439,7 +386,6 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
                       $how_many_multiple_room=$row2['how_many_multiple_room'];
                     $house_name2=str_replace(" ", "-", $house_name2);
                      ?> 
-
                       <?php 
                     // Check if the house is booked
                     $query3 = mysqli_query($con, "SELECT house_id FROM bookings WHERE house_id='$house_id1' UNION SELECT house_id FROM bookings_urgent WHERE house_id='$house_id1'"); 
@@ -448,254 +394,142 @@ $cart_count = mysqli_fetch_assoc($cart_count_result)['count'];
                     }
                     $row3 = mysqli_fetch_assoc($query3);
                     $house_id11 = $row3['house_id'] ?? null;
-
-
-
-
-
                         $embedUrl = $row2['youtube_link'];
-
-
                 // Predefine messages for each house type
  // Predefine messages for each house type
 $houseMessages = [
     "Single room with shared toilet and bathroom" => "
     Hello,
-
 A Single room in a cool student hall, available now
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
  
-
 Agent fee is negotiable!! 
 Agreement and commission is non-negotiable!!! 
-
 DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
      "Single room with personal toilet and bathroom" => "
 Hello,
-
 Single room with a private bathroom and toilet is available now 
-
  {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
  
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
      ",
-
     "Self contain" => "
     Hello,
-
-
 A single room self-contained unit just landed on  Housemadeeasy, and it's perfect for you!
 No sharing a kitchen or bathroom!
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
 Agent fee is negotiable!! 
 Agreement and commission is non-negotiable!!!
-
 DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
-
      "One Bedroom Flat" => "
-
   Be Your Own Boss! One Bedroom Flat is Available Now!
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
  
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
    
     "Two bedroom flat with shared toilet and bathroom" => "
-
     Hello, 
-
 A brand new 2-bedroom flat is now available on Housemadeeasy, perfect for you and your bestie (or study buddy)!  
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
     "Two bedroom flat with personal toilet in each room" => "
     
 Hello, 
-
 A brand new 2-bedroom flat just landed on Housemadeeasy, and guess what?  *Each room has its own private bathroom!*   
-
 This is perfect for you and your bestie (or study buddy!).  
-
 {{embedUrl}} 
  
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
     ",
-
     "Three bedroom flat with one bathroom and toilet" => "
-
    Hello,
-
 We have a 3-bedroom flat perfect for you and your roommates with 1 shared bathroom and toilet.
-
  {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
   
-
     "Three bedroom flat with a master bedroom(having personal toilet and bathroom) and the two rooms sharing one bathroom and toilet" => "
     Hello,
-
 We've got a brand new 3-bedroom flat with a master suite (bathroom included!) and a shared bathroom for the other two rooms!
-
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
     ",
-
     "Three bedroom flat with personal toilet and bathroom each" => "
-
     A three-bedroom flat with personal bathrooms for every room is available  now
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
     ",
-
  "Four bedroom flat with personal toilet and bathroom each" => "
-
  A  four-bedroom flat with personal bathrooms for every room!
-
   {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
-
     ",
-
  
 ];
-
  
             
-
                     ?>
                
                 <!--Property start-->
@@ -706,33 +540,24 @@ The Housemadeeasy Team
                         <div class="image">
                             <?php 
                             if ($multiple_room=='yes') {
-
                                   // write a code to show if it is negotiable begin
                                
-
                                 // write a code to show if it is negotiable end
                                 // code...
                             
                                 if ($how_many_multiple_room==0) {
                                     //it will display an image of allbooked
                                     ?>
-
                                  <a href="details.php?id=<?php echo $id; ?>" >
                                 <span class="label2 blinking-text2" style="font-weight:bolder; color:red; font-size:20px">Unavailable</span>
                                 </a>
-
-
                            <?php }
                             
                         }//end of multiple room
-
                         //begin of not multiple room
                         elseif ($multiple_room=='no'){
-
                               
-
                                 // write a code to show if it is negotiable end
-
                             if ($house_id1==$house_id11) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -744,7 +569,6 @@ The Housemadeeasy Team
                                 </span>
                                 </a>
                             <?php }
-
                                 elseif ($status=='yes') {
                                     // i will write a code in the admin end to update status to yes in properties and update house_id in booking to null
                                  ?>
@@ -753,21 +577,14 @@ The Housemadeeasy Team
                                 </a> 
                                <?php }
                                else{
-
                             echo '<span class="label2 blinking-text" style="font-weight:bolder;">Available</span>';
                         } 
-
                            }// end
-
-
                             if(!empty($house_label)){?>
                                 <span class="label"><?php echo $house_label?></span>
                             <?php }else{
                             }
                                 ?>
-
-
-
                             <a href="details.php?id=<?php echo $id; ?>" ><img src='assets/images/property/<?php echo $house_img1; ?>' alt=""></a>
                               <ul class="property-feature">
                                 <li><!--- distance --->
@@ -782,9 +599,7 @@ The Housemadeeasy Team
                                 </li>
                             </ul>
                         </div>
-
                         <div class="content">
-
                             <div class="left">
                                 <h3 class="title"><a href="details.php?id=<?php echo $id; ?>"><?php echo $house_name;?></a></h3>
                                 <span class="location"><img src="assets/images/icons/marker.png" alt=""><?php echo ucwords($house_location).', ' . $location; ?></span>
@@ -793,11 +608,9 @@ The Housemadeeasy Team
                                 <div class="type-wrap">
                                     <span class="price" style="font-size: 15px;">#<?php echo $first_year_rent?></span>
                                    <a href="details.php?id=<?php echo $id; ?>"> <span class="type" style="margin-bottom:5px">View</span> </a>
-
                                              <?php
 // Check if there's a predefined message for this house type
 $house_message_template = $houseMessages[$house_name] ?? null;
-
 if ($house_message_template) {
     // Replace placeholders with actual values
     $house_message = str_replace(
@@ -805,7 +618,6 @@ if ($house_message_template) {
         [$first_year_rent, $second_year_rent, $embedUrl, $id],
         $house_message_template
     );
-
     // Encode message for WhatsApp sharing
     $whatsapp_message = urlencode($house_message);
     $whatsapp_link = "https://wa.me/?text=$whatsapp_message";
@@ -818,11 +630,9 @@ if ($house_message_template) {
             Share
         </a>
     </span>
-
 <?php
 } else {
     // Default share message if house type is not predefined
-
     $default_message = "Check out this property: $house_name located at $location. Price: #$first_year_rent. $embedUrl View more details: https://housemadeeasy.com.ng/details.php?id=$id";
     $whatsapp_link = "https://wa.me/?text=" . urlencode($default_message);
 ?>
@@ -834,7 +644,6 @@ if ($house_message_template) {
             Share
         </a>
     </span>
-
 <?php } ?>
                                                 <?php
                                      // if ($negotiable=='yes') { ?>
@@ -842,7 +651,6 @@ if ($house_message_template) {
                                
                                 
                                 <?php /*}else{ 
-
                                 }*/
                                     ?>
                                 </div>
@@ -872,7 +680,6 @@ if ($house_message_template) {
         </div>
     </div>
     <!--New property section end-->
-
      <!--Download apps section start-->
     <div class="download-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50" style="background-image: url(assets/images/bg/download-bg.jpg)">
         <div class="container">
@@ -914,8 +721,6 @@ if ($house_message_template) {
         </div>
     </div>
     <!--Download apps section end-->
-
-
     <!--recommende property section start-->
     <div class="property-section section pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
          <br><br><br>
@@ -938,7 +743,6 @@ if ($house_message_template) {
                 
                      <?php
                    //$sql = "SELECT * FROM properties where type='2 Bedroom Flat' || type='3 Bedroom Flat' || type='4 Bedroom Flat' and status='no'  order by id ASC";
-
                     $sql="SELECT p.*, 
                CASE 
                    WHEN bu.house_id IS NOT NULL OR b.house_id IS NOT NULL THEN 1 
@@ -953,7 +757,6 @@ if ($house_message_template) {
             CASE WHEN bu.house_id IS NULL AND b.house_id IS NULL THEN 0 ELSE 1 END ASC";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                       $first_year_rent=$row2['first_year_rent'];
                       $second_year_rent = $row2['second_year_rent'];
@@ -967,12 +770,10 @@ if ($house_message_template) {
                       $house_id2=$row2['house_id'];
                       $status2=$row2['status'];
                        $agentaffilate_id=$row2['agentaffilate_id'];
-
                        $bathroom3=$row2['bathroom'];
                       $kitchen3=$row2['kitchen'];
                        $distance3=$row2['distance'];
                        $negotiable=$row2['negotiable'];
-
                       //$house_img1 = (!empty($row2['profilepics'])) ? '../student/img/'.$row2['profilepics'] : '../student/img/profile.png';    
                       ?>
                         <?php 
@@ -983,285 +784,163 @@ if ($house_message_template) {
                     }
                       $row3 = mysqli_fetch_assoc($query3);
                      $house_id22=$row3['house_id'] ?? null;
-
-
-
-
-
                         $embedUrl = $row2['youtube_link'];
-
-
                 // Predefine messages for each house type
  // Predefine messages for each house type
 $houseMessages = [
     "Single room with shared toilet and bathroom" => "
     Hello,
-
 A Single room in a cool student hall, available now
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
  
-
 Agent fee is negotiable!! 
 Agreement and commission is non-negotiable!!! 
-
 DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
      "Single room with personal toilet and bathroom" => "
 Hello,
-
 Single room with a private bathroom and toilet is available now 
-
  {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
  
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
      ",
-
     "Self contain" => "
     Hello,
-
-
 A single room self-contained unit just landed on  Housemadeeasy, and it's perfect for you!
 No sharing a kitchen or bathroom!
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
 Agent fee is negotiable!! 
 Agreement and commission is non-negotiable!!!
-
 DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
-
      "One Bedroom Flat" => "
-
   Be Your Own Boss! One Bedroom Flat is Available Now!
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
  
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
    
     "Two bedroom flat with shared toilet and bathroom" => "
-
     Hello, 
-
 A brand new 2-bedroom flat is now available on Housemadeeasy, perfect for you and your bestie (or study buddy)!  
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
     "Two bedroom flat with personal toilet in each room" => "
     
 Hello, 
-
 A brand new 2-bedroom flat just landed on Housemadeeasy, and guess what?  *Each room has its own private bathroom!*   
-
 This is perfect for you and your bestie (or study buddy!).  
-
 {{embedUrl}} 
  
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
     ",
-
     "Three bedroom flat with one bathroom and toilet" => "
-
    Hello,
-
 We have a 3-bedroom flat perfect for you and your roommates with 1 shared bathroom and toilet.
-
  {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
   
-
     "Three bedroom flat with a master bedroom(having personal toilet and bathroom) and the two rooms sharing one bathroom and toilet" => "
     Hello,
-
 We've got a brand new 3-bedroom flat with a master suite (bathroom included!) and a shared bathroom for the other two rooms!
-
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
     ",
-
     "Three bedroom flat with personal toilet and bathroom each" => "
-
     A three-bedroom flat with personal bathrooms for every room is available  now
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
     ",
-
  "Four bedroom flat with personal toilet and bathroom each" => "
-
  A  four-bedroom flat with personal bathrooms for every room!
-
   {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
-
     ",
-
  
 ];
-
-
                     ?>
                     <div class="property-item col-lg-4 col-md-6 col-12 mb-40">
                         <div class="property-inner">
                             <div class="image">
                             <?php
                                
-
                             if ($multiple_room=='yes') {
-
                                
-
                                 // write a code to show if it is negotiable end
                                 // code...
                             
                                 if ($how_many_multiple_room==0) {?>
-
                                  <a href="details.php?id=<?php echo $id; ?>" >
                                <span class="label2 blinking-text2" style="font-weight:bolder; color:red; font-size:20px">Unavailable</span>
                                 </a> 
                                 </a>
-
-
                            <?php }
                             
                         }//end of multiple room
-
                         //begin of not multiple room
                         elseif ($multiple_room=='no'){
-
                               
-
                                 // write a code to show if it is negotiable end
-
                             if ($house_id2==$house_id22) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -1273,7 +952,6 @@ The Housemadeeasy Team
                                 </span>
                                 </a>
                             <?php }
-
                                 elseif ($status2=='yes') {
                                     // i will write a code in the admin end to update status to yes in properties and update house_id in booking to null
                                  ?>
@@ -1283,12 +961,9 @@ The Housemadeeasy Team
                                 </a> 
                                <?php }
                                else{
-
                             echo '<span class="label2 blinking-text" style="font-weight:bolder;">Available</span>';
                         } 
-
                            }// end
-
                              if(!empty($house_label)){?>
                                 <span class="label"><?php echo $house_label?></span>
                             <?php }else{
@@ -1317,12 +992,9 @@ The Housemadeeasy Team
                                     <div class="type-wrap">
                                         <span class="price" style="font-size: 15px;">#<?php echo $first_year_rent?></span>
                                         <a href="details.php?id=<?php echo $id; ?>"> <span class="type" style="margin-bottom:5px">View</span> </a>
-
-
                                                                                      <?php
 // Check if there's a predefined message for this house type
 $house_message_template = $houseMessages[$house_name] ?? null;
-
 if ($house_message_template) {
     // Replace placeholders with actual values
     $house_message = str_replace(
@@ -1330,7 +1002,6 @@ if ($house_message_template) {
         [$first_year_rent, $second_year_rent, $embedUrl, $id],
         $house_message_template
     );
-
     // Encode message for WhatsApp sharing
     $whatsapp_message = urlencode($house_message);
     $whatsapp_link = "https://wa.me/?text=$whatsapp_message";
@@ -1343,11 +1014,9 @@ if ($house_message_template) {
             Share
         </a>
     </span>
-
 <?php
 } else {
     // Default share message if house type is not predefined
-
     $default_message = "Check out this property: $house_name located at $location. Price: #$first_year_rent. $embedUrl View more details: https://housemadeeasy.com.ng/details.php?id=$id";
     $whatsapp_link = "https://wa.me/?text=" . urlencode($default_message);
 ?>
@@ -1359,7 +1028,6 @@ if ($house_message_template) {
             Share
         </a>
     </span>
-
 <?php } ?>
                                                      <?php
                                      // if ($negotiable=='yes') { ?>
@@ -1367,7 +1035,6 @@ if ($house_message_template) {
                                
                                 
                                 <?php /*}else{ 
-
                                 }*/
                                     ?>
                                     </div>
@@ -1396,7 +1063,6 @@ if ($house_message_template) {
         </div>
     </div>
     <!--recommende property section end-->
-
     <!--Funfact Section start-->
     <div class="funfact-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20" style="background-image: url(assets/images/bg/cta-bg.jpg)">
         <div class="container">
@@ -1451,10 +1117,7 @@ if ($house_message_template) {
         </div>
     </div>
     <!--Funfact Section end-->
-
-
     <!--Feature property section start-->
-
     <div class="property-section section pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
          <br><br>
         <div class="container">
@@ -1473,10 +1136,8 @@ if ($house_message_template) {
                
                 <!--Property Slider start-->
                 
-
                      <?php
                    //$sql = "SELECT * FROM properties where type='self contain' and status='no'  order by id ASC";
-
                        $sql="SELECT p.*, 
                CASE 
                    WHEN bu.house_id IS NOT NULL OR b.house_id IS NOT NULL THEN 1 
@@ -1490,10 +1151,8 @@ if ($house_message_template) {
             CASE WHEN p.status = 'no' THEN 1 ELSE 0 END DESC,
             CASE WHEN bu.house_id IS NULL AND b.house_id IS NULL THEN 0 ELSE 1 END ASC
     ";
-
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                       $first_year_rent=$row2['first_year_rent'];
                       $second_year_rent = $row2['second_year_rent'];
@@ -1507,7 +1166,6 @@ if ($house_message_template) {
                       $house_id3=$row2['house_id'];
                       $status3=$row2['status'];
                        $agentaffilate_id=$row2['agentaffilate_id'];
-
                        $bathroom4=$row2['bathroom'];
                       $kitchen4=$row2['kitchen'];
                        $distance4=$row2['distance'];
@@ -1522,286 +1180,164 @@ if ($house_message_template) {
                     }
                       $row3 = mysqli_fetch_assoc($query3);
                      $house_id33=$row3['house_id']?? null;
-
-
-
-
-
                         $embedUrl = $row2['youtube_link'];
-
-
                 // Predefine messages for each house type
  // Predefine messages for each house type
 $houseMessages = [
     "Single room with shared toilet and bathroom" => "
     Hello,
-
 A Single room in a cool student hall, available now
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
  
-
 Agent fee is negotiable!! 
 Agreement and commission is non-negotiable!!! 
-
 DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
      "Single room with personal toilet and bathroom" => "
 Hello,
-
 Single room with a private bathroom and toilet is available now 
-
  {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
  
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
      ",
-
     "Self contain" => "
     Hello,
-
-
 A single room self-contained unit just landed on  Housemadeeasy, and it's perfect for you!
 No sharing a kitchen or bathroom!
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
 Agent fee is negotiable!! 
 Agreement and commission is non-negotiable!!!
-
 DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
-
      "One Bedroom Flat" => "
-
   Be Your Own Boss! One Bedroom Flat is Available Now!
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
  
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
    
     "Two bedroom flat with shared toilet and bathroom" => "
-
     Hello, 
-
 A brand new 2-bedroom flat is now available on Housemadeeasy, perfect for you and your bestie (or study buddy)!  
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
     "Two bedroom flat with personal toilet in each room" => "
     
 Hello, 
-
 A brand new 2-bedroom flat just landed on Housemadeeasy, and guess what?  *Each room has its own private bathroom!*   
-
 This is perfect for you and your bestie (or study buddy!).  
-
 {{embedUrl}} 
  
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
     ",
-
     "Three bedroom flat with one bathroom and toilet" => "
-
    Hello,
-
 We have a 3-bedroom flat perfect for you and your roommates with 1 shared bathroom and toilet.
-
  {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
   
-
     "Three bedroom flat with a master bedroom(having personal toilet and bathroom) and the two rooms sharing one bathroom and toilet" => "
     Hello,
-
 We've got a brand new 3-bedroom flat with a master suite (bathroom included!) and a shared bathroom for the other two rooms!
-
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
     ",
-
     "Three bedroom flat with personal toilet and bathroom each" => "
-
     A three-bedroom flat with personal bathrooms for every room is available  now
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
     ",
-
  "Four bedroom flat with personal toilet and bathroom each" => "
-
  A  four-bedroom flat with personal bathrooms for every room!
-
   {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
-
     ",
-
  
 ];
-
-
                     ?>
-
                     <!--Property start-->
                     <div class="property-item col-lg-4 col-md-6 col-12 mb-40">
                         <div class="property-inner">
                             <div class="image">
                                 <?php
                                  if ($multiple_room=='yes') {
-
                                 
-
                                 // write a code to show if it is negotiable end
                                 // code...
                             
                                 if ($how_many_multiple_room==0) {?>
-
                                  <a href="details.php?id=<?php echo $id; ?>" >
                                 <span class="label2">
                                <img src="assets/images/notavailable/4new.png" style=" height: 150px; margin: 50px 0px 0px 30px; padding: 5px; text-align:center" > 
                                 </span>
                                 </a>
-
-
                            <?php }
                             
                         }//end of multiple room
-
                         //begin of not multiple room
                         elseif ($multiple_room=='no'){
-
                               
-
                                 // write a code to show if it is negotiable end
-
                             if ($house_id3==$house_id33) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -1813,7 +1349,6 @@ The Housemadeeasy Team
                                 </span>
                                 </a>
                             <?php }
-
                                 elseif ($status3=='yes') {
                                     // i will write a code in the admin end to update status to yes in properties and update house_id in booking to null
                                  ?>
@@ -1823,12 +1358,9 @@ The Housemadeeasy Team
                                 </a> 
                                <?php }
                                else{
-
                             echo '<span class="label2 blinking-text" style="font-weight:bolder;">Available</span>';
                         } 
-
                            }// end
-
                                  if(!empty($house_label)){?>
                                 <span class="label"><?php echo $house_label?></span>
                             <?php }else{
@@ -1857,12 +1389,9 @@ The Housemadeeasy Team
                                     <div class="type-wrap">
                                         <span class="price" style="font-size: 15px;">#<?php echo $first_year_rent?></span>
                                         <a href="details.php?id=<?php echo $id; ?>"> <span class="type" style="margin-bottom:5px">View</span> </a>
-
-
                                                                                      <?php
 // Check if there's a predefined message for this house type
 $house_message_template = $houseMessages[$house_name] ?? null;
-
 if ($house_message_template) {
     // Replace placeholders with actual values
     $house_message = str_replace(
@@ -1870,7 +1399,6 @@ if ($house_message_template) {
         [$first_year_rent, $second_year_rent, $embedUrl, $id],
         $house_message_template
     );
-
     // Encode message for WhatsApp sharing
     $whatsapp_message = urlencode($house_message);
     $whatsapp_link = "https://wa.me/?text=$whatsapp_message";
@@ -1883,11 +1411,9 @@ if ($house_message_template) {
             Share
         </a>
     </span>
-
 <?php
 } else {
     // Default share message if house type is not predefined
-
     $default_message = "Check out this property: $house_name located at $location. Price: #$first_year_rent. $embedUrl View more details: https://housemadeeasy.com.ng/details.php?id=$id";
     $whatsapp_link = "https://wa.me/?text=" . urlencode($default_message);
 ?>
@@ -1899,7 +1425,6 @@ if ($house_message_template) {
             Share
         </a>
     </span>
-
 <?php } ?>
                                                      <?php
                                      // if ($negotiable=='yes') { ?>
@@ -1907,7 +1432,6 @@ if ($house_message_template) {
                                
                                 
                                 <?php/* }else{ 
-
                                 }*/
                                     ?>
                                     </div>
@@ -1927,7 +1451,6 @@ if ($house_message_template) {
                   <?php
               }
                   ?>
-
                
                 <!--Property Slider end-->
                 
@@ -1936,7 +1459,6 @@ if ($house_message_template) {
         </div>
     </div>
     <!--Feature property section end-->
-
     <!--CTA Section start-->
     <div class="cta-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50" style="background-image: url(assets/images/bg/cta-bg.jpg)">
         <div class="container">
@@ -1959,9 +1481,7 @@ if ($house_message_template) {
         </div>
     </div>
     <!--CTA Section end-->
-
  
-
   <!--single property section start-->
     <div class="property-section section pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
          <br><br>
@@ -1983,7 +1503,6 @@ if ($house_message_template) {
                 
                       <?php
                    //$sql = "SELECT * FROM properties where type='single room' and status='no'   order by id ASC";
-
                        $sql="SELECT p.*, 
                CASE 
                    WHEN bu.house_id IS NOT NULL OR b.house_id IS NOT NULL THEN 1 
@@ -1999,7 +1518,6 @@ if ($house_message_template) {
     ";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                       $first_year_rent=$row2['first_year_rent'];
                       $second_year_rent = $row2['second_year_rent'];
@@ -2013,14 +1531,12 @@ if ($house_message_template) {
                       $status4=$row2['status'];
                         $house_id4=$row2['house_id'];
                          $agentaffilate_id=$row2['agentaffilate_id'];
-
                          $bathroom5=$row2['bathroom'];
                       $kitchen5=$row2['kitchen'];
                        $distance5=$row2['distance'];
                        $negotiable=$row2['negotiable'];
                       //$house_img1 = (!empty($row2['profilepics'])) ? '../student/img/'.$row2['profilepics'] : '../student/img/profile.png';    
                       ?>
-
                       <?php 
                      $query3 = mysqli_query($con,"SELECT house_id FROM bookings WHERE house_id='$house_id4' UNION
     SELECT house_id FROM bookings_urgent WHERE house_id='$house_id4'"); 
@@ -2029,282 +1545,162 @@ if ($house_message_template) {
                     }
                       $row3 = mysqli_fetch_assoc($query3);
                      $house_id44=$row3['house_id'] ?? null;
-
-
-
-
-
                         $embedUrl = $row2['youtube_link'];
-
-
                 // Predefine messages for each house type
  // Predefine messages for each house type
 $houseMessages = [
     "Single room with shared toilet and bathroom" => "
     Hello,
-
 A Single room in a cool student hall, available now
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
  
-
 Agent fee is negotiable!! 
 Agreement and commission is non-negotiable!!! 
-
 DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
      "Single room with personal toilet and bathroom" => "
 Hello,
-
 Single room with a private bathroom and toilet is available now 
-
  {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
  
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
      ",
-
     "Self contain" => "
     Hello,
-
-
 A single room self-contained unit just landed on  Housemadeeasy, and it's perfect for you!
 No sharing a kitchen or bathroom!
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
 Agent fee is negotiable!! 
 Agreement and commission is non-negotiable!!!
-
 DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
-
      "One Bedroom Flat" => "
-
   Be Your Own Boss! One Bedroom Flat is Available Now!
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
  
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
    
     "Two bedroom flat with shared toilet and bathroom" => "
-
     Hello, 
-
 A brand new 2-bedroom flat is now available on Housemadeeasy, perfect for you and your bestie (or study buddy)!  
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
     "Two bedroom flat with personal toilet in each room" => "
     
 Hello, 
-
 A brand new 2-bedroom flat just landed on Housemadeeasy, and guess what?  *Each room has its own private bathroom!*   
-
 This is perfect for you and your bestie (or study buddy!).  
-
 {{embedUrl}} 
  
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
     ",
-
     "Three bedroom flat with one bathroom and toilet" => "
-
    Hello,
-
 We have a 3-bedroom flat perfect for you and your roommates with 1 shared bathroom and toilet.
-
  {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
     ",
-
   
-
     "Three bedroom flat with a master bedroom(having personal toilet and bathroom) and the two rooms sharing one bathroom and toilet" => "
     Hello,
-
 We've got a brand new 3-bedroom flat with a master suite (bathroom included!) and a shared bathroom for the other two rooms!
-
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
     ",
-
     "Three bedroom flat with personal toilet and bathroom each" => "
-
     A three-bedroom flat with personal bathrooms for every room is available  now
-
 {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
     ",
-
  "Four bedroom flat with personal toilet and bathroom each" => "
-
  A  four-bedroom flat with personal bathrooms for every room!
-
   {{embedUrl}}
-
 First payment; {{first_year_rent}}
 Subsequent; {{second_year_rent}}
-
-
  Agent fee is negotiable!! 
  Agreement and commission is non-negotiable!!! 
-
  DO NOT WASTE TIME , FOR MORE INFORMATION, CLICK THE LINK BELOW
-
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 See you soon,
 The Housemadeeasy Team
-
-
     ",
-
  
 ];
-
-
                     ?>
                     <!--Property start-->
                     <div class="property-item col-lg-4 col-md-6 col-12 mb-40">
                         <div class="property-inner">
                             <div class="image">
-
                                  <?php
                                   if ($multiple_room=='yes') {
-
                                     
                                 // code...
                             
                                 if ($how_many_multiple_room==0) {?>
-
                                  <a href="details.php?id=<?php echo $id; ?>" >
                                 <span class="label2">
                                <img src="assets/images/notavailable/4new.png" style=" height: 150px; margin: 50px 0px 0px 30px; padding: 5px; text-align:center" > 
                                 </span>
                                 </a>
-
-
                            <?php }
                             
                         }//end of multiple room
-
                         //begin of not multiple room
                         elseif ($multiple_room=='no'){
-
                              
-
                             if ($house_id4==$house_id44) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -2316,7 +1712,6 @@ The Housemadeeasy Team
                                 </span>
                                 </a>
                             <?php }
-
                                 elseif ($status4=='yes') {
                                     // i will write a code in the admin end to update status to yes in properties and update house_id in booking to null
                                  ?>
@@ -2325,14 +1720,10 @@ The Housemadeeasy Team
                                 </a> 
                                 </a> 
                                <?php }
-
                                else{
-
                             echo '<span class="label2 blinking-text" style="font-weight:bolder;">Available</span>';
                         } 
-
                            }// end
-
                                   if(!empty($house_label)){?>
                                 <span class="label"><?php echo $house_label?></span>
                             <?php }else{
@@ -2361,11 +1752,9 @@ The Housemadeeasy Team
                                     <div class="type-wrap">
                                         <span class="price" style="font-size: 15px;">#<?php echo $first_year_rent?></span>
                                         <a href="details.php?id=<?php echo $id; ?>"> <span class="type" style="margin-bottom:5px">View</span> </a>
-
                                                                                      <?php
 // Check if there's a predefined message for this house type
 $house_message_template = $houseMessages[$house_name] ?? null;
-
 if ($house_message_template) {
     // Replace placeholders with actual values
     $house_message = str_replace(
@@ -2373,7 +1762,6 @@ if ($house_message_template) {
         [$first_year_rent, $second_year_rent, $embedUrl, $id],
         $house_message_template
     );
-
     // Encode message for WhatsApp sharing
     $whatsapp_message = urlencode($house_message);
     $whatsapp_link = "https://wa.me/?text=$whatsapp_message";
@@ -2386,11 +1774,9 @@ if ($house_message_template) {
             Share
         </a>
     </span>
-
 <?php
 } else {
     // Default share message if house type is not predefined
-
     $default_message = "Check out this property: $house_name located at $location. Price: #$first_year_rent. $embedUrl View more details: https://housemadeeasy.com.ng/details.php?id=$id";
     $whatsapp_link = "https://wa.me/?text=" . urlencode($default_message);
 ?>
@@ -2402,7 +1788,6 @@ if ($house_message_template) {
             Share
         </a>
     </span>
-
 <?php } ?>
                                    
                                     </div>
@@ -2423,7 +1808,6 @@ if ($house_message_template) {
                     <?php 
                 }
                     ?>
-
                 
                 <!--Property Slider end-->
                 
@@ -2432,8 +1816,6 @@ if ($house_message_template) {
         </div>
     </div>
     <!--single property section end-->
-
-
  
     
    <?php  include ('inc/footer.inc.php');   ?>

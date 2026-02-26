@@ -5,7 +5,6 @@
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?>
    
 <nav class="navbar navbar-inverse navbar-fixed-top"><!-- navbar navbar-inverse navbar-fixed-top begin -->
@@ -82,18 +81,9 @@
                 </a><!-- a href finish -->
                 
             </li><!-- li finish -->
-
-
-
-
          
-
-
-
             
           
-
-
           
             
         
@@ -101,18 +91,8 @@
         
             
            
-
-
              
-
-
-
-
-
-
              
-
-
              <li><!-- li begin -->
                 <a href="#" data-toggle="collapse" data-target="#affilate"><!-- a href begin -->
                         
@@ -122,13 +102,11 @@
                 </a><!-- a href finish -->
                 
                 <ul id="affilate" class="collapse"><!-- collapse begin -->
-
                      <li><!-- li begin -->
                 <a href="index.php?view-hmeaffilate-agent"><!-- a href begin -->
                     <i class="fa fa-fw fa-users"></i> View Agent 
                 </a><!-- a href finish -->
             </li><!-- li finish -->
-
                   <li><!-- li begin -->
                 <a href="index.php?view-uploaded-house"><!-- a href begin -->
                     <i class="fa fa-fw fa-shopping-cart"></i> View Uploaded House 
@@ -138,10 +116,6 @@
                 </ul><!-- collapse finish -->
                 
             </li><!-- li finish -->
-
-
-
-
             
           
             
@@ -155,7 +129,6 @@
            
             
             
-
              <li><!-- li begin -->
                 <a href="logout.php"><!-- a href begin -->
                     <i class="fa fa-fw fa-power-off"></i> Log Out 
@@ -166,6 +139,4 @@
     </div><!-- collapse navbar-collapse navbar-ex1-collapse finish -->
     
 </nav><!-- navbar navbar-inverse navbar-fixed-top finish -->
-
-
 <?php } ?>

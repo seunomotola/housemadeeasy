@@ -5,11 +5,8 @@
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?>
-
 <?php 
-
     if(isset($_GET['delete_hmeaffilateagent'])){
         
         $delete_hmeaffilateagent = $_GET['delete_hmeaffilateagent'];
@@ -27,7 +24,5 @@
         }
         
     }
-
 ?>
-
 <?php } ?>

@@ -4,7 +4,6 @@
 require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
-
 $db_host = $_ENV['DB_HOST'];
 $db_user = $_ENV['DB_USER'];
 $db_pass = $_ENV['DB_PASS'];
@@ -13,6 +12,5 @@ $con = mysqli_connect($db_host, $db_user, $db_pass, $db_name) or die('no connect
 if(mysqli_connect_errno()){
 	echo 'Failed to connect to the MYSQL: '.mysqli_connect_error();
 	}
-
 	
 ?>

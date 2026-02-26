@@ -1,13 +1,11 @@
 <?php
 require('../fpdf.php');
-
 class PDF extends FPDF
 {
 protected $B = 0;
 protected $I = 0;
 protected $U = 0;
 protected $HREF = '';
-
 function WriteHTML($html)
 {
 	// HTML parser
@@ -44,7 +42,6 @@ function WriteHTML($html)
 		}
 	}
 }
-
 function OpenTag($tag, $attr)
 {
 	// Opening tag
@@ -55,7 +52,6 @@ function OpenTag($tag, $attr)
 	if($tag=='BR')
 		$this->Ln(5);
 }
-
 function CloseTag($tag)
 {
 	// Closing tag
@@ -64,7 +60,6 @@ function CloseTag($tag)
 	if($tag=='A')
 		$this->HREF = '';
 }
-
 function SetStyle($tag, $enable)
 {
 	// Modify style and select corresponding font
@@ -77,7 +72,6 @@ function SetStyle($tag, $enable)
 	}
 	$this->SetFont('',$style);
 }
-
 function PutLink($URL, $txt)
 {
 	// Put a hyperlink
@@ -88,11 +82,9 @@ function PutLink($URL, $txt)
 	$this->SetTextColor(0);
 }
 }
-
 $html = 'You can now easily print text mixing different styles: <b>bold</b>, <i>italic</i>,
 <u>underlined</u>, or <b><i><u>all at once</u></i></b>!<br><br>You can also insert links on
 text, such as <a href="http://www.fpdf.org">www.fpdf.org</a>, or on an image: click on the logo.';
-
 $pdf = new PDF();
 // First page
 $pdf->AddPage();

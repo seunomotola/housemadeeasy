@@ -5,11 +5,8 @@
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?>
-
 <?php 
-
     if(isset($_GET['delete-hmeaffilate-house'])){
         
         $delete_hmeaffilate_house = $_GET['delete-hmeaffilate-house'];
@@ -27,7 +24,5 @@
         }
         
     }
-
 ?>
-
 <?php } ?>

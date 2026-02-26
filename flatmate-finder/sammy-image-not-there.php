@@ -1,9 +1,7 @@
-
 <?php 
 session_start();
  include ('inc/header.inc.php');   ?> 
   
-
 <?php
     $connection = mysqli_connect("localhost", "root", "", "housemadeeasy");
     $sql = "SELECT * FROM house_taken WHERE id=2";
@@ -15,7 +13,6 @@ session_start();
        
         <!--Hero Slider start-->
         <div class="hero-slider section">
-
             <!--Hero Item start-->
            
                       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -24,18 +21,14 @@ session_start();
 <li data-target="#carousel-example-generic" data-slide-to="1" ></li>
 <li data-target="#carousel-example-generic" data-slide-to="2" ></li>
 <li data-target="#carousel-example-generic" data-slide-to="3" ></li>
-
-
 </ol>
 <div class="carousel-inner" role="listbox">
   <?php  
                     $sql = "SELECT * FROM slide order by id desc LIMIT 0,1";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       $house_label=$row2['house_label'];
                       $house_price=$row2['house_price'];
                      $location=$row2['location'];
@@ -50,15 +43,11 @@ session_start();
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-
                             <!--Hero Content start-->
                             <div class="hero-property-content text-center">
-
                                 <h1 class="title"> <a href="slide-image.php?id=<?php echo $id; ?>"><?php echo $house_name; ?></a></h1>
                                 <span class="location"><img src="assets/images/icons/hero-marker.png" alt=""> <?php echo $location; ?></span>
   
-
-
                                 <div class="type-wrap">
                                     <a href="slide-image.php?id=<?php echo $id; ?>"> <span class="type">View</span> </a>
                                     <span class="price" >#<?php echo $house_price?><span >Yr</span></span>
@@ -78,10 +67,8 @@ session_start();
                                     </li>
                                 </ul>
                                 
-
                             </div>
                             <!--Hero Content end-->
-
                         </div>
                     </div>
                 </div>
@@ -92,10 +79,8 @@ session_start();
                     $sql = "SELECT * FROM slide order by id desc LIMIT 1,3";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       $house_label=$row2['house_label'];
                       $house_price=$row2['house_price'];
                      $location=$row2['location'];
@@ -111,15 +96,10 @@ session_start();
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-
                             <!--Hero Content start-->
                             <div class="hero-property-content text-center">
-
                                 <h1 class="title"><a href="slide-image.php?id=<?php echo $id; ?>"><?php echo $house_name; ?></a></h1>
                                 <span class="location"><img src="assets/images/icons/hero-marker.png" alt=""> <?php echo $location; ?></span>
-
-
-
                                 <div class="type-wrap">
                                     <a href="slide-image.php?id=<?php echo $id; ?>"> <span class="type">View</span> </a>
                                     <span class="price" >#<?php echo $house_price?><span >Yr</span></span>
@@ -139,23 +119,19 @@ session_start();
                                     </li>
                                 </ul>
                                 
-
                             </div>
                             <!--Hero Content end-->
-
                         </div>
                     </div>
                 </div>
             </div>
     </div>
-
 <?php } ?>
         </div>
         <a href="#carousel-example-generic" class="carousel-control-prev" data-slide="prev" role="button">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
 </a>
-
 <a href="#carousel-example-generic" class="carousel-control-next" data-slide="next" role="button">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
@@ -163,15 +139,12 @@ session_start();
         </div>
             <!--Hero Item end-->
         
-
     
-
         </div>
         <!--Hero Slider end-->
         
     </div>
     <!--Hero Section end-->
-
        <!--Search Section section start-->
     <div class="search-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -193,12 +166,9 @@ session_start();
                     <div class="property-search">
                         <center>
                         <form action="search.php" method="POST" >
-
                             
-
                             <div class="form-group">
                    
-
                     
                    <select class="form-control" name="location" required>
                                     <option value="" required>Location</option>
@@ -210,14 +180,12 @@ session_start();
                                 </select>
                     
                 </div>
-
                            <!-- <div>
                                 <select class="nice-select">
                                     <option>For Rent</option>
                                     <option>For Sale</option>
                                 </select>
                             </div>-->
-
                             <div class="form-group">
                                 <select class="form-control" name="type" required>
                                     <option value="" required>Type</option>
@@ -231,7 +199,6 @@ session_start();
                                 </select>
                             </div>
                          
-
                   
                             <div class="form-group">
                                 <select class="form-control" name="price" required>
@@ -259,20 +226,15 @@ session_start();
                                     
                                 </select>
                             </div>
-
                           
-
                            <!---- <div>
                                 <div id="search-price-range"></div>
                             </div>--->
-
                             <div class="form-group">
                                  <button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-search"></i> Search</button>
                             </div>
-
                         </form>
                     </center>
-
                     </div>
                     <!--Property Search end-->
                     
@@ -282,7 +244,6 @@ session_start();
         </div>
     </div>
     <!--Search Section section end-->
-
     <!--New property section start-->
     <div class="property-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-60 pb-lg-40 pb-md-30 pb-sm-20 pb-xs-10">
         <div class="container">
@@ -302,10 +263,8 @@ session_start();
                     $sql = "SELECT * FROM properties where house_label='hot' order by id ASC";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       $house_label=$row2['house_label'];
                       $house_price=$row2['house_price'];
                      $location=$row2['location'];
@@ -326,15 +285,11 @@ session_start();
                                 if ($status=='yes') {
                                 echo '<span class="label2">Not Vacant</span>';
                                 }
-
                             if(!empty($house_label)){?>
                                 <span class="label"><?php echo $house_label?></span>
                             <?php }else{
                             }
                                 ?>
-
-
-
                             <a href="details.php?id=<?php echo $id; ?>" disabled><img src='assets/images/property/<?php echo $house_img1; ?>' alt=""></a>
                               <ul class="property-feature">
                                 <li><!--- distance --->
@@ -351,7 +306,6 @@ session_start();
                                 </li>
                             </ul>
                         </div>
-
                         <div class="content">
                             <div class="left">
                                 <h3 class="title"><a href="details.php?id=<?php echo $id; ?>"><?php echo $house_name;?></a></h3>
@@ -381,7 +335,6 @@ session_start();
         </div>
     </div>
     <!--New property section end-->
-
      <!--Download apps section start-->
     <div class="download-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50" style="background-image: url(assets/images/bg/download-bg.jpg)">
         <div class="container">
@@ -423,8 +376,6 @@ session_start();
         </div>
     </div>
     <!--Download apps section end-->
-
-
     <!--recommende property section start-->
     <div class="property-section section pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -448,7 +399,6 @@ session_start();
                    $sql = "SELECT * FROM properties where type='2 Bedroom Flat' || type='3 Bedroom Flat' || type='4 Bedroom Flat'   order by id ASC";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                       $house_price=$row2['house_price'];
                      $location=$row2['location'];
@@ -513,7 +463,6 @@ session_start();
         </div>
     </div>
     <!--recommende property section end-->
-
     <!--Funfact Section start-->
     <div class="funfact-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20" style="background-image: url(assets/images/bg/cta-bg.jpg)">
         <div class="container">
@@ -571,7 +520,6 @@ session_start();
         </div>
     </div>
     <!--Funfact Section end-->
-
     <!--Services section start-->
     <div class="service-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20">
         <div class="container">
@@ -623,7 +571,6 @@ session_start();
                 </div>
                 <div class="col-lg-7 col-12">
                     <div class="row row-20">
-
                         <!--Service start-->
                         <div class="col-md-6 col-12 mb-30">
                             <div class="service">
@@ -639,7 +586,6 @@ session_start();
                             </div>
                         </div>
                         <!--Service end-->
-
                           <!--Service start-->
                         <div class="col-md-6 col-12 mb-30">
                             <div class="service">
@@ -655,7 +601,6 @@ session_start();
                             </div>
                         </div>
                         <!--Service end-->
-
                         <!--Service start-->
                         <div class="col-md-6 col-12 mb-30">
                             <div class="service">
@@ -671,9 +616,7 @@ session_start();
                             </div>
                         </div>
                         <!--Service end-->
-
                       
-
                         <!--Service start-->
                         <div class="col-md-6 col-12 mb-30">
                             <div class="service">
@@ -689,7 +632,6 @@ session_start();
                             </div>
                         </div>
                         <!--Service end-->
-
                     </div>
                 </div>
             </div>
@@ -697,7 +639,6 @@ session_start();
         </div>
     </div>
     <!--Services section end-->
-
     <!--Feature property section start-->
     <div class="property-section section pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -716,12 +657,10 @@ session_start();
                
                 <!--Property Slider start-->
                 <div class="property-carousel section">
-
                      <?php
                    $sql = "SELECT * FROM properties where type='self contain'   order by id ASC";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                       $house_price=$row2['house_price'];
                      $location=$row2['location'];
@@ -731,8 +670,6 @@ session_start();
                       $status3=$row2['status'];
                       //$house_img1 = (!empty($row2['profilepics'])) ? '../student/img/'.$row2['profilepics'] : '../student/img/profile.png';    
                       ?>
-
-
                     <!--Property start-->
                     <div class="property-item col">
                         <div class="property-inner">
@@ -779,7 +716,6 @@ session_start();
                   <?php
               }
                   ?>
-
                 </div>
                 <!--Property Slider end-->
                 
@@ -788,7 +724,6 @@ session_start();
         </div>
     </div>
     <!--Feature property section end-->
-
     <!--CTA Section start-->
     <div class="cta-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50" style="background-image: url(assets/images/bg/cta-bg.jpg)">
         <div class="container">
@@ -811,7 +746,6 @@ session_start();
         </div>
     </div>
     <!--CTA Section end-->
-
     <!--Agent Section start-->
     <div class="agent-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -828,13 +762,11 @@ session_start();
             
             <div class="row">
                 <div class="agent-carousel section">
-
                         <?php
                    $sql = "SELECT * FROM agent   order by id ASC";
                     $result = mysqli_query($con,$sql);
                     if (mysqli_num_rows($result) > 0){
       while($row2 = mysqli_fetch_array($result)) {
-
                          $img=$row2['img'];
                       $fname=$row2['fname'];
                      $lname=$row2['lname'];
@@ -864,18 +796,14 @@ session_start();
                         </div>
                     </div>
                     <!--Agent end-->
-
                 <?php } }else{
                     echo "No agent yet";
                 }?>
-
-
                 </div>
             </div>
         </div>
     </div>
     <!--Agent Section end-->
-
   <!--single property section start-->
     <div class="property-section section pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -898,7 +826,6 @@ session_start();
                    $sql = "SELECT * FROM properties where type='single room'   order by id ASC";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                       $house_price=$row2['house_price'];
                      $location=$row2['location'];
@@ -912,7 +839,6 @@ session_start();
                     <div class="property-item col">
                         <div class="property-inner">
                             <div class="image">
-
                                  <?php
                                  if ($status4=='yes') {
                                 echo '<span class="label2">Not Vacant</span>';
@@ -956,7 +882,6 @@ session_start();
                     <?php 
                 }
                     ?>
-
                 </div>
                 <!--Property Slider end-->
                 
@@ -965,7 +890,6 @@ session_start();
         </div>
     </div>
     <!--single property section end-->
-
         <!--Testimonial Section start-->
     <div class="testimonial-section section bg-gray pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -988,7 +912,6 @@ session_start();
                    $sql = "SELECT * FROM test  order by id ASC";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $name=$row2['name'];
                       $img=$row2['img'];
                      $main_desc=$row2['main_desc'];

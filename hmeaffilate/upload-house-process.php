@@ -1,7 +1,6 @@
   <?php
     session_start();
-    include ('inc/connect.inc.php'); 
-
+    include("../inc/connect.inc.php")'); 
 function val($data){
     $data= trim($data);
     $data= stripslashes($data);
@@ -9,12 +8,7 @@ function val($data){
     
     return $data;
 }
-
-
-
 if(isset($_POST['submit'])){
-
-
 $house_location = $_POST['house_location'];
     $house_type = $_POST['house_type'];
     $house_name = $_POST['house_name'];
@@ -23,27 +17,21 @@ $house_location = $_POST['house_location'];
     $firstpayment = $_POST['firstpayment'];
     $secondpayment = $_POST['secondpayment'];
     $house_img1 = $_FILES['house_img1']['name'];
-
     $property_description = $_POST['property_description'];
     $currentvacant = $_POST['currentvacant'];
     $monthvacant = $_POST['monthvacant'];
-
       $house_agent_fname_session=$_SESSION['fname'];
     $house_agent_lname_session=$_SESSION['lname'];
     $house_agent_pno_session=$_SESSION['pno'];
     $house_agent_email_session=$_SESSION['email'];
       $house_agent_user_id_session=$_SESSION['agentaffilate_id'];
-
    
     
     $temp_name1 = $_FILES['house_img1']['tmp_name'];
     ;
     
     move_uploaded_file($temp_name1,"assets/images/hmeaffilate_upload_house/$house_img1");
-
-
     //give house an id, which is unique to it
-
     $house_id = "0123456789qwertzuioplkjhgfdsayxcvbnmABCDEFGHIKLMNOPQRSTUVZ";
       $house_id = str_shuffle($house_id);
       $house_id = substr($house_id, 0, 10);
@@ -53,11 +41,9 @@ $house_location = $_POST['house_location'];
     $run_product = mysqli_query($con,$insert_product);
     
     if($run_product){
-
             include 'hmeaffilate-sms-agent.php';
             include 'hmeaffilate-sms-kyya.php'; 
                include 'hmeaffilate-sms-me.php';
-
                echo  "<script>
     alert('Your House was sucessfully Uploaded...');
     
@@ -76,5 +62,4 @@ $house_location = $_POST['house_location'];
     }
     
 }
-
 ?>

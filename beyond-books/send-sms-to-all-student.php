@@ -1,5 +1,4 @@
   
-
 <?php
     $db_host = 'localhost';
   $db_user = 'housxjjr_housxjjr';
@@ -9,7 +8,6 @@
 if(mysqli_connect_errno()){
   echo 'Failed to connect to the MYSQL: '.mysqli_connect_error();
   }
-
   $get_c = "select * from beyondbooks";
                                 
                                 $run_c = mysqli_query($con,$get_c);
@@ -29,7 +27,6 @@ if(mysqli_connect_errno()){
                                     
                                   
                                   $curl = curl_init();
-
 curl_setopt_array($curl, array(
   CURLOPT_URL => 'https://my.kudisms.net/api/sms',
   CURLOPT_RETURNTRANSFER => true,
@@ -40,28 +37,19 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'POST',
   CURLOPT_POSTFIELDS => array('token' => 'bCSnXjYpRZHQE9v5gusm4ThtV3dDwlM70oGKIzOF6kaU8PNceyf2qxLJiWr1AB','senderID' => 'HouseMadeE','recipients' => "$pno",'message' => "
-
 Dear $lname
-
 Today is the D-day for housemadeeasyworkshop 1.0.....
 come and learn how to make money with housemadeeasy....
 Beyond Books: Building wealth through Housemadeeasy.
 Holding at Adebola Adegunwa Audio Visual Hall Nursing Department OOUTH on 9th of February, 2024 by 10am.
 Lot of freebies to be won..
-
-
 Thank You
-
     ",'gateway' => '1'), 
 ));
-
 $response = curl_exec($curl);
-
 curl_close($curl);
 echo $response;
                                        //echo "<script>window.open('index.php?view_house','_self')</script>";
        
                                 
                                     }
-
-

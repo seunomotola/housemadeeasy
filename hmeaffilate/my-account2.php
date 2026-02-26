@@ -1,18 +1,14 @@
 <?php
 ob_start();
 session_start(); // Start session FIRST, before includes
-include ('inc/connect.inc.php');
+include("../inc/connect.inc.php")');
 include ('inc/session.php');
 ?>
-
     
    
   
-
   <!doctype html>
 <html class="no-js" lang="zxx">
-
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:25:19 GMT -->
 <head>
     <meta charset="utf-8">
@@ -21,9 +17,7 @@ include ('inc/session.php');
     <title>HMEAffilate || Helping you to find your desire house easily</title>
     <meta name="description" content="housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University.....">
     
-
     <meta content="housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University....." name="keywords">
-
     <!-- Place favicon.ico in the root directory -->
     <link href="assets/images/easy.png" type="img/x-icon" rel="shortcut icon">
     <!-- All css files are included here. -->
@@ -33,14 +27,11 @@ include ('inc/session.php');
     <link rel="stylesheet" href="assets/css/helper.css">
     <link rel="stylesheet" href="assets/css/style.css"> 
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">   
-
  
-
     
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
 <body>
     
 <div id="main-wrapper">
@@ -64,7 +55,6 @@ include ('inc/session.php');
                         <nav class="main-menu">
                              <ul>
                                 <li><a href="index.php" style="text-decoration: none;">Home</a></li>
-
                                 <?php if (isset($_SESSION['agentaffilate_id'])): ?>
                                     <li class="active"><a href="my-account.php" style="text-decoration: none;">Dashboard</a></li>
                                     <li><a href="logout.php" style="text-decoration: none;">Logout</a></li>
@@ -93,8 +83,6 @@ include ('inc/session.php');
                            
                         </div>
                     </div>
-
-
                     <!--User end-->
                 </div>
                 
@@ -110,7 +98,6 @@ include ('inc/session.php');
         </div>
     </header>
     <!--Header section end-->
-
     <!--Page Banner Section start-->
     <div class="page-banner-section section">
         <div class="container">
@@ -126,13 +113,11 @@ include ('inc/session.php');
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20">
         <div class="container">
             <div class="row row-25">
                
-
                 
                 <div class="col-lg-8 col-12">
                     
@@ -151,15 +136,11 @@ include ('inc/session.php');
                                     <div class="col-md-6 col-12 mb-30"><label for="l_name">E-mail</label><input type="text" id="email2" value="<?php echo $email2; ?>"></div>
                                       <div class="col-md-6 col-12 mb-30"><label for="l_name">Phone Number</label><input type="text" id="cust_no" value="<?php echo $pno; ?>"></div>
                                    
-
                                 
-
                                     <div class="col-12 mb-30"><button class="btn" type="button" id="update">Save Change</button></div>
                                 </div>
                             </form>
                         </div>
-
-
                         <!--  -->
                         <style type="text/css">
                             form{
@@ -169,84 +150,56 @@ include ('inc/session.php');
                                 width: 100%;
                             }
                         </style>
-
                            <div id="generate-list" class="tab-pane">
             
                             <div class="row row-25">
                                 <div class="col-lg-12 col-12 "> 
-
                                <form method="POST" action="upload-house.php" class="form-horizontal" enctype="multipart/form-data">
                                     
-
                                           
                                             <label for="property_address">House Type</label> 
                                              <select name="house_type" id="class_school" required class="form-control" ><!-- form-control Begin -->
                               
                               <option selected disabled> Select House Type </option>
-
                               <option value="Single Room">Single Room</option>
-
                               <option value="Self contain">Self contain</option>
-
                               <option value="Room and Palour">Room and Palour </option>
-
                              
                               
                              <option value="2 Bedroom Flat">2 Bedroom Flat</option>
-
                              <option value="3 Bedroom Flat">3 Bedroom Flat</option>
-
                              <option value="4 Bedroom Flat">4 Bedroom Flat</option>
-
                              
                               
                           </select><!-- form-control Finish -->
                                         
-
                                         <!-- <div class="col-12 mb-30">
                                             <label for="property_title">House Name</label>
-
                                             <select id="subject" name="house_name" class="form-control" required>
                                 <option value="">Select House Name</option>
                             </select>
-
                                           
                                         </div> -->
-
                                     
                                     <br>
-
                                      
                                            
-
                                              
     <button id="hidebutton" type="button" class="btn btn-primary form-control">Search House</button>
-
-
 <br><br>
-
-
-
-
                                              
                                         
-
                                     </form>
-
                                </div>
                             </div>
                             
                         </div>
-
-
                         <!--  -->
                        
                         <div id="houseuploaded-tab" class="tab-pane show">
             
                             <div class="row">
-
                                
-
                                 <!--Property start--> 
                                   <?php 
                                   $agentaffilate_id=$_SESSION['agentaffilate_id'];
@@ -255,8 +208,6 @@ include ('inc/session.php');
         $run_customers = mysqli_query($con,$get_customers);
         
         $count_customers = mysqli_num_rows($run_customers);?>
-
-
 <p style="text-align:center; color:red; font-weight:bolder;">You have a total of <?php echo "$count_customers";?> House's Uploaded</p>
 <?php
                                   
@@ -264,10 +215,8 @@ include ('inc/session.php');
                     $result = $con->query($sql);
                    if (mysqli_num_rows($result) > 0){
                     while($row2 = mysqli_fetch_array($result)) {
-
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       // $house_label=$row2['house_label'];
                       // $house_price=$row2['house_price'];
                      
@@ -280,9 +229,7 @@ include ('inc/session.php');
                     //   $kitchen2=$row2['kitchen'];
                     //    $distance2=$row2['distance'];
                      ?> 
-
                                 <div class="property-item col-md-4 col-12 mb-40"> 
-
                                     <div class="property-inner">
                                         <div class="image">
                                               
@@ -307,28 +254,15 @@ include ('inc/session.php');
                                 echo"You are yet to Upload any House at the moment...";
                             } ?>
                                 <!--Property end-->
-
                                 <!--Property start-->
                               
                                 <!--Property end-->
-
                             </div>
                             
                         </div>
-
-
 <div id="house-results" class="search-results-section">
     <!-- Search results will appear here -->
 </div>
-
-
-
-
-
-
-
-
-
                         <div id="password-tab" class="tab-pane">
                             <form action="" method="POST">
                                
@@ -338,7 +272,6 @@ include ('inc/session.php');
                                     <div class="col-12 mb-30"><label for="current_password">Current Password</label><input type="password" id="old" ></div>
                                     <div class="col-12 mb-30"><label for="new_password">New Password</label><input type="password" id="newpass"></div>
                                     <div class="col-12 mb-30"><label for="confirm_new_password">Confirm New Password</label><input type="password" id="conf"></div>
-
                                     <div class="col-12 mb-30"><button class="btn" type="button" id="logIn">Save Change</button></div>
                                 </div>
                             </form>
@@ -346,17 +279,12 @@ include ('inc/session.php');
                     </div>
                     
                 </div>   <br><br><br>
-
-
                 <div class="col-lg-4 col-12 mb-sm-50 mb-xs-50">
                     <ul class="myaccount-tab-list nav">
-
                         <li ><a class="active"  href="upload-house.php" style="text-decoration: none;"><i class="pe-7s-home"></i>Upload House</a>
                                    
                                 </li> 
-
                         <li><a href="#houseuploaded-tab" data-toggle="tab"><i class="pe-7s-home"></i>Total House's Uploaded</a></li>
-
                          <li><a  href="#generate-list" data-toggle="tab"><i class="pe-7s-link"></i>Generate List for Available House</a></li>
                         <!-- <li><a  href="#properties-tab" data-toggle="tab"><i class="pe-7s-home"></i>House's Booked</a></li> -->
                         <li><a  href="#profile-tab" data-toggle="tab"><i class="pe-7s-user"></i>My Profile</a></li>
@@ -367,20 +295,13 @@ include ('inc/session.php');
                         <li><a href="logout.php"><i class="pe-7s-power"></i>Log Out</a></li>
                     </ul>
                 </div>
-
-
-
-
             </div>
         </div> 
     </div>
     <!--Login & Register Section end-->
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
     <style>
         .modal-dialog {
             display: flex;
@@ -427,7 +348,6 @@ include ('inc/session.php');
             color: white;
             text-transform: lowercase;
         }
-
                /* Responsive table styles */
         @media (max-width: 768px) {
             .table thead {
@@ -455,16 +375,12 @@ include ('inc/session.php');
                 text-align: left;
             }
         }
-
     </style>
-
-
     <style>
     /* Modal header styling */
     .modal-header {
         border-bottom: none;
     }
-
     /* List group item styling */
     .list-group-item {
         border: 1px solid #ddd;
@@ -473,29 +389,24 @@ include ('inc/session.php');
         background-color: #ffffff;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-
     /* Numbered list styling */
     .list-group-item h5 {
         color: #007bff;
         font-weight: bold;
     }
-
     /* Highlight hover */
     .list-group-item:hover {
         background-color: #f1f1f1;
     }
-
     /* Modal body background */
     .modal-body {
         padding: 20px;
         background-color: #f8f9fa;
     }
-
     .whatsapp-share-item {
     display: flex;
     gap: 10px; /* Adds space between items if needed */
 }
-
 .whatsapp-share-btn {
     display: flex;
     align-items: center;
@@ -507,20 +418,14 @@ include ('inc/session.php');
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
-
 .whatsapp-share-btn:hover {
     background-color: #25d366;
     color: white;
 }
-
 .whatsapp-share-btn .fa-whatsapp {
     margin-right: 5px;
 }
-
 </style>
-
-
-
 <!-- Modal Structure -->
 <!-- Modal Structure -->
 <div id="houseModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="houseModalLabel" aria-hidden="true">
@@ -544,30 +449,22 @@ include ('inc/session.php');
     <!-- <div id="whatsapp-share-container"></div> -->
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 </div>
-
-
-
         </div>
     </div>
 </div>
-
     
      <?php  include ('inc/footer.inc.php');   ?>
-
      <script type="text/javascript">
          
         $(document).ready(function () {
     $('#hidebutton').on('click', function () {
         var houseType = $('#class_school').val();
-
         if (!houseType) {
             alert('Please select a house type.');
             return;
         }
-
         // Set the modal title dynamically
         $('#houseModalLabel').text(`Available Houses for ${houseType}`);
-
         $.ajax({
             url: 'search-house.php', // Backend endpoint
             type: 'POST',
@@ -578,12 +475,10 @@ include ('inc/session.php');
                  var whatsappText = `Available Houses for ${houseType}:\n\n`;
                 var maxChars = 4000; // WhatsApp message character limit
                 var messages = []; // Array to hold chunks of messages
-
                 if (houses.length > 0) {
                     resultHtml += '<ul class="list-group">';
                     houses.forEach(function (house, index) {
                          var houseDetails = `${index + 1}. ${house.house_name}\nTotal Package: #${house.first_year_rent}\nSubsquent Payment: #${house.second_year_rent}\nLocation: ${house.house_location}\nClick 👇👇 the link below to check details: ${house.house_link}\n\n`;
-
                         // Add to WhatsApp text if within character limit
                         if ((whatsappText + houseDetails).length > maxChars) {
                             messages.push(whatsappText); // Save current chunk
@@ -604,7 +499,6 @@ include ('inc/session.php');
                             
                             </li>
                         `;
-
                        
                     });
                     resultHtml += '</ul>';
@@ -612,15 +506,12 @@ include ('inc/session.php');
                     resultHtml = '<p>No houses found for the selected type.</p>';
                     whatsappText = `No available houses for ${houseType}.`;
                 }
-
                  // Push the last chunk of messages
                 if (whatsappText) {
                     messages.push(whatsappText);
                 }
-
                 // Inject results into the modal body
                 $('#modal-house-results').html(resultHtml);
-
                  // Create WhatsApp share links for each chunk
                 var shareLinksHtml = '';
                 messages.forEach(function (msg, index) {
@@ -635,18 +526,13 @@ include ('inc/session.php');
         </a>
     `;
                 });
-
-
                  // Create WhatsApp share link
                 // var whatsappLink = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
                 // $('#whatsapp-share').attr('href', whatsappLink).show();
-
                  // Add share links to the modal footer
                 $('#whatsapp-share-container').html(shareLinksHtml);
-
                 // Show the modal
                 $('#houseModal').modal('show');
-
                  // Event listener for WhatsApp share buttons
                 $('.whatsapp-share-btn').on('click', function () {
                     var btn = $(this);
@@ -663,13 +549,9 @@ include ('inc/session.php');
         });
     });
 });
-
      </script>
-
-
      <script type="text/javascript">
     
-
     $(document).ready(function() {
     // Show modal on button click
   
@@ -678,17 +560,13 @@ include ('inc/session.php');
         var classValue = $('#class_school').val();
         var subjectDropdown = $('#subject');
         subjectDropdown.empty(); // Clear current options
-
         // Define subjects based on class selected
         var singleroom = ['Single room with shared toilet and bathroom', 'Single room in a flat with shared toilet and bathroom', 'Single room with personal toilet and bathroom', 'Single room and palour with shared toilet and bathroom'];
         var selfcontain = ['Self contain'];
         var roomandpalour = ['Room and Palour Self contain'];
         var twobedroomflat = ['Two bedroom flat with shared toilet and bathroom', 'Two bedroom flat with personal toilet in each room'];
         var threebedroomflat = ['Three bedroom flat with one bathroom and toilet', 'Three bedroom flat with a master bedroom(having personal toilet and bathroom) and the two rooms sharing one bathroom and toilet', 'Three bedroom flat with personal toilet and bathroom each'];
-
         var fourbedroomflat = ['Four bedroom flat with one bathroom and toilet', 'Four bedroom flat with a master bedroom(having personal toilet and bathroom) and the three rooms sharing one bathroom and toilet', 'Four bedroom flat with personal toilet and bathroom each', 'Four bedroom flat with two toilet and bathroom'];
-
-
         // Populate the subject dropdown based on selected class
         if (classValue === 'Single Room') {
             singleroom.forEach(function(subject) {
@@ -721,25 +599,16 @@ include ('inc/session.php');
         }
         
     }
-
     // Listen for changes in the class dropdown and update subjects accordingly
     $('#class_school').on('change', function() {
         updateSubjectOptions();
         
     });
-
     
-
    
-
   
-
   
 });
-
 </script>
-
-
-
       
    

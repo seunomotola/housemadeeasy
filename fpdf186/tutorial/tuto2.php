@@ -1,6 +1,5 @@
 <?php
 require('../fpdf.php');
-
 class PDF extends FPDF
 {
 // Page header
@@ -17,7 +16,6 @@ function Header()
 	// Line break
 	$this->Ln(20);
 }
-
 // Page footer
 function Footer()
 {
@@ -29,7 +27,6 @@ function Footer()
 	$this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
 }
 }
-
 // Instanciation of inherited class
 $pdf = new PDF();
 $pdf->AliasNbPages();

@@ -7,41 +7,28 @@ $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
 <br>
  
 Dear <b>Sammy</b>,<br><br><br>
-
 Kindly note that a customer has used housemadeeasy logistics as a means to transport his/her load. Below are the details of the customer:
-
 Name of Customer:  $lname, $fname <br><br>
 Phone Number:  $pno <br><br>
 E-mail: $email <br><br>
-
 Location of load in Ago-Iwoye:  $locationofload <br><br>
 Destination of Offloading in Sagamu ?:  $destinationofload <br><br>
 Mode of transport: $transporttype <br><br>
 Date of Transportation: $datetransport <br><br>
-
 <b>SUPPORT:</b> <br>
 For any issues with your login Details, you can always contact us on support@housemadeeasy.org or call 07037092267, 08160852570<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';   
     
     
   $subject = "Housemadeeasy logistics";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "housemadeeasy";
 $to = "Samson.anifowose58@gmail.com";
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
  mail($to, $subject, $body, $headers);

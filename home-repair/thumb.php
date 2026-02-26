@@ -1,5 +1,4 @@
 <?php
-
 function correctImageOrientation($filename) {
   global $con;
   if (function_exists('exif_read_data')) {
@@ -29,9 +28,6 @@ function correctImageOrientation($filename) {
     } // if have the exif orientation info
   } // if function exists     
 }
-
-
-
 function create_thumb($directory,$image,$destination) {
   $image_file = $image;
   $image = $directory.$image;

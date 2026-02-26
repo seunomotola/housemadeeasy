@@ -6,15 +6,11 @@
             $type=$_POST['type'];
             $price=$_POST['price'];
            
-
      $postTitle = "You searched For '" . $_POST['type'] . "' in '". $_POST['location']."'" ;
-
          $sql ="SELECT  * from properties WHERE house_price='$price'  order by id desc";
 $result = mysqli_query($con,$sql);
               }
-
               ?> 
-
   <div class="property-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
             

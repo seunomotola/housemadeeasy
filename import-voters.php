@@ -32,7 +32,6 @@ if(isset($_POST['submit'])){
                 $other_contact  = mysqli_real_escape_string($connect, $line[6]);
                 //$phone  = $line[2];
                 //$status = $line[3];
-
              
                  $query = "INSERT into contact_all_student(lname, fname, other_name, pno, email, class, other_contact) values('$lastname', '$firstname', '$other_name', '$phonenumber','$email', '$class', '$other_contact')";
                 mysqli_query($connect, $query);
@@ -51,7 +50,6 @@ if(isset($_POST['submit'])){
     }
 }
 //header('location: import-voters.php');
-
 ?> 
 <!DOCTYPE html>  
 <html>  

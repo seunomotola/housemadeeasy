@@ -5,9 +5,7 @@
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{ 
-
 ?>
-
 <div class="row"><!-- row 1 begin -->
     <div class="col-lg-12"><!-- col-lg-12 begin -->
         <ol class="breadcrumb"><!-- breadcrumb begin -->
@@ -19,7 +17,6 @@
         </ol><!-- breadcrumb finish -->
     </div><!-- col-lg-12 finish -->
 </div><!-- row 1 finish -->
-
 <div class="row"><!-- row 2 begin -->
     <div class="col-lg-12"><!-- col-lg-12 begin -->
         <div class="panel panel-default"><!-- panel panel-default begin -->
@@ -65,7 +62,6 @@
                                     $id = $row_pro['id'];
                                     
                                     $item_location = $row_pro['item_location'];
-
                                     
                                     
                                     $item_img1 = $row_pro['item_img1'];
@@ -75,7 +71,6 @@
                                     $item_name = $row_pro['item_name'];
                                     
                                     $item_status = $row_pro['item_status'];
-
                                      $item_id = $row_pro['item_id'];
                                     
                                     $i++;
@@ -98,13 +93,11 @@
                                         <i class="fa fa-pencil"></i> Edit
                                     
                                      </a> 
-
                                      <a href="index.php?delete_item=<?php echo $id; ?>">
                                      
                                         <i class="fa fa-trash-o"></i> Delete
                                     
                                      </a>
-
                                      <!-- <a href="index.php?market-place-sell-item-sms=<?php //echo $id; ?>">
                                      
                                         <i class="fa fa-envelope-o"></i> Send SMS 
@@ -139,5 +132,4 @@ else{
         </div><!-- panel panel-default finish -->
     </div><!-- col-lg-12 finish -->
 </div><!-- row 2 finish -->
-
 <?php } ?>

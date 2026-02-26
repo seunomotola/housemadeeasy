@@ -3,30 +3,23 @@
  * Safe Update Script for callback.php
  * This script backs up the current callback.php and replaces it with the updated version
  */
-
 session_start();
-include ('inc/connect.inc.php');
-
+include("../inc/connect.inc.php")');
 // Check if user is logged in as admin (you can customize this check)
 if (!isset($_SESSION['agentaffilate_id'])) {
     die('Access denied. Please log in first.');
 }
-
 $backupFile = 'callback_backup_' . date('Y-m-d_H-i-s') . '.php';
 $originalFile = 'callback.php';
 $updatedFile = 'callback_updated.php';
-
 // Check if files exist
 if (!file_exists($originalFile)) {
     die('Error: Original callback.php not found!');
 }
-
 if (!file_exists($updatedFile)) {
     die('Error: Updated callback file not found!');
 }
-
 echo "<h2>Safe callback.php Update</h2>";
-
 try {
     // Step 1: Create backup
     echo "<p>Step 1: Creating backup...</p>";
@@ -35,7 +28,6 @@ try {
     } else {
         throw new Exception('Failed to create backup');
     }
-
     // Step 2: Replace callback.php
     echo "<p>Step 2: Replacing callback.php...</p>";
     if (copy($updatedFile, $originalFile)) {
@@ -43,7 +35,6 @@ try {
     } else {
         throw new Exception('Failed to update callback.php');
     }
-
     // Step 3: Verify the update
     echo "<p>Step 3: Verifying update...</p>";
     $newContent = file_get_contents($originalFile);
@@ -52,7 +43,6 @@ try {
     } else {
         throw new Exception('Update verification failed');
     }
-
     echo "<h3>🎉 Update Complete!</h3>";
     echo "<p><strong>Next Steps:</strong></p>";
     echo "<ol>";
@@ -63,14 +53,11 @@ try {
     
     echo "<p><strong>Backup Location:</strong> $backupFile</p>";
     echo "<p><a href='upload-house-video.php'>Test Upload Page</a></p>";
-
 } catch (Exception $e) {
     echo "<p>❌ Error: " . $e->getMessage() . "</p>";
     echo "<p>The original callback.php should still be intact.</p>";
 }
-
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>

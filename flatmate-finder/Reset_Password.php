@@ -1,5 +1,5 @@
 <?php session_start();
-  include ('inc/connect.inc.php');   
+  include("../inc/connect.inc.php")');   
 //include 'inc/session.php';
 if(!isset($_SESSION['email'])){
 header("location:index.php");
@@ -22,14 +22,10 @@ if(isset($_POST['reset'])){
                 }
     }
     
-
   }
-
   ?>
  <!doctype html>
 <html class="no-js" lang="zxx">
-
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:25:19 GMT -->
 <head>
     <meta charset="utf-8">
@@ -48,7 +44,6 @@ if(isset($_POST['reset'])){
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
 <body>
     
 <div id="main-wrapper">
@@ -82,7 +77,6 @@ if(isset($_POST['reset'])){
                                 </li>
                             
                                
-
                                              <li ><a href="login.php">Login</a> </li>
                                 <li ><a href="register.php">Register</a>   </li> 
                                   
@@ -102,8 +96,6 @@ if(isset($_POST['reset'])){
                            
                         </div>
                     </div>
-
-
                     <!--User end-->
                 </div>
                 
@@ -134,7 +126,6 @@ if(isset($_POST['reset'])){
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -155,16 +146,10 @@ if(isset($_POST['reset'])){
                                     <div class="col-12 mb-30"><input type="password" id="password" autofocus placeholder="Enter your New Password"></div>
                                     
                                     <div class="col-12 mb-30"><button type="button" class="btn btn-theme btn-block btn-flat" id="reset"><i class="fa fa-sign-in"></i> Reset Password</button></div>
-
                                    
                                 </div>
-
                                 <!-- modal --->
              <!-- Button to Open the Modal -->
-
-
-
-
                             </form>
                         </div>
                    
@@ -175,18 +160,14 @@ if(isset($_POST['reset'])){
         </div>
     </div>
     <!--Login & Register Section end-->
-
       
     
     <?php  include ('inc/footer.inc.php');   ?>
-
      <script type="text/javascript">
-
        
             //forgot password begin
             $(document).ready(function(){
              $('#reset').on('click', function(){
-
                  var password = $('#password').val();           
               
                   $.ajax({
@@ -198,7 +179,6 @@ if(isset($_POST['reset'])){
                         'reset' : 1,
                          'password' : password
                          
-
                          
                     }, // if  successful
                     success: function(response){
@@ -209,16 +189,9 @@ if(isset($_POST['reset'])){
                         
                     },
                     dataType: 'text'
-
-
                    });
-
-
              });
-
           });
            //forgot password end
-
-
          
     </script>

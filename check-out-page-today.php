@@ -2,20 +2,16 @@
 include 'verify_referral_login.php';
 //include('inc/session.php');
 //session_start();
-
 $is_logged_in = isset($_SESSION['user_id']);
 $cart_items = [];
-
 if ($is_logged_in) {
     $user_id = $_SESSION['user_id'];
-
     // Fetch the cart items for the logged-in user
     $cart_query = "SELECT properties.*, cart.quantity 
                    FROM cart 
                    JOIN properties ON cart.property_id = properties.id 
                    WHERE cart.user_id = '$user_id'";
     $cart_result = mysqli_query($con, $cart_query);
-
     while ($item = mysqli_fetch_assoc($cart_result)) {
         $cart_items[] = $item;
     }
@@ -26,7 +22,6 @@ if ($is_logged_in) {
         foreach ($session_cart as $property_id) {
             $cart_query = "SELECT * FROM properties WHERE id = '$property_id'";
             $cart_result = mysqli_query($con, $cart_query);
-
             while ($item = mysqli_fetch_assoc($cart_result)) {
                 $item['quantity'] = 1; // Default quantity for session items
                 $cart_items[] = $item;
@@ -34,10 +29,8 @@ if ($is_logged_in) {
         }
     }
 }
-
 $total_price = 0;
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -54,7 +47,6 @@ $total_price = 0;
     <link rel="stylesheet" href="assets/css/style.css"> 
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">  
     <script src="https://js.paystack.co/v1/inline.js"></script>
-
     <style>
         .modal-dialog {
             display: flex;
@@ -127,9 +119,7 @@ $total_price = 0;
                 text-align: left;
             }
         }
-
     </style>
-
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -185,9 +175,6 @@ $total_price = 0;
         </div>
     </header>
     <!--Header section end-->
-
-
-
     <!--Page Banner Section start-->
     <div class="page-banner-section section" style="background-image: url(assets/images/bg/single-property-bg.jpg)">
         <div class="container">
@@ -203,7 +190,6 @@ $total_price = 0;
         </div>
     </div>
     <!--Page Banner Section end--> 
-
     <div class="container" style="padding:380px 0px 20px 0px;">
         <h1>Your Cart</h1>
         <div id="message"></div>
@@ -216,9 +202,7 @@ $total_price = 0;
                 <thead>
                     <tr>
                         <th>House Type</th>
-
                         <th>First year price</th>
-
                         <th>Subsquent price</th>
                         
                         <th>Location</th>
@@ -246,9 +230,7 @@ $total_price = 0;
                         ?>
                         <tr> 
                             <td data-label="House Type"><?php echo htmlspecialchars($item['house_name']); ?></td>
-
                             <td data-label="First year Price">#<?php echo $first_year_rent; ?></td>
-
                             <td data-label="Subsquent Price">#<?php echo $second_year_rent; ?></td>
                             
                             <td data-label="Location"><?php echo $location; ?></td>
@@ -265,30 +247,22 @@ $total_price = 0;
                         <th colspan="4">Total</th>
                         <th colspan="4">#<?php echo number_format($total_price); ?></th>
                         <?php 
-
                         ?>
                     </tr>
                 </tfoot>
             </table>
         <?php endif; ?>
     </div>
-
     <?php if (!empty($cart_items)){
-
-
                             if (isset($_SESSION['multiple_room']) && $_SESSION['multiple_room'] == 'yes') { 
                                 // code...
                             
                                 if ($_SESSION['how_many_multiple_room']!=0) {?>
-
-
                                     <!-- begin of isset -->
                               <?php if(isset($_SESSION['user_id']) ) { ?>
                                    <a  class="btn btn-primary btn-flat click " id="checkout-button" style=" border-radius:50px;  margin-top: 50px; padding:20px; text-align: center; color: white; text-transform: lowercase;" onclick="urgentalreadyloginIn()" ><i class="fa fa-calendar"></i> Click to check the house today</a>
                                  <script src="https://js.paystack.co/v1/inline.js"></script>
-
                                 
-
                                <?php  }else{ ?>
                                      <!-- urgent booking begins-->
                                     <a  class="btn btn-primary btn-flat" id="checkout-button2" style="border-radius:50px;  margin-top: 50px; padding:20px; text-align: center; color: white; text-transform: lowercase;" onclick="urgentnotalreadyloginIn()" ><i class="fa fa-calendar"></i> Click to check the house today</a>
@@ -296,45 +270,28 @@ $total_price = 0;
                                    
                                 <?php }
                                 // end of isset
-
-
                            }
                             
                         }//end of multiple room
-
-
                           //begin of not multiple room
-
         elseif (isset($_SESSION['multiple_room']) && $_SESSION['multiple_room'] == 'no') {
-
                            
-
                                  if(isset($_SESSION['user_id']) ) { ?>
                                       <a  class="btn btn-primary btn-flat click " id="checkout-button" style="border-radius:50px; padding:20px; text-align: center; color: white; text-transform: lowercase; margin-top: 50px;" onclick="urgentalreadyloginIn()" ><i class="fa fa-calendar"></i> click to check the house today</a>
-
                                  <script src="https://js.paystack.co/v1/inline.js"></script>
-
                          
-
                                <?php  }else{ ?>
-
                                <!-- urgent booking begins-->
                                     <a  class="btn btn-primary btn-flat " id="checkout-button2" style=" border-radius:50px;  margin-top: 50px; padding:20px; text-align: center; color: white; text-transform: lowercase;" onclick="urgentnotalreadyloginIn()" ><i class="fa fa-calendar"></i> click to check the house today</a>
                                     <!-- urgent booking end-->
                                     
                                 <?php }
          
-
                            }// end?>
-
-
-
           <!--   <button class="btn btn-primary" id="checkout-button" style="border-radius:50px; margin-top:20px;" onclick="location.href='check-out-page-today.php'">Click to check the house today</button><br><br>
              <button class="btn btn-primary" id="checkout-button2" style="border-radius:50px;" onclick="location.href='check-out-page-tomorrow.php'">Click to check the house tomorrow</button> -->
         <?php }else{} ?>
     </div>
-
-
    <!-- Confirm Delete Modal --> 
     <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -355,19 +312,13 @@ $total_price = 0;
             </div>
         </div>
     </div>
-
-
-
     
-
    
 <?php include ('convert-number-word.php'); ?>
     <?php include ('inc/footer.inc.php'); ?>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-
     <script>
     $(document).ready(function() {
         function updateCartCount() {
@@ -387,7 +338,6 @@ $total_price = 0;
                 }
             });
         }
-
         function updateCartDisplay() {
             $.ajax({
                 url: 'get_cart_items.php',
@@ -413,14 +363,11 @@ $total_price = 0;
                 }
             });
         }
-
         var propertyIdToRemove;
-
         $('.remove-from-cart').click(function() {
             propertyIdToRemove = $(this).data('property-id');
             $('#confirmDeleteModal').modal('show');
         });
-
         $('#confirmDelete').click(function() {
             $.ajax({
                 url: 'remove-from-cart.php',
@@ -447,15 +394,12 @@ $total_price = 0;
                 }
             });
         });
-
         // Update cart count on page load
         updateCartCount();
     });
     </script>
-
     <script type="text/javascript">
        
-
         function urgentnotalreadyloginIn() {
             swal({
                 title: "Not Logged In",
@@ -476,7 +420,6 @@ $total_price = 0;
             });
         }
     </script>
-
 <!-- <script type="text/javascript">
     function urgentnotalreadyloginIn() {
         swal({
@@ -514,12 +457,9 @@ $total_price = 0;
     }
 </script> -->
   
-
  
-
     <script type="text/javascript">
         window.addEventListener('load', function() {});
-
         function urgentalreadyloginIn() {
             swal({
                 title: "Kindly pay attention and consciously read this?",
@@ -535,15 +475,9 @@ $total_price = 0;
             });
         }
     </script>
-
     <script type="text/javascript">
         
-
-
-
-
     </script>
-
     <script>
         function urgentpayWithPaystack(e) {
             let handler = PaystackPop.setup({
@@ -563,6 +497,5 @@ $total_price = 0;
             handler.openIframe(); 
         }
     </script>
-
 </body>
 </html>

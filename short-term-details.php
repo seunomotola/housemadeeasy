@@ -1,12 +1,11 @@
 <?php  
 include ('inc/session.php');  
-//include ('inc/connect.inc.php'); 
+//include("../inc/connect.inc.php")'); 
 $basename= basename($_SERVER['PHP_SELF']);
 $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']); 
     ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/single-properties-gallery.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:26:05 GMT -->
 <head>
     <meta charset="utf-8"> 
@@ -46,11 +45,9 @@ $result = mysqli_query($con,$sql);
                     $_SESSION['water_source']=$post['water_source'];
                    // $_SESSION['first_year_rent']=$post['first_year_rent'];
                     //$_SESSION['second_year_rent']=$post['second_year_rent'];
-
                     $_SESSION['house_id']=$post['house_id'];
                     $_SESSION['multiple_room']=$post['multiple_room'];
                     $_SESSION['how_many_multiple_room']=$post['how_many_multiple_room'];
-
                      $_SESSION['house_owner']=$post['house_owner'];
                      $_SESSION['youtube_link']=$post['youtube_link'];
                    
@@ -58,15 +55,12 @@ $result = mysqli_query($con,$sql);
                       $id=$post['id'];
                       $house_id1=$post['house_id'];
                       $status=$post['status'];
-
                         
                      $query3 = mysqli_query($con,"SELECT * FROM bookings WHERE house_id='$house_id1'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $house_id11=$row3['house_id'];
-
                     
                       //exit();
-
            ?>
     <title><?php echo $post['house_name'] ?> | Housemadeeasy - Helping you to find your desire house easily</title>
     <meta name="description" content="">
@@ -79,16 +73,12 @@ $result = mysqli_query($con,$sql);
     <link rel="stylesheet" href="<?php  echo $domain; ?>assets/css/plugins.css">
     <link rel="stylesheet" href="<?php  echo $domain; ?>assets/css/helper.css">
     <link rel="stylesheet" href="<?php  echo $domain; ?>assets/css/style.css">   
-
       <!--Start of Tawk.to Script-->
-
 <!--End of Tawk.to Script-->
-
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <base href="<?php  echo $domain; ?>">
 </head>
-
 <body>
      
 <div id="main-wrapper">
@@ -114,40 +104,31 @@ $result = mysqli_query($con,$sql);
                                 <li class="active"><a href="index.php" style="text-decoration: none;">Home</a>
                                    
                                 </li>
-
                                 
-
                                 <li ><a href="make-money-with-housemadeeasy.php" style="text-decoration: none;">Make Money</a>
                                    
                                 </li>
-
                                 <li ><a href="housemadeeasy-logistics.php" style="text-decoration: none;">Logistics</a>
                                    
                                 </li>
-
                                 <li ><a href="home-repair/index.php" style="text-decoration: none;">Home Repair</a>
                                    
                                 </li>
-
                                  <li ><a href="marketplace/index.php" style="text-decoration: none;">Campus Yard</a>
                                    
                                 </li> 
-
                                 <li ><a href="../housemadeeasy/flatmate-finder/index.php" style="text-decoration: none;">Flatmate Finder</a>
                                    
                                 </li> 
-
                                 <!-- <li ><a href="short-term-stay.php" style="text-decoration: none;">Short term Rentals</a>
                                    
                                 </li> -->
                                 <!-- <li class=""><a href="view-all-properties.php" style="text-decoration: none;">View all Houses</a>
                                   
                                 </li> -->
-
                                <!--  <li ><a href="how-it-works.php" style="text-decoration: none;">How it Works</a>
                                  
                                 </li> -->
-
                                 <!--  <li ><a href="about-us.php" style="text-decoration: none;">About Us</a>
                                  
                                 </li>
@@ -160,9 +141,7 @@ $result = mysqli_query($con,$sql);
                                 <li ><a href="../logout.php" style="text-decoration: none;">logout</a>   </li> --> 
                                   <?php 
                                    
-
                                    //}else{?>
-
                                      <!--         <li ><a href="../login.php" style="text-decoration: none;">Login</a> </li>
                                  <li ><a href="../register.php" style="text-decoration: none;">Register</a>   </li>  -->
                                    <?php //} ?>
@@ -182,8 +161,6 @@ $result = mysqli_query($con,$sql);
                            
                         </div>
                     </div>
-
-
                     <!--User end-->
                 </div>
                 
@@ -215,7 +192,6 @@ $result = mysqli_query($con,$sql);
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--New property section start-->
     <div class="property-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -224,7 +200,6 @@ $result = mysqli_query($con,$sql);
             <!--display Property start-->
                 <div class="col-lg-8 col-12 order-1 order-lg-2 mb-sm-50 mb-xs-50">
                     <div class="row">
-
                         <!--Property start-->
                         <div class="single-property col-12 mb-50">
                             <div class="property-inner">
@@ -247,13 +222,11 @@ $result = mysqli_query($con,$sql);
                                             
                                             
                                             <span class="type"><?php echo ucwords($post['house_label']); ?></span>
-
                                         </div>
                                     </div>
                                 </div>
                                 
                                 
-
                                 <div class="image mb-30"> 
                                                 <?php 
                                                    if ($post['multiple_room']=='yes') {
@@ -262,14 +235,11 @@ $result = mysqli_query($con,$sql);
                                 if ($post['how_many_multiple_room']==0) {
                                     //it will display an image of allbooked
                                     ?>
-
                                  <a href="details.php?id=<?php echo $id; ?>" >
                                 <span class="label2">
                                <img src="assets/images/notavailable/4new.png" style=" height: 150px; margin: 50px 20px 50px 140px; width: 50%; height: 50%; " > 
                                 </span>
                                 </a>
-
-
                            <?php }
                             elseif ($status=='yes') {
                                     // i will write a code in the admin end to update status to yes and update house_id in booking to null
@@ -282,7 +252,6 @@ $result = mysqli_query($con,$sql);
                                <?php }
                             
                         }//end of multiple room
-
                         //begin of not multiple room
                         elseif ($post['multiple_room']=='no'){
                             if ($house_id1==$house_id11) {
@@ -306,7 +275,6 @@ $result = mysqli_query($con,$sql);
                                
                                <?php }
                            }//end
-
                                ?>
                                     <div class="single-property-gallery">
                                         <div class="item"><img src="assets/images/short-term-stay/<?php echo $post['house_img1']; ?>" alt=""></div>
@@ -321,8 +289,6 @@ $result = mysqli_query($con,$sql);
                                         <div class="item"><img src="assets/images/short-term-stay/<?php echo $post['house_img4']; ?>" alt=""></div>
                                     </div>
                                 </div>
-
-
                            <style type="text/css">
                 
                 .embed-responsive-9by16 {
@@ -331,7 +297,6 @@ $result = mysqli_query($con,$sql);
     padding-bottom: 177.78%; /* 16:9 is 56.25%, so 9:16 is 177.78% */
     height: 0;
 }
-
 .embed-responsive-9by16 .embed-responsive-item,
 .embed-responsive-9by16 iframe {
     position: absolute;
@@ -340,14 +305,11 @@ $result = mysqli_query($con,$sql);
     width: 100%;
     height: 100%;
 }
-
             </style>
-
 <div class="embed-responsive embed-responsive-9by16">
     <?php
     // Get the YouTube link from the database
     $youtubeLink = $post['youtube_link'];
-
     if (strpos($youtubeLink, '/shorts/') !== false) {
         // Convert Shorts link to standard embed format
         $videoId = explode('/shorts/', $youtubeLink)[1];
@@ -363,11 +325,9 @@ $result = mysqli_query($con,$sql);
         $embedUrl = str_replace('watch?v=', 'embed/', $youtubeLink);
         $embedUrl = strtok($embedUrl, '&'); // Remove additional query parameters 
     }
-
     // Append autoplay parameter
     $embedUrl .= '?autoplay=1';
     ?>
-
     <iframe 
         class="embed-responsive-item"
         src="<?php echo htmlspecialchars($embedUrl); ?>" 
@@ -375,7 +335,6 @@ $result = mysqli_query($con,$sql);
         allowfullscreen>
     </iframe>
 </div>
-
 <br>
                                 
                                 <div class="content">
@@ -404,14 +363,11 @@ $result = mysqli_query($con,$sql);
                                                <ul class="amenities-list">
                                                 
                                                 
-
                                                 <li> Water Source - <?php echo $post['water_source']; ?></li>
                                                 
                                                 <li>Tiled - <?php // door is tiles
                                                 echo $post['door']; ?></li>
-
                                                 <li> Fenced - <?php echo $post['fence']; ?></li>
-
                                                 <li><?php echo $post['kitchen']; ?> Kitchen</li>
                                                
                                                 <li><?php echo $post['bathroom']; ?> Bathroom  <!--Bathroom containig shower or tap--></li><br>
@@ -419,7 +375,6 @@ $result = mysqli_query($con,$sql);
                                                 
                                                 
                                                 <li>Toilet- <?php // amenities is type of toilet
-
                                                 echo $post['amenities']; ?><!--water closet, pit latrine--></li>
                                          
                                                 
@@ -429,154 +384,94 @@ $result = mysqli_query($con,$sql);
                                     </div>
                                     
                                   
-
                                   
                                              <br>
                                                 
                                             </span>
                                           
-
                                     <!-- Breakdown of House Rent end--->
                                         <br>
-
                                         <br>
-
                                <?php
-
  $embedUrl = $post['youtube_link'];
  $house_name = $post['house_name'];
  //$first_year_rent = $post['first_year_rent'];
  //$second_year_rent = $post['second_year_rent'];
-
-
                 // Predefine messages for each house type
  // Predefine messages for each house type
 $houseMessages = [
     "Single room with shared toilet and bathroom" => "
     Hello, i like this Single room with shared toilet and bathroom
-
 {{embedUrl}}
-
  
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 How can i get this apartment ?
     ",
-
      "Single room with personal toilet and bathroom" => "
 Hello, i like Single room with personal toilet and bathroom
-
  {{embedUrl}}
  
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
  How can i get this apartment ?
-
      ",
-
     "Self contain" => "
     Hello, i like this Self contain
-
 {{embedUrl}}
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 How can i get this apartment ?
-
     ",
-
-
      "Room and Palour Self contained" => "
 Hello, i like this Room and Palour Self contained
  
 {{embedUrl}}
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 How can i get this apartment ?
-
     ",
    
     "Two bedroom flat with shared toilet and bathroom" => "
-
     Hello, i like this Two bedroom flat with shared toilet and bathroom
-
 {{embedUrl}}
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 How can i get this apartment ?
-
     ",
-
     "Two bedroom flat with personal toilet in each room" => "
     
 Hello, i like this Two bedroom flat with personal toilet in each room
-
 {{embedUrl}} 
-
 How can i get this apartment ?
  
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
     ",
-
     "Three bedroom flat with one bathroom and toilet" => "
-
    Hello, i like this Three bedroom flat with one bathroom and toilet
-
  {{embedUrl}}
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
     ",
-
   
-
     "Three bedroom flat with a master bedroom(having personal toilet and bathroom) and the two rooms sharing one bathroom and toilet" => "
     Hello, i like this Three bedroom flat with a master bedroom(having personal toilet and bathroom) and the two rooms sharing one bathroom and toilet
-
 {{embedUrl}}
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
     ",
-
     "Three bedroom flat with personal toilet and bathroom each" => "
-
    Hello, i like this three-bedroom flat with personal bathrooms for every room 
-
 {{embedUrl}}
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
 How can i get this apartment ?
-
-
     ",
-
  "Four bedroom flat with personal toilet and bathroom each" => "
-
  Hello, i like this four-bedroom flat with personal bathrooms for every room!
-
   {{embedUrl}}
-
 https://housemadeeasy.com.ng/details.php?id={{id}}
-
  How can i get this apartment ?
-
     ",
-
  
 ];
-
  
             ?>
-
                                                     <?php
 // Check if there's a predefined message for this house type
 $house_message_template = $houseMessages[$house_name] ?? null;
-
 if ($house_message_template) {
     // Replace placeholders with actual values
     $house_message = str_replace(
@@ -584,9 +479,7 @@ if ($house_message_template) {
         [ $embedUrl, $id],
         $house_message_template
     );
-
     $whatapp=  $post['agent_pno'];
-
     // Encode message for WhatsApp sharing
     $whatsapp_message = urlencode($house_message);
     $whatsapp_link = "https://wa.me/+2348160852570?text=$whatsapp_message";
@@ -594,13 +487,10 @@ if ($house_message_template) {
     
     <!-- WhatsApp Share Button -->
     <a class="btn btn-danger btn-flat" href="<?php echo $whatsapp_link; ?>" style=" border-radius:50px; padding:20px; text-align: center; color: white; text-transform: lowercase;"><img src="whatsapp2.png" height="20" width="20" style=""> Message the agent in charge of the house directly</a>
-
 <?php
 }
-
 else {
     // Default share message if house type is not predefined
-
     $default_message = "Check out this property: $house_name located at $location.  $embedUrl View more details: https://housemadeeasy.com.ng/details.php?id=$id";
     $whatsapp_link = "https://wa.me/+2348160852570?text=" . urlencode($default_message);
 ?>
@@ -612,7 +502,6 @@ else {
             Share
         </a>
     
-
 <?php } ?>
                                        
                                    
@@ -624,7 +513,6 @@ else {
                     endforeach;
                         ?>
                         
-
                     </div>
                 </div> <!--display house end-->
                 
@@ -637,14 +525,10 @@ else {
                     
                         <!--Property Search start-->
                         <div class="property-search sidebar-property-search">
-
                         <form action="search.php" method="POST" >
-
                             
-
                             <div class="form-group">
                    
-
                     
                    <select class="form-control" name="location" required>
                                     <option value="" required>Location</option>
@@ -654,14 +538,12 @@ else {
                                 </select>
                     
                 </div>
-
                            <!-- <div>
                                 <select class="nice-select">
                                     <option>For Rent</option>
                                     <option>For Sale</option>
                                 </select>
                             </div>-->
-
                             <div class="form-group">
                                 <select class="form-control" name="type" required>
                                     <option value="" required>Type</option>
@@ -674,7 +556,6 @@ else {
                                    
                                 </select>
                             </div>
-
                            <!---- <div class="form-group">
                                 <select class="form-control" name="price" required>
                                     <option value="" required>Price</option>
@@ -700,19 +581,14 @@ else {
                               ?>
                                 </select>
                             </div>
-
                           
-
                             <div>
                                 <div id="search-price-range"></div>
                             </div>--->
-
                             <div class="form-group">
                                  <button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-search"></i> Search</button>
                             </div>
-
                         </form>
-
                         </div>
                         <!--Property Search end-->
                         
@@ -731,10 +607,8 @@ else {
                     $query = $con->query($sql);
                      if ($query->num_rows > 0) {
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       $house_label=$row2['house_label'];
                       $first_year_rent=$row2['first_year_rent'];
                      $location=$row2['location'];
@@ -745,18 +619,14 @@ else {
                       $status=$row2['status'];
                     $house_name2=str_replace(" ", "-", $house_name2);
                             ?>
-
                               <?php 
                      $query3 = mysqli_query($con,"SELECT * FROM bookings WHERE house_id='$house_id1'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $house_id11=$row3['house_id'];
-
                     ?>
                             <div class="sidebar-property">
                                 <div class="image">
-
                                      <?php 
-
                             if ($house_id1==$house_id11) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -777,12 +647,9 @@ else {
                                 </span>
                                 </a> 
                                <?php }
-
-
                                         if(!empty($house_label)){?>
                                 <span class="type"><?php echo $house_label?></span>
                             <?php }else{
-
                             }
                                 ?>
                                     <a href="details.php?id=<?php echo $id; ?>"><img src='assets/images/property/<?php echo $house_img1; ?>' alt=""></a>
@@ -817,10 +684,8 @@ else {
                     $query = $con->query($sql);
                     if ($query->num_rows > 0) {
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       $house_label=$row2['house_label'];
                       $first_year_rent=$row2['first_year_rent'];
                      $location=$row2['location'];
@@ -831,17 +696,14 @@ else {
                       $house_id2=$row2['house_id'];
                     $house_name2=str_replace(" ", "-", $house_name2);
                             ?>
-
                                    <?php 
                      $query3 = mysqli_query($con,"SELECT * FROM bookings WHERE house_id='$house_id2'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $house_id22=$row3['house_id'];
-
                     ?>
                               <div class="sidebar-property">
                                 <div class="image">
                                            <?php 
-
                             if ($house_id2==$house_id22) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -891,7 +753,6 @@ else {
                       $row = mysqli_fetch_assoc($query2);
                       $_SESSION['amount']=$row['amount'];
                       $amount2=$_SESSION['amount'];
-
                     ?>
                     <!--Sidebar start-->
                     <div class="sidebar">
@@ -920,10 +781,7 @@ else {
         </div>
     </div>
     <!--New property section end-->
-
-
     <!-- pop up modal -->
-
 <div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-dialog"> 
                <div class="modal-content modal-lg">  
@@ -935,7 +793,6 @@ else {
                      </h4> 
                   </div> 
                        <div class="modal-body"> 
-
    
            <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
@@ -954,33 +811,21 @@ else {
                             <form action="short-term-stay-process.php" method="POST" >
                                  <p id="response" style="font-weight:bolder;"></p>  
                                 <div class="row">
-
-
                                     
-
                                        
-
                                         
-
                                
-
-
                             <div class="col-12 mb-30">
                                             <label class="col-12" style="font-weight:bolder;">Preferred date the apartment will be needed </label>
                                         <input type="date" name="dateneeded" required class="form-control form-height-custom"  placeholder="">
                                         </div>
-
-
                                       <div class="col-12 mb-30">
                                           <select class="form-control" name="monthofstay" >
                                     <option value="" >How many months do you intend to stay in the apartment ? </option>
                                   
                                          <option value="1 Month">1 Month</option>
-
                              <option value="2 Month">2 Month</option>
-
                              <option value="3 Month">3 Month</option>
-
                              <option value="4 Month">4 Month</option>
                              <option value="5 Month">5 Month</option>
                              <option value="6 Month">6 Month</option>
@@ -991,44 +836,26 @@ else {
                              <option value="11 Month">11 Month</option>
                     
  
-
-
-
                                  
                                    
                                 </select>
                             </div>
-
                                         <div class="col-12 mb-30">
                                         <input type="text" name="people" class="form-control form-height-custom"  placeholder="How many people want to stay in the apartment">
                                         </div>
-
                                         
-
                                        
-
                                          
-
-
                                
-
                                   
-
             
                                     
                                    
                                     <div class="col-12 mb-30"><input type="submit" value="Submit Request" class="btn btn-lg btn-theme btn-block btn-flat" name="submitrequest"> </div>
-
                                     
                                  </div>
-
                                 <!-- modal --->
              <!-- Button to Open the Modal -->
-
-
-
-
-
                             </form>
                         </div>
                    
@@ -1039,11 +866,7 @@ else {
         </div>
     </div>
     <!--Login & Register Section end-->
-
           
-
-
-
     
          <div class="modal-footer">
            
@@ -1052,9 +875,7 @@ else {
          </div>
         
        
-
         
-
    
                       
                      </div>
@@ -1063,26 +884,19 @@ else {
               </div> 
             </div>
           </div> 
-
     <!-- pop up modal end -->
-
     <!--whatapp chat icon-->
    
       <span class="sticky_whatsapp" style=" background-color: rgba(200, 200, 200, 0.6); border-radius: 20px; text-align: center;padding: 5px; "><img src="whatsapp2.png" height="20" width="20" style=""> <a href="https://wa.me/+2348160852570?text=Welcome+to+Housemadeeasy+Customer+Care,+Drop+your+Complain+here+and+we+would+respond+to+them+as+soon+as+Possible..." style="color: #183153"><b>Need help?</b></a> </span>
       <!--whatapp chat icon end-->
-
     <?php  include ('inc/footer.inc.php');   ?>
-
     <script type="text/javascript">
         function notalreadyloginIn(){
-
 alert('Login/Register first before you can book your time of stay ...');
                                          window.location.href='login.php';
          }
     </script>
-
 <!-- <script type="text/javascript">
-
     window.addEventListener('load', function(){
       });
     function alreadyloginIn(){
@@ -1091,7 +905,6 @@ alert('Login/Register first before you can book your time of stay ...');
   text: "You have clicked to book an appointment with the agent of this house.You would be paying an unredeemable sum of one thousand five hundred naira(#1,500) after clicking the I Agree icon. After Paying, you would be giving a time(tomorrow) to come and check the house. Note that you must make yourself available this time that you have picked otherwise, you may have to pay another (#1,500) to book another appointment. After picking the time, call the agent, introduce yourself and inform him that you will be coming by (the time you chose) to check the house.",
   buttons: [true, "I Agree!"],
   dangerMode: true,
-
 })
 .then((willDelete) => {
   if (willDelete) {
@@ -1100,16 +913,10 @@ alert('Login/Register first before you can book your time of stay ...');
     //swal("Your imaginary file is safe!");
   }
 });
-
     
-
     }
 </script>  -->
-
     <script>
-
-
-
 // function payWithPaystack(e) {
 //   let handler = PaystackPop.setup({
 //     key: 'pk_test_ac9ec15d0168a4feddced75826c3ea5488056c46', // Replace with your public key 

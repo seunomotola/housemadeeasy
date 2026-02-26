@@ -1,13 +1,11 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-include ('inc/connect.inc.php');
-
+include("../inc/connect.inc.php")');
 // Load environment variables
 require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
-
 // Load Google tokens from database if not in session
 if (!isset($_SESSION['google_access_token']) && isset($_SESSION['agentaffilate_id'])) {
     $query = mysqli_query($con, "SELECT google_access_token, google_refresh_token, google_token_expires_at, google_token_scope FROM hmeaffilate_user WHERE agentaffilate_id = '".$_SESSION['agentaffilate_id']."'");
@@ -24,16 +22,13 @@ if (!isset($_SESSION['google_access_token']) && isset($_SESSION['agentaffilate_i
         }
     }
 }
-
 // Configuration
 define('GOOGLE_CLIENT_ID', $_ENV['GOOGLE_CLIENT_ID']);
 define('GOOGLE_CLIENT_SECRET', $_ENV['GOOGLE_CLIENT_SECRET']);
 define('CALLBACK_URL', $_ENV['CALLBACK_URL']);
 define('GOOGLE_REDIRECT_URI', CALLBACK_URL);
-
 // YouTube API scopes
 define('YOUTUBE_UPLOAD_SCOPE', 'https://www.googleapis.com/auth/youtube.upload');
-
 /**
  * Store Google OAuth tokens in database
  */
@@ -107,7 +102,6 @@ function storeGoogleTokens($agentaffilate_id, $accessToken, $refreshToken = null
         return false;
     }
 }
-
 /**
  * Get detailed token status for debugging
  */
@@ -165,7 +159,6 @@ function getDetailedTokenStatus($agentaffilate_id) {
     
     return $status;
 }
-
 /**
  * Retrieve Google OAuth tokens from database
  */
@@ -191,7 +184,6 @@ function getGoogleTokens($agentaffilate_id) {
     
     return false;
 }
-
 /**
  * Check if stored token is still valid
  */
@@ -204,7 +196,6 @@ function isTokenValid($expiresAt) {
     // Token is valid if it expires more than 5 minutes from now (buffer time)
     return ($tokenExpiry > ($currentTime + 300));
 }
-
 /**
  * Refresh access token using refresh token
  */
@@ -244,7 +235,6 @@ function refreshAccessToken($refreshToken) {
     
     return json_decode($result, true);
 }
-
 function getAccessToken($code) {
     $data = array(
         'code' => $code,
@@ -285,9 +275,6 @@ function getAccessToken($code) {
     
     return $decoded;
 }
-
-
-
 function uploadVideoToYouTube($accessToken, $videoFile, $title, $description = '') {
     $errors = array();
     
@@ -427,7 +414,6 @@ function uploadVideoToYouTube($accessToken, $videoFile, $title, $description = '
     
     return array('success' => true, 'data' => $decodedResponse);
 }
-
 function getVideoStatus($accessToken, $videoId) {
     $context = stream_context_create(array(
         'http' => array(
@@ -444,7 +430,6 @@ function getVideoStatus($accessToken, $videoId) {
     
     return json_decode($response, true);
 }
-
 function getVideoLink($accessToken, $videoId) {
     error_log("getVideoLink called for video ID: $videoId");
     
@@ -539,7 +524,6 @@ function getVideoLink($accessToken, $videoId) {
         return false;
     }
 }
-
 // Handle different actions
 if (isset($_POST['action'])) {
     switch ($_POST['action']) {
@@ -548,10 +532,8 @@ if (isset($_POST['action'])) {
             error_log('Video upload request received');
             error_log('POST data: ' . json_encode($_POST));
             error_log('FILES data: ' . json_encode($_FILES));
-
             // Check if user is authenticated
             $accessToken = null;
-
             // First check session
             if (isset($_SESSION['google_access_token']) && isset($_SESSION['google_token_expires_at'])) {
                 // Check if session token is still valid
@@ -562,12 +544,10 @@ if (isset($_POST['action'])) {
                     // Session token expired, try to refresh
                     error_log('Session token expired, attempting refresh');
                     $refreshResult = refreshAccessToken($_SESSION['google_refresh_token']);
-
                     if ($refreshResult && isset($refreshResult['access_token'])) {
                         $newAccessToken = $refreshResult['access_token'];
                         $newRefreshToken = $refreshResult['refresh_token'] ?? $_SESSION['google_refresh_token'];
                         $expiresIn = $refreshResult['expires_in'] ?? 3600;
-
                         // Update database
                         $updateSuccess = storeGoogleTokens(
                             $_SESSION['agentaffilate_id'],
@@ -576,7 +556,6 @@ if (isset($_POST['action'])) {
                             $expiresIn,
                             $_SESSION['google_token_scope'] ?? null
                         );
-
                         if ($updateSuccess) {
                             // Update session
                             $_SESSION['google_access_token'] = $newAccessToken;
@@ -592,7 +571,6 @@ if (isset($_POST['action'])) {
                     }
                 }
             }
-
             // If still no token, try to get from database
             if (!$accessToken && isset($_SESSION['agentaffilate_id'])) {
                 error_log('Checking database for tokens for user: ' . $_SESSION['agentaffilate_id']);
@@ -609,12 +587,10 @@ if (isset($_POST['action'])) {
                         // DB token expired, try refresh
                         error_log('DB token expired, attempting refresh');
                         $refreshResult = refreshAccessToken($tokens['google_refresh_token']);
-
                         if ($refreshResult && isset($refreshResult['access_token'])) {
                             $newAccessToken = $refreshResult['access_token'];
                             $newRefreshToken = $refreshResult['refresh_token'] ?? $tokens['google_refresh_token'];
                             $expiresIn = $refreshResult['expires_in'] ?? 3600;
-
                             $updateSuccess = storeGoogleTokens(
                                 $_SESSION['agentaffilate_id'],
                                 $newAccessToken,
@@ -622,7 +598,6 @@ if (isset($_POST['action'])) {
                                 $expiresIn,
                                 $tokens['google_token_scope']
                             );
-
                             if ($updateSuccess) {
                                 $_SESSION['google_access_token'] = $newAccessToken;
                                 $_SESSION['google_refresh_token'] = $newRefreshToken;
@@ -636,7 +611,6 @@ if (isset($_POST['action'])) {
                     error_log('No tokens found in database');
                 }
             }
-
             if (!$accessToken) {
                 error_log('Authentication failed - no access token');
                 echo json_encode(array('success' => false, 'error' => 'Not authenticated with Google. Please reconnect your Google account.'));

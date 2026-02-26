@@ -2,7 +2,6 @@
 session_start();
   include ('inc/header.inc.php');   ?> 
    
-
       <?php 
       
               if (isset($_POST['add'])) {
@@ -15,7 +14,6 @@ session_start();
             $_SESSION['location']=$_POST['location']; 
              //$_SESSION['price']=$_POST['price'];
            
-
      $postTitle = "<div style='font-size:20px'>You searched For '" . $_POST['type'] . "' in '". $_POST['location']."'</div>" ;
      //$session=$postTitle;
     
@@ -23,7 +21,6 @@ session_start();
          $sql ="SELECT  * from properties WHERE location='$location' AND type='$type'   order by id desc  limit 3";
 $result = mysqli_query($con,$sql);
               }
-
               ?> 
     <!--Page Banner Section start-->
     <div class="page-banner-section section">
@@ -40,7 +37,6 @@ $result = mysqli_query($con,$sql);
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--New property section start-->
     <div class="property-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -66,40 +62,32 @@ if (mysqli_num_rows($result) > 0){
                         $multiple_room=$row2['multiple_room'];
                         $how_many_multiple_room=$row2['how_many_multiple_room'];
              ?>
-
               <?php 
                      $query3 = mysqli_query($con,"SELECT * FROM bookings WHERE house_id='$house_id1'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $house_id11=$row3['house_id'];
-
                     ?>
                 <!--Property start-->
                 <div class="property-item col-lg-4 col-md-6 col-12 mb-40">
                     <div class="property-inner">
                         <div class="image">
                              <?php  
-
                                        if ($multiple_room=='yes') {
                                 // code...
                             
                                 if ($how_many_multiple_room==0) {
                                     //it will display an image of allbooked
                                     ?>
-
                                  <a href="details.php?id=<?php echo $id; ?>" >
                                 <span class="label2">
                                <img src="assets/images/notavailable/4new.png" style=" height: 150px; margin: 50px 0px 0px 30px; padding: 5px; text-align:center" > 
                                 </span>
                                 </a>
-
-
                            <?php }
                             
                         }//end of multiple room
-
                          //begin of not multiple room
                         elseif ($multiple_room=='no'){
-
                             if ($house_id1==$house_id11) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -120,10 +108,7 @@ if (mysqli_num_rows($result) > 0){
                                 </span>
                                 </a> 
                                <?php }
-
-
                            }//end
-
                              if(!empty($house_label)){?>
                                 <span class="label"><?php echo $house_label?></span>
                             <?php }else{
@@ -155,7 +140,6 @@ if (mysqli_num_rows($result) > 0){
                                    
                                 </div>
                             </div>
-
                                <?php 
                              if ($multiple_room=='yes') {?>
                                 <p class="text-center" style="font-weight:bolder;"><?php echo $how_many_multiple_room ?> Self Contained Room left</p>
@@ -164,7 +148,6 @@ if (mysqli_num_rows($result) > 0){
                              }
                             
                             ?>
-
                         </div>
                     </div>
                 </div>
@@ -178,11 +161,8 @@ if (mysqli_num_rows($result) > 0){
               ?> 
                 
             </div>
-
             
                 <?php
-
-
   if(isset($_GET["page"])) {
                                             $page = $_GET["page"];
                                              }
@@ -193,8 +173,6 @@ if (mysqli_num_rows($result) > 0){
                                             $start_from = ($page-1)*$num_per_page;
      $sql ="SELECT  * from properties WHERE location='$location' AND type='$type' AND status='no'   order by id desc LIMIT $start_from, $num_per_page ";
 $result = mysqli_query($con,$sql);
-
-
                                 
                                      $sql_total = "SELECT * FROM properties where status='no' ";
                                     $records = mysqli_query($con,$sql_total);           
@@ -205,7 +183,6 @@ $result = mysqli_query($con,$sql);
                                      $previous= $page - 1;
                                      $Next=$page + 1;
                                      ?>
-
             <div class="row mt-20">
                 <div class="col">
                     <ul class="page-pagination">
@@ -226,8 +203,6 @@ $result = mysqli_query($con,$sql);
                                 
                                     <li><a href="search-new.php?page=<?php echo $Next; ?>&price=<?php echo $house_price ;?>&type=<?php echo $type; ?>&location=<?php echo $location;?>"><i class="fa fa-angle-right"></i> Next</a></li>
                                <?php }
-
-
                        ?>
                     </ul>
                 </div>

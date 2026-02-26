@@ -1,7 +1,5 @@
 <?php
-
 $curl = curl_init();
-
 curl_setopt_array($curl, array(
     CURLOPT_URL => 'https://dkpjzl.api.infobip.com/whatsapp/1/message/text',
     CURLOPT_RETURNTRANSFER => true,
@@ -18,8 +16,6 @@ curl_setopt_array($curl, array(
         'Accept: application/json'
     ),
 ));
-
 $response = curl_exec($curl);
-
 curl_close($curl);
 echo $response;

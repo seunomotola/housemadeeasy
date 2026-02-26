@@ -1,9 +1,6 @@
   
-
 <?php
-
 $curl = curl_init();
-
 curl_setopt_array($curl, array(
   CURLOPT_URL => 'https://my.kudisms.net/api/sms',
   CURLOPT_RETURNTRANSFER => true,
@@ -14,25 +11,14 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'POST',
   CURLOPT_POSTFIELDS => array('token' => 'bCSnXjYpRZHQE9v5gusm4ThtV3dDwlM70oGKIzOF6kaU8PNceyf2qxLJiWr1AB','senderID' => 'CampusYard','recipients' => "$pno",'message' => "
-
 Dear $lname
-
 Thank you for finding your desire student item on housemadeeasy... 
 We will get across to you in a jiffy via phone call to come and check it out.
-
 SUPPORT:
 You can always contact us on support@housemadeeasy.org or call 07037092267, 08160852570
-
 Thank You
-
   	",'gateway' => '1'), 
 ));
-
 $response = curl_exec($curl);
-
 curl_close($curl);
 //echo $response;
-
-
-
-

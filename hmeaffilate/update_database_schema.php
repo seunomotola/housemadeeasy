@@ -3,16 +3,13 @@
  * Execute the ALTER TABLE statement to add Google OAuth columns
  * Run this script once to update the database schema
  */
-
-include ('inc/connect.inc.php');
-
+include("../inc/connect.inc.php")');
 // Try the main SQL file first, then fallback to alternative
 $sql_file = @file_get_contents('add_google_oauth_columns.sql');
 if (!$sql_file) {
     echo "⚠️  Main SQL file not found, trying alternative...<br>";
     $sql_file = file_get_contents('add_google_oauth_columns_alternative.sql');
 }
-
 // Execute the SQL statements
 if (mysqli_multi_query($con, $sql_file)) {
     echo "✅ Database schema updated successfully!<br>";
@@ -35,10 +32,8 @@ if (mysqli_multi_query($con, $sql_file)) {
 } else {
     echo "❌ Error updating database schema: " . mysqli_error($con) . "<br>";
 }
-
 mysqli_close($con);
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>

@@ -4,7 +4,6 @@
   
 // Expire the cookie
  setcookie('referral_code', '', time() - 3600, "/");
-
 // Check if the cookie is still set 
 if (isset($_COOKIE['referral_code'])) {
     echo "The cookie 'referral_code' was not successfully deleted.";
@@ -16,20 +15,16 @@ if (isset($_COOKIE['referral_code'])) {
 }
 include('inc/session.php');
 //session_start();
-
 $is_logged_in = isset($_SESSION['user_id']);
 $cart_items = [];
-
 if ($is_logged_in) {
     $user_id = $_SESSION['user_id'];
-
     // Fetch the cart items for the logged-in user
     $cart_query = "SELECT properties.*, cart.quantity 
                    FROM cart 
                    JOIN properties ON cart.property_id = properties.id 
                    WHERE cart.user_id = '$user_id'";
     $cart_result = mysqli_query($con, $cart_query);
-
     while ($item = mysqli_fetch_assoc($cart_result)) {
         $cart_items[] = $item;
     }
@@ -40,7 +35,6 @@ if ($is_logged_in) {
         foreach ($session_cart as $property_id) {
             $cart_query = "SELECT * FROM properties WHERE id = '$property_id'";
             $cart_result = mysqli_query($con, $cart_query);
-
             while ($item = mysqli_fetch_assoc($cart_result)) {
                 $item['quantity'] = 1; // Default quantity for session items
                 $cart_items[] = $item;
@@ -48,10 +42,8 @@ if ($is_logged_in) {
         }
     }
 }
-
 $total_price = 0;
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -71,7 +63,6 @@ $total_price = 0;
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-
     <style>
         .modal-dialog {
             display: flex;
@@ -118,9 +109,7 @@ $total_price = 0;
             color: white;
             text-transform: lowercase;
         }
-
     </style>
-
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -176,13 +165,11 @@ $total_price = 0;
         </div>
     </header>
     <!--Header section end-->
-
 <?php
 $house_id = $_GET['key'];
 isset($_SESSION['total_price']) ? $_SESSION['total_price'] : '';
     
 ?>
-
     <!--Page Banner Section start-->
     <div class="page-banner-section section" style="background-image: url(assets/images/bg/single-property-bg.jpg)">
         <div class="container">
@@ -198,12 +185,9 @@ isset($_SESSION['total_price']) ? $_SESSION['total_price'] : '';
         </div>
     </div>
     <!--Page Banner Section end--> 
-
     <div class="container" style="padding:380px 20px 20px 20px;">
         
         <div id="message"></div>
-
-
         <h1 style="margin-top:20px">House book Successfully!</h1>
         <span style="color: red; font-weight: bolder;">Don't forget to call housemadeeasy customer care service after you click on Print Receipt</span>
     <p>Click the button below to print out your receipt.</p>
@@ -217,8 +201,6 @@ isset($_SESSION['total_price']) ? $_SESSION['total_price'] : '';
         });
     });
 </script> 
-
-
      <!-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             const houseId = "<?php echo $house_id; ?>";
@@ -228,14 +210,11 @@ isset($_SESSION['total_price']) ? $_SESSION['total_price'] : '';
             });
         });
     </script> -->
-
-
        <!-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             const houseId = "<?php echo $house_id; ?>";
             const finalReceiptUrl = `final-receipt.php?key=${houseId}`;
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
             document.getElementById('printReceipt').addEventListener('click', function () {
                 if (isMobile) {
                     window.open(finalReceiptUrl, "_blank");
@@ -252,22 +231,11 @@ isset($_SESSION['total_price']) ? $_SESSION['total_price'] : '';
     <a href="#" id="printReceipt" style="padding: 10px 20px; background-color: #3498db; color: white; text-decoration: none; border-radius: 5px;">Print Receipt</a>
     
     </div>
-
-
-
-
-
-
     
-
-
-
     <?php include ('inc/footer.inc.php'); ?>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-
        <script>
     $(document).ready(function() {
         function updateCartCount() {
@@ -287,7 +255,6 @@ isset($_SESSION['total_price']) ? $_SESSION['total_price'] : '';
                 }
             });
         }
-
         function updateCartDisplay() {
             $.ajax({
                 url: 'get_cart_items.php',
@@ -313,14 +280,11 @@ isset($_SESSION['total_price']) ? $_SESSION['total_price'] : '';
                 }
             });
         }
-
         var propertyIdToRemove;
-
         $('.remove-from-cart').click(function() {
             propertyIdToRemove = $(this).data('property-id');
             $('#confirmDeleteModal').modal('show');
         });
-
         $('#confirmDelete').click(function() {
             $.ajax({
                 url: 'remove-from-cart.php',
@@ -347,12 +311,10 @@ isset($_SESSION['total_price']) ? $_SESSION['total_price'] : '';
                 }
             });
         });
-
         // Update cart count on page load
         updateCartCount();
     });
     </script>
-
     
 </body>
 </html>

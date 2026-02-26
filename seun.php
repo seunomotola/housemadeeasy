@@ -52,23 +52,19 @@
     </style>
 </head>
 <body>
-
 <header>
     <h1>Welcome to Seun's Personal Webpage</h1>
 </header>
-
 <nav>
     <a href="#about">About Me</a>
     <a href="#portfolio">Portfolio</a>
     <a href="#blog">Blog</a>
     <a href="#contact">Contact</a>
 </nav>
-
 <section id="about">
     <h2>About Me</h2>
     <p>Hello! My name is Seun. I am a medical doctor with a passion for coding. I enjoy combining my medical expertise with my coding skills to create innovative solutions in healthcare. When I am not in the hospital or at the computer, you can find me exploring new technologies and improving my coding skills.</p>
 </section>
-
 <section id="portfolio">
     <h2>Portfolio</h2>
     <p>Here are some of the projects I've worked on:</p>
@@ -78,20 +74,16 @@
         <li>Healthcare Blog - A blog platform focused on sharing medical knowledge and coding tips.</li>
     </ul>
 </section>
-
 <section id="blog">
     <h2>Blog</h2>
     <p>Coming soon! I will be sharing my thoughts on medical advancements, coding tutorials, and more.</p>
 </section>
-
 <section id="contact">
     <h2>Contact</h2>
     <p>If you would like to get in touch, please reach out to me via email at <a href="mailto:seun@example.com">seun@example.com</a>.</p>
 </section>
-
 <footer>
     <p>&copy; 2024 Seun. All rights reserved.</p>
 </footer>
-
 </body>
 </html>

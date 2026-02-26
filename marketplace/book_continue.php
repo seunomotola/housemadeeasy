@@ -1,5 +1,4 @@
 <?php
-
              //$amount2=$_SESSION['amount'];
   
                       $date_booked=date('Y-m-d h:i:s a', time());
@@ -8,7 +7,6 @@
                       $item_price_session=$_SESSION['item_price'];
                      $item_location_session=$_SESSION['item_location'];
                       $item_name_session=$_SESSION['item_name'];
-
                       $item_cat_session=$_SESSION['item_cat'];
                       
                       
@@ -19,17 +17,14 @@
                      $item_img2_session=$_SESSION['item_img2'];
                      $item_img3_session=$_SESSION['item_img3'];
                      $item_img4_session=$_SESSION['item_img4'];
-
                      $item_desc_session=$_SESSION['item_desc'];
                    
                      $item_id=$_SESSION['item_id'];
-
                     
                     
                       $id=$_SESSION['id'];
                     
                       
-
         //  $sql= "UPDATE properties set  how_many_multiple_room='$how_many_multiple_room_new_many' where house_id='$house_id'";
         // mysqli_query($con, $sql);
        
@@ -39,9 +34,7 @@
             //<a href='my-account.php' style='font-weight:bolder'>Click to go to your dashboard</a></div>";
            
              $bookings[] = $timeslot;
-
                    //// send email to agent 
-
              $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
           
            <div class="email-container" style="max-width: 600px;background: white; color: black; font-family: Tahoma, Geneva, sans-serif;margin: 0 auto;overflow: hidden;border-radius: 5px; padding: 20px;">
@@ -50,7 +43,6 @@
 <br>
  
 Dear <b>Elijah</b>,<br><br>
-
 Please Note that a student has booked an item and has booked a time with you to come and check the item...<br><br> Below are the Details of the Customer that want to come and check it..<br><br>
 <ol>
     <li> Date Booked for: $date_new</li>
@@ -63,48 +55,27 @@ Please Note that a student has booked an item and has booked a time with you to 
         <li>Item Price: $item_price_session</li>
         
 </ol><br>
-
-
-
-
 <b>SUPPORT:</b> <br>
 For any issues with you contacting the customer, you can always contact us on info@housemadeeasy.com.ng or 08160852570, 07037092267<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';  
     
     
   $subject = "Checking of Item";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "housemadeeasy.org";
 $to = "oluwoleelijah2018@gmail.com";
 //elijah e-mail address
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
 mail($to, $subject, $body, $headers);
 //echo $body;
-
-
-
              ////end send email to agent
-
-
-
-
                    //// send email to dami
-
              $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
           
            <div class="email-container" style="max-width: 600px;background: white; color: black; font-family: Tahoma, Geneva, sans-serif;margin: 0 auto;overflow: hidden;border-radius: 5px; padding: 20px;">
@@ -113,7 +84,6 @@ mail($to, $subject, $body, $headers);
 <br>
  
 Dear <b>Dami</b>,<br><br>
-
 Please Note that a student has booked an item and has booked a time with you to come and check the item...<br><br> Below are the Details of the Customer that want to come and check it..<br><br>
 <ol>
     <li> Date Booked for: $date_new</li>
@@ -126,47 +96,27 @@ Please Note that a student has booked an item and has booked a time with you to 
         <li>Item Price: $item_price_session</li>
         
 </ol><br>
-
-
-
-
 <b>SUPPORT:</b> <br>
 For any issues with you contacting the customer, you can always contact us on info@housemadeeasy.com.ng or 08160852570, 07037092267<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';  
     
     
   $subject = "Checking of Item";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "housemadeeasy.org";
 $to = "hmecampusyard@gmail.com";
 //elijah e-mail address
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
 mail($to, $subject, $body, $headers);
 //echo $body;
-
-
-
              ////end send email to dami
-
-
-
       //// send email to customer
-
              $body = '<div class="email-background" style="background: #eee;padding: 10px; ">
           
             <div class="email-container" style="max-width: 600px;background: white; color: black; font-family: Tahoma, Geneva, sans-serif;margin: 0 auto;overflow: hidden;border-radius: 5px; padding: 20px;">
@@ -175,7 +125,6 @@ mail($to, $subject, $body, $headers);
 <br>
  
 Dear <b>$lname</b>,<br><br>
-
 Thank you for finding your desire student item on Housemadeeasy...<br> Below are the details of the item and seller of the item:<br><br>
 <ol>
 <br>
@@ -187,71 +136,43 @@ Thank you for finding your desire student item on Housemadeeasy...<br> Below are
     <li>Item Name: $item_name_session </li>
       <li>Item Location: $item_location_session </li>
         <li>Item Price: $item_price_session</li>
-
        
 </ol><br>
-
-
 <b>SUPPORT:</b> <br>
 For any issues with you contacting the agent of the house, you can always contact us on info@housemadeeasy.com.ng or 08160852570, 07037092267<br><br>
-
 Thank You
 EOD;
-
     $body .= '</div>';  
     
     
   $subject = "Item Booking Request";
-
 //echo '->'.mail($email_owner, $subject, $body, $headers);
-
   
-
   $from = "housemadeeasy.org";
 $to = $email2;
-
-
-
 $headers = "FROM: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     
       //
-
 mail($to, $subject, $body, $headers);
 //echo $body;
-
-
-
              ////end send email to customer
-
 // send sms to the user 
-
 include 'marketplace_booked_sms_customer.php'; 
-
 // end send sms to the user
-
 // send sms to the agent 
-
 include 'marketplace_booked_sms_to_me.php';
-
 // end send sms to the agent
-
 // send sms to the dami 
-
 include 'marketplace_booked_sms_to_dami.php';
-
 // end send sms to the dami
-
  echo  "<script>
              alert('This item was booked Successful... Check your E-mail and SMS for details of the seller ...');
               window.location.href='index.php';
     </script>";
-
        
          }else{
-
             //die(mysqli_error($con));
             $msg = "<div class='alert alert-danger'>Booking not Successfull</div>";
-
          }
 ?>

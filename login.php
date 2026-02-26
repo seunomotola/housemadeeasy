@@ -1,25 +1,20 @@
 <?php
 session_start();
-include('inc/connect.inc.php');
-
+include("../inc/connect.inc.php")');
 if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
     $_SESSION['user_id'] = $_COOKIE['user_id'];
     $_SESSION['email'] = $_COOKIE['user_email'];
     $_SESSION['fname'] = $_COOKIE['user_fname'];
     $_SESSION['lname'] = $_COOKIE['user_lname'];
 }
-
 if (isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit();
 }
 ?>
-
     
     <!doctype html>
 <html class="no-js" lang="zxx">
-
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:25:19 GMT -->
 <head>
     <meta charset="utf-8">
@@ -28,9 +23,7 @@ if (isset($_SESSION['user_id'])) {
     <title>Housemadeeasy || Helping you to find your desire house easily</title>
     <meta name="description" content="housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University.....">
     
-
     <meta content="housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University....." name="keywords">
-
     <!-- Place favicon.ico in the root directory -->
     <link href="assets/images/easy.png" type="img/x-icon" rel="shortcut icon">
     <!-- All css files are included here. -->
@@ -40,7 +33,6 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="assets/css/helper.css">
     <link rel="stylesheet" href="assets/css/style.css"> 
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">   
-
    <style>
          .modal-dialog {
             display: flex;
@@ -50,7 +42,6 @@ if (isset($_SESSION['user_id'])) {
         .modal-content {
             margin: auto;
         }
-
         .cart-icon {
             position: relative;
             display: inline-block;
@@ -73,14 +64,11 @@ if (isset($_SESSION['user_id'])) {
             padding: 5px 10px;
             font-size: 14px;
         }
-
     </style>
-
     
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
 <body>
     
 <div id="main-wrapper">
@@ -105,42 +93,32 @@ if (isset($_SESSION['user_id'])) {
                                 <li class="active"><a href="index.php" style="text-decoration: none;">Home</a>
                                    
                                 </li>
-
                                  
-
                                 <li ><a href="make-money-with-housemadeeasy.php" style="text-decoration: none;">Make Money</a>
                                    
                                 </li>
-
                                
-
                                 <li ><a href="../housemadeeasy/home-repair/index.php" style="text-decoration: none;">Home Repair</a>
                                    
                                 </li>
-
                                  <li ><a href="../housemadeeasy/marketplace/index.php" style="text-decoration: none;">Campus Yard</a>
                                    
                                 </li> 
-
                                 <li ><a href="../housemadeeasy/flatmate-finder/index.php" style="text-decoration: none;">Flatmate Finder</a>
                                    
                                 </li> 
-
                                 <li ><a href="short-term-stay.php" style="text-decoration: none;">Short term Rentals</a>
                                    
                                 </li> 
-
                                  <li ><a href="housemadeeasy-logistics.php" style="text-decoration: none;">Logistics</a>
                                    
                                 </li>
                                 <!-- <li class=""><a href="view-all-properties.php" style="text-decoration: none;">View all Houses</a>
                                   
                                 </li> -->
-
                                <!--  <li ><a href="how-it-works.php" style="text-decoration: none;">How it Works</a>
                                  
                                 </li> -->
-
                                 <!--  <li ><a href="about-us.php" style="text-decoration: none;">About Us</a>
                                  
                                 </li>
@@ -153,7 +131,6 @@ if (isset($_SESSION['user_id'])) {
                                 <li ><a href="logout.php" style="text-decoration: none;">logout</a>   </li> --> 
                                   <?php 
                                    
-
                                    //}else{?>
 <!-- 
                                              <li ><a href="login.php" style="text-decoration: none;">Login</a> </li>
@@ -180,8 +157,6 @@ if (isset($_SESSION['user_id'])) {
                            
                         </div>
                     </div>
-
-
                     <!--User end-->
                 </div>
                 
@@ -197,7 +172,6 @@ if (isset($_SESSION['user_id'])) {
         </div>
     </header>
     <!--Header section end-->
-
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     $(document).ready(function() {
@@ -218,7 +192,6 @@ if (isset($_SESSION['user_id'])) {
                 }
             });
         }
-
         // Update cart count on page load
         updateCartCount();
     });
@@ -239,7 +212,6 @@ if (isset($_SESSION['user_id'])) {
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -248,11 +220,9 @@ if (isset($_SESSION['user_id'])) {
                     
                     <ul class="login-register-tab-list nav">
                         <li><a class="active" href="#login-tab" data-toggle="tab">Login</a></li>
-
                         
                         
                     </ul>
-
                     <!-- row for login -->
                     <div class="row"> 
                     <div class="col-lg-12 col-md-12 col-12 ml-auto mr-auto text-center">
@@ -276,17 +246,13 @@ if (isset($_SESSION['user_id'])) {
                                     </div> 
                                     <input type="hidden" name="redirect_url" id="redirect_url" value="<?php echo htmlspecialchars($_SERVER['HTTP_REFERER']); ?>">
                                     <div class="col-12 mb-30"><button type="button" class="btn btn-lg btn-theme btn-block btn-flat" id="logIn"><i class="fa fa-sign-in"></i> Login</button></div>
-
                                     <div class="col-lg-12 col-md-12 col-12 ml-auto mr-auto justify-content-between text-center">
                                         
                                         <span><a href="#myModal" style="font-weight:bolder; font-size: 15px;" data-toggle="modal">Forgot Password ?</a></span>
                                     </div> 
                                  </div>
-
                                 <!-- modal --->
              <!-- Button to Open the Modal -->
-
-
   <!-- Modal -->
         <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
           <div class="modal-dialog">
@@ -299,7 +265,6 @@ if (isset($_SESSION['user_id'])) {
               <div class="modal-body">
                 <p id="response2" style="font-weight: bold;"></p>
                 <p>Enter your e-mail address below to Reset Your Password.</p>
-
                 <input type="email" name="email" placeholder="Email" autocomplete="off" class="email" class="form-control placeholder-no-fix">
               </div>
               <div class="modal-footer">
@@ -310,8 +275,6 @@ if (isset($_SESSION['user_id'])) {
           </div>
         </div>
         <!-- modal -->
-
-
                             </form>
                         </div>
                     
@@ -326,9 +289,7 @@ if (isset($_SESSION['user_id'])) {
  
      
     <?php  include ('inc/footer.inc.php');   ?>
-
      <script type="text/javascript">
-
         $(document).ready(function(){
             
              // when user click the post button
@@ -355,10 +316,8 @@ if (isset($_SESSION['user_id'])) {
                          'pass': pass,
                          'redirect_url': redirect_url
                          
-
                          
                          
-
                          
                     }, // if  successful
                     success: function(response){
@@ -369,19 +328,15 @@ if (isset($_SESSION['user_id'])) {
                         
                     },
                     dataType: 'text'
-
-
                    });
                  // End of else
               
         
          });
              });
-
          //forgot password begin
             $(document).ready(function(){
              $('#forgotpassword').on('click', function(){
-
                  var email = $('.email').val();           
               
                   $.ajax({
@@ -393,7 +348,6 @@ if (isset($_SESSION['user_id'])) {
                         'resetpassword' : 1,
                          'email' : email
                          
-
                          
                     }, // if  successful
                     success: function(response2){
@@ -404,18 +358,10 @@ if (isset($_SESSION['user_id'])) {
                         
                     },
                     dataType: 'text'
-
-
                    });
-
-
              });
-
           });
            //forgot password end
-
 ///check cookie ajax
-
-
          
     </script> 

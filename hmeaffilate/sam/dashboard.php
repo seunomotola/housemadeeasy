@@ -5,9 +5,7 @@
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?> 
-
 <div class="row"><!-- row no: 1 begin -->
     <div class="col-lg-12"><!-- col-lg-12 begin -->
         <h1 class="page-header"> Dashboard </h1>
@@ -22,7 +20,6 @@
         
     </div><!-- col-lg-12 finish -->
 </div><!-- row no: 1 finish -->
-
 <div class="row"><!-- row no: 2 begin -->
    
     <div class="col-lg-3 col-md-6"><!-- col-lg-3 col-md-6 begin -->
@@ -106,10 +103,8 @@
     </div><!-- col-lg-3 col-md-6 finish -->
  
    
-
     
 </div><!-- row no: 2 finish -->
-
 <div class="row"><!-- row no: 3 begin -->
     
     
@@ -117,7 +112,6 @@
         <div class="panel"><!-- panel begin -->
             <div class="panel-body"><!-- panel-body begin -->
                 <div class="mb-md thumb-info"><!-- mb-md thumb-info begin -->
-
                     
                     
                     <div class="thumb-info-title"><!-- thumb-info-title begin -->
@@ -126,7 +120,6 @@
                         <!-- <span class="thumb-info-type"> <?php //echo $admin_job; ?> </span> -->
                         
                     </div><!-- thumb-info-title finish -->
-
                 </div><!-- mb-md thumb-info finish -->
                 
                 <div class="mb-md"><!-- mb-md begin -->
@@ -153,6 +146,4 @@
     </div><!-- col-md-4 finish -->
     
 </div><!-- row no: 3 finish -->
-
-
 <?php } ?>

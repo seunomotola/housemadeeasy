@@ -1,9 +1,5 @@
-
-
 <?php 
-
 $con = mysqli_connect("localhost","root","","housemadeeasy");
-
     if(isset($_GET['item_id'])){
         
         $item_id = $_GET['item_id'];
@@ -30,7 +26,6 @@ $con = mysqli_connect("localhost","root","","housemadeeasy");
         
     }
         
-
                                
                             
                                 $get_c = "select * from user";
@@ -59,10 +54,4 @@ $con = mysqli_connect("localhost","root","","housemadeeasy");
                                 
                                     }
                        
-
-
-
-
     
-
-

@@ -3,10 +3,8 @@ session_start();
 if (!isset($_SESSION['generated_pdf'])) {
     die("No PDF generated.");
 }
-
 $filename = $_SESSION['generated_pdf'];
 $filepath = realpath($filename);
-
 if ($filepath === false) {
     die("The PDF file path is invalid.");
 }
@@ -15,9 +13,6 @@ if (!file_exists($filepath)) {
     die("The PDF file does not exist.");
 }
 ?>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,11 +22,9 @@ if (!file_exists($filepath)) {
             document.getElementById('error-message').style.display = 'block';
             document.getElementById('pdf-iframe').style.display = 'none';
         }
-
         function checkIframeLoad() {
             var iframe = document.getElementById('pdf-iframe');
             var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
             if (iframeDoc && iframeDoc.readyState === 'complete') {
                 document.getElementById('error-message').style.display = 'none';
                 document.getElementById('pdf-iframe').style.display = 'block';
@@ -39,7 +32,6 @@ if (!file_exists($filepath)) {
                 handleIframeError();
             }
         }
-
         window.onload = function() {
             var iframe = document.getElementById('pdf-iframe');
             iframe.onload = checkIframeLoad;

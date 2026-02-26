@@ -1,19 +1,16 @@
 <?php 
  
 include ('inc/session.php'); 
-
     
 include ('inc/header.inc.php');   
                                       
 $user_id = $_SESSION['user_id'];
-
 // Fetch only non-expired referrals
 $stmt = $con->prepare("SELECT * FROM referrals WHERE user_id = ? AND expires_at > NOW() ORDER BY expires_at DESC");
 $stmt->bind_param('s', $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $referrals = $result->fetch_all(MYSQLI_ASSOC);
-
 $can_generate = true;
 if (!empty($referrals)) {
     $expires_at = new DateTime($referrals[0]['expires_at']);
@@ -25,13 +22,11 @@ if (!empty($referrals)) {
 } else {
     $_SESSION['referral_message_visible'] = true;
 }
-
 if (!isset($_SESSION['referral_message_visible'])) {
     $_SESSION['referral_message_visible'] = true;
 }
                                       
 ?>  
-
     <!--Page Banner Section start-->
     <div class="page-banner-section section">
         <div class="container">
@@ -47,7 +42,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Login & Register Section start-->
     <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20">
         <div class="container" >
@@ -58,13 +52,10 @@ if (!isset($_SESSION['referral_message_visible'])) {
                 <div class="col-lg-9 col-12">
                     
                     <div class="tab-content">
-
-
                            <div id="generate-referral-link" class="tab-pane ">
                             
                                
                                 <div class="row">
-
                                     
                                     <div class="col-12 mb-30"><h3 class="mb-0">Generate Referral Link</h3>
                                    
@@ -73,7 +64,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
     <?php endif; ?>
                                    </div>
                                                             
-
                                     <div class="col-12 mb-30"> <button id="generate-referral" style="border-radius:10px; padding:15px" class="btn btn-primary" <?php if (!$can_generate) echo 'disabled'; ?>>Generate Referral Link</button>
         <div id="generate-warning">
         <?php if (!$can_generate): ?>
@@ -81,9 +71,7 @@ if (!isset($_SESSION['referral_message_visible'])) {
         <?php endif; ?>
     </div>
                                     </div>
-
  
-
      <ul id="referral-list" class="list-group">
         <?php foreach ($referrals as $referral): 
             $referralLink = 'https://housemadeeasy.org/search-made-easy.php?code=' . $referral['referral_code']; ?>
@@ -111,11 +99,9 @@ if (!isset($_SESSION['referral_message_visible'])) {
             </li>
         <?php endforeach; ?>
     </ul>
-
                                 </div>
                             
                         </div>
-
 <!-- Success Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -136,9 +122,7 @@ if (!isset($_SESSION['referral_message_visible'])) {
         </div>
     </div>
 </div>
-
 <!-- Success Modal end-->
-
  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
                
 <!-- Share Modal -->
@@ -167,8 +151,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
   </div>
 </div>
 <!-- Share modal end -->
-
-
     
    <!-- Add to Cart Modal -->
 <div class="modal fade" id="generatereferral" tabindex="-1" aria-labelledby="generatereferral" aria-hidden="true">
@@ -190,9 +172,7 @@ if (!isset($_SESSION['referral_message_visible'])) {
     </div>
   </div>
 </div>
-
 <!-- Add to cart modal end -->
-
 <!-- Fallback Modal for Unsupported Share API -->
 <!-- <div class="modal fade" id="shareFallbackModal" tabindex="-1" aria-labelledby="shareFallbackModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -214,7 +194,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
     </div>
   </div>
 </div> -->
-
 <!-- track-referral-link begins -->
     <div id="track-referral-link" class="tab-pane ">         
                                 <div class="row">
@@ -225,13 +204,9 @@ if (!isset($_SESSION['referral_message_visible'])) {
                         </div>
                     </div>
                 <!-- track-referral-link end -->
-
-
-
 <!-- withdraw-referral-money begins -->
                      <div id="withdraw-referral-money" class="tab-pane ">         
                                 <div class="row">
-
                                     
                                     <div class="col-12 mb-30">
                                         
@@ -241,8 +216,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
                         </div>
                     </div>
     <!-- withdraw-referral-money end -->
-
-
                         <div id="profile-tab" class="tab-pane ">
                             <form action="" method="POST">
                                
@@ -257,9 +230,7 @@ if (!isset($_SESSION['referral_message_visible'])) {
                                     <div class="col-md-6 col-12 mb-30"><label for="l_name">E-mail</label><input type="text" id="email2" value="<?php echo $email2; ?>"></div>
                                       <div class="col-md-6 col-12 mb-30"><label for="l_name">Phone Number</label><input type="text" id="cust_no" value="<?php echo $pno; ?>"></div>
                                    
-
                                 
-
                                     <div class="col-12 mb-30"><button class="btn" type="button" id="update">Save Change</button></div>
                                 </div>
                             </form>
@@ -268,9 +239,7 @@ if (!isset($_SESSION['referral_message_visible'])) {
                         <div id="properties-tab" class="tab-pane show active">
             
                             <div class="row">
-
                                
-
                                 <!--Property start-->
                                   <?php 
                                   $user_id=$_SESSION['user_id'];
@@ -278,10 +247,8 @@ if (!isset($_SESSION['referral_message_visible'])) {
                     $result = $con->query($sql);
                    if (mysqli_num_rows($result) > 0){
                     while($row2 = mysqli_fetch_array($result)) {
-
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       $house_label=$row2['house_label'];
                       $first_year_rent=$row2['first_year_rent'];
                      $location=$row2['location'];
@@ -334,11 +301,9 @@ if (!isset($_SESSION['referral_message_visible'])) {
                                 echo"You are yet to book for any House yet... Check your desire House and request for Booking";
                             } ?>
                                 <!--Property end-->
-
                                 <!--Property start-->
                               
                                 <!--Property end-->
-
                             </div>
                             
                         </div>
@@ -351,7 +316,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
                                     <div class="col-12 mb-30"><label for="current_password">Current Password</label><input type="password" id="old" ></div>
                                     <div class="col-12 mb-30"><label for="new_password">New Password</label><input type="password" id="newpass"></div>
                                     <div class="col-12 mb-30"><label for="confirm_new_password">Confirm New Password</label><input type="password" id="conf"></div>
-
                                     <div class="col-12 mb-30"><button class="btn" type="button" id="logIn">Save Change</button></div>
                                 </div>
                             </form>
@@ -359,7 +323,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
                     </div>
                     
                 </div>
-
                    <div class="col-lg-3 col-12 mb-sm-50 mb-xs-50">
                     <ul class="myaccount-tab-list nav">
  
@@ -375,7 +338,6 @@ if (!isset($_SESSION['referral_message_visible'])) {
                         <li><a href="logout.php"><i class="pe-7s-power"></i>Log Out</a></li>
                     </ul>
                 </div>
-
                 
             </div>
         </div> 
@@ -383,12 +345,10 @@ if (!isset($_SESSION['referral_message_visible'])) {
     <!--Login & Register Section end-->
     
      <?php  include ('inc/footer.inc.php');   ?>
-
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
                
-
 <script>
 $(document).ready(function() {
     // Function to start countdown
@@ -396,7 +356,6 @@ $(document).ready(function() {
         function updateCountdown() {
             var now = new Date().getTime();
             var distance = new Date(expiresAt).getTime() - now;
-
             if (distance < 0) {
                 clearInterval(interval);
                 element.closest('li').remove();  // Remove the list item when expired
@@ -418,17 +377,14 @@ $(document).ready(function() {
                 element.text('Expires in: ' + hours + 'h ' + minutes + 'm ' + seconds + 's');
             }
         }
-
         updateCountdown();
         var interval = setInterval(updateCountdown, 1000);
     }
-
     // Initialize countdowns for existing referrals
     $('.expires-at').each(function() {
         var expiresAt = $(this).data('expires-at');
         startCountdown($(this), expiresAt);
     });
-
     $('#generate-referral').click(function() {
         $.ajax({
             url: 'generate_referral.php',
@@ -436,7 +392,6 @@ $(document).ready(function() {
             success: function(response) {
                 let expiresAt = new Date(new Date().getTime() + 24*60*60*1000).toISOString().slice(0, 19).replace('T', ' ');
                 let referralLink = 'localhost/housemadeeasy/search-made-easy.php?code=' + response.trim();
-
                $('#referral-list').append(
                     '<li class="list-group-item">'
                     + referralLink
@@ -463,7 +418,6 @@ $(document).ready(function() {
             }
         });
     });
-
     $(document).on('click', '.copy-link', function(event) {
         event.preventDefault();
         var referralLink = $(this).data('link');
@@ -472,12 +426,9 @@ $(document).ready(function() {
         tempInput.val(referralLink).select();
         document.execCommand('copy');
         tempInput.remove();
-
         $('#successModal').modal('show');
          $('#message').html('<div class="alert alert-success">Referral link copied to clipboard!!</div>');
     });
-
-
        $(document).on('click', '.share-link', function(event) {
         event.preventDefault();
         var referralLink = $(this).data('link');
@@ -487,12 +438,8 @@ $(document).ready(function() {
         $('#share-twitter').attr('href', 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(referralLink) + '&text=Check out this referral link!');
         $('#share-whatsapp').attr('href', 'https://wa.me/?text=' + encodeURIComponent('Check out this referral link: ' + referralLink));
         $('#share-linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(referralLink) + '&title=Referral Link');
-
         $('#shareModal').modal('show');
     });
-
-
-
     // $(document).on('click', '.share-link', function(event) {
     //     event.preventDefault();
     //     var referralLink = $(this).data('link');
@@ -511,8 +458,6 @@ $(document).ready(function() {
     //         $('#shareFallbackModal').modal('show');
     //     }
     // });
-
-
     //    $('#copy-fallback-link').click(function() {
     //     var fallbackLink = $('#fallback-share-link').val();
     //     var tempInput = $('<input>');
@@ -525,11 +470,7 @@ $(document).ready(function() {
     // });
 });
 </script>
-
-
-
         <script type="text/javascript">
-
         $(document).ready(function(){
             
              // when user click the post button
@@ -551,7 +492,6 @@ $(document).ready(function() {
                          'old' : old,
                          'newpass': newpass,
                          'conf': conf
-
                          
                     }, // if  successful
                     success: function(response){
@@ -560,17 +500,12 @@ $(document).ready(function() {
                         
                     },
                     dataType: 'text'
-
-
                    });
                  // End of else
               
        
          });
           });
-
-
-
     </script>
     <script type="text/javascript">
         
@@ -609,14 +544,11 @@ $(document).ready(function() {
                         
                     },
                     dataType: 'text'
-
-
                    });
                  // End of else
               
         
          });
              });
-
     </script> 
     <?php

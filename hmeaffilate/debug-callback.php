@@ -1,21 +1,17 @@
 <?php
 session_start();
 header('Content-Type: text/html; charset=utf-8');
-include ('inc/connect.inc.php');
-
+include("../inc/connect.inc.php")');
 // Load environment variables
 require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
-
 // Configuration
 define('GOOGLE_CLIENT_ID', $_ENV['GOOGLE_CLIENT_ID']);
 define('GOOGLE_CLIENT_SECRET', $_ENV['GOOGLE_CLIENT_SECRET']);
 define('CALLBACK_URL', $_ENV['CALLBACK_URL']);
 define('GOOGLE_REDIRECT_URI', CALLBACK_URL);
-
 echo "<h1>🔍 OAuth Debug - Token Exchange</h1>";
-
 if (isset($_GET['code'])) {
     echo "<div style='background: #e8f5e8; padding: 15px; margin: 10px 0; border-radius: 5px;'>";
     echo "<h3>✅ OAuth Code Received:</h3>";
@@ -23,7 +19,6 @@ if (isset($_GET['code'])) {
     echo "<p><strong>State:</strong> " . htmlspecialchars($_GET['state'] ?? 'none') . "</p>";
     echo "<p><strong>Scope:</strong> " . htmlspecialchars($_GET['scope'] ?? 'none') . "</p>";
     echo "</div>";
-
     $code = $_GET['code'];
     $state = isset($_GET['state']) ? $_GET['state'] : 'upload-house.php';
     
@@ -142,7 +137,6 @@ if (isset($_GET['code'])) {
     echo "<p><strong>URL should look like:</strong> callback.php?code=AUTH_CODE&state=upload-house.php</p>";
     echo "</div>";
 }
-
 echo "<div style='background: #e2e3e5; padding: 15px; margin: 20px 0; border-radius: 5px;'>";
 echo "<h3>🛠️  Troubleshooting Tips:</h3>";
 echo "<ul>";

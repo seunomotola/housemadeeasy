@@ -1,6 +1,5 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
-
     window.addEventListener('load', function(){
       });
     function deletecontent(){
@@ -8,7 +7,6 @@
   title: "Are you sure?",
   text: "Once deleted, you will not be able to recover this imaginary file!",
   icon: "warning",
-
   buttons: "hi",
   dangerMode: true,
 })
@@ -21,9 +19,7 @@
     swal("Your imaginary file is safe!");
   }
 });
-
     
-
     }
 </script>
 <input type="button" name="" onclick="deletecontent()" value="delete">

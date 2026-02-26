@@ -1,14 +1,12 @@
 <?php
 session_start();
-include ('inc/connect.inc.php');
-
+include("../inc/connect.inc.php")');
 function val($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = strip_tags($data); 
     return $data;
 }
-
 if (isset($_POST['user_register'])) {
     $fname = mysqli_real_escape_string($con, $_POST['fname']);
     $lname = mysqli_real_escape_string($con, $_POST['lname']);
@@ -18,12 +16,10 @@ if (isset($_POST['user_register'])) {
     $pno = mysqli_real_escape_string($con, $_POST['pno']);
     $redirect_url = isset($_POST['redirect_url']) ? $_POST['redirect_url'] : 'index.php';
     $hashedpassword = md5($pass);
-
     $sql_l = "SELECT * FROM user WHERE email='$email'";
     $re_l = mysqli_query($con, $sql_l);
     $sql_p = "SELECT * FROM user WHERE password='$hashedpassword'";
     $re_p = mysqli_query($con, $sql_p);
-
     if (empty($fname) || empty($lname) || empty($email) || empty($pass) || empty($confpass) || empty($pno)) {
         exit('<div style="color:red; text-align:center; font-size:15px;">Fill in all Fields</div>');
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -42,13 +38,10 @@ if (isset($_POST['user_register'])) {
         fputs($fp, "$hits[0]");
         fclose($fp);
         $user_id = $hits[0];
-
         $sql = "INSERT INTO user (fname, lname, email, password, pno, token, user_id) VALUES ('$fname', '$lname', '$email', '$hashedpassword', '$pno', '', '$user_id')";
         mysqli_query($con, $sql);
-
         $sql_login = "SELECT * FROM user WHERE email = '$email' AND password='$hashedpassword' AND user_id='$user_id'";
         $result_login = mysqli_query($con, $sql_login);
-
         if ($result_login->num_rows > 0) {
             $found_user = mysqli_fetch_array($result_login); 
             $_SESSION['id'] = $found_user['id'];
@@ -57,17 +50,13 @@ if (isset($_POST['user_register'])) {
             $_SESSION['lname'] = $found_user['lname'];
             $_SESSION['pno'] = $found_user['pno'];
             $_SESSION['user_id'] = $found_user['user_id'];
-
                    // If there are cart items in the session, move them to the database
         if (isset($_SESSION['cart']) && $_SESSION['house_id1']) {
             $session_cart = $_SESSION['cart'];
             $addtocarthouseid=$_SESSION['house_id1'];
             foreach ($session_cart as $property_id) {
                 $check_cart_query = "SELECT * FROM cart WHERE user_id = '" . $found_user['id'] . "' AND property_id = '$property_id' AND house_id = '$addtocarthouseid'";
-
-
                 $check_cart_result = mysqli_query($con, $check_cart_query);
-
                 if (mysqli_num_rows($check_cart_result) == 0) {
                     date_default_timezone_set('Africa/Lagos');
                     $date_add_to_cart=date('Y-m-d h:i:s a', time());
@@ -77,7 +66,6 @@ if (isset($_POST['user_register'])) {
             }
             unset($_SESSION['cart']); // Clear session cart after moving to database
         }
-
             echo "<script>
                 alert('Registration successful...logging you In...'); 
                 window.location.href='$redirect_url';

@@ -1,19 +1,16 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-include ('inc/connect.inc.php');
-
+include("../inc/connect.inc.php")');
 // Load environment variables
 require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
-
 // Configuration
 define('GOOGLE_CLIENT_ID', $_ENV['GOOGLE_CLIENT_ID']);
 define('GOOGLE_CLIENT_SECRET', $_ENV['GOOGLE_CLIENT_SECRET']);
 define('CALLBACK_URL', $_ENV['CALLBACK_URL']);
 define('GOOGLE_REDIRECT_URI', CALLBACK_URL);
-
 /**
  * Debug version of uploadVideoToYouTube with detailed error handling
  */
@@ -139,7 +136,6 @@ function debugUploadVideoToYouTube($accessToken, $videoFile, $title, $descriptio
         );
     }
 }
-
 function getAccessTokenFromCode($code) {
     $data = array(
         'code' => $code,
@@ -171,7 +167,6 @@ function getAccessTokenFromCode($code) {
     
     return json_decode($result, true);
 }
-
 // Handle debug requests
 if (isset($_POST['action'])) {
     switch ($_POST['action']) {

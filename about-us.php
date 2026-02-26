@@ -31,7 +31,6 @@
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--Welcome Khonike - Real Estate Bootstrap 4 Templatesection--> 
     <div class="feature-section feature-section-border-top section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-60 pb-lg-40 pb-md-30 pb-sm-20 pb-xs-10">
         <div class="container">
@@ -62,7 +61,6 @@
                                         <h4>Reliable</h4>
                                     </li>
                                       
-
                                     <li>
                                         <i class="pe-7s-cart"></i>
                                         <h4>Online Catalog</h4>
@@ -78,8 +76,6 @@
                                         <h4>House finding Made easy</h4>
                                     </li>
                                     
-
-
                                 </ul>
                                 
                             </div>
@@ -92,7 +88,6 @@
         </div>
     </div>
     <!--Welcome Khonike - Real Estate Bootstrap 4 Templatesection end-->
-
  <!--Download apps section start-->
     <div class="download-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50" style="background-image: url(assets/images/bg/download-bg.jpg)">
         <div class="container">
@@ -134,10 +129,8 @@
         </div>
     </div>
     <!--Download apps section end-->
-
  <!--Agency Section start-->
     <div class="agency-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
-
         <!--Section Title start-->
             <div class="row">
                 <div class="col-md-12 mb-60 mb-xs-30">
@@ -147,11 +140,9 @@
                 </div>
             </div>
             <!--Section Title end-->
-
         <div class="container">
             
             <div class="row"> 
-
                 <!--Agencies satrt--> 
                 <div class="col-lg-3  col-md-4 col-sm-12 col-xs-12">
                     <div class="agency">
@@ -167,8 +158,6 @@
                     </div>
                 </div> 
                 <!--Agencies end-->
-
-
                  <!--Agencies satrt-->
                <div class="col-lg-3 col-md-4 col-sm-12  col-xs-12">
                     <div class="agency">
@@ -184,8 +173,6 @@
                     </div>
                 </div>
                 <!--Agencies end--> 
-
-
                  <!--Agencies satrt-->
                  <div class="col-lg-3 col-md-4 col-sm-12  col-xs-12">
                     <div class="agency" >
@@ -201,7 +188,6 @@
                     </div>
                 </div> 
                 <!--Agencies end-->
-
                 <!--Agencies satrt-->
                 <div class="col-lg-3 col-md-4 col-sm-12  col-xs-12">
                     <div class="agency">
@@ -212,14 +198,11 @@
                             <h4 class="title"><a href="make-money-with-housemadeeasy.php">Make money with housemadeeasy</a></h4>
                             <span><a href="make-money-with-housemadeeasy.php">Because who says housing can't pay?</a></span>
                             
-
                             
                         </div>
                     </div>
                 </div>
                 <!--Agencies end-->
-
-
                  <!--Agencies satrt-->
                 <div class="col-lg-3 col-md-4 col-sm-12  col-xs-12">
                     <div class="agency">
@@ -230,17 +213,13 @@
                             <h4 class="title"><a href="housemadeeasy-logistics.php">Housemadeeasy Logistics</a></h4>
                             <span><a href="housemadeeasy-logistics.php"> Streamline your moving process with ease. </a></span>
                             
-
                             
                         </div>
                     </div>
                 </div>
                 <!--Agencies end-->
-
                
-
                
-
                 <!--Agencies satrt-->
                  <div class="col-lg-3 col-md-4 col-sm-12  col-xs-12">
                     <div class="agency" style="margin-top:15px">
@@ -251,13 +230,11 @@
                             <h4 class="title"><a class="img" href="home-repair/index.php">Home Repair</a></h4>
                             <span><a  href="home-repair/index.php"> Need a fixer-upper? We've got you covered. </a></span>
                              
-
                             
                         </div>
                     </div>
                 </div> 
                 <!--Agencies end-->
-
                 <!--Agencies satrt-->
                 <div class="col-lg-3 col-md-4 col-sm-12  col-xs-12">
                     <div class="agency" style="margin-top:15px">
@@ -281,7 +258,6 @@
         </div>
     </div>
     <!--Agency Section end-->
-
    
     <!--Funfact Section start-->
     <div class="funfact-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20" style="background-image: url(assets/images/bg/cta-bg.jpg)">
@@ -306,8 +282,6 @@
                     </div>
                 </div>
                 <!--Funfact end-->
-
-
                  <!--Funfact start-->
                 <div class="single-fact col-lg-4 col-6 mb-30">
                     <div class="inner">
@@ -362,7 +336,6 @@
         </div>
     </div>
     <!--Funfact Section end-->
-
     <!--Agent Section start-->
     <div class="agent-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20">
         <div class="container">
@@ -384,7 +357,6 @@
                     $result = mysqli_query($con,$sql);
                     if (mysqli_num_rows($result) > 0){
       while($row2 = mysqli_fetch_array($result)) {
-
                          $img=$row2['img'];
                       $fname=$row2['fname'];
                      $lname=$row2['lname'];
@@ -421,7 +393,6 @@
         </div>
     </div>
     <!--Agent Section end-->
-
     <!--Testimonial Section start-->
     <div class="testimonial-section section bg-gray pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -444,7 +415,6 @@
                    $sql = "SELECT * FROM test  order by id ASC";
                     $query = $con->query($sql);
                     while($row2 = $query->fetch_assoc()){
-
                          $name=$row2['name'];
                       $img=$row2['img'];
                      $main_desc=$row2['main_desc'];
@@ -493,7 +463,6 @@
                     
                     <div class="brand col"><img src="assets/images/brands/nunsa1.jpg" style="width: 150px; height:120px" alt=""></div>
                     <div class="brand col"><img src="assets/images/brands/RoyalJoyLogo.png" style="width: 150px; height:120px" alt=""></div>
-
                      <div class="brand col"><img src="assets/images/brands/PANSlogo.png" style="width: 160px; height:160px" alt=""></div>
                     <div class="brand col"><img src="assets/images/brands/Picture1.png" style="width: 150px; height:150px" alt=""></div>
                    

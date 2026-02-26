@@ -6,9 +6,7 @@
 * Date:    2019-12-07                                                          *
 * Author:  Olivier PLATHEY                                                     *
 *******************************************************************************/
-
 require('ttfparser.php');
-
 function Message($txt, $severity='')
 {
 	if(PHP_SAPI=='cli')
@@ -24,23 +22,19 @@ function Message($txt, $severity='')
 		echo "$txt<br>";
 	}
 }
-
 function Notice($txt)
 {
 	Message($txt, 'Notice');
 }
-
 function Warning($txt)
 {
 	Message($txt, 'Warning');
 }
-
 function Error($txt)
 {
 	Message($txt, 'Error');
 	exit;
 }
-
 function LoadMap($enc)
 {
 	$file = dirname(__FILE__).'/'.strtolower($enc).'.map';
@@ -58,7 +52,6 @@ function LoadMap($enc)
 	}
 	return $map;
 }
-
 function GetInfoFromTrueType($file, $embed, $subset, $map)
 {
 	// Return information from a TrueType font
@@ -120,7 +113,6 @@ function GetInfoFromTrueType($file, $embed, $subset, $map)
 	$info['Widths'] = $widths;
 	return $info;
 }
-
 function GetInfoFromType1($file, $embed, $map)
 {
 	// Return information from a Type1 font
@@ -146,7 +138,6 @@ function GetInfoFromType1($file, $embed, $map)
 		$info['Size1'] = $size1;
 		$info['Size2'] = $size2;
 	}
-
 	$afm = substr($file, 0, -3).'afm';
 	if(!file_exists($afm))
 		Error('AFM font file not found: '.$afm);
@@ -188,7 +179,6 @@ function GetInfoFromType1($file, $embed, $map)
 		elseif($entry=='StdVW')
 			$info['StdVW'] = (int)$e[1];
 	}
-
 	if(!isset($info['FontName']))
 		Error('FontName missing in AFM file');
 	if(!isset($info['Ascender']))
@@ -214,7 +204,6 @@ function GetInfoFromType1($file, $embed, $map)
 	$info['Widths'] = $widths;
 	return $info;
 }
-
 function MakeFontDescriptor($info)
 {
 	// Ascent
@@ -251,7 +240,6 @@ function MakeFontDescriptor($info)
 	$fd .= ",'MissingWidth'=>".$info['MissingWidth'].')';
 	return $fd;
 }
-
 function MakeWidthArray($widths)
 {
 	$s = "array(\n\t";
@@ -274,7 +262,6 @@ function MakeWidthArray($widths)
 	$s .= ')';
 	return $s;
 }
-
 function MakeFontEncoding($map)
 {
 	// Build differences from reference encoding
@@ -293,7 +280,6 @@ function MakeFontEncoding($map)
 	}
 	return rtrim($s);
 }
-
 function MakeUnicodeArray($map)
 {
 	// Build mapping to Unicode values
@@ -321,7 +307,6 @@ function MakeUnicodeArray($map)
 		}
 	}
 	$ranges[] = $range;
-
 	foreach($ranges as $range)
 	{
 		if(isset($s))
@@ -338,7 +323,6 @@ function MakeUnicodeArray($map)
 	$s .= ')';
 	return $s;
 }
-
 function SaveToFile($file, $s, $mode)
 {
 	$f = fopen($file, 'w'.$mode);
@@ -347,7 +331,6 @@ function SaveToFile($file, $s, $mode)
 	fwrite($f, $s);
 	fclose($f);
 }
-
 function MakeDefinitionFile($file, $type, $enc, $embed, $subset, $map, $info)
 {
 	$s = "<?php\n";
@@ -380,7 +363,6 @@ function MakeDefinitionFile($file, $type, $enc, $embed, $subset, $map, $info)
 	$s .= "?>\n";
 	SaveToFile($file, $s, 't');
 }
-
 function MakeFont($fontfile, $enc='cp1252', $embed=true, $subset=true)
 {
 	// Generate a font definition file
@@ -393,14 +375,11 @@ function MakeFont($fontfile, $enc='cp1252', $embed=true, $subset=true)
 		$type = 'Type1';
 	else
 		Error('Unrecognized font file extension: '.$ext);
-
 	$map = LoadMap($enc);
-
 	if($type=='TrueType')
 		$info = GetInfoFromTrueType($fontfile, $embed, $subset, $map);
 	else
 		$info = GetInfoFromType1($fontfile, $embed, $map);
-
 	$basename = substr(basename($fontfile), 0, -4);
 	if($embed)
 	{
@@ -418,11 +397,9 @@ function MakeFont($fontfile, $enc='cp1252', $embed=true, $subset=true)
 			Notice('Font file could not be compressed (zlib extension not available)');
 		}
 	}
-
 	MakeDefinitionFile($basename.'.php', $type, $enc, $embed, $subset, $map, $info);
 	Message('Font definition file generated: '.$basename.'.php');
 }
-
 if(PHP_SAPI=='cli')
 {
 	// Command-line interface

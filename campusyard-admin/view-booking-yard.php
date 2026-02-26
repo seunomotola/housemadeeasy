@@ -5,9 +5,7 @@
         echo "<script>window.open('login.php','_self')</script>";
         
     }else{
-
 ?>
-
 <div class="row"><!-- row 1 begin -->
     <div class="col-lg-12"><!-- col-lg-12 begin -->
         <ol class="breadcrumb"><!-- breadcrumb begin -->
@@ -19,7 +17,6 @@
         </ol><!-- breadcrumb finish -->
     </div><!-- col-lg-12 finish -->
 </div><!-- row 1 finish -->
-
 <div class="row"><!-- row 2 begin -->
     <div class="col-lg-12"><!-- col-lg-12 begin -->
         <div class="panel panel-default"><!-- panel panel-default begin -->
@@ -42,7 +39,6 @@
                                   <th> Date Booked: </th>
                                 
                                 <th> Phone Number: </th>
-
                                 <th> Location: </th>
                                 
                                 <th> Tool: </th>
@@ -65,11 +61,9 @@
                                     $id = $row_order['id'];
                                     
                                     $item_name = $row_order['item_name'];
-
                                     $item_location = $row_order['item_location'];
                                     
                                     $date = $row_order['date_booked'];
-
                                      $item_price = $row_order['item_price'];
                                     
                                     
@@ -77,9 +71,7 @@
                                     $item_location = $row_order['item_location'];
                                     
                                     $pno = $row_order['pno'];
-
                                     $fname = $row_order['fname'];
-
                                     $lname = $row_order['lname'];
                                     
                                     
@@ -118,8 +110,6 @@
         </div><!-- panel panel-default finish -->
     </div><!-- col-lg-12 finish -->
 </div><!-- row 2 finish -->
-
-
   <div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-dialog"> 
                <div class="modal-content modal-lg">  
@@ -138,7 +128,4 @@
               </div> 
             </div>
           </div> 
-
-
 <?php } ?>
-

@@ -2,7 +2,6 @@
 <?php
  
 $curl = curl_init();
-
 curl_setopt_array($curl, array(
   CURLOPT_URL => 'https://my.kudisms.net/api/sms',
   CURLOPT_RETURNTRANSFER => true,
@@ -16,17 +15,11 @@ curl_setopt_array($curl, array(
 Hello Elijah,
 Please Note that one of your apartment at $house_exact_session have been booked for checking.. 
 Kindly check your mail for the details of the customer and house booked for by the customer
-
-
 SUPPORT:
 For any issues with you contacting the customer, you can always contact us on info@housemadeeasy.com.ng or 08160852570, 07037092267
-
 Thank You
-
   	",'gateway' => '1'),
 ));
-
 $response = curl_exec($curl);
-
 curl_close($curl);
 //echo $response;

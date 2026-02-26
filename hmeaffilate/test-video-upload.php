@@ -2,10 +2,8 @@
 /**
  * Test script to debug video upload issues
  */
-
 session_start();
-include('inc/connect.inc.php');
-
+include("../inc/connect.inc.php")');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +47,6 @@ include('inc/connect.inc.php');
             </div>
         </div>
     </div>
-
     <script>
         function log(message) {
             $('#output').append(new Date().toLocaleTimeString() + ': ' + message + '\n');

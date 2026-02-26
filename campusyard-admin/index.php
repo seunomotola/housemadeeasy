@@ -1,5 +1,4 @@
   <?php 
-
     session_start();
     include("includes/db.php"); 
     
@@ -24,7 +23,6 @@
         $admin_email = $row_admin['admin_email'];
         
         
-
         $admin_contact = $row_admin['admin_contact'];
         
        
@@ -36,9 +34,7 @@
         $count_bookings = mysqli_num_rows($run_products);
         
       
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +47,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
     <div id="wrapper"><!-- #wrapper begin -->
        
        <?php include("includes/sidebar.php"); ?>
@@ -66,7 +61,6 @@
                         include("dashboard.php");
                         
                 }  
-
                 if(isset($_GET['view-booking-yard'])){
                         
                         include("view-booking-yard.php");
@@ -94,53 +88,42 @@
                         include("send_mail_client.php");
                         
                 } 
-
                 if(isset($_GET['insert_item'])){
                         
                         include("insert_item.php");
                         
                 } 
-
                 if(isset($_GET['view_item'])){
                         
                         include("view_item.php"); 
                         
                 } 
-
                  if(isset($_GET['delete_item'])){
                         
                         include("delete_item.php");
                         
                 } 
-
                  if(isset($_GET['edit_item'])){
                         
                         include("edit_item.php"); 
                         
                 } 
-
               
-
                  if(isset($_GET['market-place-sell-item-sms'])){
                         
                         include("market-place-sell-item-sms.php");
                         
                 }
-
-
         
                 ?>
                 
             </div><!-- container-fluid finish -->
         </div><!-- #page-wrapper finish -->
     </div><!-- wrapper finish -->
-
 <script src="js/jquery-331.min.js"></script>     
 <script src="js/bootstrap-337.min.js"></script>   
-
    <script>
     $(document).ready(function(){
-
     $(document).on('click', '#getUser', function(e){
   
      e.preventDefault();
@@ -160,19 +143,12 @@ success:function(data)
    $("#content").html(data);
 },
      })
-
     });
 })
   </script>
-
-
  
-
-
-
      <script>
     $(document).ready(function(){
-
     $(document).on('click', '#getyard', function(e){
   
      e.preventDefault();
@@ -192,14 +168,9 @@ success:function(data)
    $("#content").html(data);
 },
      })
-
     });
 })
   </script>
-
-
 </body>
 </html>
-
-
 <?php } ?>

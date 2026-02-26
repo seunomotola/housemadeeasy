@@ -1,12 +1,11 @@
 <?php  
 include ('inc/session.php');   
-//include ('inc/connect.inc.php'); 
+//include("../inc/connect.inc.php")'); 
 $basename= basename($_SERVER['PHP_SELF']);
 $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']); 
     ?>
 <!doctype html>
 <html class="no-js" lang="zxx"> 
-
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/single-properties-gallery.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:26:05 GMT -->
 <head>
     <meta charset="utf-8"> 
@@ -46,26 +45,21 @@ $result = mysqli_query($con,$sql);
                     $_SESSION['water_source']=$post['water_source'];
                     $_SESSION['first_year_rent']=$post['first_year_rent'];
                     $_SESSION['second_year_rent']=$post['second_year_rent'];
-
                     $_SESSION['house_id']=$post['house_id'];
                     $_SESSION['multiple_room']=$post['multiple_room'];
                     $_SESSION['how_many_multiple_room']=$post['how_many_multiple_room'];
-
                      $_SESSION['house_owner']=$post['house_owner'];
                    
                     
                       $id=$post['id'];
                       $house_id1=$post['house_id'];
                       $status=$post['status'];
-
                         
                      $query3 = mysqli_query($con,"SELECT * FROM flatmate_finder_bookings WHERE house_id='$house_id1'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $house_id11=$row3['house_id'];
-
                     
                       //exit();
-
            ?>
     <title><?php echo $post['house_name'] ?> || Flatmate Finder || Housemadeeasy - Helping you to find your desire house easily</title>
     <meta name="description" content="">
@@ -78,14 +72,11 @@ $result = mysqli_query($con,$sql);
     <link rel="stylesheet" href="<?php  echo $domain; ?>assets/css/plugins.css">
     <link rel="stylesheet" href="<?php  echo $domain; ?>assets/css/helper.css">
     <link rel="stylesheet" href="<?php  echo $domain; ?>assets/css/style.css">   
-
   
-
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <base href="<?php  echo $domain; ?>">
 </head>
-
 <body>
      
 <div id="main-wrapper">
@@ -112,42 +103,32 @@ $result = mysqli_query($con,$sql);
                                 <li ><a href="index.php" style="text-decoration: none;">Home</a>
                                    
                                 </li>
-
                                 
-
                                 <li ><a href="../make-money-with-housemadeeasy.php" style="text-decoration: none;">Make Money</a>
                                    
                                 </li>
-
                                 
-
                                 <li ><a href="../home-repair/index.php" style="text-decoration: none;">Home Repair</a>
                                    
                                 </li>
-
                                  <li ><a href="../marketplace/index.php" style="text-decoration: none;">Campus Yard</a>
                                    
                                 </li> 
-
                                 <li class="active"><a href="index.php" style="text-decoration: none;">Flatmate Finder</a>
                                    
                                 </li> 
-
                                <li ><a href="../short-term-stay.php" style="text-decoration: none;">Short term Rentals</a>
                                    
                                 </li> 
-
                                 <li ><a href="../housemadeeasy-logistics.php" style="text-decoration: none;">Logistics</a>
                                    
                                 </li>
                                 <!-- <li class=""><a href="view-all-properties.php" style="text-decoration: none;">View all Houses</a>
                                   
                                 </li> -->
-
                                <!--  <li ><a href="how-it-works.php" style="text-decoration: none;">How it Works</a>
                                  
                                 </li> -->
-
                                 <!--  <li ><a href="about-us.php" style="text-decoration: none;">About Us</a>
                                  
                                 </li>
@@ -160,9 +141,7 @@ $result = mysqli_query($con,$sql);
                                 <li ><a href="../logout.php" style="text-decoration: none;">logout</a>   </li> --> 
                                   <?php 
                                    
-
                                    //}else{?>
-
                                      <!--         <li ><a href="../login.php" style="text-decoration: none;">Login</a> </li>
                                  <li ><a href="../register.php" style="text-decoration: none;">Register</a>   </li>  -->
                                    <?php //} ?>
@@ -182,8 +161,6 @@ $result = mysqli_query($con,$sql);
                            
                         </div>
                     </div>
-
-
                     <!--User end-->
                 </div>
                 
@@ -215,7 +192,6 @@ $result = mysqli_query($con,$sql);
         </div>
     </div>
     <!--Page Banner Section end-->
-
     <!--New property section start-->
     <div class="property-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
@@ -224,7 +200,6 @@ $result = mysqli_query($con,$sql);
             <!--display Property start-->
                 <div class="col-lg-8 col-12 order-1 order-lg-2 mb-sm-50 mb-xs-50">
                     <div class="row">
-
                         <!--Property start-->
                         <div class="single-property col-12 mb-50">
                             <div class="property-inner">
@@ -247,13 +222,11 @@ $result = mysqli_query($con,$sql);
                                             <span class="price">#<?php echo ucwords($post['first_year_rent']); ?></span>
                                             
                                             <span class="type"><?php echo ucwords($post['house_label']); ?></span>
-
                                         </div>
                                     </div>
                                 </div>
                                 
                                 
-
                                 <div class="image mb-30"> 
                                                 <?php 
                                                    if ($post['multiple_room']=='yes') {
@@ -262,14 +235,11 @@ $result = mysqli_query($con,$sql);
                                 if ($post['how_many_multiple_room']==0) {
                                     //it will display an image of allbooked
                                     ?>
-
                                  <a href="flat-mate-finder-details.php.php?id=<?php echo $id; ?>" >
                                 <span class="label2">
                                <img src="assets/images/notavailable/4new.png" style=" height: 150px; margin: 50px 20px 50px 140px; width: 50%; height: 50%; " > 
                                 </span>
                                 </a>
-
-
                            <?php }
                             elseif ($status=='yes') {
                                     // i will write a code in the admin end to update status to yes and update house_id in booking to null
@@ -282,7 +252,6 @@ $result = mysqli_query($con,$sql);
                                <?php }
                             
                         }//end of multiple room
-
                         //begin of not multiple room
                         elseif ($post['multiple_room']=='no'){
                             if ($house_id1==$house_id11) {
@@ -306,7 +275,6 @@ $result = mysqli_query($con,$sql);
                                
                                <?php }
                            }//end
-
                                ?>
                                     <div class="single-property-gallery">
                                         <div class="item"><img src="assets/images/property/<?php echo $post['house_img1']; ?>" alt=""></div>
@@ -348,14 +316,11 @@ $result = mysqli_query($con,$sql);
                                                <ul class="amenities-list">
                                                 
                                                 
-
                                                 <li> Water Source - <?php echo $post['water_source']; ?></li>
                                                 
                                                 <li>Tiled - <?php // door is tiles
                                                 echo $post['door']; ?></li>
-
                                                 <li> Fenced - <?php echo $post['fence']; ?></li>
-
                                                 <li><?php echo $post['kitchen']; ?> Kitchen</li>
                                                
                                                 <li><?php echo $post['bathroom']; ?> Bathroom  <!--Bathroom containig shower or tap--></li><br>
@@ -363,7 +328,6 @@ $result = mysqli_query($con,$sql);
                                                 
                                                 
                                                 <li>Toilet- <?php // amenities is type of toilet
-
                                                 echo $post['amenities']; ?><!--water closet, pit latrine--></li>
                                                 <?php
                                                 /*
@@ -371,8 +335,6 @@ $result = mysqli_query($con,$sql);
                                                   $date_time=date('Y-m-d h:i:s a', time());
                                                 echo $date_time;
                                                 //exit();
-
-
                                                  $query = mysqli_query($con,"SELECT * FROM payment_history WHERE user_email = '$email2'"); 
         $row = mysqli_fetch_assoc($query);
         $date_paid = $row['date_paid'];
@@ -387,7 +349,6 @@ $result = mysqli_query($con,$sql);
         $agent_pno= $row['agent_pno'];
         $reference= $row['reference'];
         $payment_expire= $row['payment_expire'];
-
          $datetoday=strtotime($payment_expire);
            $current_time= time();
          $date= date('Y-m-d h:i:s', $payment_expire+20*60);
@@ -402,9 +363,7 @@ $result = mysqli_query($con,$sql);
         echo "not";
     }
        */
-
         //$datetoday=strtotime($date_paid+20*60);
-
                                                 //$datetoday = date('Y-m-d h:i:s', time() );
                                                 //$date=date('Y-m-d H:i:s', strtotime('tomorrow'));
                                                  //$datetoday=strtotime($payment_expire);
@@ -433,7 +392,6 @@ $result = mysqli_query($con,$sql);
                                             </div>
                                         </div>
                                     </div>-->
-
                                     <!-- Breakdown of House Rent begin--->
                                     <h4>Breakdown of House Rent</h4>
                                     <hr>
@@ -457,46 +415,34 @@ $result = mysqli_query($con,$sql);
                                                 
                                             </span>
                                            <span style="text-align: center; font-weight:bolder; color: red">N.B : <a href="<?php echo ucwords($post['youtube_link']); ?>" >Click me to watch video</a> </span>
-
                                     <!-- Breakdown of House Rent end--->
                                         <br>
-
                                         <br>
-
                                
                                        
                                               <div>
                                                  <?php 
-
                                                 
-
                                                  if ($post['multiple_room']=='yes') { 
                                 // code...
                             
                                 if ($post['how_many_multiple_room']!=0) {?>
-
-
                                     <!-- begin of isset -->
                               <?php if(isset($_SESSION['user_id']) ) { ?>
                                     <a  class="btn btn-primary btn-flat click" style="text-align: center; color: white;" onclick="alreadyloginIn()" ><i class="fa fa-calendar"></i> Click to book an Appointment with the Agent</a>
                                  <script src="https://js.paystack.co/v1/inline.js"></script>
-
                                <?php  }else{ ?>
                                     <a  class="btn btn-primary btn-flat " style="text-align: center; color: white;" onclick="notalreadyloginIn()" ><i class="fa fa-calendar"></i> Click to book an Appointment with the Agent</a>
                                 <?php }
                                 // end of isset
-
-
                            }else{ ?>
                                 <a style="pointer-events: none;" class="btn btn-primary btn-flat " style="text-align: center; color: white;"  ><i class="fa fa-calendar"></i> Click to book an Appointment with the Agent</a>
                                  
-
                           <?php }
                             
                         }//end of multiple room
                           //begin of not multiple room
                         elseif ($post['multiple_room']=='no'){
-
                             if ($house_id1==$house_id11 || $status=='yes') {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -506,16 +452,13 @@ $result = mysqli_query($con,$sql);
                                  
                                 
                             <?php }else{?>
-
                                 <?php if(isset($_SESSION['user_id']) ) { ?>
                                     <a  class="btn btn-primary btn-flat click" style="text-align: center; color: white;" onclick="alreadyloginIn()" ><i class="fa fa-calendar"></i> Click to book an Appointment with the Agent</a>
                                  <script src="https://js.paystack.co/v1/inline.js"></script>
-
                                <?php  }else{ ?>
                                     <a  class="btn btn-primary btn-flat " style="text-align: center; color: white;" onclick="notalreadyloginIn()" ><i class="fa fa-calendar"></i> Click to book an Appointment with the Agent</a>
                                 <?php }
                                   
-
                                
                                
       
@@ -523,17 +466,9 @@ $result = mysqli_query($con,$sql);
                                                  
                                  
                                   }//end
-
                            }// end
-
-
-
-
                             ?>
-
-
            
-
                             </div>
                                     <!-- end of booking an apartment--->
                                 </div>
@@ -543,7 +478,6 @@ $result = mysqli_query($con,$sql);
                     endforeach;
                         ?>
                         
-
                     </div>
                 </div> <!--display house end-->
                 
@@ -556,14 +490,10 @@ $result = mysqli_query($con,$sql);
                     
                         <!--Property Search start-->
                         <div class="property-search sidebar-property-search">
-
                         <form action="search.php" method="POST" >
-
                             
-
                             <div class="form-group">
                    
-
                     
                    <select class="form-control" name="location" required>
                                     <option value="" required>Location</option>
@@ -573,14 +503,12 @@ $result = mysqli_query($con,$sql);
                                 </select>
                     
                 </div>
-
                            <!-- <div>
                                 <select class="nice-select">
                                     <option>For Rent</option>
                                     <option>For Sale</option>
                                 </select>
                             </div>-->
-
                             <div class="form-group">
                                 <select class="form-control" name="type" required>
                                     <option value="" required>Type</option>
@@ -593,7 +521,6 @@ $result = mysqli_query($con,$sql);
                                    
                                 </select>
                             </div>
-
                            <!---- <div class="form-group">
                                 <select class="form-control" name="price" required>
                                     <option value="" required>Price</option>
@@ -619,19 +546,14 @@ $result = mysqli_query($con,$sql);
                               ?>
                                 </select>
                             </div>
-
                           
-
                             <div>
                                 <div id="search-price-range"></div>
                             </div>--->
-
                             <div class="form-group">
                                  <button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-search"></i> Search</button>
                             </div>
-
                         </form>
-
                         </div>
                         <!--Property Search end-->
                         
@@ -650,10 +572,8 @@ $result = mysqli_query($con,$sql);
                     $query = $con->query($sql);
                      if ($query->num_rows > 0) {
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       $house_label=$row2['house_label'];
                       $first_year_rent=$row2['first_year_rent'];
                      $location=$row2['location'];
@@ -664,18 +584,14 @@ $result = mysqli_query($con,$sql);
                       $status=$row2['status'];
                     $house_name2=str_replace(" ", "-", $house_name2);
                             ?>
-
                               <?php 
                      $query3 = mysqli_query($con,"SELECT * FROM bookings WHERE house_id='$house_id1'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $house_id11=$row3['house_id'];
-
                     ?>
                             <div class="sidebar-property">
                                 <div class="image">
-
                                      <?php 
-
                             if ($house_id1==$house_id11) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -696,12 +612,9 @@ $result = mysqli_query($con,$sql);
                                 </span>
                                 </a> 
                                <?php }
-
-
                                         if(!empty($house_label)){?>
                                 <span class="type"><?php echo $house_label?></span>
                             <?php }else{
-
                             }
                                 ?>
                                     <a href="details.php?id=<?php echo $id; ?>"><img src='assets/images/property/<?php echo $house_img1; ?>' alt=""></a>
@@ -736,10 +649,8 @@ $result = mysqli_query($con,$sql);
                     $query = $con->query($sql);
                     if ($query->num_rows > 0) {
                     while($row2 = $query->fetch_assoc()){
-
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
-
                       $house_label=$row2['house_label'];
                       $first_year_rent=$row2['first_year_rent'];
                      $location=$row2['location'];
@@ -750,17 +661,14 @@ $result = mysqli_query($con,$sql);
                       $house_id2=$row2['house_id'];
                     $house_name2=str_replace(" ", "-", $house_name2);
                             ?>
-
                                    <?php 
                      $query3 = mysqli_query($con,"SELECT * FROM bookings WHERE house_id='$house_id2'"); 
                       $row3 = mysqli_fetch_assoc($query3);
                      $house_id22=$row3['house_id'];
-
                     ?>
                               <div class="sidebar-property">
                                 <div class="image">
                                            <?php 
-
                             if ($house_id2==$house_id22) {
                                 //put an image that we say house booked already check bak later
                                       //OR
@@ -810,7 +718,6 @@ $result = mysqli_query($con,$sql);
                       $row = mysqli_fetch_assoc($query2);
                       $_SESSION['amount']=$row['amount'];
                       $amount2=$_SESSION['amount'];
-
                     ?>
                     <!--Sidebar start-->
                     <div class="sidebar">
@@ -839,24 +746,18 @@ $result = mysqli_query($con,$sql);
         </div>
     </div>
     <!--New property section end-->
-
     <!--whatapp chat icon-->
    
       <span class="sticky_whatsapp" style=" background-color: rgba(200, 200, 200, 0.6); border-radius: 20px; text-align: center;padding: 5px; "><img src="whatsapp2.png" height="20" width="20" style=""> <a href="https://wa.me/+2348160852570?text=Welcome+to+Housemadeeasy+Customer+Care,+Drop+your+Complain+here+and+we+would+respond+to+them+as+soon+as+Possible..." style="color: #183153"><b>Need help?</b></a> </span>
       <!--whatapp chat icon end-->
-
     <?php  include ('inc/footer.inc.php');   ?>
-
     <script type="text/javascript">
         function notalreadyloginIn(){
-
 alert('Login/Register first before you can book an appointment with the agent ...');
                                          window.location.href='../login.php';
          }
     </script>
-
 <script type="text/javascript">
-
     window.addEventListener('load', function(){
       });
     function alreadyloginIn(){
@@ -865,7 +766,6 @@ alert('Login/Register first before you can book an appointment with the agent ..
   text: "You have clicked to book an appointment with the agent of this house.You would be paying an unredeemable sum of one thousand five hundred naira(#1,500) after clicking the I Agree icon. After Paying, you would be giving a time(tomorrow) to come and check the house. Note that you must make yourself available this time that you have picked otherwise, you may have to pay another (#1,500) to book another appointment. After picking the time, call the agent, introduce yourself and inform him that you will be coming by (the time you chose) to check the house.",
   buttons: [true, "I Agree!"],
   dangerMode: true,
-
 })
 .then((willDelete) => {
   if (willDelete) {
@@ -874,16 +774,10 @@ alert('Login/Register first before you can book an appointment with the agent ..
     //swal("Your imaginary file is safe!");
   }
 });
-
     
-
     }
 </script> 
-
     <script>
-
-
-
 function payWithPaystack(e) {
   let handler = PaystackPop.setup({
     key: 'pk_test_ac9ec15d0168a4feddced75826c3ea5488056c46', // Replace with your public key 
