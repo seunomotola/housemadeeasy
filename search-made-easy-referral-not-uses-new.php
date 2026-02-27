@@ -989,7 +989,7 @@
                     
                     <div class="property-footer">
                         <div class="property-price">
-                            #<?php echo number_format($first_year_rent); ?>
+                            #<?php echo number_format((float)$first_year_rent); ?>
                             <span>/year</span>
                         </div>
                         <a href="details.php?id=<?php echo $id; ?>" class="btn-view">
