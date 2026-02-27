@@ -35,6 +35,7 @@ include ("../inc/session.php");
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <!-- Google API -->
     <script src="https://apis.google.com/js/api.js"></script>
+<script src="https://kit.fontawesome.com/0abef3ba3e.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <!-- You already have this, verify the file exists -->
 <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
@@ -661,7 +662,7 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                           <!-- Google Authentication Button -->
                           <div id="google-auth-section" class="mb-3">
                               <button type="button" id="google-auth-btn" class="btn btn-danger" style="margin-bottom: 10px;" onclick="startGoogleOAuth()">
-                                  <i class="fab fa-google"></i> Connect to Google
+                                 <i class="fa-brands fa-google"></i> Connect to Google
                               </button>
                               <div id="auth-status" class="alert alert-info" style="display: none; margin-bottom: 10px;"></div>
                           </div>
