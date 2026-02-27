@@ -159,7 +159,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
         }
 
         .logo img {
-            height: 50px;
+            height: 80px;
             width: auto;
             border-radius: 8px;
         }
@@ -802,7 +802,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
         <div class="nav-container">
             <div class="logo">
                 <img src="assets/images/HouseMadeEasylogo.jpg" alt="House Made Easy Logo">
-                <span>House Made Easy</span>
+                <!-- <span>House Made Easy</span> -->
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>

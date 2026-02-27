@@ -52,20 +52,6 @@ $referral_id = $referral['referral_id'];
 include 'search-made-easy-referral-uses.php'; 
 }
 }else{
-    // Fetch the referral from the database
-$stmt = $con->prepare("SELECT * FROM referrals WHERE referral_code = ?");
-$stmt->bind_param('s', $referral_code);
-$stmt->execute();
-$result = $stmt->get_result();
-$referral = $result->fetch_assoc(); 
-     // Destroy the referral code cookie after it has been used
-    // setcookie('referral_code', '', time() - 3600, '/'); // Expire the cookie
-     $expires_at = $referral['expires_at'];
-    if (new DateTime() > new DateTime($expires_at)) {
-        //echo "Referral link has expired.";
-        include 'referral-link-expired.php';
-        exit();
-    }
-     setcookie('referral_code', '', time() - 3600, "/");
+    // No referral code, just show search page
 include 'search-made-easy-referral-not-uses.php';
 }
