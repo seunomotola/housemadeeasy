@@ -7,12 +7,12 @@ ini_set('log_errors', 1);
 include ("../inc/connect.inc.php");
 include ("../inc/session.php"); 
 ?> 
- 
+
  <!doctype html>
 <html class="no-js" lang="zxx">
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:25:19 GMT -->
 <head>
-   
+    
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +29,7 @@ include ("../inc/session.php");
     <link rel="stylesheet" href="assets/css/helper.css">
     <link rel="stylesheet" href="assets/css/style.css"> 
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">   
- 
+  
       
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -39,10 +39,206 @@ include ("../inc/session.php");
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <!-- You already have this, verify the file exists -->
 <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+<!-- Custom CSS for Wow Factor UI -->
+<style>
+    /* Gradient backgrounds */
+    .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .gradient-bg-2 {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    /* Card styles */
+    .upload-card {
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        padding: 40px;
+        margin-bottom: 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .upload-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    }
+    
+    /* Form field styles */
+    .form-control {
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 12px 16px;
+        transition: all 0.3s ease;
+        font-size: 14px;
+    }
+    
+    .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        transform: translateY(-1px);
+    }
+    
+    /* Button styles */
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 10px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-danger {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        border: none;
+        border-radius: 10px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+    }
+    
+    .btn-danger:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+    }
+    
+    /* Progress bar */
+    .progress {
+        height: 8px;
+        border-radius: 4px;
+        background: #e0e0e0;
+        overflow: hidden;
+    }
+    
+    .progress-bar {
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        transition: width 0.3s ease;
+    }
+    
+    /* Alert styles */
+    .alert {
+        border-radius: 10px;
+        border: none;
+        padding: 15px 20px;
+        font-weight: 500;
+    }
+    
+    .alert-success {
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        color: #006622;
+    }
+    
+    .alert-info {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        color: #003366;
+    }
+    
+    .alert-danger {
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        color: #660000;
+    }
+    
+    /* Image preview */
+    .image-preview {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-top: 10px;
+        border: 2px dashed #e0e0e0;
+        transition: all 0.3s ease;
+    }
+    
+    .image-preview:hover {
+        border-color: #667eea;
+        transform: scale(1.02);
+    }
+    
+    /* Section headers */
+    .section-header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 30px 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .section-header h2 {
+        font-weight: 700;
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .section-header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .upload-card {
+            padding: 20px;
+        }
+        
+        .section-header h2 {
+            font-size: 2rem;
+        }
+        
+        .section-header p {
+            font-size: 1rem;
+        }
+    }
+    
+    /* Animation effects */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    /* Loading animation */
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255,255,255,.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 0.8s linear infinite;
+        margin-right: 10px;
+    }
+</style>
 </head>
 <body>
 <div id="main-wrapper">
-   
+    
     <!--Header section start-->
     <header class="header header-sticky"> 
         <div class="header-bottom menu-center">
@@ -62,27 +258,27 @@ include ("../inc/session.php");
                         <nav class="main-menu">
                             <ul>
                                 <li ><a href="my-account.php" style="text-decoration: none;">Home</a> 
-                                   
+                                    
                                 </li>
-                                  
+                                   
                                 <li class="active"><a href="upload-house.php" style="text-decoration: none;">Upload House</a>
-                                   
+                                    
                                 </li>
-                               
-                               
+                                
+                                
                                 <?php
         if (isset($_SESSION['agentaffilate_id'])){?> 
                                   <li ><a href="my-account.php" style="text-decoration: none;">Dashboard</a> </li> 
                                 <li ><a href="logout.php" style="text-decoration: none;">logout</a>   </li>  
                                   <?php 
-                                   
-                                   }else{?>
-                                              <li ><a href="login.php" style="text-decoration: none;">Login</a> </li>
+                                    
+                                    }else{?>
+                                               <li ><a href="login.php" style="text-decoration: none;">Login</a> </li>
                                   <li ><a href="register.php" style="text-decoration: none;">Register</a>   </li>  
                                     <?php } ?>
-                               
-                                  
-                                    
+                                
+                                   
+                                     
                                 
                             </ul> 
                         </nav>
@@ -99,7 +295,7 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                    <div class="col mr-sm-50 mr-xs-50">
                         <div class="header-user">
                             <img class="img-fluid img-circle user-toggle" style="height:50px;" src="<?php echo $prof?>" alt="Image">  
-                           
+                            
                         </div>
                     </div>
                     <!--User end-->
@@ -133,8 +329,8 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
         </div>
     </div>
     <!--Page Banner Section end-->
+    
    
-  
  
  <!-- Upload House -->
 <!--Add Properties section start-->
@@ -143,451 +339,423 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
             <div class="row">
                 <div class="add-property-wrap col">
                     
-               
-                    <p style="text-align:center; color: red; font-weight: bolder; background-color: whitesmoke; padding: 15px;"> Upload the Details of the House </p>
+                
+                    <div class="section-header fade-in-up">
+                        <h2>🏠 Upload House Details</h2>
+                        <p>Fill in the details below to showcase your property to potential tenants</p>
+                    </div>
+                    
                     <div class="add-property-form tab-content">
-                       
-                              
-                                <form method="POST" action="upload-house.php" id="upload-house-form" class="form-horizontal" enctype="multipart/form-data">
-                                    <div class="row">
-                                         <div class="col-12 mb-30"><!-- col-md-6 Begin -->
-                        <label class=" control-label"> Enter your Whatapp Number</label> 
-                          
-                          <input name="whatapp" type="text" class="form-control" placeholder="Enter your active Whatapp Number" required>
-                          
-                      </div>
-                                          <div class="col-12 mb-30"> 
-                                            <label for="property_address">House Type</label> 
-                                             <select name="house_type" id="class_school" required class="form-control" ><!-- form-control Begin -->
-                               
-                               <option selected disabled> Select House Type </option>
-                               <option value="Single Room">Single Room</option>
-                               <option value="Self contain">Self contain</option>
-  
-                               <option value="1 Bedroom Flat">1 Bedroom Flat</option>
-                               
-                               
-                              <option value="2 Bedroom Flat">2 Bedroom Flat</option>
-                              <option value="3 Bedroom Flat">3 Bedroom Flat</option>
-                              <option value="4 Bedroom Flat">4 Bedroom Flat</option>
-                               
-                               
-                          </select><!-- form-control Finish -->
-                                        </div>
-                                        <div class="col-md-4 col-12 mb-30">
-                                            <label for="property_title">House Name</label>
-                                            <select id="subject" name="house_name" class="form-control" required>
-                                <option value="">Select House Name</option>
-                            </select>
-                                          
-                                        </div>
-                                       
-                       
-                       
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                          <label class="control-label"> Location </label>
-                           <select name="location" class="form-control"><!-- form-control Begin -->
-                              
-                              <option selected disabled> Select a Location </option>
-                              
-                             <option value="Sagamu">Sagamu</option>
-                             <option value="Ago-Iwoye">Ago-Iwoye</option>
-                             <option value="Ibogun">Ibogun</option>
-                             <option value="Ayetoro">Ayetoro</option>
-                              
-                          </select><!-- form-control Finish -->
-                          
-                      </div><!-- col-md-6 Finish -->
-                      
-                       
-                    
-                <div class="col-md-4 col-12 mb-30">
-                                            <label for="property_price">House Location</label>
-                                             <input name="house_location" required type="text" placeholder="Where is the house located at in Sagamu ?" class="form-control" >
-                                        </div>
-                                 
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                      <label class=" control-label"> House Image 1 </label> 
-                       
-                          <input name="house_img1" type="file" class="form-control" required>
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                     
-                     
-                     
                         
-                       
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                         <label class=" control-label"> House Image 2 </label> 
-                          
-                          <input name="house_img2" type="file" class="form-control" required>
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                     
-                     
-                    <div class="col-md-4 col-12 mb-30"><!-- form-group Begin -->
-                         
-                      <label class="control-label"> House Image 3 </label> 
-                      
-                         <input name="house_img3" type="file" class="form-control form-height-custom" required>
-  
-                    </div><!-- form-group Finish -->
-                      <div class="col-md-4 col-12 mb-30"><!-- form-group Begin -->
-                         
-                      <label class="control-label"> House Image 4 </label> 
-                      
-                          <input name="house_img4" type="file" class="form-control form-height-custom" required>
-      
-                    </div><!-- form-group Finish -->
+                               
+                                 <form method="POST" action="upload-house.php" id="upload-house-form" class="form-horizontal" enctype="multipart/form-data">
+                                     <div class="row">
+                                          <div class="col-12 mb-30">
+                        <label class="control-label">Enter your WhatsApp Number</label> 
+                           
+                           <input name="whatapp" type="text" class="form-control" placeholder="Enter your active WhatsApp Number" required>
+                           
+                       </div>
+                                           <div class="col-12 mb-30"> 
+                                             <label for="property_address">House Type</label> 
+                                              <select name="house_type" id="class_school" required class="form-control" >
+                                
+                                <option selected disabled> Select House Type </option>
+                                <option value="Single Room">Single Room</option>
+                                <option value="Self contain">Self contain</option>
    
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                        <label > Type of Toilet </label> 
-                          
-                           <select name="amenities" class="form-control"><!-- form-control Begin -->
-                              
-                              <option selected disabled> Choose an option </option>
-                              
-                             <option value="Water Closet">Water Closet</option>
-                              <option value="Pit latrine">Pit latrine</option>
-                              
-                              
-                          </select><!-- form-control Finish -->
-                          
-                      </div><!-- col-md-6 Finish -->
-  
-                       
+                                <option value="1 Bedroom Flat">1 Bedroom Flat</option>
+                                
+                                
+                               <option value="2 Bedroom Flat">2 Bedroom Flat</option>
+                               <option value="3 Bedroom Flat">3 Bedroom Flat</option>
+                               <option value="4 Bedroom Flat">4 Bedroom Flat</option>
+                                
+                                
+                           </select>
+                                         </div>
+                                         <div class="col-md-4 col-12 mb-30">
+                                             <label for="property_title">House Name</label>
+                                             <select id="subject" name="house_name" class="form-control" required>
+                                 <option value="">Select House Name</option>
+                             </select>
+                                           
+                                         </div>
+                                        
                         
                         
-                        
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                        <label class=" control-label"> House Label </label> 
-                          
-                          <select name="house_label" class="form-control"><!-- form-control Begin -->
-                              
-                              <option selected disabled> Select a Label Product </option>
-                              
-                             <option value="Hot">Hot</option>
-                             <option value="New">New</option>
-                            <option value="Old">Old</option>
-                              
-                          </select><!-- form-control Finish -->
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                     
-                        
-                        
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                            
-                          <label class=" control-label"> Distance to school</label> 
-                           <select name="distance" class="form-control"><!-- form-control Begin -->
-                              
-                              <option selected disabled> Choose an option </option>
-                              
-                             <option value="Treakable">Treakable</option>
-                             <option value="Not Treakable">Not Treakable</option>
-                              
-                              
-                          </select><!-- form-control Finish -->
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                        
-                        
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                        <label class=" control-label"> How many kitchen does the house has </label> 
-                          
-                          <input name="kitchen" type="text" class="form-control" placeholder="how many kitchen is in there" required>
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                     
-                        
-                        
-                         
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                        <label class="control-label"> How many bathroom does the house has </label>
-                          
-                          <input name="bathroom" type="text" class="form-control" placeholder="how many bathroom does the house has" required>
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                        
-                        
-                         
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                            
-                           <label class=" control-label"> Is the house Tiled </label> 
-                           <select name="door" required class="form-control"><!-- form-control Begin -->
-                              
-                              <option selected disabled> Choose an option </option>
-                              
-                             <option value="yes">yes</option>
-                             <option value="no">no</option>
-                              
-                              
-                          </select><!-- form-control Finish -->
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                        
-                        
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                            
-                          <label class="control-label"> Is the house fence </label> 
-                          <select name="fence" required class="form-control"><!-- form-control Begin -->
-                              
-                              <option selected disabled> Choose an option </option>
-                              
-                             <option value="yes">yes</option>
-                             <option value="no">no</option>
-                              
-                              
-                          </select><!-- form-control Finish -->
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                     
-                        
-                        
-                    
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                            
-                           <label class=" control-label"> Electricity</label> 
-                          <select name="electricity" required class="form-control"><!-- form-control Begin -->
-                              
-                              <option selected disabled> Choose an option </option>
-                              
-                             <option value="Prepaid">Prepaid</option>
-                             <option value="Postpaid">Postpaid</option>
-                              
-                              
-                          </select><!-- form-control Finish -->
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                    
-                    
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                            
-                              <label class=" control-label"> Is the house Gated </label> 
-                          <select name="gated" required class="form-control"><!-- form-control Begin -->
-                              
-                              <option selected disabled> Choose an option </option>
-                              
-                             <option value="Gated">Gated</option>
-                             <option value="Not Gated">Not Gated</option>
-                              
-                              
-                          </select><!-- form-control Finish -->
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                     
-                    
-                        
-                       
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                            
-                          <label class=" control-label"> Gender Required</label> 
-                          <select name="gender" required class="form-control"><!-- form-control Begin -->
-                              
-                              <option selected disabled> Choose an option </option>
-                              
-                             <option value="All Gender">All Gender</option>
-                             <option value="Male">Male</option>
-                             <option value="Female">Female</option>
-                              
-                              
-                          </select><!-- form-control Finish -->
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                    
-                        
-                       
-                         
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                            
-                           <label class=" control-label"> Is Roommate Allowed</label> 
-                          <select name="roommate" required class="form-control"><!-- form-control Begin -->
-                              
-                              <option selected disabled> Choose an option </option>
-                              
-                              <option value="Allowed">Allowed</option>
-                              <option value="Not Allowed">Not Allowed</option>
-                              
-                              
-                          </select><!-- form-control Finish -->
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                        
-                        
-                         
-                      
-                      <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                            
-                         <label class=" control-label"> Water-Source </label> 
-                          <select name="water_source" class="form-control" required><!-- form-control Begin -->
-                              
-                              <option selected disabled> Choose an option </option>
-                              
-                             <option value="Running Water">Running Water</option>
-                             <option value="Well">Well</option>
-                             <option value="Running Water & Well">Running Water & Well</option>
-                              
-                              
-                          </select><!-- form-control Finish -->
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                    
-                       
-                       
-                       
-                       <!--  <div class="col-md-4 col-12 mb-30">
-                            <label class=" control-label">Total Package for First Year Rent </label> 
-                          <input name="first" type="text" class="form-control" placeholder="Enter total package for the first year" required>
-                          
-                      </div> -->
-                      <!-- col-md-6 Finish --> 
-                       
-                     
-                    
-                        
-                       
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                        <label class=" control-label"> House Rent </label> 
-                          
-                          <input name="house_rent" required placeholder="Enter the house rent" type="text" class="form-control" required>
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                   
-                      
-                        
-                       
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                        <label class=" control-label"> Agreement & Commission </label> 
-                          
-                          <input name="agreement" placeholder="Enter the Agreement & Comission" type="text" class="form-control" >
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                      
-                        
-                       
-                       
-                       
-                       <!--  <div class="col-md-4 col-12 mb-30">
-                        <label class="control-label"> Agent Fees </label> 
-                          
-                          <input name="agent_fees" type="text" class="form-control" required>
-                          
-                      </div> -->
-                       
-                     
-                    
-                        
-                       
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                        <label class=" control-label"> Nepa bills </label>
-                          
-                          <input name="nepa" type="text" class="form-control" placeholder="Enter the Nepa bills">
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                      
-                        
-                       
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                        <label class=" control-label"> Cleaning Fees </label> 
-                          
-                          <input name="clean" type="text" class="form-control" placeholder="Enter the Cleaning Fees">
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                      
-                        
-                       
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                        <label class=" control-label"> Damage Fees </label> 
-                          
-                          <input name="damage" type="text" class="form-control" placeholder="Enter the Damage Fees">
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                      
-                        
-                       
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                         <label class=" control-label"> Security Fees </label>
-                          
-                          <input name="security" type="text" class="form-control" placeholder="Enter the Security Fees">
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                      
-                        
-                       
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                        <label class=" control-label"> Second Year Rent </label> 
-                          
-                          <input name="second" type="text" class="form-control" placeholder="Enter the Subsquent Year Rent" required>
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                        
-                        
-                       
                        
                        <div class="col-md-4 col-12 mb-30">
+                           <label class="control-label">Location</label>
+                            <select name="location" class="form-control">
+                               
+                               <option selected disabled> Select a Location </option>
+                               
+                              <option value="Sagamu">Sagamu</option>
+                              <option value="Ago-Iwoye">Ago-Iwoye</option>
+                              <option value="Ibogun">Ibogun</option>
+                              <option value="Ayetoro">Ayetoro</option>
+                               
+                           </select>
+                           
+                       </div>
+                       
+                        
+                     
+                 <div class="col-md-4 col-12 mb-30">
+                                             <label for="property_price">House Location</label>
+                                              <input name="house_location" required type="text" placeholder="Where is the house located at in Sagamu ?" class="form-control" >
+                                         </div>
+                                 
+                        <div class="col-md-4 col-12 mb-30">
+                       <label class="control-label">House Image 1</label> 
+                          
+                           <input name="house_img1" type="file" class="form-control" required onchange="previewImage(this, 'preview1')">
+                           <img id="preview1" class="image-preview" src="" alt="Preview" style="display: none;">
+                           
+                       </div>
+                        
+                      
+                      
+                      
+                        
+                        
+                       
+                       <div class="col-md-4 col-12 mb-30">
+                          <label class="control-label">House Image 2</label> 
+                           
+                           <input name="house_img2" type="file" class="form-control" required onchange="previewImage(this, 'preview2')">
+                           <img id="preview2" class="image-preview" src="" alt="Preview" style="display: none;">
+                           
+                       </div>
+                        
+                      
+                      
+                     <div class="col-md-4 col-12 mb-30">
+                         
+                       <label class="control-label">House Image 3</label> 
+                       
+                          <input name="house_img3" type="file" class="form-control form-height-custom" required onchange="previewImage(this, 'preview3')">
+                          <img id="preview3" class="image-preview" src="" alt="Preview" style="display: none;">
+   
+                     </div>
+                       <div class="col-md-4 col-12 mb-30">
+                         
+                       <label class="control-label">House Image 4</label> 
+                       
+                           <input name="house_img4" type="file" class="form-control form-height-custom" required onchange="previewImage(this, 'preview4')">
+                           <img id="preview4" class="image-preview" src="" alt="Preview" style="display: none;">
+       
+                     </div>
+    
+                       
+                       <div class="col-md-4 col-12 mb-30">
+                         <label>Type of Toilet</label> 
+                           
+                            <select name="amenities" class="form-control">
+                               
+                               <option selected disabled> Choose an option </option>
+                               
+                              <option value="Water Closet">Water Closet</option>
+                               <option value="Pit latrine">Pit latrine</option>
+                               
+                               
+                           </select>
+                           
+                       </div>
+   
+                        
+                        
+                        
+                        
+                       <div class="col-md-4 col-12 mb-30">
+                         <label class="control-label">House Label</label> 
+                           
+                           <select name="house_label" class="form-control">
+                               
+                               <option selected disabled> Select a Label Product </option>
+                               
+                              <option value="Hot">Hot</option>
+                              <option value="New">New</option>
+                             <option value="Old">Old</option>
+                               
+                           </select>
+                           
+                       </div>
+                        
+                      
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                             
+                           <label class="control-label">Distance to school</label> 
+                            <select name="distance" class="form-control">
+                               
+                               <option selected disabled> Choose an option </option>
+                               
+                              <option value="Treakable">Treakable</option>
+                              <option value="Not Treakable">Not Treakable</option>
+                               
+                               
+                           </select>
+                           
+                       </div>
+                        
+                     
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                         <label class="control-label">How many kitchen does the house has</label> 
+                           
+                           <input name="kitchen" type="text" class="form-control" placeholder="how many kitchen is in there" required>
+                           
+                       </div>
+                        
+                      
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                         <label class="control-label">How many bathroom does the house has</label>
+                           
+                           <input name="bathroom" type="text" class="form-control" placeholder="how many bathroom does the house has" required>
+                           
+                       </div>
+                        
+                     
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                             
+                            <label class="control-label">Is the house Tiled</label> 
+                            <select name="door" required class="form-control">
+                               
+                               <option selected disabled> Choose an option </option>
+                               
+                              <option value="yes">yes</option>
+                              <option value="no">no</option>
+                               
+                               
+                           </select>
+                           
+                       </div>
+                        
+                     
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                             
+                           <label class="control-label">Is the house fence</label> 
+                           <select name="fence" required class="form-control">
+                               
+                               <option selected disabled> Choose an option </option>
+                               
+                              <option value="yes">yes</option>
+                              <option value="no">no</option>
+                               
+                               
+                           </select>
+                           
+                       </div>
+                        
+                      
+                        
+                        
+                     
+                       
+                       <div class="col-md-4 col-12 mb-30">
+                             
+                            <label class="control-label">Electricity</label> 
+                           <select name="electricity" required class="form-control">
+                               
+                               <option selected disabled> Choose an option </option>
+                               
+                              <option value="Prepaid">Prepaid</option>
+                              <option value="Postpaid">Postpaid</option>
+                               
+                               
+                           </select>
+                           
+                       </div>
+                        
+                     
+                     
+                     
+                       
+                       <div class="col-md-4 col-12 mb-30">
+                             
+                               <label class="control-label">Is the house Gated</label> 
+                           <select name="gated" required class="form-control">
+                               
+                               <option selected disabled> Choose an option </option>
+                               
+                              <option value="Gated">Gated</option>
+                              <option value="Not Gated">Not Gated</option>
+                               
+                               
+                           </select>
+                           
+                       </div>
+                        
+                      
+                     
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                             
+                           <label class="control-label">Gender Required</label> 
+                           <select name="gender" required class="form-control">
+                               
+                               <option selected disabled> Choose an option </option>
+                               
+                              <option value="All Gender">All Gender</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                               
+                               
+                           </select>
+                           
+                       </div>
+                        
+                     
+                     
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                             
+                            <label class="control-label">Is Roommate Allowed</label> 
+                           <select name="roommate" required class="form-control">
+                               
+                               <option selected disabled> Choose an option </option>
+                               
+                               <option value="Allowed">Allowed</option>
+                               <option value="Not Allowed">Not Allowed</option>
+                               
+                               
+                           </select>
+                           
+                       </div>
+                        
+                     
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                             
+                          <label class="control-label">Water-Source</label> 
+                           <select name="water_source" class="form-control" required>
+                               
+                               <option selected disabled> Choose an option </option>
+                               
+                              <option value="Running Water">Running Water</option>
+                              <option value="Well">Well</option>
+                              <option value="Running Water & Well">Running Water & Well</option>
+                               
+                               
+                           </select>
+                           
+                       </div>
+                        
+                     
+                     
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                         <label class="control-label">House Rent</label> 
+                           
+                           <input name="house_rent" required placeholder="Enter the house rent" type="text" class="form-control" required>
+                           
+                       </div>
+                        
+                    
+                       
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                         <label class="control-label">Agreement & Commission</label> 
+                           
+                           <input name="agreement" placeholder="Enter the Agreement & Comission" type="text" class="form-control" >
+                           
+                       </div>
+                        
+                     
+                       
+                        
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                         <label class="control-label">Nepa bills</label>
+                           
+                           <input name="nepa" type="text" class="form-control" placeholder="Enter the Nepa bills">
+                           
+                       </div>
+                        
+                     
+                       
+                        
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                         <label class="control-label">Cleaning Fees</label> 
+                           
+                           <input name="clean" type="text" class="form-control" placeholder="Enter the Cleaning Fees">
+                           
+                       </div>
+                        
+                     
+                       
+                        
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                         <label class="control-label">Damage Fees</label> 
+                           
+                           <input name="damage" type="text" class="form-control" placeholder="Enter the Damage Fees">
+                           
+                       </div>
+                        
+                     
+                       
+                        
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                          <label class="control-label">Security Fees</label>
+                           
+                           <input name="security" type="text" class="form-control" placeholder="Enter the Security Fees">
+                           
+                       </div>
+                        
+                     
+                       
+                        
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                         <label class="control-label">Second Year Rent</label> 
+                           
+                           <input name="second" type="text" class="form-control" placeholder="Enter the Subsquent Year Rent" required>
+                           
+                       </div>
+                        
+                     
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
     <label class="control-label">Is the house a Multiple Room</label>
     <select name="multiple_room" required class="form-control">
         <option selected disabled>Choose an option</option>
@@ -595,119 +763,96 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
         <option value="no">no</option>
     </select>
 </div>
-                       
-                     
-                    
                         
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30">
+                      
+                     
+                        
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
     <label class="control-label">How many Multiple Room</label>
     <input name="how_many_multiple_room" type="text" placeholder="How many Multiple room (in number)" class="form-control" required>
 </div>
-                       
-                    
-                    
                         
-                       
-                       
-                       <div class="col-md-4 col-12 mb-30"><!-- col-md-6 Begin -->
-                            
-                            <label class="control-label"> Does Landlord reside in the house </label> 
-                          <select name="landlord_reside" required class="form-control"><!-- form-control Begin -->
-                              
-                              <option selected disabled> Choose an option </option>
-                              
-                             <option value="yes">yes</option>
-                             <option value="no">no</option>
-                              
-                              
-                          </select><!-- form-control Finish -->
-                          
-                      </div><!-- col-md-6 Finish -->
-                       
-                    
-                        
-                        
-                       
-                       
-                       
-                      <!--  <div class="col-md-4 col-30">
-                           
-                          <label class=" control-label"> As the house being paid for  </label> 
-                           <select name="status" required class="form-control">
-                              
-                              <option selected disabled> Choose an option </option>
-                              
-                              <option value="no">no</option>
-                              
-                              
-                          </select>
-                          
-                      </div> --> 
-                       
-                    
-                        
-                        
-                       
-                       
-                       
                      
-                         
-                        <div class="col-md-4 col-12 mb-30"><!-- form-group Begin -->
+                     
                         
-                      <label class=" control-label"> House Video Upload  </label> 
-                      
-                      <div id="video-upload-section">
-                          <!-- Google Authentication Button -->
-                          <div id="google-auth-section" class="mb-3">
-                              <button type="button" id="google-auth-btn" class="btn btn-danger" style="margin-bottom: 10px;" onclick="startGoogleOAuth()">
-                                 <i class="fa-brands fa-google"></i> Connect to Google
-                              </button>
-                              <div id="auth-status" class="alert alert-info" style="display: none; margin-bottom: 10px;"></div>
-                          </div>
-                          
-                          <input type="file" id="house_video" name="house_video" accept="video/*" class="form-control" style="margin-bottom: 10px;" disabled>
-                          <button type="button" id="upload-to-youtube" class="btn btn-secondary" style="margin-bottom: 10px; display: none;">Upload to YouTube</button>
-                          <div id="upload-progress" style="display: none;">
-                              <div class="progress" style="margin-bottom: 10px;">
-                                  <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%"></div>
-                              </div>
-                              <span id="upload-status">Uploading...</span>
-                          </div>
-                          <div id="youtube-link-section" style="display: block;">
-                              <input type="text" id="youtube_link" name="youtube" class="form-control" placeholder="Paste the video link for this house " readonly>
-                          </div>
-                      </div>
+                        
+                        
+                        <div class="col-md-4 col-12 mb-30">
+                             
+                             <label class="control-label">Does Landlord reside in the house</label> 
+                           <select name="landlord_reside" required class="form-control">
+                               
+                               <option selected disabled> Choose an option </option>
+                               
+                              <option value="yes">yes</option>
+                              <option value="no">no</option>
+                               
+                               
+                           </select>
                            
-                       
+                       </div>
                         
-                    </div>                  
+                     
                         
-          
-                       
                         
-                      <div class="col-md-4 col-12 mb-30">
-                        <label class=" control-label"> House  Description </label> 
-                          
-                          <textarea name="house_desc"  cols="100" rows="6" placeholder="Describe a little bit about the house" class="form-control"></textarea>
-                          
-                      </div>
+                        
+                        
+                       <div class="col-md-4 col-12 mb-30">
+                         
+                       <label class="control-label">House Video Upload</label> 
                        
-                    
-                                        
-                                        
-                                        <div class="nav d-flex justify-content-end col-12 mb-30 pl-15 pr-15">
-                                             
-                                             <input name="submit" id="hidebutton" value="Upload House" type="submit" class="btn btn-primary form-control"> 
-                                             
-                                        </div>
-                                          
-                                      
-                                </form>
+                       <div id="video-upload-section">
+                           <!-- Google Authentication Button -->
+                           <div id="google-auth-section" class="mb-3">
+                               <button type="button" id="google-auth-btn" class="btn btn-danger" style="margin-bottom: 10px;" onclick="startGoogleOAuth()">
+                                  <i class="fa-brands fa-google"></i> Connect to Google
+                               </button>
+                               <div id="auth-status" class="alert alert-info" style="display: none; margin-bottom: 10px;"></div>
+                           </div>
+                           
+                           <input type="file" id="house_video" name="house_video" accept="video/*" class="form-control" style="margin-bottom: 10px;" disabled>
+                           <button type="button" id="upload-to-youtube" class="btn btn-secondary" style="margin-bottom: 10px; display: none;">Upload to YouTube</button>
+                           <div id="upload-progress" style="display: none;">
+                               <div class="progress" style="margin-bottom: 10px;">
+                                   <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                               </div>
+                               <span id="upload-status">Uploading...</span>
+                           </div>
+                           <div id="youtube-link-section" style="display: block;">
+                               <input type="text" id="youtube_link" name="youtube" class="form-control" placeholder="Paste the video link for this house " readonly>
+                           </div>
+                       </div>
                             
-                    </div>
-                </div>
+                        
+                         
+                     </div>                  
+                        
+           
+                        
+                        
+                       <div class="col-md-4 col-12 mb-30">
+                         <label class="control-label">House Description</label> 
+                           
+                           <textarea name="house_desc"  cols="100" rows="6" placeholder="Describe a little bit about the house" class="form-control"></textarea>
+                           
+                       </div>
+                        
+                     
+                                         
+                                         
+                                         <div class="nav d-flex justify-content-end col-12 mb-30 pl-15 pr-15">
+                                              
+                                              <input name="submit" id="hidebutton" value="Upload House" type="submit" class="btn btn-primary form-control"> 
+                                              
+                                         </div>
+                                       
+                                       
+                                 </form>
+                             
+                     </div>
+                 </div>
             </div>
         </div>
     </div>
@@ -717,6 +862,24 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/youtube-upload.js"></script>
 <script>
+    // Image preview function
+    function previewImage(input, previewId) {
+        const preview = document.getElementById(previewId);
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.src = '';
+            preview.style.display = 'none';
+        }
+    }
+    
     $(document).ready(function() {
         // Handle OAuth callback parameters
         const urlParams = new URLSearchParams(window.location.search);
@@ -769,6 +932,7 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
             // Redirect to Google OAuth
             window.location.href = googleAuthUrl;
         };
+        
         // Listen for changes on the "Is the house a Multiple Room" dropdown
         $('select[name="multiple_room"]').on('change', function() {
             var value = $(this).val(); // Get the selected value
@@ -781,6 +945,7 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                 howManyField.removeAttr('readonly'); // Make it editable again
             }
         });
+        
         // Video upload handling
         $('#house_video').on('change', function() {
             if (this.files.length > 0) {
@@ -791,6 +956,7 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                 $('#upload-progress').hide();
             }
         });
+        
         // YouTube upload handling
         $('#upload-to-youtube').on('click', function() {
             const videoFile = $('#house_video')[0].files[0];
@@ -798,30 +964,36 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
                 alert('Please select a video file first.');
                 return;
             }
+            
             // Check file size (100MB limit)
             const maxSize = 100 * 1024 * 1024; // 100MB
             if (videoFile.size > maxSize) {
                 alert('File too large. Maximum size is 100MB.');
                 return;
             }
+            
             // Check file type
             const allowedTypes = ['video/mp4', 'video/avi', 'video/mov', 'video/wmv', 'video/flv', 'video/webm'];
             if (!allowedTypes.includes(videoFile.type)) {
                 alert('Invalid file type. Please upload a video file.');
                 return;
             }
+            
             $('#upload-progress').show();
             $('#upload-to-youtube').prop('disabled', true);
             $('#upload-status').text('Preparing upload...');
+            
             // Create form data for video upload
             const formData = new FormData();
             formData.append('video', videoFile);
             formData.append('action', 'upload_to_youtube');
+            
             console.log('Uploading video:', {
                 name: videoFile.name,
                 size: videoFile.size,
                 type: videoFile.type
             });
+            
             // Upload video via AJAX
             $.ajax({
                 url: 'callback.php',
@@ -889,14 +1061,13 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
         });
     });
 </script>
-   
- 
-   
+    
+  
     <script type="text/javascript">
     
     $(document).ready(function() {
     // Show modal on button click
-   
+    
          // Function to update subjects based on class selection
     function updateSubjectOptions() {
         var classValue = $('#class_school').val();
@@ -948,9 +1119,9 @@ $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['pic
     });
     
    
-  
-});
  
+});
+  
 </script>
 <?php
 function val($data){
@@ -970,14 +1141,14 @@ $agent_lname= $row2['lname'];
 $agent_email = $row2['email'];   
 $agent_pno = $row2['pno'];
 $agentaffilate_id=$row2['agentaffilate_id'];
-         
+          
     }
     
     
     $location = $_POST['location'];
     $house_location = $_POST['house_location'];
     $house_type = $_POST['house_type'];
-   
+    
     // $agent_img = $_FILES['agent_img']['name'];
     
     $multiple_room = $_POST['multiple_room'];
@@ -1001,7 +1172,7 @@ $agentaffilate_id=$row2['agentaffilate_id'];
        $whatapp = $_POST['whatapp'];
         $second = $_POST['second'];
          $agreement = $_POST['agreement'];
-          
+           
          $nepa = $_POST['nepa'];
         $clean = $_POST['clean'];
          $damage = $_POST['damage'];
@@ -1120,12 +1291,12 @@ $house_img1 = $uploadedImages['house_img1'] ?? '';
 $house_img2 = $uploadedImages['house_img2'] ?? '';
 $house_img3 = $uploadedImages['house_img3'] ?? '';
 $house_img4 = $uploadedImages['house_img4'] ?? '';
-  
+    
     // $temp_name5 = $_FILES['agent_img']['tmp_name'];
     $house_id= bin2hex(random_bytes(4));
     $house_id_short= bin2hex(random_bytes(4));
      
-  
+ 
    //  $house_id_short= bin2hex(random_bytes(4));
     // short term features end
     
@@ -1137,69 +1308,69 @@ $house_img4 = $uploadedImages['house_img4'] ?? '';
      $run_product2 = mysqli_query($con,$insert_product2);
     
    if ($run_product1 && $run_product2) {
-       // Update YouTube video metadata if video was uploaded
-       if (!empty($youtube)) {
-           $accessToken = null;
-           if (isset($_SESSION['google_access_token'])) {
-               $accessToken = $_SESSION['google_access_token'];
-           } elseif (isset($_SESSION['agentaffilate_id'])) {
-               $tokens = getGoogleTokens($_SESSION['agentaffilate_id']);
-               if ($tokens && isTokenValid($tokens['google_token_expires_at'])) {
-                   $accessToken = $tokens['google_access_token'];
-               }
-           }
-           if ($accessToken) {
-               // Extract video_id from YouTube URL
-               $url = $youtube;
-               $query = [];
-               parse_str(parse_url($url, PHP_URL_QUERY), $query);
-               $video_id = $query['v'] ?? '';
-               if (!empty($video_id)) {
-                   // Construct SEO-friendly title
-                   $title = $house_label . ' ' . $house_type . ' in ' . $house_location . ', ' . $location . ' - ₦' . number_format($house_rent) . ' per year';
-                   // Construct detailed SEO-friendly description
-                   $description = "🏠 Discover this amazing " . $house_type . " located in " . $house_location . ", " . $location . ".\n\n";
-                   $description .= "📝 Description: " . $house_desc . "\n\n";
-                   $description .= "✨ Key Features:\n";
-                   $description .= "• Toilet Type: " . $amenities . "\n";
-                   $description .= "• Kitchen: " . $kitchen . " kitchen(s)\n";
-                   $description .= "• Bathroom: " . $bathroom . " bathroom(s)\n";
-                   $description .= "• Tiled: " . ($door == 'yes' ? 'Yes' : 'No') . "\n";
-                   $description .= "• Fenced: " . ($fence == 'yes' ? 'Yes' : 'No') . "\n";
-                   $description .= "• Electricity: " . $electricity . "\n";
-                   $description .= "• Gated: " . $gated . "\n";
-                   $description .= "• Gender Requirement: " . $gender . "\n";
-                   $description .= "• Roommate Allowed: " . $roommate . "\n";
-                   $description .= "• Water Source: " . $water_source . "\n";
-                   $description .= "• Landlord Resides: " . $landlord_reside . "\n";
-                   $description .= "• Distance to School: " . $distance . "\n";
-                   $description .= "• Multiple Rooms: " . $multiple_room;
-                   if ($multiple_room == 'yes') {
-                       $description .= " (" . $how_many_multiple_room . " rooms)";
-                   }
-                   $description .= "\n\n";
-                   $description .= "💰 Pricing Details:\n";
-                   $description .= "• Annual Rent: ₦" . number_format($house_rent) . "\n";
-                   $description .= "• Agreement & Commission: ₦" . number_format($agreement_new) . "\n";
-                   $description .= "• NEPA Bills: ₦" . number_format($nepa) . "\n";
-                   $description .= "• Cleaning Fees: ₦" . number_format($clean) . "\n";
-                   $description .= "• Damage Fees: ₦" . number_format($damage) . "\n";
-                   $description .= "• Security Fees: ₦" . number_format($security) . "\n";
-                   $description .= "• Second Year Rent: ₦" . number_format($second) . "\n\n";
-                   $description .= "📞 Contact Information:\n";
-                   $description .= "WhatsApp: " . $whatapp . "\n\n";
-                   $description .= "🔗 View full details and book this house: https://housemadeeasy.com.ng/details.php?id=" . $house_id . "\n\n";
-                   $description .= "#HouseMadeEasy #HouseForRent #" . str_replace(' ', '', $location) . " #" . str_replace(' ', '', $house_type) . " #StudentHousing #OlabisiOnabanjoUniversity";
-                   // Update video metadata
-                   $updateResult = updateVideoMetadata($accessToken, $video_id, $title, $description);
-                   if ($updateResult) {
-                       error_log("Successfully updated YouTube video metadata for video ID: " . $video_id);
-                   } else {
-                       error_log("Failed to update YouTube video metadata for video ID: " . $video_id);
-                   }
-               }
-           }
-       }
+        // Update YouTube video metadata if video was uploaded
+        if (!empty($youtube)) {
+            $accessToken = null;
+            if (isset($_SESSION['google_access_token'])) {
+                $accessToken = $_SESSION['google_access_token'];
+            } elseif (isset($_SESSION['agentaffilate_id'])) {
+                $tokens = getGoogleTokens($_SESSION['agentaffilate_id']);
+                if ($tokens && isTokenValid($tokens['google_token_expires_at'])) {
+                    $accessToken = $tokens['google_access_token'];
+                }
+            }
+            if ($accessToken) {
+                // Extract video_id from YouTube URL
+                $url = $youtube;
+                $query = [];
+                parse_str(parse_url($url, PHP_URL_QUERY), $query);
+                $video_id = $query['v'] ?? '';
+                if (!empty($video_id)) {
+                    // Construct SEO-friendly title
+                    $title = $house_label . ' ' . $house_type . ' in ' . $house_location . ', ' . $location . ' - ₦' . number_format($house_rent) . ' per year';
+                    // Construct detailed SEO-friendly description
+                    $description = "🏠 Discover this amazing " . $house_type . " located in " . $house_location . ", " . $location . ".\n\n";
+                    $description .= "📝 Description: " . $house_desc . "\n\n";
+                    $description .= "✨ Key Features:\n";
+                    $description .= "• Toilet Type: " . $amenities . "\n";
+                    $description .= "• Kitchen: " . $kitchen . " kitchen(s)\n";
+                    $description .= "• Bathroom: " . $bathroom . " bathroom(s)\n";
+                    $description .= "• Tiled: " . ($door == 'yes' ? 'Yes' : 'No') . "\n";
+                    $description .= "• Fenced: " . ($fence == 'yes' ? 'Yes' : 'No') . "\n";
+                    $description .= "• Electricity: " . $electricity . "\n";
+                    $description .= "• Gated: " . $gated . "\n";
+                    $description .= "• Gender Requirement: " . $gender . "\n";
+                    $description .= "• Roommate Allowed: " . $roommate . "\n";
+                    $description .= "• Water Source: " . $water_source . "\n";
+                    $description .= "• Landlord Resides: " . $landlord_reside . "\n";
+                    $description .= "• Distance to School: " . $distance . "\n";
+                    $description .= "• Multiple Rooms: " . $multiple_room;
+                    if ($multiple_room == 'yes') {
+                        $description .= " (" . $how_many_multiple_room . " rooms)";
+                    }
+                    $description .= "\n\n";
+                    $description .= "💰 Pricing Details:\n";
+                    $description .= "• Annual Rent: ₦" . number_format($house_rent) . "\n";
+                    $description .= "• Agreement & Commission: ₦" . number_format($agreement_new) . "\n";
+                    $description .= "• NEPA Bills: ₦" . number_format($nepa) . "\n";
+                    $description .= "• Cleaning Fees: ₦" . number_format($clean) . "\n";
+                    $description .= "• Damage Fees: ₦" . number_format($damage) . "\n";
+                    $description .= "• Security Fees: ₦" . number_format($security) . "\n";
+                    $description .= "• Second Year Rent: ₦" . number_format($second) . "\n\n";
+                    $description .= "📞 Contact Information:\n";
+                    $description .= "WhatsApp: " . $whatapp . "\n\n";
+                    $description .= "🔗 View full details and book this house: https://housemadeeasy.com.ng/details.php?id=" . $house_id . "\n\n";
+                    $description .= "#HouseMadeEasy #HouseForRent #" . str_replace(' ', '', $location) . " #" . str_replace(' ', '', $house_type) . " #StudentHousing #OlabisiOnabanjoUniversity";
+                    // Update video metadata
+                    $updateResult = updateVideoMetadata($accessToken, $video_id, $title, $description);
+                    if ($updateResult) {
+                        error_log("Successfully updated YouTube video metadata for video ID: " . $video_id);
+                    } else {
+                        error_log("Failed to update YouTube video metadata for video ID: " . $video_id);
+                    }
+                }
+            }
+        }
     echo "<script>alert('Your House has been uploaded Successfully')</script>";
     echo "<script>window.open('my-account.php')</script>";
 }

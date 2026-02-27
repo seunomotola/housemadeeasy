@@ -10,6 +10,12 @@ ini_set('log_errors', 1);
 require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
+
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Load Google tokens from database if not in session
 if (!isset($_SESSION['google_access_token']) && isset($_SESSION['agentaffilate_id'])) {
     $query = mysqli_query($con, "SELECT google_access_token, google_refresh_token, google_token_expires_at, google_token_scope FROM hmeaffilate_user WHERE agentaffilate_id = '".$_SESSION['agentaffilate_id']."'");
@@ -26,13 +32,16 @@ if (!isset($_SESSION['google_access_token']) && isset($_SESSION['agentaffilate_i
         }
     }
 }
+
 // Configuration
 define('GOOGLE_CLIENT_ID', $_ENV['GOOGLE_CLIENT_ID']);
 define('GOOGLE_CLIENT_SECRET', $_ENV['GOOGLE_CLIENT_SECRET']);
 define('CALLBACK_URL', $_ENV['CALLBACK_URL']);
 define('GOOGLE_REDIRECT_URI', CALLBACK_URL);
+
 // YouTube API scopes
 define('YOUTUBE_UPLOAD_SCOPE', 'https://www.googleapis.com/auth/youtube.upload');
+
 /**
  * Store Google OAuth tokens in database
  */
@@ -106,6 +115,7 @@ function storeGoogleTokens($agentaffilate_id, $accessToken, $refreshToken = null
         return false;
     }
 }
+
 /**
  * Get detailed token status for debugging
  */
@@ -163,6 +173,7 @@ function getDetailedTokenStatus($agentaffilate_id) {
     
     return $status;
 }
+
 /**
  * Retrieve Google OAuth tokens from database
  */
@@ -188,6 +199,7 @@ function getGoogleTokens($agentaffilate_id) {
     
     return false;
 }
+
 /**
  * Check if stored token is still valid
  */
@@ -200,6 +212,7 @@ function isTokenValid($expiresAt) {
     // Token is valid if it expires more than 5 minutes from now (buffer time)
     return ($tokenExpiry > ($currentTime + 300));
 }
+
 /**
  * Refresh access token using refresh token
  */
@@ -239,6 +252,7 @@ function refreshAccessToken($refreshToken) {
     
     return json_decode($result, true);
 }
+
 function getAccessToken($code) {
     $data = array(
         'code' => $code,
@@ -279,6 +293,7 @@ function getAccessToken($code) {
     
     return $decoded;
 }
+
 function uploadVideoToYouTube($accessToken, $videoFile, $title, $description = '') {
     $errors = array();
     
@@ -418,6 +433,7 @@ function uploadVideoToYouTube($accessToken, $videoFile, $title, $description = '
     
     return array('success' => true, 'data' => $decodedResponse);
 }
+
 function getVideoStatus($accessToken, $videoId) {
     $context = stream_context_create(array(
         'http' => array(
@@ -434,6 +450,7 @@ function getVideoStatus($accessToken, $videoId) {
     
     return json_decode($response, true);
 }
+
 function getVideoLink($accessToken, $videoId) {
     error_log("getVideoLink called for video ID: $videoId");
     
@@ -498,473 +515,177 @@ function getVideoLink($accessToken, $videoId) {
         
         // Log detailed video information for debugging
         error_log("getVideoLink: Video details - " . json_encode(array(
-            'id' => $video['id'] ?? 'not set',
-            'title' => $video['snippet']['title'] ?? 'not set',
-            'status' => $video['status']['privacyStatus'] ?? 'not set',
-            'processingStatus' => $video['status']['uploadStatus'] ?? 'not set'
+            'id' => $videoId,
+            'title' => $video['snippet']['title'],
+            'privacyStatus' => $video['status']['privacyStatus'],
+            'uploadStatus' => $video['status']['uploadStatus'],
+            'processingStatus' => $video['processingDetails']['processingStatus'],
+            'embeddable' => $video['status']['embeddable']
         )));
         
-        // Check privacy status
-        $privacyStatus = $video['status']['privacyStatus'] ?? 'private';
-        error_log("getVideoLink: Privacy status: $privacyStatus");
-        
-        if ($privacyStatus === 'public' || $privacyStatus === 'unlisted') {
-            $videoUrl = "https://www.youtube.com/watch?v=" . $videoId;
-            error_log("getVideoLink: Returning video URL: $videoUrl");
-            return $videoUrl;
+        // Return the correct URL based on privacy status and processing status
+        if ($video['status']['uploadStatus'] === 'processed' && $video['status']['privacyStatus'] === 'unlisted') {
+            return "https://www.youtube.com/watch?v=" . $videoId;
+        } elseif ($video['status']['uploadStatus'] === 'processed' && $video['status']['privacyStatus'] === 'private') {
+            return "https://www.youtube.com/watch?v=" . $videoId; // Still accessible via link
         } else {
-            error_log("getVideoLink: Video privacy status is '$privacyStatus', not returning URL");
-            
-            // For debugging, return additional information
-            return array(
-                'url' => false,
-                'status' => $privacyStatus,
-                'processing_details' => $video['processingDetails'] ?? array(),
-                'message' => 'Video is not yet public or unlisted'
-            );
+            error_log("getVideoLink: Video not ready yet. Status: " . $video['status']['uploadStatus'] . ", Privacy: " . $video['status']['privacyStatus']);
+            return false;
         }
     } else {
-        error_log("getVideoLink: No video found at index 0");
+        error_log("getVideoLink: No video found with ID: " . $videoId);
         return false;
     }
 }
-// Handle different actions
-if (isset($_POST['action'])) {
-    switch ($_POST['action']) {
-        case 'upload_to_youtube':
-            // Debug logging
-            error_log('Video upload request received');
-            error_log('POST data: ' . json_encode($_POST));
-            error_log('FILES data: ' . json_encode($_FILES));
-            // Check if user is authenticated
-            $accessToken = null;
-            // First check session
-            if (isset($_SESSION['google_access_token']) && isset($_SESSION['google_token_expires_at'])) {
-                // Check if session token is still valid
-                if (isTokenValid($_SESSION['google_token_expires_at'])) {
-                    $accessToken = $_SESSION['google_access_token'];
-                    error_log('Using valid access token from session');
-                } elseif (isset($_SESSION['google_refresh_token'])) {
-                    // Session token expired, try to refresh
-                    error_log('Session token expired, attempting refresh');
-                    $refreshResult = refreshAccessToken($_SESSION['google_refresh_token']);
-                    if ($refreshResult && isset($refreshResult['access_token'])) {
-                        $newAccessToken = $refreshResult['access_token'];
-                        $newRefreshToken = $refreshResult['refresh_token'] ?? $_SESSION['google_refresh_token'];
-                        $expiresIn = $refreshResult['expires_in'] ?? 3600;
-                        // Update database
-                        $updateSuccess = storeGoogleTokens(
-                            $_SESSION['agentaffilate_id'],
-                            $newAccessToken,
-                            $newRefreshToken,
-                            $expiresIn,
-                            $_SESSION['google_token_scope'] ?? null
-                        );
-                        if ($updateSuccess) {
-                            // Update session
-                            $_SESSION['google_access_token'] = $newAccessToken;
-                            $_SESSION['google_refresh_token'] = $newRefreshToken;
-                            $_SESSION['google_token_expires_at'] = date('Y-m-d H:i:s', time() + $expiresIn);
-                            $accessToken = $newAccessToken;
-                            error_log('Successfully refreshed token for upload');
-                        } else {
-                            error_log('Failed to update database with refreshed token');
-                        }
-                    } else {
-                        error_log('Token refresh failed: ' . json_encode($refreshResult));
-                    }
-                }
-            }
-            // If still no token, try to get from database
-            if (!$accessToken && isset($_SESSION['agentaffilate_id'])) {
-                error_log('Checking database for tokens for user: ' . $_SESSION['agentaffilate_id']);
-                $tokens = getGoogleTokens($_SESSION['agentaffilate_id']);
-                if ($tokens) {
-                    if (isTokenValid($tokens['google_token_expires_at'])) {
-                        $accessToken = $tokens['google_access_token'];
-                        // Store in session for faster access
-                        $_SESSION['google_access_token'] = $accessToken;
-                        $_SESSION['google_refresh_token'] = $tokens['google_refresh_token'];
-                        $_SESSION['google_token_expires_at'] = $tokens['google_token_expires_at'];
-                        error_log('Retrieved valid token from database');
-                    } elseif (!empty($tokens['google_refresh_token'])) {
-                        // DB token expired, try refresh
-                        error_log('DB token expired, attempting refresh');
-                        $refreshResult = refreshAccessToken($tokens['google_refresh_token']);
-                        if ($refreshResult && isset($refreshResult['access_token'])) {
-                            $newAccessToken = $refreshResult['access_token'];
-                            $newRefreshToken = $refreshResult['refresh_token'] ?? $tokens['google_refresh_token'];
-                            $expiresIn = $refreshResult['expires_in'] ?? 3600;
-                            $updateSuccess = storeGoogleTokens(
-                                $_SESSION['agentaffilate_id'],
-                                $newAccessToken,
-                                $newRefreshToken,
-                                $expiresIn,
-                                $tokens['google_token_scope']
-                            );
-                            if ($updateSuccess) {
-                                $_SESSION['google_access_token'] = $newAccessToken;
-                                $_SESSION['google_refresh_token'] = $newRefreshToken;
-                                $_SESSION['google_token_expires_at'] = date('Y-m-d H:i:s', time() + $expiresIn);
-                                $accessToken = $newAccessToken;
-                                error_log('Successfully refreshed DB token');
-                            }
-                        }
-                    }
-                } else {
-                    error_log('No tokens found in database');
-                }
-            }
-            if (!$accessToken) {
-                error_log('Authentication failed - no access token');
-                echo json_encode(array('success' => false, 'error' => 'Not authenticated with Google. Please reconnect your Google account.'));
-                exit;
-            }
-            
-            // Check if video file is uploaded with detailed error messages
-            if (!isset($_FILES['video'])) {
-                error_log('No video file in $_FILES');
-                echo json_encode(array('success' => false, 'error' => 'No video file uploaded (FILES array missing)'));
-                exit;
-            }
-            
-            $videoFile = $_FILES['video'];
-            
-            if ($videoFile['error'] !== UPLOAD_ERR_OK) {
-                $errorMessage = 'Upload error code: ' . $videoFile['error'];
-                switch ($videoFile['error']) {
-                    case UPLOAD_ERR_INI_SIZE:
-                        $errorMessage = 'File too large (exceeds upload_max_filesize)';
-                        break;
-                    case UPLOAD_ERR_FORM_SIZE:
-                        $errorMessage = 'File too large (exceeds MAX_FILE_SIZE in form)';
-                        break;
-                    case UPLOAD_ERR_PARTIAL:
-                        $errorMessage = 'File was only partially uploaded';
-                        break;
-                    case UPLOAD_ERR_NO_FILE:
-                        $errorMessage = 'No file was uploaded';
-                        break;
-                    case UPLOAD_ERR_NO_TMP_DIR:
-                        $errorMessage = 'Missing temporary folder';
-                        break;
-                    case UPLOAD_ERR_CANT_WRITE:
-                        $errorMessage = 'Failed to write file to disk';
-                        break;
-                    case UPLOAD_ERR_EXTENSION:
-                        $errorMessage = 'Upload stopped by PHP extension';
-                        break;
-                }
-                error_log('Video upload error: ' . $errorMessage);
-                echo json_encode(array('success' => false, 'error' => $errorMessage));
-                exit;
-            }
-            
-            // Additional file validation
-            if ($videoFile['size'] == 0) {
-                error_log('Video file is empty');
-                echo json_encode(array('success' => false, 'error' => 'Video file is empty'));
-                exit;
-            }
-            
-            if (!file_exists($videoFile['tmp_name'])) {
-                error_log('Video tmp file does not exist: ' . $videoFile['tmp_name']);
-                echo json_encode(array('success' => false, 'error' => 'Uploaded file not found on server'));
-                exit;
-            }
-            
-            error_log('Video file validation passed. File: ' . $videoFile['name'] . ' (' . $videoFile['size'] . ' bytes)');
-            
-            $videoFile = $_FILES['video']['tmp_name'];
-            $originalName = $_FILES['video']['name'];
-            
-            // Validate file size (YouTube allows up to 256GB, but let's limit to 100MB for testing)
-            if ($_FILES['video']['size'] > 100 * 1024 * 1024) {
-                error_log("File too large: " . $_FILES['video']['size'] . " bytes");
-                echo json_encode(array('success' => false, 'error' => 'File too large. Maximum size is 100MB.'));
-                exit;
-            }
-            
-            // Log upload attempt
-            error_log("Starting video upload for user: " . (isset($_SESSION['agentaffilate_id']) ? $_SESSION['agentaffilate_id'] : 'unknown'));
-            error_log("Access token available: " . ($accessToken ? 'Yes' : 'No'));
-            error_log("File details: " . $originalName . " (" . $_FILES['video']['size'] . " bytes)");
-            
-            // Create temporary file with proper extension
-            $tempFile = tempnam(sys_get_temp_dir(), 'youtube_upload_');
-            $extension = pathinfo($originalName, PATHINFO_EXTENSION);
-            if ($extension) {
-                $tempFile .= '.' . $extension;
-            }
-            rename($videoFile, $tempFile);
-            
-            // Use temporary title - will be updated after house data is saved
-            $title = "House Tour - Processing";
-            $description = "House tour video uploaded from HouseMadeEasy platform - metadata will be updated shortly";
-            
-            try {
-                // Upload video to YouTube
-                $result = uploadVideoToYouTube($accessToken, $tempFile, $title, $description);
-                
-                // Clean up temporary file
-                unlink($tempFile);
-                
-                if ($result && isset($result['success']) && $result['success']) {
-                    $videoId = $result['data']['id'];
-                    
-                    // Wait a moment for YouTube to process the video metadata
-                    sleep(2);
-                    
-                    // Get the video link with retry logic
-                    $videoLink = '';
-                    $maxRetries = 3;
-                    $retryCount = 0;
-                    $linkStatus = 'processing';
-                    
-                    while (empty($videoLink) && $retryCount < $maxRetries) {
-                        $linkResult = getVideoLink($accessToken, $videoId);
-                        
-                        if (is_string($linkResult)) {
-                            $videoLink = $linkResult;
-                            $linkStatus = 'available';
-                        } elseif (is_array($linkResult) && isset($linkResult['url']) && $linkResult['url'] !== false) {
-                            $videoLink = $linkResult['url'];
-                            $linkStatus = 'available';
-                        } elseif (is_array($linkResult) && isset($linkResult['status'])) {
-                            // Video is processing
-                            $linkStatus = $linkResult['status'];
-                            if (isset($linkResult['message'])) {
-                                error_log("Video processing status: " . $linkResult['message']);
-                            }
-                        }
-                        
-                        if (empty($videoLink)) {
-                            $retryCount++;
-                            if ($retryCount < $maxRetries) {
-                                sleep(1); // Wait 1 second before retry
-                            }
-                        }
-                    }
-                    
-                    // Prepare response based on video link availability
-                    if (!empty($videoLink) && $linkStatus === 'available') {
-                        echo json_encode(array(
-                            'success' => true,
-                            'video_id' => $videoId,
-                            'youtube_url' => $videoLink,
-                            'message' => 'Video uploaded successfully',
-                            'status' => 'completed'
-                        ));
-                    } else {
-                        // Video is still processing or link not yet available
-                        echo json_encode(array(
-                            'success' => true,
-                            'video_id' => $videoId,
-                            'youtube_url' => '',
-                            'message' => 'Video uploaded successfully but still processing',
-                            'status' => $linkStatus,
-                            'note' => 'Video may take a few minutes to process. The link will be available once processing is complete.',
-                            'can_check_status' => true
-                        ));
-                    }
-                } else {
-                    // Upload failed - provide detailed error information
-                    $errorMessage = isset($result['error']) ? $result['error'] : 'Upload failed with unknown error';
-                    error_log('YouTube upload failed: ' . $errorMessage);
-                    
-                    echo json_encode(array(
-                        'success' => false, 
-                        'error' => 'YouTube upload failed: ' . $errorMessage,
-                        'debug_info' => array(
-                            'error_details' => $errorMessage,
-                            'video_file' => $originalName,
-                            'file_size' => $_FILES['video']['size'],
-                            'timestamp' => date('Y-m-d H:i:s')
-                        )
-                    ));
-                }
-            } catch (Exception $e) {
-                unlink($tempFile);
-                echo json_encode(array('success' => false, 'error' => $e->getMessage()));
-            }
-            break;
-            
-        case 'get_video_status':
-            if (!isset($_SESSION['google_access_token']) || !isset($_POST['video_id'])) {
-                echo json_encode(array('success' => false, 'error' => 'Missing required parameters'));
-                exit;
-            }
-            
-            $status = getVideoStatus($_SESSION['google_access_token'], $_POST['video_id']);
-            if ($status) {
-                echo json_encode(array('success' => true, 'status' => $status));
-            } else {
-                echo json_encode(array('success' => false, 'error' => 'Failed to get video status'));
-            }
-            break;
-            
-        case 'get_video_link':
-            if (!isset($_SESSION['google_access_token']) || !isset($_POST['video_id'])) {
-                echo json_encode(array('success' => false, 'error' => 'Missing required parameters'));
-                exit;
-            }
-            
-            $videoLink = getVideoLink($_SESSION['google_access_token'], $_POST['video_id']);
-            if ($videoLink) {
-                echo json_encode(array('success' => true, 'youtube_url' => $videoLink));
-            } else {
-                echo json_encode(array('success' => false, 'error' => 'Video not yet available'));
-            }
-            break;
-            
-        case 'check_token_status':
-            if (!isset($_SESSION['agentaffilate_id'])) {
-                echo json_encode(array('success' => false, 'error' => 'User not logged in'));
-                exit;
-            }
-            
-            $status = getDetailedTokenStatus($_SESSION['agentaffilate_id']);
-            echo json_encode(array('success' => true, 'status' => $status));
-            exit;
-            
-        case 'debug_upload':
-            // Debug endpoint to test video upload
-            $debug = array(
-                'post_data' => $_POST,
-                'files_data' => $_FILES,
-                'session_data' => array(
-                    'agentaffilate_id' => isset($_SESSION['agentaffilate_id']) ? $_SESSION['agentaffilate_id'] : 'not set',
-                    'google_access_token' => isset($_SESSION['google_access_token']) ? 'present' : 'not set'
-                ),
-                'server_info' => array(
-                    'upload_max_filesize' => ini_get('upload_max_filesize'),
-                    'post_max_size' => ini_get('post_max_size'),
-                    'max_execution_time' => ini_get('max_execution_time')
-                )
-            );
-            
-            if (isset($_FILES['video'])) {
-                $debug['video_file_info'] = array(
-                    'name' => $_FILES['video']['name'],
-                    'type' => $_FILES['video']['type'],
-                    'size' => $_FILES['video']['size'],
-                    'error' => $_FILES['video']['error'],
-                    'tmp_name' => $_FILES['video']['tmp_name'],
-                    'file_exists' => file_exists($_FILES['video']['tmp_name'])
-                );
-            }
-            
-            echo json_encode(array('success' => true, 'debug' => $debug), JSON_PRETTY_PRINT);
-            exit;
-            
-        default:
-            echo json_encode(array('success' => false, 'error' => 'Invalid action'));
-            break;
-    }
-} elseif (isset($_GET['code'])) {
-    // Handle OAuth callback
+
+// Handle OAuth callback
+if (isset($_GET['code'])) {
     $code = $_GET['code'];
-    $state = isset($_GET['state']) ? $_GET['state'] : 'upload-house.php'; // Get redirect target from state
-    $tokenData = getAccessToken($code);
+    $state = $_GET['state'] ?? '';
     
-    $oauthSuccess = false;
-    $databaseSaveSuccess = false;
-    $errorMessage = '';
+    error_log("OAuth callback received with code: " . substr($code, 0, 10) . "... and state: " . $state);
     
-    if ($tokenData && isset($tokenData['access_token'])) {
-        $oauthSuccess = true;
-        $_SESSION['google_access_token'] = $tokenData['access_token'];
-        if (isset($tokenData['refresh_token'])) {
-            $_SESSION['google_refresh_token'] = $tokenData['refresh_token'];
-        }
+    $tokenResponse = getAccessToken($code);
+    
+    if ($tokenResponse) {
+        // Token exchange successful
+        $accessToken = $tokenResponse['access_token'];
+        $refreshToken = $tokenResponse['refresh_token'] ?? null;
+        $expiresIn = $tokenResponse['expires_in'] ?? 3600;
+        $scope = $tokenResponse['scope'] ?? null;
         
-        // Store tokens in database if user is logged in
+        // Store tokens in database
         if (isset($_SESSION['agentaffilate_id'])) {
-            $scope = isset($tokenData['scope']) ? $tokenData['scope'] : YOUTUBE_UPLOAD_SCOPE;
-            $expiresIn = isset($tokenData['expires_in']) ? $tokenData['expires_in'] : null;
-            
-            $databaseSaveSuccess = storeGoogleTokens(
-                $_SESSION['agentaffilate_id'], 
-                $tokenData['access_token'], 
-                $tokenData['refresh_token'], 
-                $expiresIn, 
-                $scope
-            );
-            
-            // Log the result for debugging
-            if ($databaseSaveSuccess) {
-                error_log("Google OAuth tokens saved successfully for user: " . $_SESSION['agentaffilate_id']);
+            if (storeGoogleTokens($_SESSION['agentaffilate_id'], $accessToken, $refreshToken, $expiresIn, $scope)) {
+                // Store in session for immediate use
+                $_SESSION['google_access_token'] = $accessToken;
+                $_SESSION['google_refresh_token'] = $refreshToken;
+                $_SESSION['google_token_expires_at'] = date('Y-m-d H:i:s', time() + $expiresIn);
+                $_SESSION['google_token_scope'] = $scope;
+                
+                error_log("Tokens stored successfully for user: " . $_SESSION['agentaffilate_id']);
+                header('Location: ' . $state . '?oauth=success');
+                exit;
             } else {
-                error_log("Failed to save Google OAuth tokens for user: " . $_SESSION['agentaffilate_id'] . " - MySQL Error: " . mysqli_error($con));
-                $errorMessage = 'database_save_failed';
+                error_log("Failed to store tokens in database");
+                header('Location: ' . $state . '?oauth=failed');
+                exit;
             }
         } else {
-            // User not logged in, can't save to database
-            error_log("Google OAuth successful but user not logged in - cannot save tokens to database");
-            $errorMessage = 'user_not_logged_in';
+            error_log("No agentaffilate_id in session for storing tokens");
+            header('Location: ' . $state . '?oauth=failed');
+            exit;
         }
-        
-        // Use state parameter for redirect (if it's safe)
-        $redirectUrl = $state;
-        if (strpos($redirectUrl, '://') !== false || strpos($redirectUrl, '..') !== false) {
-            $redirectUrl = 'upload-house.php';
-        }
-        
-        // Add detailed success/failure parameters
-        $separator = strpos($redirectUrl, '?') !== false ? '&' : '?';
-        $redirectParams = 'oauth=success&timestamp=' . time();
-        
-        if (isset($_SESSION['agentaffilate_id'])) {
-            if ($databaseSaveSuccess) {
-                $redirectParams .= '&db_save=success';
-            } else {
-                $redirectParams .= '&db_save=failed&error=' . $errorMessage;
-            }
-        } else {
-            $redirectParams .= '&db_save=skipped&error=' . $errorMessage;
-        }
-        
-        header('Location: ' . $redirectUrl . $separator . $redirectParams);
     } else {
-        // OAuth failed
-        error_log("Google OAuth failed - Token exchange unsuccessful");
-        
-        // Use state parameter for redirect (if it's safe)
-        $redirectUrl = $state;
-        if (strpos($redirectUrl, '://') !== false || strpos($redirectUrl, '..') !== false) {
-            $redirectUrl = 'upload-house.php';
+        error_log("Failed to exchange code for tokens");
+        header('Location: ' . $state . '?oauth=failed');
+        exit;
+    }
+}
+
+// Handle video upload via AJAX
+if (isset($_POST['action']) && $_POST['action'] === 'upload_to_youtube') {
+    error_log("Video upload request received");
+    
+    // Check if we have a valid access token
+    $accessToken = null;
+    if (isset($_SESSION['google_access_token'])) {
+        $accessToken = $_SESSION['google_access_token'];
+    } elseif (isset($_SESSION['agentaffilate_id'])) {
+        $tokens = getGoogleTokens($_SESSION['agentaffilate_id']);
+        if ($tokens) {
+            if (isTokenValid($tokens['google_token_expires_at'])) {
+                $accessToken = $tokens['google_access_token'];
+                $_SESSION['google_access_token'] = $accessToken;
+                $_SESSION['google_refresh_token'] = $tokens['google_refresh_token'];
+                $_SESSION['google_token_expires_at'] = $tokens['google_token_expires_at'];
+                $_SESSION['google_token_scope'] = $tokens['google_token_scope'];
+            } elseif (!empty($tokens['google_refresh_token'])) {
+                // Refresh token if needed
+                $refreshResult = refreshAccessToken($tokens['google_refresh_token']);
+                if ($refreshResult && isset($refreshResult['access_token'])) {
+                    $newAccess = $refreshResult['access_token'];
+                    $newRefresh = $refreshResult['refresh_token'] ?? $tokens['google_refresh_token'];
+                    $expiresIn = $refreshResult['expires_in'] ?? 3600;
+                    
+                    if (storeGoogleTokens($_SESSION['agentaffilate_id'], $newAccess, $newRefresh, $expiresIn, $tokens['google_token_scope'])) {
+                        $accessToken = $newAccess;
+                        $_SESSION['google_access_token'] = $newAccess;
+                        $_SESSION['google_refresh_token'] = $newRefresh;
+                        $_SESSION['google_token_expires_at'] = date('Y-m-d H:i:s', time() + $expiresIn);
+                        $_SESSION['google_token_scope'] = $tokens['google_token_scope'];
+                    }
+                }
+            }
         }
+    }
+    
+    if (!$accessToken) {
+        error_log("No valid access token available for video upload");
+        echo json_encode(array(
+            'success' => false,
+            'error' => 'No valid Google OAuth access token. Please reconnect your Google account.'
+        ));
+        exit;
+    }
+    
+    // Check if video file is uploaded
+    if (!isset($_FILES['video']) || !$_FILES['video']['tmp_name']) {
+        error_log("No video file uploaded");
+        echo json_encode(array(
+            'success' => false,
+            'error' => 'No video file selected. Please choose a video file to upload.'
+        ));
+        exit;
+    }
+    
+    // Handle video upload
+    $videoFile = $_FILES['video']['tmp_name'];
+    $originalName = $_FILES['video']['name'];
+    $title = 'Property Tour - ' . date('Y-m-d H:i:s');
+    $description = 'Property tour video uploaded via HouseMadeEasy platform.';
+    
+    $uploadResult = uploadVideoToYouTube($accessToken, $videoFile, $title, $description);
+    
+    if ($uploadResult && $uploadResult['success']) {
+        $videoId = $uploadResult['data']['id'];
+        $videoLink = getVideoLink($accessToken, $videoId);
         
-        // Add error parameter
-        $separator = strpos($redirectUrl, '?') !== false ? '&' : '?';
-        header('Location: ' . $redirectUrl . $separator . 'oauth=failed&db_save=failed&error=token_exchange_failed&timestamp=' . time());
+        if ($videoLink) {
+            echo json_encode(array(
+                'success' => true,
+                'youtube_url' => $videoLink,
+                'video_id' => $videoId,
+                'message' => 'Video uploaded successfully to YouTube'
+            ));
+        } else {
+            // Fallback to direct YouTube URL
+            $fallbackUrl = "https://www.youtube.com/watch?v=" . $videoId;
+            error_log("Fallback to direct YouTube URL: " . $fallbackUrl);
+            echo json_encode(array(
+                'success' => true,
+                'youtube_url' => $fallbackUrl,
+                'video_id' => $videoId,
+                'message' => 'Video uploaded successfully to YouTube'
+            ));
+        }
+    } else {
+        error_log("Video upload failed: " . ($uploadResult['error'] ?? 'Unknown error'));
+        echo json_encode(array(
+            'success' => false,
+            'error' => $uploadResult['error'] ?? 'Failed to upload video to YouTube'
+        ));
+    }
+}
+
+// Handle token status check
+if (isset($_GET['action']) && $_GET['action'] === 'check_token') {
+    if (isset($_SESSION['agentaffilate_id'])) {
+        $tokenStatus = getDetailedTokenStatus($_SESSION['agentaffilate_id']);
+        echo json_encode($tokenStatus);
+    } else {
+        echo json_encode(array('error' => 'Not authenticated'));
     }
     exit;
-} elseif (isset($_GET['auth']) && $_GET['auth'] === 'logout') {
-    // Handle logout
-    unset($_SESSION['google_access_token']);
-    unset($_SESSION['google_refresh_token']);
-    
-    // Also clear from database if user is logged in
-    if (isset($_SESSION['agentaffilate_id'])) {
-        global $con;
-        $sql = "UPDATE hmeaffilate_user SET 
-                google_access_token = NULL, 
-                google_refresh_token = NULL, 
-                google_token_expires_at = NULL, 
-                google_token_scope = NULL
-                WHERE agentaffilate_id = ?";
-        
-        $stmt = mysqli_prepare($con, $sql);
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "s", $_SESSION['agentaffilate_id']);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_close($stmt);
-        }
-    }
-    
-    header('Location: upload-house.php?logout=success');
-} else {
-    echo json_encode(array('success' => false, 'error' => 'Invalid request'));
 }
 ?>
