@@ -962,7 +962,7 @@
                         </span>
                     <?php } ?>
                     
-                    <img src="assets/images/property/<?php echo $house_img2; ?>" alt="<?php echo $house_name; ?>">
+                    <img src="/assets/images/property/<?php echo $house_img2; ?>" alt="<?php echo $house_name; ?>">
                 </div>
                 
                 <div class="property-content">

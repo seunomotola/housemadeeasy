@@ -961,7 +961,7 @@
                         </span>
                     <?php } ?>
                     
-                    <img src="assets/images/property/<?php echo $house_img2; ?>" alt="<?php echo $house_name; ?>">
+                    <img src="/assets/images/property/<?php echo $house_img2; ?>" alt="<?php echo $house_name; ?>">
                 </div>
                 
                 <div class="property-content">
@@ -1040,7 +1040,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="logo">
-                        <img src="assets/images/HouseMadeEasylogo.jpg" alt="HouseMadeEasy Logo">
+                        <img src="/assets/images/HouseMadeEasylogo.jpg" alt="HouseMadeEasy Logo">
                         <h3>HouseMadeEasy</h3>
                     </div>
                     <p style="margin-top: 1rem; opacity: 0.8;">Helping students find their perfect accommodation with ease.</p>

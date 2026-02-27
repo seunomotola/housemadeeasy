@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('log_errors', 1);
 
 include ('inc/session.php');  
-include("../inc/connect.inc.php");
+include("inc/connect.inc.php");
 
 $basename= basename($_SERVER['PHP_SELF']);
 $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']); 
@@ -722,7 +722,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
     <header>
         <div class="header-container">
             <div class="logo">
-                <img src="assets/images/HouseMadeEasylogo.jpg" alt="HouseMadeEasy Logo">
+                <img src="/assets/images/HouseMadeEasylogo.jpg" alt="HouseMadeEasy Logo">
                 <h1>HouseMadeEasy</h1>
             </div>
             
@@ -761,7 +761,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
     <section class="gallery-section">
         <div class="gallery-container">
             <div class="main-image">
-                <img src="assets/images/property/<?php echo $post['house_img2']; ?>" alt="<?php echo $post['house_name']; ?>" id="mainImage">
+                <img src="/assets/images/property/<?php echo $post['house_img2']; ?>" alt="<?php echo $post['house_name']; ?>" id="mainImage">
                 <div class="image-overlay">
                     <h3><?php echo $post['house_name']; ?></h3>
                     <p><?php echo $post['house_label']; ?></p>
@@ -778,7 +778,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 
                 foreach ($images as $index => $img) {
                     echo '<div class="thumbnail ' . ($index == 0 ? 'active' : '') . '" data-img="' . $img . '">';
-                    echo '<img src="assets/images/property/' . $img . '" alt="Property Image ' . ($index + 1) . '">';
+                    echo '<img src="/assets/images/property/' . $img . '" alt="Property Image ' . ($index + 1) . '">';
                     echo '</div>';
                 }
                 ?>
@@ -973,7 +973,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 
                 <div class="agent-card">
                     <div class="agent-avatar">
-                        <img src="assets/images/agent/<?php echo $post['agent_img']; ?>" alt="<?php echo $post['agent']; ?>">
+                        <img src="/assets/images/agent/<?php echo $post['agent_img']; ?>" alt="<?php echo $post['agent']; ?>">
                     </div>
                     
                     <div class="agent-info">
