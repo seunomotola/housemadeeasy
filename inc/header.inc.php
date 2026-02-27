@@ -1,4 +1,6 @@
-<?php  include("../inc/connect.inc.php")');   ?>
+<?php  
+
+include("../inc/connect.inc.php");   ?>
 <!doctype html>
 <html class="no-js" lang="zxx"> 
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:25:19 GMT -->

@@ -1,7 +1,78 @@
 <?php 
+// Error reporting configuration
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/logs/errors.log');
 
+// Ensure logs directory exists
+if (!file_exists(__DIR__ . '/logs')) {
+    mkdir(__DIR__ . '/logs', 0755, true);
+}
 
+// Custom error handler
+function customErrorHandler($errno, $errstr, $errfile, $errline) {
+    $errorMessage = "[" . date('Y-m-d H:i:s') . "] Error: [$errno] $errstr - $errfile:$errline" . PHP_EOL;
+    error_log($errorMessage);
+    
+    // Show user-friendly error message in development
+    if (isset($_SERVER['DEBUG_MODE']) && $_SERVER['DEBUG_MODE']) {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+        echo '<strong>Error:</strong> ' . htmlspecialchars($errstr) . ' in ' . htmlspecialchars($errfile) . ' on line ' . $errline;
+        echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+        echo '<span aria-hidden="true">&times;</span>';
+        echo '</button>';
+        echo '</div>';
+    }
+}
 
+// Custom exception handler
+function customExceptionHandler($exception) {
+    $errorMessage = "[" . date('Y-m-d H:i:s') . "] Exception: " . $exception->getMessage() . " - " . $exception->getFile() . ":" . $exception->getLine() . PHP_EOL;
+    error_log($errorMessage);
+    
+    if (isset($_SERVER['DEBUG_MODE']) && $_SERVER['DEBUG_MODE']) {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+        echo '<strong>Exception:</strong> ' . htmlspecialchars($exception->getMessage()) . ' in ' . htmlspecialchars($exception->getFile()) . ' on line ' . $exception->getLine();
+        echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+        echo '<span aria-hidden="true">&times;</span>';
+        echo '</button>';
+        echo '</div>';
+    }
+}
+
+// Set error handlers
+set_error_handler("customErrorHandler");
+set_exception_handler("customExceptionHandler");
+
+// Function to display user-friendly error messages
+function showError($message, $details = '') {
+    $errorHtml = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+    $errorHtml .= '<strong>Error:</strong> ' . htmlspecialchars($message);
+    
+    if (!empty($details) && (isset($_SERVER['DEBUG_MODE']) && $_SERVER['DEBUG_MODE'])) {
+        $errorHtml .= '<br><small class="text-muted">' . htmlspecialchars($details) . '</small>';
+    }
+    
+    $errorHtml .= '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+    $errorHtml .= '<span aria-hidden="true">&times;</span>';
+    $errorHtml .= '</button>';
+    $errorHtml .= '</div>';
+    
+    echo $errorHtml;
+}
+
+// Function to display success messages
+function showSuccess($message) {
+    $successHtml = '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+    $successHtml .= '<strong>Success:</strong> ' . htmlspecialchars($message);
+    $successHtml .= '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+    $successHtml .= '<span aria-hidden="true">&times;</span>';
+    $successHtml .= '</button>';
+    $successHtml .= '</div>';
+    
+    echo $successHtml;
+}
 
 ob_start();
 if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
@@ -22,10 +93,26 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
  include ('inc/header.inc.php');   ?>    
   
 <?php
+    // Database connection
     $connection = mysqli_connect("localhost", "housemadeeasy", "@hmeaffliate", "housema2_housemadeeasy"); 
-    $sql = "SELECT * FROM house_taken WHERE id=2";
-    $result = mysqli_query($connection, $sql);
-    $row = mysqli_fetch_object($result);
+    
+    if (!$connection) {
+        $error = mysqli_connect_error();
+        error_log("[" . date('Y-m-d H:i:s') . "] Database connection failed: " . $error);
+        showError("Failed to connect to database. Please try again later.", $error);
+    } else {
+        // Query to get house taken data
+        $sql = "SELECT * FROM house_taken WHERE id=2";
+        $result = mysqli_query($connection, $sql);
+        
+        if (!$result) {
+            $error = mysqli_error($connection);
+            error_log("[" . date('Y-m-d H:i:s') . "] Query failed: " . $error);
+            showError("Failed to retrieve data. Please try again later.", $error);
+        } else {
+            $row = mysqli_fetch_object($result);
+        }
+    }
 ?>
     <!--Hero Section start-->
     <div class="hero-section section position-relative">
@@ -116,10 +203,17 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                 </div>
             </div>
     </div>
-  <?php  
+   <?php  
+                    // Get latest slide for hero section
                     $sql = "SELECT * FROM slide order by id desc LIMIT 0,1";
                     $query = $con->query($sql);
-                    while($row2 = $query->fetch_assoc()){
+                    
+                    if (!$query) {
+                        $error = $con->error;
+                        error_log("[" . date('Y-m-d H:i:s') . "] Slide query failed: " . $error);
+                        showError("Failed to load slides. Please try again later.", $error);
+                    } else {
+                        while($row2 = $query->fetch_assoc()){
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
                       $house_label=$row2['house_label'];
@@ -160,9 +254,16 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
     </div>
 <?php } ?>
   <?php 
+                    // Get additional slides for carousel
                     $sql = "SELECT * FROM slide order by id desc LIMIT 1,3";
                     $query = $con->query($sql);
-                    while($row2 = $query->fetch_assoc()){
+                    
+                    if (!$query) {
+                        $error = $con->error;
+                        error_log("[" . date('Y-m-d H:i:s') . "] Additional slides query failed: " . $error);
+                        showError("Failed to load additional slides. Please try again later.", $error);
+                    } else {
+                        while($row2 = $query->fetch_assoc()){
                          $house_img1=$row2['house_img1'];
                     // $student_name=$row2['lastname'].", ".$row2['firstname'] ;
                       $house_label=$row2['house_label'];
@@ -213,7 +314,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                 </div>
             </div>
     </div>
-<?php } ?>
+<?php } } ?>
         </div>
         <a href="#carousel-example-generic" class="carousel-control-prev" data-slide="prev" role="button">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
