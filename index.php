@@ -150,13 +150,16 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
         }
 
         .logo {
-            font-size: 1.8rem;
+
+        width: 60px;
+        height: 60px;
+            /* font-size: 1.8rem;
             font-weight: 900;
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: -1px;
+            letter-spacing: -1px; */
         }
 
         .nav-menu {
