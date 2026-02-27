@@ -159,6 +159,8 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
             letter-spacing: -1px;
         }
 
+       
+
         .nav-menu {
             display: flex;
             list-style: none;
@@ -795,7 +797,11 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo">                <img src="assets/images/HouseMadeEasylogo.jpg" alt="Modern Apartment"></div>
+            <div class="logo">🏠 House Made Easy
+                <img src="assets/images/HouseMadeEasylogo.jpg" alt="Modern Apartment">
+
+
+            </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
