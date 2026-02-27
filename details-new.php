@@ -809,14 +809,20 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
         <div class="gallery-container">
             <div class="main-image">
                 <img src="/assets/images/property/<?php echo $post['house_img2']; ?>" alt="<?php echo $post['house_name']; ?>" id="mainImage">
-                <?php if (!empty($post['youtube_link'])) { ?>
+                <?php 
+                // Debug information
+                echo '<!-- YouTube Link Debug: ' . $post['youtube_link'] . ' -->';
+                if (!empty($post['youtube_link'])) { 
+                ?>
                     <div class="video-overlay" onclick="openVideoModal('<?php echo $post['youtube_link']; ?>')">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
                         <div class="video-label">Watch Video Tour</div>
                     </div>
-                <?php } ?>
+                <?php } else {
+                    echo '<!-- YouTube Link is empty or null -->';
+                } ?>
                 <div class="image-overlay">
                     <h3><?php echo $post['house_name']; ?></h3>
                     <p><?php echo $post['house_label']; ?></p>

@@ -827,7 +827,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                 </div>
             </div>
             <div class="hero-image">
-                <img src="assets/images/heroimage.jpg" alt="Modern Apartment">
+                <img src="assets/images/heroimage.png" alt="Modern Apartment">
             </div>
         </div>
     </section>
