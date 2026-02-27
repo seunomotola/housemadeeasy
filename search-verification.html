@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Functionality Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .status {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+            border: 1px solid #d6e9c6;
+        }
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+            border: 1px solid #ebccd1;
+        }
+        .info {
+            background-color: #d9edf7;
+            color: #31708f;
+            border: 1px solid #bce8f1;
+        }
+        pre {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #e8e8e8;
+        }
+        .file-list {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e8e8e8;
+        }
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 5px 0;
+        }
+        .file-item::before {
+            content: "• ";
+            color: #333;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Functionality Verification</h1>
+        
+        <div class="status success">
+            ✅ <strong>Files Created Successfully</strong>
+        </div>
+        
+        <div class="status info">
+            <h3>Created Files:</h3>
+            <div class="file-list">
+                <div class="file-item">search-made-easy-new.php - Main search page</div>
+                <div class="file-item">search-made-easy-referral-not-uses-new.php - Search page for non-referral users</div>
+                <div class="file-item">search-made-easy-referral-uses-new.php - Search page for referral users</div>
+                <div class="file-item">details-new.php - Property details page with video functionality</div>
+                <div class="file-item">test-search-functionality.php - PHP test script</div>
+                <div class="file-item">search-verification.html - This verification page</div>
+            </div>
+        </div>
+        
+        <div class="status success">
+            <h3>Features Implemented:</h3>
+            <div class="file-list">
+                <div class="file-item">Video button on property details page (bottom-right corner, rectangular with 10px border radius)</div>
+                <div class="file-item">Modal for playing YouTube videos</div>
+                <div class="file-item">Search functionality directly in search-made-easy-new.php</div>
+                <div class="file-item">Display of search results or hot properties</div>
+                <div class="file-item">Search form with location and type filters</div>
+                <div class="file-item">Responsive design for mobile devices</div>
+            </div>
+        </div>
+        
+        <div class="status info">
+            <h3>How to Use:</h3>
+            <div class="file-list">
+                <div class="file-item">Place all PHP files in your web server directory</div>
+                <div class="file-item">Ensure database connection details in inc/connect.inc.php are correct</div>
+                <div class="file-item">Open search-made-easy-new.php in your browser</div>
+                <div class="file-item">Use the search form to filter properties by location and type</div>
+                <div class="file-item">Click on properties to view details with video functionality</div>
+            </div>
+        </div>
+        
+        <div class="status info">
+            <h3>Search Functionality Details:</h3>
+            <pre>
+Search Parameters:
+- Location: Sagamu (fixed option)
+- Type: Single Room, Self Contain, 1 Bedroom Flat, 2 Bedroom Flat, 3 Bedroom Flat, 4 Bedroom Flat
+
+When you search:
+- If both filters are selected, it searches for properties matching both
+- If only one filter is selected, it searches for properties matching that filter
+- If no filters are selected, it displays hot properties (house_label='hot')
+
+Search Results Display:
+- Properties are shown in a responsive grid
+- Each property shows location, price, rooms left, negotiable status
+- Booked/unavailable properties have a status indicator
+- Click "View Details" to see complete information
+            </pre>
+        </div>
+        
+        <div class="status info">
+            <h3>Video Functionality:</h3>
+            <pre>
+If a property has a YouTube video:
+- A video button appears in the bottom-right corner of the main image
+- Clicking the button opens a modal with the YouTube video
+- The modal can be closed with the X button or by clicking outside
+- ESC key also closes the modal
+- Video starts playing automatically
+
+Video Button Style:
+- Rectangular with 10px border radius
+- Contains play icon and "Watch Video Tour" text
+- Hover effect (slightly darker background, subtle transform)
+            </pre>
+        </div>
+    </div>
+</body>
+</html>

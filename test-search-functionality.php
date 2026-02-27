@@ -34,7 +34,7 @@ if(mysqli_num_rows($result) > 0){
     echo "<table style='width: 100%; border-collapse: collapse;'>";
     echo "<tr style='background: #f2f2f2;'><th>Property</th><th>Location</th><th>Price</th></tr>";
     foreach($properties as $property){
-        echo "<tr style='border: 1px solid #ddd;'><td>" . $property['house_name'] . "</td><td>" . $property['location'] . ", " . $property['house_location'] . "</td><td>#" . number_format($property['first_year_rent']) . "</td></tr>";
+        echo "<tr style='border: 1px solid #ddd;'><td>" . $property['house_name'] . "</td><td>" . $property['location'] . ", " . $property['house_location'] . "</td><td>#" . number_format((float)$property['first_year_rent']) . "</td></tr>";
     }
     echo "</table>";
     echo "</div>";
@@ -64,7 +64,7 @@ if(mysqli_num_rows($result) > 0){
     echo "<table style='width: 100%; border-collapse: collapse;'>";
     echo "<tr style='background: #f2f2f2;'><th>Property</th><th>Location</th><th>Price</th></tr>";
     foreach($properties as $property){
-        echo "<tr style='border: 1px solid #ddd;'><td>" . $property['house_name'] . "</td><td>" . $property['location'] . ", " . $property['house_location'] . "</td><td>#" . number_format($property['first_year_rent']) . "</td></tr>";
+        echo "<tr style='border: 1px solid #ddd;'><td>" . $property['house_name'] . "</td><td>" . $property['location'] . ", " . $property['house_location'] . "</td><td>#" . number_format((float)$property['first_year_rent']) . "</td></tr>";
     }
     echo "</table>";
     echo "</div>";
@@ -100,7 +100,7 @@ if(mysqli_num_rows($result) > 0){
     echo "<table style='width: 100%; border-collapse: collapse;'>";
     echo "<tr style='background: #f2f2f2;'><th>Property</th><th>Location</th><th>Price</th></tr>";
     foreach($properties as $property){
-        echo "<tr style='border: 1px solid #ddd;'><td>" . $property['house_name'] . "</td><td>" . $property['location'] . ", " . $property['house_location'] . "</td><td>#" . number_format($property['first_year_rent']) . "</td></tr>";
+        echo "<tr style='border: 1px solid #ddd;'><td>" . $property['house_name'] . "</td><td>" . $property['location'] . ", " . $property['house_location'] . "</td><td>#" . number_format((float)$property['first_year_rent']) . "</td></tr>";
     }
     echo "</table>";
     echo "</div>";
