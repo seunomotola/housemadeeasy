@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include("../inc/connect.inc.php")');     
+include("../inc/connect.inc.php");     
 if(isset($_SESSION['agentaffilate_id'])){
     header("location:upload-house.php ");
     
