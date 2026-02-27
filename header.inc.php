@@ -1,8 +1,11 @@
 <?php 
 session_start();
 ob_start();
-include("../inc/connect.inc.php")'); ?>
- <!DOCTYPE html>
+include("../inc/connect.inc.php");
+
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">

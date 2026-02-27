@@ -1,6 +1,6 @@
 <?php  
 include ('inc/session.php'); 
-//include("../inc/connect.inc.php")'); 
+//include("../inc/connect.inc.php");
 $basename= basename($_SERVER['PHP_SELF']);
 $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']); 
     ?>

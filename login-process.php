@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("../inc/connect.inc.php")');
+include("../inc/connect.inc.php");
+
 function val($data) {
     $data = trim($data);
     $data = stripslashes($data);

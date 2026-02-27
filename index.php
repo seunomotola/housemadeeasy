@@ -252,7 +252,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                 </div>
             </div>
     </div>
-<?php } ?>
+<?php } } ?>
   <?php 
                     // Get additional slides for carousel
                     $sql = "SELECT * FROM slide order by id desc LIMIT 1,3";
@@ -544,10 +544,17 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                
                 <!--Review start-->
                 <div class="review-slider section"> 
-                      <?php
-                   $sql = "SELECT * FROM test  order by id ASC";
+                  <?php
+                    // Get testimonials
+                    $sql = "SELECT * FROM test  order by id ASC";
                     $query = $con->query($sql);
-                    while($row2 = $query->fetch_assoc()){
+                    
+                    if (!$query) {
+                        $error = $con->error;
+                        error_log("[" . date('Y-m-d H:i:s') . "] Testimonials query failed: " . $error);
+                        showError("Failed to load testimonials. Please try again later.", $error);
+                    } else {
+                        while($row2 = $query->fetch_assoc()){
                          $name=$row2['name'];
                       $img=$row2['img'];
                      $main_desc=$row2['main_desc'];
@@ -565,7 +572,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                         </div>
                     </div>
                     
-                 <?php } ?>
+                 <?php } } ?>
                     
                    
                     

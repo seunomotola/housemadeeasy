@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: application/json'); 
-include("../inc/connect.inc.php")'); // $con is your mysqli connection
+include("../inc/connect.inc.php");
+
 session_start();
 if (!isset($_SESSION['id'])) {
     echo json_encode(['success' => false, 'msg' => 'User not set']); 

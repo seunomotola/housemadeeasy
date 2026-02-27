@@ -1,5 +1,6 @@
 <?php   
-include("../inc/connect.inc.php")');
+include("../inc/connect.inc.php");
+
   if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
     session_start();
     $_SESSION['user_id'] = $_COOKIE['user_id'];

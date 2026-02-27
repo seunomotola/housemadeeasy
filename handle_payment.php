@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: application/json');
-include("../inc/connect.inc.php")'); 
+include("../inc/connect.inc.php");
+
 session_start();
 $userid = $_SESSION['id']; 
 $house_rent = $_POST['house_rent']; 

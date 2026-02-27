@@ -1,6 +1,6 @@
   <?php  
    session_start(); 
-    include("../inc/connect.inc.php")'); 
+    include("../inc/connect.inc.php");
   //  if(!isset($_SESSION['email'])){
   //    echo  "<script>
   //   alert('Login/Register first ...');

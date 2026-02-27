@@ -1,5 +1,5 @@
  <?php
-	include("../inc/connect.inc.php")'); 
+	include("../inc/connect.inc.php");
 	//include('thumb.func.php');
 function val($data){
 	$data= trim($data);

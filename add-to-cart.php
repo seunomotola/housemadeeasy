@@ -1,5 +1,6 @@
 <?php
-include("../inc/connect.inc.php")');
+include("../inc/connect.inc.php");
+
 session_start();
 if (isset($_POST['property_id'])) {
     $property_id = $_POST['property_id'];

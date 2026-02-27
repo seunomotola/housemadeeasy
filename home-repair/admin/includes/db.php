@@ -1,3 +1,3 @@
- <?php 
-$con = mysqli_connect("localhost","housxjjr_housxjjr","housemadeeasy","housxjjr_housemadeeasy");
+<?php 
+$con = mysqli_connect("localhost","housemadeeasy","@hmeaffliate","housema2_housemadeeasy");
 ?>

@@ -4,7 +4,8 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include("../inc/connect.inc.php")'); // database connection
+include("../inc/connect.inc.php");
+
 // Check if user is logged in
 if (!isset($_SESSION['id'])) {
     http_response_code(401);

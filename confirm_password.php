@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("../inc/connect.inc.php")'); 
+include("../inc/connect.inc.php");
+
 if (isset($_GET["token"]) && isset($_GET["email"])) {
 	$email = $_GET["email"];
 	$token =$_GET["token"];

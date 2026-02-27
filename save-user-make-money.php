@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json'); 
-include("../inc/connect.inc.php")'); // $con is your mysqli connection
+include("../inc/connect.inc.php");
 session_start();
 $name = $_POST['name']; 
 $whatsapp = $_POST['whatsapp']; 
