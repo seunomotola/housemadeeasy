@@ -2,8 +2,8 @@
 // Do NOT call session_start() here anymore, it's already called in my-account.php
 include("../inc/connect.inc.php");
 // Load environment variables
-require __DIR__ . '/../../vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
+require __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 // Configuration for Google OAuth
 define('GOOGLE_CLIENT_ID', $_ENV['GOOGLE_CLIENT_ID']);

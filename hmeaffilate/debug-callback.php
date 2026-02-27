@@ -3,8 +3,8 @@ session_start();
 header('Content-Type: text/html; charset=utf-8');
 include("../inc/connect.inc.php")');
 // Load environment variables
-require __DIR__ . '/../../vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
+require __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 // Configuration
 define('GOOGLE_CLIENT_ID', $_ENV['GOOGLE_CLIENT_ID']);

@@ -10,8 +10,8 @@ header('Content-Type: application/json');
 include("inc/session.php");
 include("../inc/connect.inc.php");
 // Load environment variables
-require __DIR__ . '/../../vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
+require __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 // Load Google tokens from database if not in session
 if (!isset($_SESSION['google_access_token']) && isset($_SESSION['agentaffilate_id'])) {

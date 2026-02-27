@@ -1,8 +1,8 @@
 <?php
 // Central database connection file for all modules
 // Load environment variables
-require __DIR__ . '/../../vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
+require __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 $db_host = $_ENV['DB_HOST'];
 $db_user = $_ENV['DB_USER'];
