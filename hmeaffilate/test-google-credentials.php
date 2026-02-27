@@ -1,7 +1,7 @@
 <?php
 // Load environment variables
-require __DIR__ . '/../vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+require __DIR__ . '/../../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
 $dotenv->load();
 // Test Google OAuth credentials
 define('GOOGLE_CLIENT_ID', $_ENV['GOOGLE_CLIENT_ID']);
