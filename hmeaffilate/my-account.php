@@ -2,7 +2,7 @@
 ob_start();
 session_start(); // Start session FIRST, before includes
 include("../inc/connect.inc.php");
-include ('inc/session.php');
+include ("../inc/session.php");
 ?>
     
    
