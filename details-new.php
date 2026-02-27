@@ -853,6 +853,11 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             <!-- Property Header -->
             <div class="property-header">
                 <h2 class="property-title"><?php echo $post['house_name']; ?></h2>
+                <div style="margin-top: 20px;">
+                    <button onclick="testVideoModal()" style="padding: 10px 20px; background-color: #2563eb; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px;">
+                        Test Video Modal
+                    </button>
+                </div>
                 
                 <div class="property-meta">
                     <div class="meta-item">
@@ -1278,6 +1283,13 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             }
         }
         
+        // Test function to directly open the video modal
+        function testVideoModal() {
+            const youtubeUrl = '<?php echo $post['youtube_link']; ?>';
+            console.log('Testing YouTube modal with URL:', youtubeUrl);
+            openVideoModal(youtubeUrl);
+        }
+
         function closeVideoModal() {
             const modal = document.getElementById('videoModal');
             if (modal) {
