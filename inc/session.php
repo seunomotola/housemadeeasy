@@ -1,5 +1,7 @@
 <?php
 
+if (!function_exists('isTokenValid')) {
+
 include(__DIR__ . "/connect.inc.php");
 
 // Load environment variables
@@ -145,5 +147,6 @@ if (isset($_SESSION['agentaffilate_id'])) {
         </script>";
         exit();
     }
+}
 }
 ?>
