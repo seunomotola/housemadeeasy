@@ -1,7 +1,8 @@
 <?php 
 // ob_start();
 session_start(); // <- Add this line to start the session
-// include ('../inc/session.php'); 
+include ("../inc/session.php"); 
+include ("../inc/connect.inc.php");
 ?> 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <!doctype html>
