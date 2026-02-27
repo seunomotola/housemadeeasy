@@ -1,7 +1,5 @@
 <?php 
-error_reporting(E_ALL);
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
+include ("../../errorreport.php");
 ob_start();
 session_start(); // <- Add this line to start the session
 include ('inc/session.php'); 
