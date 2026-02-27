@@ -1,5 +1,6 @@
 <?php  
 
+session_start;
 include ("errorreport.php");
 include ('inc/session.php');  
 include("../inc/connect.inc.php");
