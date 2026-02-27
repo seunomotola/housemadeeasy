@@ -465,6 +465,7 @@
             border: none;
             border-radius: 8px;
             font-weight: 600;
+            text-decoration: none;
             cursor: pointer;
             transition: var(--transition);
         }
@@ -1041,7 +1042,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="logo">
-                        <img src="assets/images/HouseMadeEasylogo.jpg" alt="HouseMadeEasy Logo">
+                        <img src="/assets/images/HouseMadeEasylogo.jpg" alt="HouseMadeEasy Logo">
                         <h3>HouseMadeEasy</h3>
                     </div>
                     <p style="margin-top: 1rem; opacity: 0.8;">Helping students find their perfect accommodation with ease.</p>
