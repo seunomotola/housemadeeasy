@@ -1,5 +1,6 @@
 <?php
 include ('inc/session.php');
+include ("inc/connect.inc.php");
  if(isset($_GET['code'])){
 date_default_timezone_set('Africa/Lagos');
 $user_id = $_SESSION['user_id'] ?? null;
