@@ -140,12 +140,8 @@ if (isset($_SESSION['agentaffilate_id'])) {
             }
         }
     } else {
-        // Agent not found — redirect to login
-        echo "<script>
-            alert('Login/Register first before you can view this page...');
-            window.location.href='index.php';
-        </script>";
-        exit();
+        // Agent not found — do not redirect for public pages
+        // Only redirect for agent-specific pages
     }
 }
 }
