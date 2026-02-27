@@ -254,6 +254,58 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             transition: var(--transition);
         }
         
+        .video-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .video-overlay:hover {
+            background: rgba(0, 0, 0, 0.85);
+            transform: translate(-50%, -50%) scale(1.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+        
+        .play-button i {
+            font-size: 24px;
+            color: white;
+            margin-left: 3px;
+        }
+        
+        .video-label {
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            padding: 0 10px;
+            letter-spacing: 0.5px;
+        }
+        
         .main-image:hover img {
             transform: scale(1.1);
         }
@@ -762,6 +814,14 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
         <div class="gallery-container">
             <div class="main-image">
                 <img src="/assets/images/property/<?php echo $post['house_img2']; ?>" alt="<?php echo $post['house_name']; ?>" id="mainImage">
+                <?php if (!empty($post['youtube_link'])) { ?>
+                    <div class="video-overlay" onclick="openVideoModal('<?php echo $post['youtube_link']; ?>')">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-label">Watch Video Tour</div>
+                    </div>
+                <?php } ?>
                 <div class="image-overlay">
                     <h3><?php echo $post['house_name']; ?></h3>
                     <p><?php echo $post['house_label']; ?></p>

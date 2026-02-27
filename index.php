@@ -827,7 +827,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                 </div>
             </div>
             <div class="hero-image">
-                <img src="assets/images/HouseMadeEasylogo.jpg" alt="Modern Apartment">
+                <img src="assets/images/heroimage.jpg" alt="Modern Apartment">
             </div>
         </div>
     </section>
@@ -1019,7 +1019,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                     <div class="author-avatar">AM</div>
                     <div class="author-info">
                         <h4>Amaka Michael</h4>
-                        <p>Student, Lagos</p>
+                        <p>Student, Sagamu</p>
                     </div>
                 </div>
             </div>
@@ -1029,7 +1029,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                     <div class="author-avatar">JO</div>
                     <div class="author-info">
                         <h4>John Okafor</h4>
-                        <p>Professional, Abuja</p>
+                        <p>Student, Sagamu</p>
                     </div>
                 </div>
             </div>
@@ -1084,10 +1084,11 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
             <div class="footer-column">
                 <h4>Contact Info</h4>
                 <ul class="footer-links">
-                    <li><i class="fas fa-map-marker-alt"></i> Isale-Oko, Lagos</li>
-                    <li><i class="fas fa-phone"></i> +234 801 234 5678</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Isale-Oko, Sagamu</li>
+                    <li><i class="fas fa-phone"></i> +234 805</li>
                     <li><i class="fas fa-envelope"></i> info@housemadeeasy.com.ng</li>
-                    <li><i class="fas fa-clock"></i> Mon - Fri: 9AM - 6PM</li>
+                    <li> <i class="fas fa-whatsapp"> +2349151294786 </li>
+                    <li><i class="fas fa-clock"></i> Mon - Sat: 9AM - 6PM</li>
                 </ul>
             </div>
         </div>
