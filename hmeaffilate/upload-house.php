@@ -7,7 +7,7 @@ ini_set('log_errors', 1);
 include ("../inc/connect.inc.php");
 include ("../inc/session.php"); 
 ?> 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 
  <!doctype html>
 <html class="no-js" lang="zxx">
 <!-- Mirrored from template.hasthemes.com/khonike/khonike/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:25:19 GMT -->
@@ -35,6 +35,9 @@ include ("../inc/session.php");
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <!-- Google API -->
     <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <!-- You already have this, verify the file exists -->
+<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
 <div id="main-wrapper">
