@@ -1,4 +1,8 @@
 <?php 
+
+
+
+
 ob_start();
 if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
     session_start();
@@ -18,7 +22,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
  include ('inc/header.inc.php');   ?>    
   
 <?php
-    $connection = mysqli_connect("localhost", "root", "", "housemadeeasy"); 
+    $connection = mysqli_connect("localhost", "housemadeeasy", "@hmeaffliate", "housema2_housemadeeasy"); 
     $sql = "SELECT * FROM house_taken WHERE id=2";
     $result = mysqli_query($connection, $sql);
     $row = mysqli_fetch_object($result);
