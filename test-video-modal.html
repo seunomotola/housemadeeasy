@@ -172,11 +172,19 @@
                 document.head.appendChild(style);
             }
             
-            // Extract YouTube video ID
+            // Extract YouTube video ID (supports all formats including shorts)
             let videoId = '';
-            const youtubeMatch = youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/);
-            if (youtubeMatch) {
-                videoId = youtubeMatch[1];
+            
+            // Short format: https://youtube.com/shorts/57EhITD-W64?si=... or https://www.youtube.com/shorts/57EhITD-W64
+            const shortsMatch = youtubeUrl.match(/shorts\/([^?&\/]+)/);
+            if (shortsMatch) {
+                videoId = shortsMatch[1];
+            } else {
+                // Other formats: https://youtu.be/57EhITD-W64, https://www.youtube.com/watch?v=57EhITD-W64, etc.
+                const youtubeMatch = youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/);
+                if (youtubeMatch) {
+                    videoId = youtubeMatch[1];
+                }
             }
             
             console.log('Extracted Video ID:', videoId);

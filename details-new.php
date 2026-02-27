@@ -1268,18 +1268,42 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 document.head.appendChild(style);
             }
             
-            // Extract YouTube video ID
+            // Extract YouTube video ID (supports all formats including shorts)
             let videoId = '';
-            const youtubeMatch = youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/);
-            if (youtubeMatch) {
-                videoId = youtubeMatch[1];
+            
+            console.log('Extracting video ID from URL:', youtubeUrl);
+            
+            // Short format: https://youtube.com/shorts/57EhITD-W64?si=... or https://www.youtube.com/shorts/57EhITD-W64
+            const shortsMatch = youtubeUrl.match(/shorts\/([^?&\/]+)/);
+            if (shortsMatch) {
+                videoId = shortsMatch[1];
+                console.log('Video ID extracted from shorts format:', videoId);
+            } else {
+                // Other formats: https://youtu.be/57EhITD-W64, https://www.youtube.com/watch?v=57EhITD-W64, etc.
+                const youtubeMatch = youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/);
+                if (youtubeMatch) {
+                    videoId = youtubeMatch[1];
+                    console.log('Video ID extracted from standard format:', videoId);
+                } else {
+                    console.log('No video ID extracted');
+                }
             }
             
             if (videoId) {
+                console.log('Video ID is valid, attempting to open modal');
+                
+                // Check if modal and video player elements exist
+                console.log('Modal element exists:', modal !== null);
+                if (modal) {
+                    console.log('Video player element exists:', document.getElementById('videoPlayer') !== null);
+                }
+                
                 // Set video source and show modal
                 document.getElementById('videoPlayer').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
+                
+                console.log('Modal should now be visible');
             }
         }
         
@@ -1289,6 +1313,11 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             console.log('Testing YouTube modal with URL:', youtubeUrl);
             openVideoModal(youtubeUrl);
         }
+        
+        // Auto-open modal when page loads (for testing purposes)
+        window.addEventListener('load', function() {
+            setTimeout(testVideoModal, 2000); // Wait 2 seconds before opening
+        });
 
         function closeVideoModal() {
             const modal = document.getElementById('videoModal');
