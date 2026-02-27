@@ -3,7 +3,7 @@
 include(__DIR__ . "/connect.inc.php");
 
 // Load environment variables
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
