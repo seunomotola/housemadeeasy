@@ -86,8 +86,8 @@ include ("../inc/session.php");
                     <!--Menu end-->
                     
                     <!--User start-->
-                    <?php
-                                     $query2 = mysqli_query($con,"SELECT * FROM hmeaffilate_user WHERE agentaffilate_id = '".$_SESSION['agentaffilate_id']."'");  
+<?php
+$query2 = mysqli_query($con,"SELECT * FROM hmeaffilate_user WHERE agentaffilate_id = '".$_SESSION['agentaffilate_id']."'");  
 $row2 = mysqli_fetch_assoc($query2);
 //$teachname=$row2['myteacherlast']." ".$row2['myteacherfirst'] ;
 $prof = (!empty($row2['picture'])) ? 'assets/images/hmeaffilate_img/'.$row2['picture'] : 'assets/images/user.png';  
