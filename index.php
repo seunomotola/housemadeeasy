@@ -150,16 +150,18 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
         }
 
         .logo {
-
-        width: 60px;
-        height: 60px;
-            /* font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.5rem;
             font-weight: 900;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -1px; */
+            color: var(--dark);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            border-radius: 8px;
         }
 
         .nav-menu {
@@ -799,8 +801,8 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">
-
-            <img src="../assets/images/HouseMadeEasyLogo.png"/>
+                <img src="assets/images/HouseMadeEasylogo.jpg" alt="House Made Easy Logo">
+                <span>House Made Easy</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
@@ -808,7 +810,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                 <li><a href="#features" class="nav-link">Features</a></li>
                 <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="index-deprecated.php" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Legacy Version</a></li>
+
             </ul>
         </div>
     </nav>
@@ -1072,7 +1074,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
             <div class="footer-column">
                 <h4>Quick Links</h4>
                 <ul class="footer-links">
-                    <li><a href="index-deprecated.php">Legacy Version</a></li>
+
                     <li><a href="about-us.php">About Us</a></li>
                     <li><a href="services.php">Services</a></li>
                     <li><a href="contact-us.php">Contact</a></li>
@@ -1082,15 +1084,15 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
             <div class="footer-column">
                 <h4>Contact Info</h4>
                 <ul class="footer-links">
-                    <li><i class="fas fa-map-marker-alt"></i> 123 Housing Street, Lagos</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Isale-Oko, Lagos</li>
                     <li><i class="fas fa-phone"></i> +234 801 234 5678</li>
-                    <li><i class="fas fa-envelope"></i> info@housemadeeasy.com</li>
+                    <li><i class="fas fa-envelope"></i> info@housemadeeasy.com.ng</li>
                     <li><i class="fas fa-clock"></i> Mon - Fri: 9AM - 6PM</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 House Made Easy. All rights reserved. | Designed with <i class="fas fa-heart"></i> by House Made Easy Team</p>
+            <p>&copy; <?php echo date('Y'); ?> House Made Easy. All rights reserved. | Designed with <i class="fas fa-heart"></i> by House Made Easy Team</p>
         </div>
     </footer>
 
