@@ -256,17 +256,14 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
         
         .video-overlay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            bottom: 20px;
+            right: 20px;
             background: rgba(0, 0, 0, 0.7);
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
+            border-radius: 10px;
+            padding: 15px 20px;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            gap: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
@@ -275,34 +272,32 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
         
         .video-overlay:hover {
             background: rgba(0, 0, 0, 0.85);
-            transform: translate(-50%, -50%) scale(1.1);
+            transform: translateY(-2px);
             border-color: rgba(255, 255, 255, 0.5);
         }
         
         .play-button {
-            width: 60px;
-            height: 60px;
+            width: 40px;
+            height: 40px;
             background: var(--primary-color);
-            border-radius: 50%;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 8px;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
         }
         
         .play-button i {
-            font-size: 24px;
+            font-size: 18px;
             color: white;
-            margin-left: 3px;
+            margin-left: 2px;
         }
         
         .video-label {
             color: white;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 500;
-            text-align: center;
-            padding: 0 10px;
+            text-align: left;
             letter-spacing: 0.5px;
         }
         
@@ -1140,6 +1135,168 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                     });
                 }
             });
+        });
+        
+        // Video modal functionality
+        function openVideoModal(youtubeUrl) {
+            // Create modal if it doesn't exist
+            let modal = document.getElementById('videoModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'videoModal';
+                modal.className = 'video-modal';
+                modal.innerHTML = `
+                    <div class="modal-overlay" onclick="closeVideoModal()"></div>
+                    <div class="modal-content">
+                        <button class="modal-close" onclick="closeVideoModal()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="video-container">
+                            <iframe id="videoPlayer" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                // Add CSS styles for modal
+                const style = document.createElement('style');
+                style.textContent = `
+                    .video-modal {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 10000;
+                        display: none;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    
+                    .video-modal.active {
+                        display: flex;
+                    }
+                    
+                    .modal-overlay {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.9);
+                        backdrop-filter: blur(5px);
+                    }
+                    
+                    .modal-content {
+                        position: relative;
+                        background: white;
+                        border-radius: 20px;
+                        padding: 20px;
+                        max-width: 900px;
+                        width: 90%;
+                        max-height: 80vh;
+                        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                        z-index: 1;
+                    }
+                    
+                    .modal-close {
+                        position: absolute;
+                        top: -40px;
+                        right: 0;
+                        width: 40px;
+                        height: 40px;
+                        background: white;
+                        border: none;
+                        border-radius: 50%;
+                        font-size: 20px;
+                        color: #333;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                        transition: all 0.3s ease;
+                    }
+                    
+                    .modal-close:hover {
+                        background: var(--primary-color);
+                        color: white;
+                        transform: scale(1.1);
+                    }
+                    
+                    .video-container {
+                        position: relative;
+                        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+                        height: 0;
+                        overflow: hidden;
+                        border-radius: 12px;
+                    }
+                    
+                    .video-container iframe {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    
+                    @media (max-width: 768px) {
+                        .modal-content {
+                            width: 95%;
+                            padding: 15px;
+                        }
+                        
+                        .modal-close {
+                            top: -35px;
+                            width: 35px;
+                            height: 35px;
+                            font-size: 18px;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            // Extract YouTube video ID
+            let videoId = '';
+            const youtubeMatch = youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/);
+            if (youtubeMatch) {
+                videoId = youtubeMatch[1];
+            }
+            
+            if (videoId) {
+                // Set video source and show modal
+                document.getElementById('videoPlayer').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            if (modal) {
+                const iframe = document.getElementById('videoPlayer');
+                if (iframe) {
+                    iframe.src = '';
+                }
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('videoModal');
+            if (modal && event.target === modal && modal.classList.contains('active')) {
+                closeVideoModal();
+            }
+        });
+        
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeVideoModal();
+            }
         });
     </script>
 </body>

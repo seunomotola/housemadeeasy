@@ -6,6 +6,42 @@ ini_set('log_errors', 1);
 include ('inc/session.php');
 include ("inc/connect.inc.php");
 
+// Search functionality
+$searchResults = array();
+if(isset($_GET['location']) || isset($_GET['type'])){
+    $location = $_GET['location'] ?? '';
+    $type = $_GET['type'] ?? '';
+    
+    $sql = "SELECT * FROM properties WHERE 1=1";
+    
+    if(!empty($location)){
+        $sql .= " AND location = ?";
+    }
+    
+    if(!empty($type)){
+        $sql .= " AND type = ?";
+    }
+    
+    $stmt = $con->prepare($sql);
+    
+    if(!empty($location) && !empty($type)){
+        $stmt->bind_param('ss', $location, $type);
+    } elseif(!empty($location)){
+        $stmt->bind_param('s', $location);
+    } elseif(!empty($type)){
+        $stmt->bind_param('s', $type);
+    }
+    
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $searchResults = $result->fetch_all(MYSQLI_ASSOC);
+    
+    // Pass search parameters to the template
+    $_SESSION['search_location'] = $location;
+    $_SESSION['search_type'] = $type;
+    $_SESSION['search_results'] = $searchResults;
+}
+
 if(isset($_GET['code'])){
     date_default_timezone_set('Africa/Lagos');
     $user_id = $_SESSION['user_id'] ?? null;

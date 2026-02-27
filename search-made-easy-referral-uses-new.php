@@ -826,12 +826,18 @@
     <!-- Search Section -->
     <section class="search-section">
         <div class="search-card">
-            <form action="search.php" method="POST" class="search-form" id="searchForm">
+            <form action="search-made-easy-new.php" method="GET" class="search-form" id="searchForm">
+                <?php if(isset($_SESSION['search_location'])) { ?>
+                    <input type="hidden" name="location" value="<?php echo $_SESSION['search_location']; ?>">
+                <?php } ?>
+                <?php if(isset($_SESSION['search_type'])) { ?>
+                    <input type="hidden" name="type" value="<?php echo $_SESSION['search_type']; ?>">
+                <?php } ?>
                 <div class="form-group">
                     <label for="location">Location</label>
                     <select class="form-control" id="location" name="location" required>
                         <option value="">Select Location</option>
-                        <option value="Sagamu">Sagamu</option>
+                        <option value="Sagamu" <?php echo (isset($_SESSION['search_location']) && $_SESSION['search_location'] == 'Sagamu') ? 'selected' : ''; ?>>Sagamu</option>
                     </select>
                 </div>
                 
@@ -839,12 +845,12 @@
                     <label for="type">Property Type</label>
                     <select class="form-control" id="type" name="type" required>
                         <option value="">Select Type</option>
-                        <option>Single Room</option>
-                        <option>Self Contain</option>
-                        <option>1 Bedroom Flat</option>
-                        <option>2 Bedroom Flat</option>
-                        <option>3 Bedroom Flat</option>
-                        <option>4 Bedroom Flat</option>
+                        <option value="Single Room" <?php echo (isset($_SESSION['search_type']) && $_SESSION['search_type'] == 'Single Room') ? 'selected' : ''; ?>>Single Room</option>
+                        <option value="Self Contain" <?php echo (isset($_SESSION['search_type']) && $_SESSION['search_type'] == 'Self Contain') ? 'selected' : ''; ?>>Self Contain</option>
+                        <option value="1 Bedroom Flat" <?php echo (isset($_SESSION['search_type']) && $_SESSION['search_type'] == '1 Bedroom Flat') ? 'selected' : ''; ?>>1 Bedroom Flat</option>
+                        <option value="2 Bedroom Flat" <?php echo (isset($_SESSION['search_type']) && $_SESSION['search_type'] == '2 Bedroom Flat') ? 'selected' : ''; ?>>2 Bedroom Flat</option>
+                        <option value="3 Bedroom Flat" <?php echo (isset($_SESSION['search_type']) && $_SESSION['search_type'] == '3 Bedroom Flat') ? 'selected' : ''; ?>>3 Bedroom Flat</option>
+                        <option value="4 Bedroom Flat" <?php echo (isset($_SESSION['search_type']) && $_SESSION['search_type'] == '4 Bedroom Flat') ? 'selected' : ''; ?>>4 Bedroom Flat</option>
                     </select>
                 </div>
                 
@@ -911,43 +917,32 @@
         
         <div class="properties-grid" id="propertiesGrid">
             <?php 
-                $sql="SELECT p.*, 
-                    CASE 
-                        WHEN bu.house_id IS NOT NULL OR b.house_id IS NOT NULL THEN 1 
-                        ELSE 0 
-                    END AS booked 
-                FROM properties p
-                LEFT JOIN bookings b ON p.house_id = b.house_id
-                LEFT JOIN bookings_urgent bu ON p.house_id = bu.house_id
-                where p.house_label='hot'
-                ORDER BY 
-                    CASE WHEN p.status = 'no' THEN 1 ELSE 0 END DESC,
-                    CASE WHEN bu.house_id IS NULL AND b.house_id IS NULL THEN 0 ELSE 1 END ASC
-            ";
-            $query = $con->query($sql);
-            while($row2 = $query->fetch_assoc()){ 
-                $house_img1 = $row2['house_img1'];
-                $house_img2 = $row2['house_img2'];
-                $house_label = $row2['house_label'];
-                $first_year_rent = $row2['first_year_rent'];
-                $second_year_rent = $row2['second_year_rent'];
-                $location = $row2['location'];
-                $id = $row2['id'];
-                $status = $row2['status'];
-                $house_name = $row2['house_name'];
-                $house_location = $row2['house_location'];
-                $house_id1 = $row2['house_id'];
-                $multiple_room = $row2['multiple_room'];
-                $bathroom2 = $row2['bathroom'];
-                $kitchen2 = $row2['kitchen'];
-                $distance2 = $row2['distance'];
-                $negotiable = $row2['negotiable'];
-                $how_many_multiple_room = $row2['how_many_multiple_room'];
-                
-                // Check if house is booked
-                $query3 = mysqli_query($con, "SELECT house_id FROM bookings WHERE house_id='$house_id1' UNION SELECT house_id FROM bookings_urgent WHERE house_id='$house_id1'"); 
-                $row3 = mysqli_fetch_assoc($query3);
-                $house_id11 = $row3['house_id'] ?? null;
+                // Check if there are search results
+                if(isset($_SESSION['search_results']) && !empty($_SESSION['search_results'])){
+                    $properties = $_SESSION['search_results'];
+                    foreach($properties as $row2){ 
+                        $house_img1 = $row2['house_img1'];
+                        $house_img2 = $row2['house_img2'];
+                        $house_label = $row2['house_label'];
+                        $first_year_rent = $row2['first_year_rent'];
+                        $second_year_rent = $row2['second_year_rent'];
+                        $location = $row2['location'];
+                        $id = $row2['id'];
+                        $status = $row2['status'];
+                        $house_name = $row2['house_name'];
+                        $house_location = $row2['house_location'];
+                        $house_id1 = $row2['house_id'];
+                        $multiple_room = $row2['multiple_room'];
+                        $bathroom2 = $row2['bathroom'];
+                        $kitchen2 = $row2['kitchen'];
+                        $distance2 = $row2['distance'];
+                        $negotiable = $row2['negotiable'];
+                        $how_many_multiple_room = $row2['how_many_multiple_room'];
+                        
+                        // Check if house is booked
+                        $query3 = mysqli_query($con, "SELECT house_id FROM bookings WHERE house_id='$house_id1' UNION SELECT house_id FROM bookings_urgent WHERE house_id='$house_id1'"); 
+                        $row3 = mysqli_fetch_assoc($query3);
+                        $house_id11 = $row3['house_id'] ?? null;
             ?>
             <div class="property-card animate-in">
                 <div class="property-image">
@@ -1019,7 +1014,120 @@
                     <?php } ?>
                 </div>
             </div>
-            <?php } ?>
+            <?php 
+                    } // End foreach
+                } else {
+                    // Display hot properties when no search results
+                    $sql="SELECT p.*, 
+                        CASE 
+                            WHEN bu.house_id IS NOT NULL OR b.house_id IS NOT NULL THEN 1 
+                            ELSE 0 
+                        END AS booked 
+                    FROM properties p
+                    LEFT JOIN bookings b ON p.house_id = b.house_id
+                    LEFT JOIN bookings_urgent bu ON p.house_id = bu.house_id
+                    where p.house_label='hot'
+                    ORDER BY 
+                        CASE WHEN p.status = 'no' THEN 1 ELSE 0 END DESC,
+                        CASE WHEN bu.house_id IS NULL AND b.house_id IS NULL THEN 0 ELSE 1 END ASC
+                    ";
+                    $query = $con->query($sql);
+                    while($row2 = $query->fetch_assoc()){ 
+                        $house_img1 = $row2['house_img1'];
+                        $house_img2 = $row2['house_img2'];
+                        $house_label = $row2['house_label'];
+                        $first_year_rent = $row2['first_year_rent'];
+                        $second_year_rent = $row2['second_year_rent'];
+                        $location = $row2['location'];
+                        $id = $row2['id'];
+                        $status = $row2['status'];
+                        $house_name = $row2['house_name'];
+                        $house_location = $row2['house_location'];
+                        $house_id1 = $row2['house_id'];
+                        $multiple_room = $row2['multiple_room'];
+                        $bathroom2 = $row2['bathroom'];
+                        $kitchen2 = $row2['kitchen'];
+                        $distance2 = $row2['distance'];
+                        $negotiable = $row2['negotiable'];
+                        $how_many_multiple_room = $row2['how_many_multiple_room'];
+                        
+                        // Check if house is booked
+                        $query3 = mysqli_query($con, "SELECT house_id FROM bookings WHERE house_id='$house_id1' UNION SELECT house_id FROM bookings_urgent WHERE house_id='$house_id1'"); 
+                        $row3 = mysqli_fetch_assoc($query3);
+                        $house_id11 = $row3['house_id'] ?? null;
+            ?>
+            <div class="property-card animate-in">
+                <div class="property-image">
+                    <?php if (!empty($house_label)) { ?>
+                        <span class="property-label"><?php echo $house_label; ?></span>
+                    <?php } ?>
+                    
+                    <?php if (($multiple_room == 'yes' && $how_many_multiple_room == 0) || ($multiple_room == 'no' && $house_id1 == $house_id11) || $status == 'yes') { ?>
+                        <span class="property-status">
+                            <?php echo ($status == 'yes') ? 'Unavailable' : 'Booked'; ?>
+                        </span>
+                    <?php } ?>
+                    
+                    <img src="/assets/images/property/<?php echo $house_img2; ?>" alt="<?php echo $house_name; ?>">
+                </div>
+                
+                <div class="property-content">
+                    <div class="property-features">
+                        <div class="feature">
+                            <i class="fas fa-route"></i>
+                            <span><?php echo $distance2; ?></span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-bath"></i>
+                            <span><?php echo $bathroom2; ?></span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-utensils"></i>
+                            <span><?php echo $kitchen2; ?></span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="property-title"><?php echo $house_name; ?></h3>
+                    <div class="property-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span><?php echo ucwords($house_location) . ', ' . $location; ?></span>
+                    </div>
+                    
+                    <div class="property-footer">
+                        <div class="property-price">
+                            #<?php echo number_format((float)$first_year_rent); ?>
+                            <span>/year</span>
+                        </div>
+                        <a href="details.php?id=<?php echo $id; ?>" class="btn-view">
+                            View Details
+                        </a>
+                    </div>
+                    
+                    <?php if ($multiple_room == 'yes') { ?>
+                        <div class="property-status-info">
+                            <?php if ($how_many_multiple_room > 0) { ?>
+                                <p style="margin-top: 1rem; color: var(--secondary-color); font-weight: 600;">
+                                    <i class="fas fa-door-open"></i> <?php echo $how_many_multiple_room; ?> Rooms Left
+                                </p>
+                            <?php } else { ?>
+                                <p style="margin-top: 1rem; color: var(--accent-color); font-weight: 600;">
+                                    <i class="fas fa-door-closed"></i> Fully Booked
+                                </p>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+                    
+                    <?php if ($negotiable == 'yes') { ?>
+                        <div class="negotiable-badge">
+                            <span style="display: inline-block; margin-top: 0.5rem; padding: 0.25rem 0.75rem; background: var(--bg-accent); color: var(--primary-color); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">
+                                <i class="fas fa-tag"></i> Negotiable
+                            </span>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+            <?php } // End while loop ?>
+            <?php } // End if else ?>
         </div>
     </section>
 
