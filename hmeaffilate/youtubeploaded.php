@@ -7,6 +7,7 @@ ini_set('log_errors', 1);
 
 session_start();
 header('Content-Type: application/json');
+
 include("../inc/session.php");
 include("../inc/connect.inc.php");
 // Load environment variables

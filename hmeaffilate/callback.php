@@ -1,7 +1,12 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-include("../inc/connect.inc.php")');
+include("../inc/connect.inc.php");
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('log_errors', 1);
+
 // Load environment variables
 require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
