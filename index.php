@@ -871,23 +871,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
         </div>
     </section>
 
-    <!-- Search Section -->
-    <section class="search-section" id="search">
-        <div class="search-container">
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <h2 style="font-size: 2rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem;">Search Properties</h2>
-                <p style="color: #718096;">Find your ideal home with our advanced search</p>
-            </div>
-            <form class="search-form" action="search-made-easy.php" method="get">
-                <input type="text" class="search-input" placeholder="Location" name="location">
-                <input type="text" class="search-input" placeholder="Price Range" name="price">
-                <input type="text" class="search-input" placeholder="Property Type" name="type">
-                <button type="submit" class="search-button">
-                    <i class="fas fa-search"></i> Search
-                </button>
-            </form>
-        </div>
-    </section>
+
 
     <!-- Services Section -->
     <section class="services" id="services">

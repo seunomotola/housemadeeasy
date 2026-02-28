@@ -624,16 +624,7 @@ if(isset($_SESSION['agentaffilate_id'])){
         </div>
     </div>
     
-    <!--Footer section start-->
-    <footer>
-        <div class="footer-container">
-            <p>&copy; <?php echo date('Y'); ?> HMEAffilate. All rights reserved.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.875rem;">Built with <i class="fas fa-heart" style="color: #e74c3c;"></i> for property management</p>
-        </div>
-    </footer>
-    <!--Footer section end-->
-    
-    <?php include ('inc/footer.inc.php'); ?>
+    <?php include ('../inc/footer.inc.php'); ?>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
