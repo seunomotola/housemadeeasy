@@ -727,7 +727,7 @@ include ("../inc/session.php");
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>🏠 Upload Your Property</h1>
+            <h1>Upload Your Property</h1>
             <p>Fill in the details below to showcase your property to potential tenants</p>
         </div>
     </section>
@@ -1873,7 +1873,7 @@ include ("../inc/session.php");
             }
             
             // Clear form data from localStorage
-            clearFormData();
+            echo "<script>clearFormData();</script>";
             
             // Show success modal
             echo '
