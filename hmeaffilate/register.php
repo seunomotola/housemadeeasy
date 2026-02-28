@@ -27,11 +27,195 @@ include("../inc/session.php");
     
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    
+    <style>
+        /* Custom styles for improved register page */
+        .page-banner-title {
+            color: #222;
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-top: none;
+            padding: 30px;
+            border-radius: 0 0 4px 4px;
+        }
+        
+        .form-control {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #337ab7;
+            box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.25);
+        }
+        
+        .btn-primary {
+            background: #337ab7;
+            border: none;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #286090;
+        }
+        
+        .btn-default {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #666;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-default:hover {
+            background: #e8e8e8;
+        }
+        
+        /* Mobile responsiveness improvements */
+        @media (max-width: 767px) {
+            .page-banner-title {
+                font-size: 2rem;
+            }
+            
+            .tab-content {
+                padding: 20px 15px;
+            }
+            
+            .login-register-section {
+                padding: 20px 0;
+            }
+            
+            .page-banner-section {
+                padding: 30px 0;
+            }
+            
+            .logo img {
+                width: 70px !important;
+                height: 60px !important;
+            }
+            
+            .main-menu {
+                font-size: 14px;
+            }
+            
+            .btn-primary {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-banner-title {
+                font-size: 1.5rem;
+            }
+            
+            .tab-content {
+                padding: 15px 10px;
+            }
+            
+            .login-register-section {
+                padding: 15px 0;
+            }
+            
+            .page-banner-section {
+                padding: 20px 0;
+            }
+        }
+        
+        /* Input group styling with icons */
+        .input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .input-group .input-group-prepend {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            color: #666;
+        }
+        
+        .input-group .form-control {
+            padding-left: 40px;
+        }
+        
+        /* File input styling */
+        input[type="file"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="file"]:hover {
+            border-color: #337ab7;
+        }
+        
+        /* Label styling */
+        label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        /* Already registered link styling */
+        .already-registered {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+        
+        .already-registered a {
+            color: #337ab7;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .already-registered a:hover {
+            color: #286090;
+            text-decoration: underline;
+        }
+        
+        /* Terms and conditions link styling */
+        a[href="#myModal"] {
+            color: #337ab7;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        a[href="#myModal"]:hover {
+            color: #286090;
+            text-decoration: underline;
+        }
+        
+        /* Section separators */
+        hr {
+            border-color: #e5e5e5;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
     
 <div id="main-wrapper">
-   
+    
     <!--Header section start-->
     <header class="header header-sticky"> 
         <div class="header-bottom menu-center">
@@ -51,28 +235,28 @@ include("../inc/session.php");
                         <nav class="main-menu">
                             <ul>
                                 <li ><a href="index.php" style="text-decoration: none;">Home</a>
-                                   
+                                    
                                 </li>
                                  
                                <!--  <li ><a href="upload-house.php" style="text-decoration: none;">Upload House</a>
-                                   
+                                    
                                 </li> -->
-                               
-                               
+                                
+                                
                                 <?php
         if (isset($_SESSION['agentaffilate_id'])){?> 
-                                
+                                 
                                 <li ><a href="logout.php" style="text-decoration: none;">logout</a>   </li>  
                                   <?php 
-                                   
-                                   }else{?>
-                                             <li ><a href="index.php" style="text-decoration: none;">Login</a> </li>
-                                 <li class="active"><a href="register.php" style="text-decoration: none;">Register</a>   </li>  
-                                   <?php } ?>
-                               
+                                    
+                                    }else{?>
+                                              <li ><a href="index.php" style="text-decoration: none;">Login</a> </li>
+                                  <li class="active"><a href="register.php" style="text-decoration: none;">Register</a>   </li>  
+                                    <?php } ?>
                                 
-                                  
-                               
+                                 
+                                   
+                                
                             </ul> 
                         </nav>
                     </div>
@@ -108,7 +292,7 @@ include("../inc/session.php");
                 <div class="col">
                     <h1 class="page-banner-title">Register</h1>
                     <ul class="page-breadcrumb">
-                        <li><a href="main.php">Home</a></li>
+                        <li><a href="index.php">Home</a></li>
                         <li class="active">Register</li>
                     </ul>
                 </div>
@@ -134,21 +318,83 @@ include("../inc/session.php");
                             <form action="register-process.php" method="POST" enctype="multipart/form-data">
                                 
                                 <div class="row">
-                                    <div class="col-12 mb-30"><input required type="text" placeholder="First Name" name="fname">
+                                    <div class="col-12 mb-30">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <input required type="text" placeholder="First Name" name="fname" class="form-control">
+                                        </div>
                                     </div>
-                                    <div class="col-12 mb-30"><input required type="text" placeholder="Last Name" name="lname" ></div>
+                                    <div class="col-12 mb-30">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <input required type="text" placeholder="Last Name" name="lname" class="form-control">
+                                        </div>
+                                    </div>
                                     <div class="col-12 mb-30">
                                        <label for="edit_lastname" class="col-12 control-label" style="font-weight:bolder;">Upload a Profile picture</label>
-                                        <input type="file" required class="form-control"  name="picture" >
+                                        <input type="file" required class="form-control"  name="picture">
                                         </div>
-                                    <div class="col-12 mb-30"><input required type="email" placeholder="Email" name="email" value=""></div>
-                                    <div class="col-12 mb-30"><input required type="text" placeholder="Enter your Phone number" name="pno"></div>
-                                    <div class="col-12 mb-30"><input required type="password" placeholder="Password" name="pass"></div>
-                                    <div class="col-12 mb-30"><input required type="password" placeholder="Confirm Password"  name="confpass"></div>
-                                     <div class="col-12 mb-30"><input required type="text" placeholder="Enter your Bank Name e.g Gtb, Polaris etc" name="bankname"></div>
-                                      <div class="col-12 mb-30"><input required type="text" placeholder="Enter your Account Name" name="accountname"></div>
-                                       <div class="col-12 mb-30"><input required type="text" placeholder="Enter your Account Number" name="accountno"></div>
-                                   
+                                    <div class="col-12 mb-30">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <i class="fa fa-envelope"></i>
+                                            </div>
+                                            <input required type="email" placeholder="Email" name="email" value="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-30">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                            <input required type="text" placeholder="Enter your Phone number" name="pno" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-30">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <i class="fa fa-lock"></i>
+                                            </div>
+                                            <input required type="password" placeholder="Password" name="pass" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-30">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <i class="fa fa-lock"></i>
+                                            </div>
+                                            <input required type="password" placeholder="Confirm Password"  name="confpass" class="form-control">
+                                        </div>
+                                    </div>
+                                     <div class="col-12 mb-30">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <i class="fa fa-university"></i>
+                                            </div>
+                                            <input required type="text" placeholder="Enter your Bank Name e.g Gtb, Polaris etc" name="bankname" class="form-control">
+                                        </div>
+                                    </div>
+                                      <div class="col-12 mb-30">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <input required type="text" placeholder="Enter your Account Name" name="accountname" class="form-control">
+                                        </div>
+                                    </div>
+                                       <div class="col-12 mb-30">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <i class="fa fa-credit-card"></i>
+                                            </div>
+                                            <input required type="text" placeholder="Enter your Account Number" name="accountno" class="form-control">
+                                        </div>
+                                    </div>
+                                    
                                     <!--<div class="col-12 mb-30">
                                         <ul>
                                             <li><input type="radio" name="account_type" id="register_normal" checked><label for="register_normal">Normal</label></li>
@@ -158,17 +404,17 @@ include("../inc/session.php");
                                     </div>-->
                                     
                                     <div class="nav d-flex justify-content-end col-12 mb-30 pl-15 pr-15"><input name="submit" value="Register" type="submit" class="btn btn-primary form-control">
-                                         
+                                          
                                         <br>
                                     </div>
                                  <!--  <div class="col-12 mb-30">
-                                         
+                                          
                                         <p style="text-align: center;">By clicking Register, you accept our <a href="#myModal" data-toggle="modal">terms and conditions</a></p>
                                     </div> -->
-                                  
+                                   
                                      <div class="col-12 mb-30">
-                                         <hr>
-                                        <p style="text-align: center; font-weight: bolder;"><span>Already Register?&nbsp; <a  href="index.php" style="font-weight:bolder;">Login!</a></span></p>
+                                          <hr>
+                                        <p class="already-registered"><span>Already Registered?&nbsp; <a  href="index.php" style="font-weight:bolder;">Login!</a></span></p>
                                     </div>
                                 </div>
                             </form>
@@ -185,7 +431,7 @@ include("../inc/session.php");
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                
+                 
                 <h4 class="modal-title" style="text-align: center;">Terms and Condition</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               </div>
@@ -214,4 +460,4 @@ include("../inc/session.php");
         </div>
         <!-- modal -->
    <?php  include ('inc/footer.inc.php');   ?>
-   
+    
