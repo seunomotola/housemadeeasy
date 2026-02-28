@@ -1087,7 +1087,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                     <li><i class="fas fa-map-marker-alt"></i> Isale-Oko, Sagamu</li>
                     <li><i class="fas fa-phone"></i> +234 805</li>
                     <li><i class="fas fa-envelope"></i> info@housemadeeasy.com.ng</li>
-                    <li> <i class="fas fa-whatsapp"> +2349151294786 </li>
+                    <li> <i class="fas fa-whatsapp"></i> +234 915 129 4786</li>
                     <li><i class="fas fa-clock"></i> Mon - Sat: 9AM - 6PM</li>
                 </ul>
             </div>
