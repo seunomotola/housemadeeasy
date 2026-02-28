@@ -8,180 +8,491 @@ if(isset($_SESSION['agentaffilate_id'])){
   
   ?>     
   
-    <!doctype html>
-<html class="no-js" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HMEAffilate || Helping you to find your desire house easily</title>
-    <meta name="description" content="Welcome to housemadeeasy Affilate is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University.....">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMEAffilate || Login</title>
+    <meta name="description" content="Login to your HMEAffilate account to upload and manage your properties.">
     
-    <meta content="housemadeeasy is an e-platform housing website that help student of olabisi onabanjo University(Sagamu Campus) to get their  desire house of choice easily with no stress attached. We achieved this by working with trust worthy agent located in all vicinties of Sagamu Campus in Olabisi Onabanjo University....." name="keywords">
-    <!-- Place favicon.ico in the root directory -->
-    <link href="assets/images/easy.png" type="img/x-icon" rel="shortcut icon">
-    <!-- All css files are included here. -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/iconfont.min.css">
-    <link rel="stylesheet" href="assets/css/plugins.css">
-    <link rel="stylesheet" href="assets/css/helper.css">
-    <link rel="stylesheet" href="assets/css/style.css"> 
-    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">   
- 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Modernizr JS -->
-    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     
     <style>
-        /* Custom styles for improved login page */
-        .page-banner-title {
-            color: #222;
-            font-weight: 600;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .tab-content {
-            background: #fff;
-            border: 1px solid #e5e5e5;
-            border-top: none;
-            padding: 30px;
-            border-radius: 0 0 4px 4px;
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-accent: #eff6ff;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background: var(--bg-primary);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .user-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        /* Login Section */
+        .login-section {
+            max-width: 1280px;
+            margin: -4rem auto 4rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .login-card {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-xl);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Form Styles */
+        .form-section {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
         
         .form-control {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 12px;
-            font-size: 14px;
-            transition: all 0.3s ease;
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+            background: var(--bg-primary);
+            color: var(--text-primary);
         }
         
         .form-control:focus {
-            border-color: #337ab7;
-            box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.25);
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px var(--bg-accent);
         }
         
-        .btn-theme {
-            background: #337ab7;
+        .form-control::placeholder {
+            color: var(--text-light);
+        }
+        
+        /* Input Group with Icons */
+        .input-group {
+            position: relative;
+        }
+        
+        .input-group .input-group-prepend {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            z-index: 1;
+        }
+        
+        .input-group .form-control {
+            padding-left: 3rem;
+        }
+        
+        /* Button Styles */
+        .btn-primary {
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
             border: none;
-            padding: 12px;
-            font-size: 14px;
+            border-radius: 12px;
+            font-size: 1.125rem;
             font-weight: 600;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
         }
         
-        .btn-theme:hover {
-            background: #286090;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
         
-        .btn-default {
-            background: #f5f5f5;
-            border: 1px solid #ddd;
-            color: #666;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+        .btn-secondary {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
         }
         
-        .btn-default:hover {
-            background: #e8e8e8;
+        .btn-secondary:hover {
+            background: var(--bg-accent);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
         }
         
-        /* Mobile responsiveness improvements */
-        @media (max-width: 767px) {
-            .page-banner-title {
+        /* Alert Styles */
+        .alert {
+            border-radius: 10px;
+            border: none;
+            padding: 15px 20px;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        
+        .alert-success {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            color: #006622;
+        }
+        
+        .alert-info {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #003366;
+        }
+        
+        .alert-danger {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #660000;
+        }
+        
+        /* Links */
+        .forgot-password {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        .forgot-password a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .forgot-password a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+            gap: 0.75rem;
+        }
+        
+        /* New User Section */
+        .new-user-section {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-color);
+        }
+        
+        .new-user-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .new-user-section a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .new-user-section a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+            gap: 0.75rem;
+        }
+        
+        /* Modal Styles */
+        .modal-content {
+            border-radius: 20px;
+            border: none;
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            border-radius: 20px 20px 0 0;
+            border-bottom: none;
+            padding: 1.5rem 2rem;
+        }
+        
+        .modal-header .close {
+            color: white;
+            opacity: 0.8;
+        }
+        
+        .modal-header .close:hover {
+            opacity: 1;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-primary);
+            box-shadow: var(--shadow-sm);
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+                font-size: 0.875rem;
+            }
+            
+            .hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero h1 {
                 font-size: 2rem;
             }
             
-            .tab-content {
-                padding: 20px 15px;
+            .hero p {
+                font-size: 1rem;
             }
             
-            .login-register-section {
-                padding: 20px 0;
+            .login-section {
+                padding: 0 1rem;
             }
             
-            .page-banner-section {
-                padding: 30px 0;
+            .login-card {
+                padding: 2rem 1.5rem;
             }
             
-            .logo img {
-                width: 70px !important;
-                height: 60px !important;
-            }
-            
-            .main-menu {
-                font-size: 14px;
-            }
-            
-            .btn-theme {
-                font-size: 14px;
-                padding: 10px;
+            .footer-container {
+                padding: 0 1rem;
             }
         }
         
         @media (max-width: 480px) {
-            .page-banner-title {
+            .logo h1 {
+                font-size: 1.25rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
                 font-size: 1.5rem;
             }
             
-            .tab-content {
-                padding: 15px 10px;
+            .hero p {
+                font-size: 0.875rem;
             }
             
-            .login-register-section {
-                padding: 15px 0;
+            .login-card {
+                padding: 1.5rem 1rem;
             }
-            
-            .page-banner-section {
-                padding: 20px 0;
-            }
-        }
-        
-        /* Success/Error message styling */
-        #response,
-        #response2 {
-            padding: 12px 20px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        #response.success,
-        #response2.success {
-            background: #dff0d8;
-            color: #3c763d;
-            border: 1px solid #d6e9c6;
-        }
-        
-        #response.error,
-        #response2.error {
-            background: #f2dede;
-            color: #a94442;
-            border: 1px solid #ebccd1;
-        }
-        
-        /* Forgot password link styling */
-        a[href="#myModal"] {
-            color: #337ab7;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        
-        a[href="#myModal"]:hover {
-            color: #286090;
-            text-decoration: underline;
-        }
-        
-        /* New user link styling */
-        .new-user-link {
-            color: #337ab7;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        
-        .new-user-link:hover {
-            color: #286090;
-            text-decoration: underline;
         }
     </style>
 </head>
@@ -190,243 +501,202 @@ if(isset($_SESSION['agentaffilate_id'])){
 <div id="main-wrapper">
     
     <!--Header section start-->
-    <header class="header header-sticky"> 
-        <div class="header-bottom menu-center">
-            <div class="container">
-                <div class="row justify-content-between">
-                    
-                    <!--Logo start-->
-                    <div class="col mt-10 mb-10">
-                        <div class="logo">
-                            <a href="index.php"><img src="assets/images/HouseMadeEasylogo.jpg" style="width: 90px; height: 80px;" alt=""></a>
-                        </div>
-                    </div>
-                    <!--Logo end-->
-                    <!--Menu start-->
-                 <div class="col d-none d-lg-flex">
-                        <nav class="main-menu">
-                           <ul>
-                                <li class="active"><a href="index.php" style="text-decoration: none;">Home</a></li>
-                                <?php if (isset($_SESSION['agentaffilate_id'])): ?>
-                                    <li class="active"><a href="my-account.php" style="text-decoration: none;">Dashboard</a></li>
-                                    <li><a href="logout.php" style="text-decoration: none;">Logout</a></li>
-                                <?php else: ?>
-                                    <li><a href="register.php" style="text-decoration: none;">Register</a></li>
-                                <?php endif; ?>
-                            </ul>
-                        </nav>
-                    </div>
-                    <!--Menu end-->
-                    
-                    <!--User start--> 
-                    <?php 
-                    ?>
-     
-                   <div class="col mr-sm-50 mr-xs-50">
-                        <div class="header-user">
-                            <img class="img-fluid img-circle user-toggle" src="assets/images/user.png" alt="Image">  
-                           
-                        </div>
-                    </div>
-                    <!--User end-->
-                </div>
-                
-                <!--Mobile Menu start-->
-                <div class="row">
-                    <div class="col-12 d-flex d-lg-none">
-                        <div class="mobile-menu"></div>
-                    </div>
-                </div>
-                <!--Mobile Menu end-->
-                
+    <header> 
+        <div class="header-container">
+            <!--Logo start-->
+            <div class="logo">
+                <img src="assets/images/HouseMadeEasylogo.jpg" alt="House Made Easy Logo">
+                <h1>HMEAffilate</h1>
             </div>
+            <!--Logo end-->
+            
+            <!--Menu start-->
+            <nav class="nav-menu">
+                <ul style="display: flex; gap: 2rem; list-style: none;">
+                    <li><a href="index.php">Home</a></li>
+                    <?php if (isset($_SESSION['agentaffilate_id'])): ?>
+                        <li><a href="my-account.php">Dashboard</a></li>
+                        <li><a href="logout.php">Logout</a></li>
+                    <?php else: ?>
+                        <li><a href="register.php">Register</a></li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
+            <!--Menu end-->
+            
+            <!--User start--> 
+            <div class="user-profile">
+                <img src="assets/images/user.png" alt="User Profile">
+            </div>
+            <!--User end-->
         </div>
     </header>
     <!--Header section end-->
     
-    <!--Page Banner Section start-->
-    <div class="page-banner-section section"> 
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1 class="page-banner-title">Login</h1>
-                    <ul class="page-breadcrumb">
-                        <li><a href="index.php">Home</a></li>
-                        <li class="active">Login</li>
-                    </ul>
-                </div> 
+    <!--Hero Section start-->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Welcome Back</h1>
+            <p>Login to your account to manage your properties and access all features</p>
+        </div>
+    </div>
+    <!--Hero Section end-->
+    
+    <!--Login Section start-->
+    <div class="login-section">
+        <div class="login-card">
+            <div class="form-section active">
+                <form action="index.php" method="POST">
+                    <div id="response" class="alert" style="display: none;"></div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <input type="text" id="email" placeholder="Enter your email" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pass">Password</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <input type="password" id="pass" placeholder="Enter your password" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" id="logIn">
+                            <i class="fas fa-sign-in"></i>
+                            Login to Account
+                        </button>
+                    </div>
+                    
+                    <div class="forgot-password">
+                        <a href="#myModal" data-toggle="modal">
+                            <i class="fas fa-key"></i>
+                            Forgot Password?
+                        </a>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="new-user-section">
+                <p>New to HMEAffilate?</p>
+                <a href="register.php">
+                    <i class="fas fa-user-plus"></i>
+                    Create an Account
+                </a>
             </div>
         </div>
     </div>
-    <!--Page Banner Section end-->
+    <!--Login Section end-->
     
-    <!--Login & Register Section start-->
-    <div class="login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-8 col-12 ml-auto mr-auto">
-                    
-                    <ul class="login-register-tab-list nav">
-                        <li><a class="active" href="#login-tab" data-toggle="tab">Login</a></li>
-                    </ul>
-                    
-                    <!-- row for login --> 
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-12 ml-auto mr-auto text-center">
-                            <span style="font-weight:bolder;">New to HMEAffilate?&nbsp; <a href="register.php" style="font-weight:bolder; font-size: 13px; text-decoration: underline;">Register!!</a></span>
-                            
+    <!-- Forgot Password Modal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="text-align: center;">Forgot Password?</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="response2" class="alert" style="display: none;"></p>
+                    <p>Enter your e-mail address below to reset your password.</p>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <input type="email" name="email" placeholder="Email" autocomplete="off" class="email form-control">
                         </div>
                     </div>
-                    <!-- //end row for login -->
-                    
-                    <div class="tab-content">
-                        <div id="login-tab" class="tab-pane show active">
-                            <form action="index.php" method="POST">
-                                <p id="response" style="font-weight:bolder;"></p>
-                                <div class="row">
-                                    <div class="col-12 mb-30">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                                            </div>
-                                            <input type="text" placeholder="Enter E-mail" id="email" class="form-control">
-                                        </div>
-                                    </div> 
-                                    <div class="col-12 mb-30">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                                            </div>
-                                            <input type="password" placeholder="Password" id="pass" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mb-30">
-                                        <button type="button" class="btn btn-lg btn-theme btn-block btn-flat" id="logIn">
-                                            <i class="fa fa-sign-in"></i> Login
-                                        </button>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-12 ml-auto mr-auto justify-content-between text-center">
-                                        <span><a href="#myModal" style="font-weight:bolder; font-size: 15px;" data-toggle="modal">Forgot Password ?</a></span>
-                                    </div> 
-                                 </div>
-                                
-                                <!-- modal -->
-                                <!-- Modal -->
-                                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" style="text-align: center;">Forgot Password?</h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p id="response2" style="font-weight: bold;"></p>
-                                                <p>Enter your e-mail address below to Reset Your Password.</p>
-                                                <input type="email" name="email" placeholder="Email" autocomplete="off" class="email form-control placeholder-no-fix">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                                                <button class="btn btn-theme" type="button" id="forgotpassword">Submit</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- modal -->
-                            </form>
-                        </div>
-                    
-                    </div>
-                    
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-secondary" type="button">Cancel</button>
+                    <button class="btn btn-primary" type="button" id="forgotpassword">Submit</button>
                 </div>
             </div>
         </div>
-    </div> 
-    <!--Login & Register Section end-->
+    </div>
     
-  
-      
-    <?php include ('inc/footer.inc.php');   ?>
-    <script type="text/javascript">
-        $(document).ready(function(){
+    <!--Footer section start-->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; <?php echo date('Y'); ?> HMEAffilate. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.875rem;">Built with <i class="fas fa-heart" style="color: #e74c3c;"></i> for property management</p>
+        </div>
+    </footer>
+    <!--Footer section end-->
+    
+    <?php include ('inc/footer.inc.php'); ?>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // Login functionality
+        $('#logIn').on('click', function(){
+            var email = $('#email').val();
+            var pass = $('#pass').val();
             
-             // when user click the post button
-            //$(document).on('click', '#logIn', function()
-            // it will perform the same function with the same query above
-            $('#logIn').on('click', function(){
-                
-                  var email = $('#email').val();
-                  var pass = $('#pass').val();
-                
-                
-                  
-                  
-                  $.ajax({
-                    url: 'login-process.php',
-                    type: 'POST',
-                    data:{
-                      // all the quotation strings are Variable,
-                      //they can Change anytime
-                        'user_login' : 1,
-                        
-                         'email': email,
-                         'pass': pass
-                        
-                        
-                        
-                        
-                    }, // if  successful
-                    success: function(response){
-                        var $response = $("#response");
-                        $response.html(response);
-                        
-                        if(response.indexOf('success') >= 0){ 
-                            $response.addClass('success').removeClass('error');
-                            setTimeout('window.location.href ="my-account.php";', 1000);
-                        } else {
-                            $response.addClass('error').removeClass('success');
-                        }
-                        
-                    },
-                    dataType: 'text'
-                   });
-                 // End of else
-               
-         
-          });
-              });
-         //forgot password begin
-            $(document).ready(function(){
-             $('#forgotpassword').on('click', function(){
-                 var email = $('.email').val();           
-               
-                  $.ajax({
-                    url: 'forgot_password_verify.php',
-                    type: 'POST',
-                    data:{
-                      // all the quotation strings are Variable,
-                      //they can Change anytime
-                        'resetpassword' : 1,
-                         'email' : email
-                        
-                        
-                    }, // if  successful
-                    success: function(response2){
-                        var $response2 = $("#response2");
-                        $response2.html(response2);
-                        
-                        if(response2.indexOf('success') >= 0){
-                            $response2.addClass('success').removeClass('error');
-                            setTimeout('window.location.href ="https://www.housemadeeasy.org/index.php";', 1500);
-                        } else {
-                            $response2.addClass('error').removeClass('success');
-                        }
-                        
-                    },
-                    dataType: 'text'
-                   });
-             });
-          });
-           //forgot password end
-///check cookie ajax
-          
-    </script> 
+            $.ajax({
+                url: 'login-process.php',
+                type: 'POST',
+                data: {
+                    'user_login' : 1,
+                    'email': email,
+                    'pass': pass
+                },
+                success: function(response){
+                    var $response = $("#response");
+                    $response.html(response);
+                    $response.show();
+                    
+                    if(response.indexOf('success') >= 0){ 
+                        $response.removeClass('alert-danger').addClass('alert-success');
+                        setTimeout('window.location.href ="my-account.php";', 1000);
+                    } else {
+                        $response.removeClass('alert-success').addClass('alert-danger');
+                    }
+                },
+                dataType: 'text'
+            });
+        });
+        
+        // Forgot password functionality
+        $('#forgotpassword').on('click', function(){
+            var email = $('.email').val();           
+            
+            $.ajax({
+                url: 'forgot_password_verify.php',
+                type: 'POST',
+                data: {
+                    'resetpassword' : 1,
+                    'email' : email
+                },
+                success: function(response2){
+                    var $response2 = $("#response2");
+                    $response2.html(response2);
+                    $response2.show();
+                    
+                    if(response2.indexOf('success') >= 0){
+                        $response2.removeClass('alert-danger').addClass('alert-success');
+                        setTimeout('window.location.href ="https://www.housemadeeasy.org/index.php";', 1500);
+                    } else {
+                        $response2.removeClass('alert-success').addClass('alert-danger');
+                    }
+                },
+                dataType: 'text'
+            });
+        });
+    });
+</script>
+</body>
+</html>
