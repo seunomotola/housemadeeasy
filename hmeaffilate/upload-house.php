@@ -472,6 +472,7 @@ include ("../inc/session.php");
             margin-top: 2rem;
             padding-top: 2rem;
             border-top: 2px solid var(--border-color);
+            gap: 10px; /* Add 10px gap between buttons */
         }
         
         /* Responsive Design */
@@ -526,6 +527,164 @@ include ("../inc/session.php");
             border-top-color: #fff;
             animation: spin 0.8s linear infinite;
             margin-right: 10px;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .modal-close:hover {
+            color: var(--text-primary);
+            transform: scale(1.1);
+        }
+        
+        /* Footer Styles from index.php */
+        .footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .footer-links li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
     </style>
 </head>
@@ -668,25 +827,25 @@ include ("../inc/session.php");
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label>House Image 1</label>
+                            <label>Image 1 (Featured Image)</label>
                             <input name="house_img1" type="file" class="form-control" required onchange="previewImage(this, 'preview1')">
                             <img id="preview1" class="image-preview" src="" alt="Preview" style="display: none;">
                         </div>
                         
                         <div class="form-group">
-                            <label>House Image 2</label>
+                            <label>Image 2 (Bedroom)</label>
                             <input name="house_img2" type="file" class="form-control" required onchange="previewImage(this, 'preview2')">
                             <img id="preview2" class="image-preview" src="" alt="Preview" style="display: none;">
                         </div>
                         
                         <div class="form-group">
-                            <label>House Image 3</label>
+                            <label>Image 3 (Bathroom)</label>
                             <input name="house_img3" type="file" class="form-control" required onchange="previewImage(this, 'preview3')">
                             <img id="preview3" class="image-preview" src="" alt="Preview" style="display: none;">
                         </div>
                         
                         <div class="form-group">
-                            <label>House Image 4</label>
+                            <label>Image 4 (Kitchen or Others)</label>
                             <input name="house_img4" type="file" class="form-control" required onchange="previewImage(this, 'preview4')">
                             <img id="preview4" class="image-preview" src="" alt="Preview" style="display: none;">
                         </div>
@@ -873,10 +1032,19 @@ include ("../inc/session.php");
                     <h3 class="mb-4">Video Tour</h3>
                     
                     <div id="video-upload-section" class="video-upload-section">
+                        <div class="form-group mb-3">
+                            <label>YouTube Video Link (Manual Entry)</label>
+                            <input type="text" id="youtube_link_manual" name="youtube" class="form-control" placeholder="Paste YouTube video link here (e.g., https://www.youtube.com/watch?v=...)">
+                        </div>
+                        
+                        <div class="or-divider" style="text-align: center; margin: 2rem 0; position: relative;">
+                            <span style="background: var(--bg-primary); padding: 0 1rem; color: var(--text-secondary); font-weight: 600;">OR</span>
+                        </div>
+                        
                         <!-- Google Authentication Button -->
                         <div id="google-auth-section" class="mb-3">
-                            <button type="button" id="google-auth-btn" class="btn btn-danger" style="margin-bottom: 10px;" onclick="startGoogleOAuth()">
-                               <i class="fa-brands fa-google"></i> Connect to Google
+                            <button type="button" id="google-auth-btn" class="btn btn-danger" style="margin-bottom: 10px;" onclick="openGoogleAuthModal()">
+                               <i class="fa-brands fa-google"></i> Connect to Google and Upload Video
                             </button>
                             <div id="auth-status" class="alert alert-info" style="display: none; margin-bottom: 10px;"></div>
                         </div>
@@ -889,8 +1057,8 @@ include ("../inc/session.php");
                             </div>
                             <span id="upload-status">Uploading...</span>
                         </div>
-                        <div id="youtube-link-section" style="display: block;">
-                            <input type="text" id="youtube_link" name="youtube" class="form-control" placeholder="Paste the video link for this house " readonly>
+                        <div id="youtube-link-section" style="display: none;">
+                            <input type="text" id="youtube_link" name="youtube" class="form-control" placeholder="YouTube video link" readonly>
                         </div>
                     </div>
                 </div>
@@ -922,7 +1090,57 @@ include ("../inc/session.php");
         </div>
     </section>
     
-    <?php include ('inc/footer.inc.php'); ?>
+    <!-- Footer from index.php -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h4>House Made Easy</h4>
+                <p style="margin-bottom: 1.5rem;">Your trusted partner in finding the perfect housing solutions. Making home finding easy, fast, and reliable.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="about-us.php">About Us</a></li>
+                    <li><a href="services.php">Services</a></li>
+                    <li><a href="contact-us.php">Contact</a></li>
+                    <li><a href="privacypolicy.php">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact Info</h4>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Isale-Oko, Sagamu</li>
+                    <li><i class="fas fa-phone"></i> +234 805</li>
+                    <li><i class="fas fa-envelope"></i> info@housemadeeasy.com.ng</li>
+                    <li> <i class="fas fa-whatsapp"> +2349151294786 </i></li>
+                    <li><i class="fas fa-clock"></i> Mon - Sat: 9AM - 6PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <?php echo date('Y'); ?> House Made Easy. All rights reserved. | Designed with <i class="fas fa-heart"></i> by House Made Easy Team</p>
+        </div>
+    </footer>
+    
+    <!-- Google OAuth Modal -->
+    <div id="google-auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeGoogleAuthModal()">&times;</span>
+            <h3>Connect to Google</h3>
+            <p>Connect your Google account to upload videos directly to YouTube from this page.</p>
+            <div id="auth-modal-content">
+                <button type="button" id="google-auth-modal-btn" class="btn btn-danger w-100" onclick="startGoogleOAuth()">
+                    <i class="fa-brands fa-google"></i> Connect with Google
+                </button>
+            </div>
+        </div>
+    </div>
     
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -935,6 +1153,9 @@ include ("../inc/session.php");
         
         // Initialize the form
         $(document).ready(function() {
+            // Load form data from localStorage on page load
+            loadFormData();
+            
             // Handle OAuth callback parameters
             const urlParams = new URLSearchParams(window.location.search);
             
@@ -978,6 +1199,7 @@ include ("../inc/session.php");
                     howManyField.val('');
                     howManyField.removeAttr('readonly');
                 }
+                saveFormData();
             });
             
             // Video upload handling
@@ -989,6 +1211,7 @@ include ("../inc/session.php");
                     $('#youtube-link-section').hide();
                     $('#upload-progress').hide();
                 }
+                saveFormData();
             });
             
             // YouTube upload handling
@@ -1087,6 +1310,8 @@ include ("../inc/session.php");
                 if (currentStep < totalSteps) {
                     // Validate current step
                     if (validateStep(currentStep)) {
+                        // Save form data to localStorage before moving to next step
+                        saveFormData();
                         goToStep(currentStep + 1);
                     }
                 }
@@ -1095,6 +1320,7 @@ include ("../inc/session.php");
             // Previous button click
             $('#prev-btn').click(function() {
                 if (currentStep > 1) {
+                    saveFormData();
                     goToStep(currentStep - 1);
                 }
             });
@@ -1105,7 +1331,85 @@ include ("../inc/session.php");
                     generateReviewContent();
                 }
             });
+            
+            // Auto-save form data on input changes
+            $('#upload-house-form').on('input change', 'input, select, textarea', function() {
+                saveFormData();
+            });
         });
+        
+        // Function to save form data to localStorage
+        function saveFormData() {
+            const formData = {};
+            
+            // Save text inputs
+            $('#upload-house-form').find('input[type="text"], input[type="email"], input[type="tel"], textarea').each(function() {
+                formData[$(this).attr('name')] = $(this).val();
+            });
+            
+            // Save select inputs
+            $('#upload-house-form').find('select').each(function() {
+                formData[$(this).attr('name')] = $(this).val();
+            });
+            
+            // Save checkbox values
+            $('#upload-house-form').find('input[type="checkbox"]').each(function() {
+                formData[$(this).attr('name')] = $(this).is(':checked');
+            });
+            
+            // Save radio button values
+            const radioNames = {};
+            $('#upload-house-form').find('input[type="radio"]').each(function() {
+                const name = $(this).attr('name');
+                if (!radioNames[name]) {
+                    radioNames[name] = true;
+                    const checkedValue = $('input[name="' + name + '"]:checked').val();
+                    formData[name] = checkedValue || '';
+                }
+            });
+            
+            localStorage.setItem('uploadHouseFormData', JSON.stringify(formData));
+        }
+        
+        // Function to load form data from localStorage
+        function loadFormData() {
+            const savedData = localStorage.getItem('uploadHouseFormData');
+            if (savedData) {
+                const formData = JSON.parse(savedData);
+                
+                // Load text inputs and textareas
+                Object.keys(formData).forEach(function(name) {
+                    const value = formData[name];
+                    const $textInput = $('#upload-house-form').find('input[name="' + name + '"][type="text"], input[name="' + name + '"][type="email"], input[name="' + name + '"][type="tel"], textarea[name="' + name + '"]');
+                    if ($textInput.length > 0) {
+                        $textInput.val(value);
+                    }
+                    
+                    // Load select inputs
+                    const $select = $('#upload-house-form').find('select[name="' + name + '"]');
+                    if ($select.length > 0) {
+                        $select.val(value);
+                    }
+                    
+                    // Load checkboxes
+                    const $checkbox = $('#upload-house-form').find('input[name="' + name + '"][type="checkbox"]');
+                    if ($checkbox.length > 0) {
+                        $checkbox.prop('checked', value);
+                    }
+                    
+                    // Load radio buttons
+                    const $radio = $('#upload-house-form').find('input[name="' + name + '"][type="radio"]');
+                    if ($radio.length > 0) {
+                        $radio.filter('[value="' + value + '"]').prop('checked', true);
+                    }
+                });
+            }
+        }
+        
+        // Function to clear form data from localStorage
+        function clearFormData() {
+            localStorage.removeItem('uploadHouseFormData');
+        }
         
         // Function to go to specific step
         function goToStep(step) {
@@ -1219,8 +1523,23 @@ include ("../inc/session.php");
             reviewContent.html(reviewHTML);
         }
         
+        // Function to open Google Auth Modal
+        function openGoogleAuthModal() {
+            const modal = document.getElementById('google-auth-modal');
+            modal.style.display = 'block';
+        }
+        
+        // Function to close Google Auth Modal
+        function closeGoogleAuthModal() {
+            const modal = document.getElementById('google-auth-modal');
+            modal.style.display = 'none';
+        }
+        
         // Function to start Google OAuth
         window.startGoogleOAuth = function() {
+            // Save current state before redirecting
+            saveFormData();
+            
             const state = 'upload-house.php';
             const scope = 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.force-ssl';
             
@@ -1233,7 +1552,29 @@ include ("../inc/session.php");
                 'prompt=consent&' +
                 'state=' + encodeURIComponent(state);
             
-            window.location.href = googleAuthUrl;
+            // Open in a popup window
+            const width = 600;
+            const height = 700;
+            const left = window.innerWidth / 2 - width / 2;
+            const top = window.innerHeight / 2 - height / 2;
+            
+            window.googleAuthWindow = window.open(
+                googleAuthUrl,
+                'googleAuth',
+                'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top + ',scrollbars=yes,resizable=yes'
+            );
+            
+            // Close modal
+            closeGoogleAuthModal();
+            
+            // Poll for popup closed
+            const checkPopupClosed = setInterval(function() {
+                if (window.googleAuthWindow && window.googleAuthWindow.closed) {
+                    clearInterval(checkPopupClosed);
+                    // Reload form data from localStorage
+                    loadFormData();
+                }
+            }, 1000);
         };
         
         // Image preview function
@@ -1252,6 +1593,7 @@ include ("../inc/session.php");
                 preview.src = '';
                 preview.style.display = 'none';
             }
+            saveFormData();
         }
         
         // Function to update subjects based on class selection
@@ -1291,6 +1633,7 @@ include ("../inc/session.php");
                     subjectDropdown.append(new Option(subject, subject));
                 });
             }
+            saveFormData();
         }
         
         // Listen for changes in the class dropdown and update subjects accordingly
@@ -1528,6 +1871,10 @@ include ("../inc/session.php");
                     }
                 }
             }
+            
+            // Clear form data from localStorage
+            clearFormData();
+            
             echo "<script>alert('Your House has been uploaded Successfully')</script>";
             echo "<script>window.open('my-account.php')</script>";
         } else {
