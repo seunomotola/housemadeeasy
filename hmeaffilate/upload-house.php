@@ -740,23 +740,23 @@ include ("../inc/session.php");
                 <div class="stepper-progress" id="stepper-progress" style="width: 0%"></div>
                 <div class="step active" data-step="1">
                     <div class="step-circle">1</div>
-                    <div class="step-label">Basic Details</div>
+                    <div class="step-label">Video Tour</div>
                 </div>
                 <div class="step" data-step="2">
                     <div class="step-circle">2</div>
-                    <div class="step-label">Property Images</div>
+                    <div class="step-label">Basic Details</div>
                 </div>
                 <div class="step" data-step="3">
                     <div class="step-circle">3</div>
-                    <div class="step-label">Amenities</div>
+                    <div class="step-label">Property Images</div>
                 </div>
                 <div class="step" data-step="4">
                     <div class="step-circle">4</div>
-                    <div class="step-label">Pricing & Terms</div>
+                    <div class="step-label">Amenities</div>
                 </div>
                 <div class="step" data-step="5">
                     <div class="step-circle">5</div>
-                    <div class="step-label">Video Tour</div>
+                    <div class="step-label">Pricing & Terms</div>
                 </div>
                 <div class="step" data-step="6">
                     <div class="step-circle">6</div>
@@ -766,8 +766,44 @@ include ("../inc/session.php");
             
             <!-- Upload Form -->
             <form method="POST" action="upload-house.php" id="upload-house-form" class="form-horizontal" enctype="multipart/form-data">
-                <!-- Step 1: Basic Details -->
+                <!-- Step 1: Video Tour -->
                 <div class="form-section active" data-step="1">
+                    <h3 class="mb-4">Video Tour</h3>
+                    
+                    <div id="video-upload-section" class="video-upload-section">
+                        <div class="form-group mb-3">
+                            <label>YouTube Video Link (Manual Entry)</label>
+                            <input type="text" id="youtube_link_manual" name="youtube" class="form-control" placeholder="Paste YouTube video link here (e.g., https://www.youtube.com/watch?v=...)">
+                        </div>
+                        
+                        <div class="or-divider" style="text-align: center; margin: 2rem 0; position: relative;">
+                            <span style="background: var(--bg-primary); padding: 0 1rem; color: var(--text-secondary); font-weight: 600;">OR</span>
+                        </div>
+                        
+                        <!-- Google Authentication Button -->
+                        <div id="google-auth-section" class="mb-3">
+                            <button type="button" id="google-auth-btn" class="btn btn-danger" style="margin-bottom: 10px;" onclick="openGoogleAuthModal()">
+                               <i class="fa-brands fa-google"></i> Connect to Google and Upload Video
+                            </button>
+                            <div id="auth-status" class="alert alert-info" style="display: none; margin-bottom: 10px;"></div>
+                        </div>
+                        
+                        <input type="file" id="house_video" name="house_video" accept="video/*" class="form-control" style="margin-bottom: 10px;" disabled>
+                        <button type="button" id="upload-to-youtube" class="btn btn-secondary" style="margin-bottom: 10px; display: none;">Upload to YouTube</button>
+                        <div id="upload-progress" style="display: none;">
+                            <div class="progress" style="margin-bottom: 10px;">
+                                <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                            </div>
+                            <span id="upload-status">Uploading...</span>
+                        </div>
+                        <div id="youtube-link-section" style="display: none;">
+                            <input type="text" id="youtube_link" name="youtube" class="form-control" placeholder="YouTube video link" readonly>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Basic Details -->
+                <div class="form-section" data-step="2">
                     <h3 class="mb-4">Basic Property Details</h3>
                     
                     <div class="form-row">
@@ -821,8 +857,8 @@ include ("../inc/session.php");
                     </div>
                 </div>
                 
-                <!-- Step 2: Property Images -->
-                <div class="form-section" data-step="2">
+                <!-- Step 3: Property Images -->
+                <div class="form-section" data-step="3">
                     <h3 class="mb-4">Property Images</h3>
                     
                     <div class="form-row">
@@ -852,8 +888,8 @@ include ("../inc/session.php");
                     </div>
                 </div>
                 
-                <!-- Step 3: Amenities -->
-                <div class="form-section" data-step="3">
+                <!-- Step 4: Amenities -->
+                <div class="form-section" data-step="4">
                     <h3 class="mb-4">Property Amenities</h3>
                     
                     <div class="form-row">
@@ -985,8 +1021,8 @@ include ("../inc/session.php");
                     </div>
                 </div>
                 
-                <!-- Step 4: Pricing & Terms -->
-                <div class="form-section" data-step="4">
+                <!-- Step 5: Pricing & Terms -->
+                <div class="form-section" data-step="5">
                     <h3 class="mb-4">Pricing & Terms</h3>
                     
                     <div class="form-row">
@@ -1023,42 +1059,6 @@ include ("../inc/session.php");
                         <div class="form-group">
                             <label>Second Year Rent</label>
                             <input name="second" type="text" class="form-control" placeholder="Enter the Subsequent Year Rent" required>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Step 5: Video Tour -->
-                <div class="form-section" data-step="5">
-                    <h3 class="mb-4">Video Tour</h3>
-                    
-                    <div id="video-upload-section" class="video-upload-section">
-                        <div class="form-group mb-3">
-                            <label>YouTube Video Link (Manual Entry)</label>
-                            <input type="text" id="youtube_link_manual" name="youtube" class="form-control" placeholder="Paste YouTube video link here (e.g., https://www.youtube.com/watch?v=...)">
-                        </div>
-                        
-                        <div class="or-divider" style="text-align: center; margin: 2rem 0; position: relative;">
-                            <span style="background: var(--bg-primary); padding: 0 1rem; color: var(--text-secondary); font-weight: 600;">OR</span>
-                        </div>
-                        
-                        <!-- Google Authentication Button -->
-                        <div id="google-auth-section" class="mb-3">
-                            <button type="button" id="google-auth-btn" class="btn btn-danger" style="margin-bottom: 10px;" onclick="openGoogleAuthModal()">
-                               <i class="fa-brands fa-google"></i> Connect to Google and Upload Video
-                            </button>
-                            <div id="auth-status" class="alert alert-info" style="display: none; margin-bottom: 10px;"></div>
-                        </div>
-                        
-                        <input type="file" id="house_video" name="house_video" accept="video/*" class="form-control" style="margin-bottom: 10px;" disabled>
-                        <button type="button" id="upload-to-youtube" class="btn btn-secondary" style="margin-bottom: 10px; display: none;">Upload to YouTube</button>
-                        <div id="upload-progress" style="display: none;">
-                            <div class="progress" style="margin-bottom: 10px;">
-                                <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%"></div>
-                            </div>
-                            <span id="upload-status">Uploading...</span>
-                        </div>
-                        <div id="youtube-link-section" style="display: none;">
-                            <input type="text" id="youtube_link" name="youtube" class="form-control" placeholder="YouTube video link" readonly>
                         </div>
                     </div>
                 </div>
