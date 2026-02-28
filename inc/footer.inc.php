@@ -1,117 +1,243 @@
-   <!--whatapp chat icon-->
-      <span class="sticky_whatsapp" style=" background-color: rgba(200, 200, 200, 0.6); border-radius: 20px; text-align: center;padding: 5px; "><img src="whatsapp2.png" height="20" width="20" style=""> <a href="https://wa.me/+2348160852570?text=Welcome+to+Housemadeeasy+Customer+Care,+How+may+we+help+you..." style="color: #183153"><b>Need help?</b></a> </span>
-      <!--whatapp chat icon end-->
-      
- <!--Footer section start-->
-    <footer class="footer-section section" style="background-image: url(assets/images/bg/footer-bg.jpg)">
-       
-        <!--Footer Top start-->
-        <div class="footer-top section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-60 pb-lg-40 pb-md-30 pb-sm-20 pb-xs-10">
-            <div class="container">
-                <div class="row row-25">
-                    
-                    <!--Footer Widget start-->
-                    <div class="footer-widget col-lg-3 col-md-6 col-12 mb-40">
-                        <img src="assets/images/HouseMadeEasylogo.jpg" alt="" style="width: 90px; height: 80px;">
-                        <p>Housemadeeasy - An  e-platform that helps students get their desired house easily...</p>
-                        <div class="footer-social">
-                            <a href="https://www.facebook.com/102107102565299/posts/102119325897410/?sfnsn=scwspmo" class="facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="https://www.twitter.com/housemadeeasy" class="twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-                            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
-                            <a href="#" class="pinterest"><i class="fa fa-pinterest-p"></i></a>
-                        </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/images/HouseMadeEasylogo.jpg" alt="House Made Easy Logo">
                     </div>
-                    <!--Footer Widget end-->
-                    
-                    <!--Footer Widget start-->
-                    <div class="footer-widget col-lg-3 col-md-6 col-12 mb-40">
-                        <h4 class="title"><span class="text">Contact us</span><span class="shape"></span></h4>
-                        <ul>
-                            <li><i class="fa fa-map-o"></i><span>Olabisi Onabanjo University,<br> Sagamu Campus, Ogun State Nigeria</span></li>
-                            <li><i class="fa fa-phone"></i><span>+234 7063 826 326<br>+234 7070 459 338<br>+234 7037 092 267<br>+234 8160 852 570</span></li>
-                            <li><i class="fa fa-envelope-o"></i><span>support@housemadeeasy.com.ng</span></li>
-                        </ul>
+                    <p class="footer-description">
+                        House Made Easy is your trusted partner in finding the perfect home and housing solutions.
+                        We simplify your housing journey with innovative technology and comprehensive services.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/102107102565299/posts/102119325897410/?sfnsn=scwspmo" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.twitter.com/housemadeeasy" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
-                    <!--Footer Widget end--> 
-                    
-                    <!--Footer Widget start-->
-                    <div class="footer-widget col-lg-3 col-md-6 col-12 mb-40">
-                        <h4 class="title"><span class="text">Useful links</span><span class="shape"></span></h4>
-                        <ul style="color: red;">
-                            <li><a href="#" style="text-decoration: none; color: ; ">Home</a></li>
-                            <li><a href="about-us.php" style="text-decoration: none; ">About Us</a></li>
-                            <!-- <li ><a href="how-it-works.php" style="text-decoration: none;">How it Works</a>
-                                 
-                                </li> -->
-                            <li><a href="contact-us.php" style="text-decoration: none; ">Contact Us</a></li>
-                            <li><a href="view-all-properties.php" style="text-decoration: none; ">Browse all our Apartments</a></li>
-                            
-                            <li><a href="login.php" style="text-decoration: none; ">Login</a></li>
-                            <li><a href="register.php" style="text-decoration: none; ">Register</a></li>
-                            <li><a href="privacypolicy.php" style="text-decoration: none; ">Privacy Policy</a></li>
-                            <li><a href="termsofservice.php" style="text-decoration: none; ">Terms of Service</a></li>
-                       </ul>
-                    </div>
-                    <!--Footer Widget end-->    
-                    
-                    <!--Footer Widget start-->
-                    <div class="footer-widget col-lg-3 col-md-6 col-12 mb-40">
-                        <h4 class="title"><span class="text">Newsletter</span><span class="shape"></span></h4>
-                        
-                        <p>Subscribe to our newsletter to get all the latest news about our products, promotions, offers and discounts</p>
-                        
-                        <form id="mc-form" class="mc-form footer-newsletter" >
-                            <input id="mc-email" type="email" autocomplete="off" placeholder="Enter Email here.." />
-                            <button id="mc-submit"><i class="fa fa-paper-plane-o"></i></button>
-                        </form>
-                        <!-- mailchimp-alerts Start -->
-                        <div class="mailchimp-alerts text-centre">
-                            <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
-                            <div class="mailchimp-success"></div><!-- mailchimp-success end -->
-                            <div class="mailchimp-error"></div><!-- mailchimp-error end -->
-                        </div><!-- mailchimp-alerts end -->
-                        
-                    </div>
-                    <!--Footer Widget end-->
-                    
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="index.php#services">Services</a></li>
+                        <li><a href="index.php#features">Features</a></li>
+                        <li><a href="index.php#testimonials">Testimonials</a></li>
+                        <li><a href="index.php#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="search-made-easy.php">Apartment Provision</a></li>
+                        <li><a href="flatmate-finder/index.php">Flatmate Finder</a></li>
+                        <li><a href="marketplace/index.php">Campus Yard</a></li>
+                        <li><a href="make-money-with-housemadeeasy.php">Make Money</a></li>
+                        <li><a href="housemadeeasy-logistics.php">Logistics</a></li>
+                        <li><a href="home-repair/index.php">Home Repair</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <ul class="footer-links">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Olabisi Onabanjo University, Sagamu Campus, Ogun State, Nigeria</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+234 7063 826 326</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>support@housemadeeasy.com.ng</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    &copy; <?php echo date('Y'); ?> House Made Easy. All rights reserved.
+                </div>
+                <div class="footer-links">
+                    <a href="privacypolicy.php">Privacy Policy</a>
+                    <a href="termsofservice.php">Terms of Service</a>
+                    <a href="mailto:support@housemadeeasy.com.ng">Support</a>
                 </div>
             </div>
         </div>
-        <!--Footer Top end-->
-       
-        <!--Footer bottom start-->
-        <div class="footer-bottom section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="copyright text-center">
-                            <p>Copyright &copy;<?php echo date('Y')?> Housemadeeasy. All rights reserved. | 
-                                <a href="privacypolicy.php" style="color: #ccc;">Privacy Policy</a> | 
-                                <a href="termsofservice.php" style="color: #ccc;">Terms of Service</a><br> 
-                                Designed by <a href="https://wa.me/+2347044206267?text=I+want+design+a+website..." style="font-weight:bolder; color: red; font-size: 15px">codon</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Footer bottom end-->
-        
-     </footer>
-     <!--Footer section end-->
-</div>
-<!-- Placed js at the end of the document so the pages load faster -->
-<!-- All jquery file included here -->
-<script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22&amp;key=AIzaSyDAq7MrCR1A2qIShmjbtLHSKjcEIEBEEwM"></script>
-<script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="assets/js/vendor/jquery-migrate-1.4.1.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/plugins.js"></script>
-<script src="assets/js/map-place.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/sweetalert.min.js"></script>
-   <!--  -->
+    </footer>
+
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <!-- All jquery file included here -->
+    <script src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=AIzaSyDAq7MrCR1A2qIShmjbtLHSKjcEIEBEEwM"></script>
+    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="assets/js/vendor/jquery-migrate-1.4.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/map-place.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/sweetalert.min.js"></script>
+
+    <style>
+        /* Footer Styles */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+        }
+
+        .footer-links li i {
+            color: var(--primary);
+            margin-top: 0.25rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .footer-bottom .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .footer-bottom .footer-links {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+    </style>
 </body>
-<!-- Mirrored from template.hasthemes.com/khonike/khonike/login-register.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Feb 2022 20:26:31 GMT -->
 </html>

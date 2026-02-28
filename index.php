@@ -264,8 +264,8 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr;
+            gap: 3rem;
             align-items: center;
             position: relative;
             z-index: 1;
@@ -287,22 +287,58 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
             animation: slideInLeft 1s ease 0.2s both;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
+        .hero-search {
             animation: slideInLeft 1s ease 0.4s both;
         }
 
-        .hero-image {
-            animation: slideInRight 1s ease 0.6s both;
-            position: relative;
+        .search-form {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: end;
         }
 
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+        .search-input {
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #fff;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+        }
+
+        .search-button {
+            padding: 1rem 2rem;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .search-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
         @keyframes slideInLeft {
@@ -821,13 +857,16 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
             <div class="hero-content">
                 <h1>Find Your Perfect Home, Effortlessly</h1>
                 <p>Discover your dream apartment, find compatible flatmates, and access premium housing services all in one place. House Made Easy simplifies your housing journey.</p>
-                <div class="hero-buttons">
-                    <a href="#search" class="btn btn-primary">Search Properties</a>
-                    <a href="#services" class="btn btn-secondary">Explore Services</a>
+                <div class="hero-search">
+                    <form class="search-form" action="search-made-easy.php" method="get">
+                        <input type="text" class="search-input" placeholder="Location" name="location">
+                        <input type="text" class="search-input" placeholder="Price Range" name="price">
+                        <input type="text" class="search-input" placeholder="Property Type" name="type">
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </form>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="assets/images/heroimage.png" alt="Modern Apartment">
             </div>
         </div>
     </section>
