@@ -34,153 +34,56 @@ if(isset($_SESSION['agentaffilate_id'])){
     
     <style>
         /* Custom styles for improved login page */
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .main-wrapper {
-            background: transparent;
-        }
-        
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .page-banner-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px 0;
-            margin-bottom: 30px;
-        }
-        
         .page-banner-title {
-            color: white;
-            font-size: 3rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .page-breadcrumb li {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .page-breadcrumb li a {
-            color: white;
-            text-decoration: none;
-        }
-        
-        .page-breadcrumb li a:hover {
-            color: #ffd700;
-            text-decoration: underline;
-        }
-        
-        .login-register-section {
-            padding: 40px 0;
-        }
-        
-        .login-register-tab-list {
-            margin-bottom: 30px;
-            justify-content: center;
-        }
-        
-        .login-register-tab-list li a {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: none;
-            padding: 12px 30px;
+            color: #222;
             font-weight: 600;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-        
-        .login-register-tab-list li a:hover,
-        .login-register-tab-list li a.active {
-            background: white;
-            color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .tab-content {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-top: none;
+            padding: 30px;
+            border-radius: 0 0 4px 4px;
         }
         
         .form-control {
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            border-radius: 10px;
-            padding: 15px;
-            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 14px;
             transition: all 0.3s ease;
         }
         
         .form-control:focus {
-            background: white;
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-            transform: translateY(-1px);
+            border-color: #337ab7;
+            box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.25);
         }
         
         .btn-theme {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #337ab7;
             border: none;
-            padding: 15px;
-            font-size: 16px;
+            padding: 12px;
+            font-size: 14px;
             font-weight: 600;
-            border-radius: 10px;
+            border-radius: 4px;
             transition: all 0.3s ease;
         }
         
         .btn-theme:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            background: #286090;
         }
         
         .btn-default {
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            color: #667eea;
-            border-radius: 10px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #666;
+            border-radius: 4px;
             transition: all 0.3s ease;
         }
         
         .btn-default:hover {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #667eea;
-            color: #667eea;
-        }
-        
-        .modal-content {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .modal-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px 15px 0 0;
-            border-bottom: none;
-        }
-        
-        .modal-header .close {
-            color: white;
-            opacity: 0.8;
-        }
-        
-        .modal-header .close:hover {
-            opacity: 1;
+            background: #e8e8e8;
         }
         
         /* Mobile responsiveness improvements */
@@ -190,7 +93,7 @@ if(isset($_SESSION['agentaffilate_id'])){
             }
             
             .tab-content {
-                padding: 30px 20px;
+                padding: 20px 15px;
             }
             
             .login-register-section {
@@ -212,7 +115,7 @@ if(isset($_SESSION['agentaffilate_id'])){
             
             .btn-theme {
                 font-size: 14px;
-                padding: 12px;
+                padding: 10px;
             }
         }
         
@@ -222,7 +125,7 @@ if(isset($_SESSION['agentaffilate_id'])){
             }
             
             .tab-content {
-                padding: 25px 15px;
+                padding: 15px 10px;
             }
             
             .login-register-section {
@@ -234,72 +137,50 @@ if(isset($_SESSION['agentaffilate_id'])){
             }
         }
         
-        /* Animation effects */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .tab-pane {
-            animation: fadeInUp 0.6s ease;
-        }
-        
-        /* Custom focus styles for better accessibility */
-        input:focus,
-        button:focus {
-            outline: none;
-        }
-        
         /* Success/Error message styling */
         #response,
         #response2 {
             padding: 12px 20px;
-            border-radius: 8px;
+            border-radius: 4px;
             margin-bottom: 20px;
             font-weight: 600;
         }
         
         #response.success,
         #response2.success {
-            background: rgba(76, 175, 80, 0.1);
-            color: #2e7d32;
-            border: 1px solid rgba(76, 175, 80, 0.3);
+            background: #dff0d8;
+            color: #3c763d;
+            border: 1px solid #d6e9c6;
         }
         
         #response.error,
         #response2.error {
-            background: rgba(244, 67, 54, 0.1);
-            color: #c62828;
-            border: 1px solid rgba(244, 67, 54, 0.3);
+            background: #f2dede;
+            color: #a94442;
+            border: 1px solid #ebccd1;
         }
         
         /* Forgot password link styling */
         a[href="#myModal"] {
-            color: #667eea;
+            color: #337ab7;
             font-weight: 600;
             transition: color 0.3s ease;
         }
         
         a[href="#myModal"]:hover {
-            color: #764ba2;
-            text-decoration: none;
+            color: #286090;
+            text-decoration: underline;
         }
         
         /* New user link styling */
         .new-user-link {
-            color: #667eea;
+            color: #337ab7;
             font-weight: 600;
             transition: color 0.3s ease;
         }
         
         .new-user-link:hover {
-            color: #764ba2;
+            color: #286090;
             text-decoration: underline;
         }
     </style>
@@ -330,7 +211,6 @@ if(isset($_SESSION['agentaffilate_id'])){
                                     <li class="active"><a href="my-account.php" style="text-decoration: none;">Dashboard</a></li>
                                     <li><a href="logout.php" style="text-decoration: none;">Logout</a></li>
                                 <?php else: ?>
-                                    <li><a href="index.php" style="text-decoration: none;">Login</a></li>
                                     <li><a href="register.php" style="text-decoration: none;">Register</a></li>
                                 <?php endif; ?>
                             </ul>
@@ -388,14 +268,12 @@ if(isset($_SESSION['agentaffilate_id'])){
                     
                     <ul class="login-register-tab-list nav">
                         <li><a class="active" href="#login-tab" data-toggle="tab">Login</a></li>
-                        
-                        
                     </ul>
                     
                     <!-- row for login --> 
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-12 ml-auto mr-auto text-center">
-                            <span style="font-weight:bolder; color: white;">New to HMEAffilate?&nbsp; <a href="register.php" style="font-weight:bolder; font-size: 13px; text-decoration: underline; color: #ffd700;">Register!!</a></span>
+                            <span style="font-weight:bolder;">New to HMEAffilate?&nbsp; <a href="register.php" style="font-weight:bolder; font-size: 13px; text-decoration: underline;">Register!!</a></span>
                             
                         </div>
                     </div>
