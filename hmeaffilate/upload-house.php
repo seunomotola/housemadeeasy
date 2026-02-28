@@ -1691,11 +1691,11 @@ include ("../inc/session.php");
         $house_name = $_POST['house_name'];
         $youtube = $_POST['youtube'];
         
-        $house_agent_fname_session=$_SESSION['fname'];
-        $house_agent_lname_session=$_SESSION['lname'];
-        $house_agent_pno_session=$_SESSION['pno'];
-        $house_agent_email_session=$_SESSION['email'];
-        $house_agent_user_id_session=$_SESSION['agentaffilate_id'];
+        $house_agent_fname_session = $_SESSION['fname'] ?? '';
+        $house_agent_lname_session = $_SESSION['lname'] ?? '';
+        $house_agent_pno_session = $_SESSION['pno'] ?? '';
+        $house_agent_email_session = $_SESSION['email'] ?? '';
+        $house_agent_user_id_session = $_SESSION['agentaffilate_id'] ?? '';
         
         if ($house_name == 'Single room with shared toilet and bathroom') {
             $agent_fees = 10000;
@@ -1875,8 +1875,35 @@ include ("../inc/session.php");
             // Clear form data from localStorage
             clearFormData();
             
-            echo "<script>alert('Your House has been uploaded Successfully')</script>";
-            echo "<script>window.open('my-account.php')</script>";
+            // Show success modal
+            echo '
+            <div class="modal fade show" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="false" style="display: block;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success text-white">
+                            <h5 class="modal-title" id="successModalLabel">✅ Property Uploaded Successfully!</h5>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Your house has been uploaded successfully to HouseMadeEasy!</p>
+                            <p>You will be redirected to your dashboard shortly to manage your property.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a href="my-account.php" class="btn btn-success">Go to Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+            // Redirect to my-account.php after 3 seconds
+            setTimeout(function() {
+                window.location.href = "my-account.php";
+            }, 3000);
+            </script>
+            ';
         } else {
             die(mysqli_error($con));
         }
