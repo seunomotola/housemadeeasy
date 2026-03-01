@@ -867,46 +867,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features-section">
-        <div class="section-header">
-            <h2>Why Choose HouseMadeEasy</h2>
-            <p>Discover the benefits of finding your perfect home with our platform</p>
-        </div>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <h3>Prime Locations</h3>
-                <p>Discover properties in the most sought-after locations near the campus</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Verified Properties</h3>
-                <p>All properties are thoroughly verified for safety and quality</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-dollar-sign"></i>
-                </div>
-                <h3>Affordable Prices</h3>
-                <p>Find competitive prices with flexible payment options</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <h3>24/7 Support</h3>
-                <p>Get assistance anytime with our dedicated support team</p>
-            </div>
-        </div>
-    </section>
+   
 
     <!-- Properties Section -->
     <section class="properties-section">
@@ -1141,6 +1102,8 @@
             </a>
         </div>
     </section>
+
+    
 
     <!-- Footer -->
     <footer>
