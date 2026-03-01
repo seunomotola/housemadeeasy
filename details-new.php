@@ -571,11 +571,38 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             color: var(--text-primary);
         }
         
-        .agent-contact {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin: 1rem 0;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-button:hover {
+            background: #12B74B;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .customer-care {
             margin-top: 1rem;
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .hotline {
+            color: #DC2626;
+            font-weight: 700;
+            font-size: 1.1rem;
         }
         
         .contact-item {
@@ -1038,21 +1065,14 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 </h3>
                 
                 <div class="agent-card">
-                    <div class="agent-avatar">
-                        <img src="/assets/images/agent/<?php echo $post['agent_img']; ?>" alt="<?php echo $post['agent']; ?>">
-                    </div>
-                    
                     <div class="agent-info">
                         <h4 class="agent-name"><?php echo $post['agent']; ?></h4>
-                        <div class="agent-contact">
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <a href="tel:<?php echo $post['agent_pno']; ?>"><?php echo $post['agent_pno']; ?></a>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <a href="mailto:<?php echo $post['agent_email']; ?>"><?php echo $post['agent_email']; ?></a>
-                            </div>
+                        <a href="https://wa.me/<?php echo preg_replace('/[^0-9]/', '', $post['agent_pno']); ?>?text=I%20need%20to%20check%20out%20<?php echo urlencode($post['house_name']); ?>%20in%20<?php echo urlencode($post['location']); ?>.%20When%20can%20we%20meet?%20Thanks.." 
+                           class="whatsapp-button" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i> Message Agent on WhatsApp
+                        </a>
+                        <div class="customer-care">
+                            If Agent is Unavailable, Please Call Our Hotline <span class="hotline">+2349151294786</span>
                         </div>
                     </div>
                 </div>
