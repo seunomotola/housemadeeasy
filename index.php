@@ -774,6 +774,164 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
+        /* Property Listings */
+        .properties {
+            padding: 8rem 2rem;
+            background: var(--light);
+        }
+
+        .properties-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .property-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.05);
+        }
+
+        .property-label {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .property-content {
+            padding: 1.5rem;
+        }
+
+        .property-header {
+            margin-bottom: 1rem;
+        }
+
+        .property-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .property-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .property-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #718096;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .property-location i {
+            color: var(--primary);
+        }
+
+        .property-features {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        .feature-item i {
+            color: var(--primary);
+            width: 16px;
+        }
+
+        .property-actions {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-sm {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            border-radius: 50px;
+        }
+
+        .properties-footer {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .no-properties {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .no-properties i {
+            font-size: 4rem;
+            color: #cbd5e0;
+            margin-bottom: 1.5rem;
+        }
+
+        .no-properties h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .no-properties p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
         /* Testimonials */
         .testimonials {
             padding: 8rem 2rem;
@@ -1007,6 +1165,104 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
         </div>
     </section>
 
+    <!-- Property Listings Section -->
+    <section class="properties" id="properties">
+        <div class="section-header">
+            <h2>Featured Properties</h2>
+            <p>Discover our handpicked selection of premium properties for rent</p>
+        </div>
+        <div class="properties-grid">
+            <?php
+            require 'inc/connect.inc.php';
+            
+            // Get featured properties
+            $sql = "SELECT * FROM properties ORDER BY id DESC LIMIT 6";
+            $result = mysqli_query($con, $sql);
+            
+            if (mysqli_num_rows($result) > 0) {
+                while ($property = mysqli_fetch_assoc($result)) {
+                    // Format price
+                    $price = !empty($property['first_year_rent']) ? $property['first_year_rent'] : (!empty($property['house_rent']) ? $property['house_rent'] : 'Price on request');
+                    if (is_numeric($price) && $price > 0) {
+                        $price = '₦' . number_format($price);
+                    }
+                    
+                    // Get property type and location
+                    $type = !empty($property['type']) ? $property['type'] : 'Property';
+                    $location = !empty($property['location']) ? $property['location'] : (!empty($property['house_location']) ? $property['house_location'] : 'Location not specified');
+                    
+                    // Get image
+                    $imageFilename = !empty($property['house_img1']) ? $property['house_img1'] : '';
+                    $image = !empty($imageFilename) ? 'assets/images/property/' . $imageFilename : 'assets/images/flatmate/house8.jpg';
+                    
+                    // Check if image file exists
+                    if (!file_exists($image) || empty($imageFilename)) {
+                        $image = 'assets/images/flatmate/house8.jpg';
+                    }
+                    
+                    // Get property details
+                    $bedrooms = !empty($property['how_many_multiple_room']) ? $property['how_many_multiple_room'] : '1';
+                    $bathrooms = !empty($property['bathroom']) ? $property['bathroom'] : '1';
+                    $kitchen = !empty($property['kitchen']) ? $property['kitchen'] : '1';
+                    
+                    echo '
+                    <div class="property-card fade-in">
+                        <div class="property-image">
+                            <img src="' . $image . '" alt="' . $property['house_name'] . '">
+                            <div class="property-label">' . $type . '</div>
+                        </div>
+                        <div class="property-content">
+                            <div class="property-header">
+                                <h3>' . $property['house_name'] . '</h3>
+                                <div class="property-price">' . $price . '</div>
+                            </div>
+                            <div class="property-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>' . $location . '</span>
+                            </div>
+                            <div class="property-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-bed"></i>
+                                    <span>' . $bedrooms . ' Bed</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-bath"></i>
+                                    <span>' . $bathrooms . ' Bath</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-utensils"></i>
+                                    <span>' . $kitchen . ' Kitchen</span>
+                                </div>
+                            </div>
+                            <div class="property-actions">
+                                <a href="details-new.php?id=' . $property['id'] . '" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-eye"></i> View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    ';
+                }
+            } else {
+                echo '
+                <div class="no-properties">
+                    <i class="fas fa-home"></i>
+                    <h3>No properties available at the moment</h3>
+                    <p>Check back soon for new listings</p>
+                </div>
+                ';
+            }
+            
+            mysqli_close($con);
+            ?>
+        </div>
+        <div class="properties-footer">
+            <a href="search-made-easy.php" class="btn btn-primary">
+                <i class="fas fa-search"></i> View All Properties
+            </a>
+        </div>
+    </section>
+
     <!-- Stats Section -->
     <section class="stats">
         <div class="stats-grid">
@@ -1081,44 +1337,7 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-column">
-                <h4>House Made Easy</h4>
-                <p style="margin-bottom: 1.5rem;">Your trusted partner in finding the perfect housing solutions. Making home finding easy, fast, and reliable.</p>
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-
-                    <li><a href="about-us.php">About Us</a></li>
-                    <li><a href="services.php">Services</a></li>
-                    <li><a href="contact-us.php">Contact</a></li>
-                    <li><a href="privacypolicy.php">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Contact Info</h4>
-                <ul class="footer-links">
-                    <li><i class="fas fa-map-marker-alt"></i> Isale-Oko, Sagamu</li>
-                    <li><i class="fas fa-phone"></i> +234 805</li>
-                    <li><i class="fas fa-envelope"></i> info@housemadeeasy.com.ng</li>
-                    <li> <i class="fas fa-whatsapp"></i> +234 915 129 4786</li>
-                    <li><i class="fas fa-clock"></i> Mon - Sat: 9AM - 6PM</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; <?php echo date('Y'); ?> House Made Easy. All rights reserved. | Designed with <i class="fas fa-heart"></i> by House Made Easy Team</p>
-        </div>
-    </footer>
+    <?php include('inc/footer.inc.php'); ?>
 
     <script>
         // Navbar scroll effect
