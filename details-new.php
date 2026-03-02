@@ -575,7 +575,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: #25D366;
+            background: var(--primary-color);
             color: white;
             padding: 1rem 2rem;
             border-radius: 12px;
@@ -584,13 +584,13 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             font-size: 1.1rem;
             transition: all 0.3s ease;
             margin: 1rem 0;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
         
         .whatsapp-button:hover {
-            background: #12B74B;
+            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         }
         
         .customer-care {
@@ -1067,7 +1067,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 <div class="agent-card">
                     <div class="agent-info">
                         <h4 class="agent-name"><?php echo $post['agent']; ?></h4>
-                        <a href="https://wa.me/<?php echo preg_replace('/[^0-9]/', '', $post['agent_pno']); ?>?text=I%20need%20to%20check%20out%20<?php echo urlencode($post['house_name']); ?>%20in%20<?php echo urlencode($post['location']); ?>.%20When%20can%20we%20meet?%20Thanks.." 
+                        <a href="https://wa.me/<?php echo preg_replace('/[^0-9]/', '', $post['agent_pno']); ?>?text=Hi%20<?php echo urlencode($post['agent']); ?>,%20I%20need%20to%20check%20out%20<?php echo urlencode($post['house_name']); ?>%20in%20<?php echo urlencode($post['location']); ?>.%20When%20can%20we%20meet?%20Thanks.." 
                            class="whatsapp-button" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp"></i> Message Agent on WhatsApp
                         </a>
