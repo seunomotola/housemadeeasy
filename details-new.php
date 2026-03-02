@@ -254,51 +254,21 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             transition: var(--transition);
         }
         
-        .video-overlay {
+        .youtube-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: #000;
+        }
+        
+        .youtube-container iframe {
             position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .video-overlay:hover {
-            background: rgba(0, 0, 0, 0.85);
-            transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .play-button {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
-        }
-        
-        .play-button i {
-            font-size: 18px;
-            color: white;
-            margin-left: 2px;
-        }
-        
-        .video-label {
-            color: white;
-            font-size: 14px;
-            font-weight: 500;
-            text-align: left;
-            letter-spacing: 0.5px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         
         .main-image:hover img {
@@ -835,21 +805,49 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
     <section class="gallery-section">
         <div class="gallery-container">
             <div class="main-image">
-                <img src="/assets/images/property/<?php echo $post['house_img2']; ?>" alt="<?php echo $post['house_name']; ?>" id="mainImage">
                 <?php 
                 // Debug information
                 echo '<!-- YouTube Link Debug: ' . $post['youtube_link'] . ' -->';
                 if (!empty($post['youtube_link'])) { 
+                    // Extract YouTube video ID
+                    $youtubeUrl = $post['youtube_link'];
+                    $videoId = '';
+                    
+                    // Short format: https://youtube.com/shorts/57EhITD-W64?si=... or https://www.youtube.com/shorts/57EhITD-W64
+                    $shortsMatch = preg_match('/shorts\/([^?&\/]+)/', $youtubeUrl, $shortsMatches);
+                    if ($shortsMatch) {
+                        $videoId = $shortsMatches[1];
+                    } else {
+                        // Other formats: https://youtu.be/57EhITD-W64, https://www.youtube.com/watch?v=57EhITD-W64, etc.
+                        $youtubeMatch = preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/', $youtubeUrl, $youtubeMatches);
+                        if ($youtubeMatch) {
+                            $videoId = $youtubeMatches[1];
+                        }
+                    }
+                    
+                    if (!empty($videoId)) {
                 ?>
-                    <div class="video-overlay" onclick="openVideoModal('<?php echo $post['youtube_link']; ?>')">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div class="video-label">Watch Video Tour</div>
+                    <!-- YouTube Video as main feature -->
+                    <div class="youtube-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/<?php echo $videoId; ?>?rel=0" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            id="mainVideo"
+                        ></iframe>
                     </div>
-                <?php } else {
+                <?php 
+                    } else {
+                        // Fallback to image if YouTube ID extraction fails
+                        echo '<img src="/assets/images/property/' . $post['house_img2'] . '" alt="' . $post['house_name'] . '" id="mainImage">';
+                    }
+                } else {
+                    // No YouTube link, show main image
                     echo '<!-- YouTube Link is empty or null -->';
-                } ?>
+                    echo '<img src="/assets/images/property/' . $post['house_img2'] . '" alt="' . $post['house_name'] . '" id="mainImage">';
+                } 
+                ?>
                 <div class="image-overlay">
                     <h3><?php echo $post['house_name']; ?></h3>
                     <p><?php echo $post['house_label']; ?></p>
@@ -880,11 +878,6 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             <!-- Property Header -->
             <div class="property-header">
                 <h2 class="property-title"><?php echo $post['house_name']; ?></h2>
-                <div style="margin-top: 20px;">
-                    <button onclick="testVideoModal()" style="padding: 10px 20px; background-color: #2563eb; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px;">
-                        Test Video Modal
-                    </button>
-                </div>
                 
                 <div class="property-meta">
                     <div class="meta-item">
@@ -1104,6 +1097,8 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
         // Gallery functionality
         const thumbnails = document.querySelectorAll('.thumbnail');
         const mainImage = document.getElementById('mainImage');
+        const mainVideo = document.getElementById('mainVideo');
+        const youtubeContainer = document.querySelector('.youtube-container');
         
         thumbnails.forEach(thumbnail => {
             thumbnail.addEventListener('click', () => {
@@ -1113,9 +1108,19 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 // Add active class to clicked thumbnail
                 thumbnail.classList.add('active');
                 
-                // Change main image
+                // Change main content (image or video)
                 const imagePath = thumbnail.getAttribute('data-img');
-                mainImage.src = 'assets/images/property/' + imagePath;
+                
+                if (mainVideo && youtubeContainer) {
+                    // If there's a video, replace it with image
+                    youtubeContainer.style.display = 'none';
+                    mainVideo.src = '';
+                }
+                
+                if (mainImage) {
+                    mainImage.src = 'assets/images/property/' + imagePath;
+                    mainImage.style.display = 'block';
+                }
             });
         });
         
@@ -1168,203 +1173,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             });
         });
         
-        // Video modal functionality
-        function openVideoModal(youtubeUrl) {
-            // Create modal if it doesn't exist
-            let modal = document.getElementById('videoModal');
-            if (!modal) {
-                modal = document.createElement('div');
-                modal.id = 'videoModal';
-                modal.className = 'video-modal';
-                modal.innerHTML = `
-                    <div class="modal-overlay" onclick="closeVideoModal()"></div>
-                    <div class="modal-content">
-                        <button class="modal-close" onclick="closeVideoModal()">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <div class="video-container">
-                            <iframe id="videoPlayer" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                `;
-                document.body.appendChild(modal);
-                
-                // Add CSS styles for modal
-                const style = document.createElement('style');
-                style.textContent = `
-                    .video-modal {
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        z-index: 10000;
-                        display: none;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                    
-                    .video-modal.active {
-                        display: flex;
-                    }
-                    
-                    .modal-overlay {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(0, 0, 0, 0.9);
-                        backdrop-filter: blur(5px);
-                    }
-                    
-                    .modal-content {
-                        position: relative;
-                        background: white;
-                        border-radius: 20px;
-                        padding: 20px;
-                        max-width: 900px;
-                        width: 90%;
-                        max-height: 80vh;
-                        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-                        z-index: 1;
-                    }
-                    
-                    .modal-close {
-                        position: absolute;
-                        top: -40px;
-                        right: 0;
-                        width: 40px;
-                        height: 40px;
-                        background: white;
-                        border: none;
-                        border-radius: 50%;
-                        font-size: 20px;
-                        color: #333;
-                        cursor: pointer;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                        transition: all 0.3s ease;
-                    }
-                    
-                    .modal-close:hover {
-                        background: var(--primary-color);
-                        color: white;
-                        transform: scale(1.1);
-                    }
-                    
-                    .video-container {
-                        position: relative;
-                        padding-bottom: 56.25%; /* 16:9 aspect ratio */
-                        height: 0;
-                        overflow: hidden;
-                        border-radius: 12px;
-                    }
-                    
-                    .video-container iframe {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                    }
-                    
-                    @media (max-width: 768px) {
-                        .modal-content {
-                            width: 95%;
-                            padding: 15px;
-                        }
-                        
-                        .modal-close {
-                            top: -35px;
-                            width: 35px;
-                            height: 35px;
-                            font-size: 18px;
-                        }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-            
-            // Extract YouTube video ID (supports all formats including shorts)
-            let videoId = '';
-            
-            console.log('Extracting video ID from URL:', youtubeUrl);
-            
-            // Short format: https://youtube.com/shorts/57EhITD-W64?si=... or https://www.youtube.com/shorts/57EhITD-W64
-            const shortsMatch = youtubeUrl.match(/shorts\/([^?&\/]+)/);
-            if (shortsMatch) {
-                videoId = shortsMatch[1];
-                console.log('Video ID extracted from shorts format:', videoId);
-            } else {
-                // Other formats: https://youtu.be/57EhITD-W64, https://www.youtube.com/watch?v=57EhITD-W64, etc.
-                const youtubeMatch = youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/);
-                if (youtubeMatch) {
-                    videoId = youtubeMatch[1];
-                    console.log('Video ID extracted from standard format:', videoId);
-                } else {
-                    console.log('No video ID extracted');
-                }
-            }
-            
-            if (videoId) {
-                console.log('Video ID is valid, attempting to open modal');
-                
-                // Check if modal and video player elements exist
-                console.log('Modal element exists:', modal !== null);
-                if (modal) {
-                    console.log('Video player element exists:', document.getElementById('videoPlayer') !== null);
-                }
-                
-                // Set video source and show modal
-                document.getElementById('videoPlayer').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                console.log('Modal should now be visible');
-            }
-        }
-        
-        // Test function to directly open the video modal
-        function testVideoModal() {
-            const youtubeUrl = '<?php echo $post['youtube_link']; ?>';
-            console.log('Testing YouTube modal with URL:', youtubeUrl);
-            openVideoModal(youtubeUrl);
-        }
-        
-        // Auto-open modal when page loads (for testing purposes)
-        window.addEventListener('load', function() {
-            setTimeout(testVideoModal, 2000); // Wait 2 seconds before opening
-        });
 
-        function closeVideoModal() {
-            const modal = document.getElementById('videoModal');
-            if (modal) {
-                const iframe = document.getElementById('videoPlayer');
-                if (iframe) {
-                    iframe.src = '';
-                }
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-        
-        // Close modal when clicking outside
-        document.addEventListener('click', function(event) {
-            const modal = document.getElementById('videoModal');
-            if (modal && event.target === modal && modal.classList.contains('active')) {
-                closeVideoModal();
-            }
-        });
-        
-        // Close modal with ESC key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeVideoModal();
-            }
-        });
     </script>
 </body>
 </html>
