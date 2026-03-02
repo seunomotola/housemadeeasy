@@ -862,6 +862,14 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 if (!empty($post['house_img4'])) $images[] = $post['house_img4'];
                 if (!empty($post['house_img1'])) $images[] = $post['house_img1'];
                 
+                // Get additional images from property_images table
+                $propertyId = $post['id'];
+                $additionalImagesQuery = "SELECT image_path FROM property_images WHERE property_id = '$propertyId'";
+                $additionalImagesResult = mysqli_query($con, $additionalImagesQuery);
+                while ($additionalImage = mysqli_fetch_assoc($additionalImagesResult)) {
+                    $images[] = $additionalImage['image_path'];
+                }
+                
                 foreach ($images as $index => $img) {
                     echo '<div class="thumbnail ' . ($index == 0 ? 'active' : '') . '" data-img="' . $img . '">';
                     echo '<img src="/assets/images/property/' . $img . '" alt="Property Image ' . ($index + 1) . '">';

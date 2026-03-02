@@ -864,27 +864,38 @@ include ("../inc/session.php");
                     <div class="form-row">
                         <div class="form-group">
                             <label>Image 1 (Featured Image)</label>
-                            <input name="house_img1" type="file" class="form-control" required onchange="previewImage(this, 'preview1')">
+                            <input name="house_img1" type="file" class="form-control" onchange="previewImage(this, 'preview1')">
                             <img id="preview1" class="image-preview" src="" alt="Preview" style="display: none;">
                         </div>
                         
                         <div class="form-group">
                             <label>Image 2 (Bedroom)</label>
-                            <input name="house_img2" type="file" class="form-control" required onchange="previewImage(this, 'preview2')">
+                            <input name="house_img2" type="file" class="form-control" onchange="previewImage(this, 'preview2')">
                             <img id="preview2" class="image-preview" src="" alt="Preview" style="display: none;">
                         </div>
                         
                         <div class="form-group">
                             <label>Image 3 (Bathroom)</label>
-                            <input name="house_img3" type="file" class="form-control" required onchange="previewImage(this, 'preview3')">
+                            <input name="house_img3" type="file" class="form-control" onchange="previewImage(this, 'preview3')">
                             <img id="preview3" class="image-preview" src="" alt="Preview" style="display: none;">
                         </div>
                         
                         <div class="form-group">
                             <label>Image 4 (Kitchen or Others)</label>
-                            <input name="house_img4" type="file" class="form-control" required onchange="previewImage(this, 'preview4')">
+                            <input name="house_img4" type="file" class="form-control" onchange="previewImage(this, 'preview4')">
                             <img id="preview4" class="image-preview" src="" alt="Preview" style="display: none;">
                         </div>
+                    </div>
+                    
+                    <!-- Additional Images Section with + Sign -->
+                    <div class="additional-images-section mt-4">
+                        <h4 class="mb-3">Additional Images</h4>
+                        <div id="additional-images-container" class="form-row">
+                            <!-- Additional images will be dynamically added here -->
+                        </div>
+                        <button type="button" id="add-image-btn" class="btn btn-secondary mt-3" onclick="addAdditionalImage()">
+                            <i class="fas fa-plus"></i> Add More Images
+                        </button>
                     </div>
                 </div>
                 
@@ -1595,6 +1606,39 @@ include ("../inc/session.php");
             }
             saveFormData();
         }
+
+        // Dynamic additional images functionality
+        let additionalImageCounter = 0;
+        
+        function addAdditionalImage() {
+            additionalImageCounter++;
+            const container = document.getElementById('additional-images-container');
+            
+            const imageGroup = document.createElement('div');
+            imageGroup.className = 'form-group additional-image-group';
+            imageGroup.style.marginBottom = '1rem';
+            
+            const inputId = `additional_image_${additionalImageCounter}`;
+            const previewId = `additional_preview_${additionalImageCounter}`;
+            
+            imageGroup.innerHTML = `
+                <label>Additional Image ${additionalImageCounter}</label>
+                <div style="display: flex; gap: 10px; align-items: flex-end;">
+                    <input type="file" id="${inputId}" name="additional_images[]" class="form-control" accept="image/*" onchange="previewImage(this, '${previewId}')" style="flex: 1;">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="removeAdditionalImage(this)" style="padding: 0.5rem 1rem;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <img id="${previewId}" class="image-preview" src="" alt="Preview" style="display: none;">
+            `;
+            
+            container.appendChild(imageGroup);
+        }
+        
+        function removeAdditionalImage(button) {
+            const group = button.closest('.additional-image-group');
+            group.remove();
+        }
         
         // Function to update subjects based on class selection
         function updateSubjectOptions() {
@@ -1794,6 +1838,33 @@ include ("../inc/session.php");
             }
         }
         
+        // Handle additional images
+        $additionalImages = [];
+        if (!empty($_FILES['additional_images']['name'][0])) {
+            foreach ($_FILES['additional_images']['name'] as $index => $originalName) {
+                $tmpName = $_FILES['additional_images']['tmp_name'][$index];
+                $error = $_FILES['additional_images']['error'][$index];
+                
+                if ($error === UPLOAD_ERR_OK && !empty($tmpName)) {
+                    if (!isValidImage($tmpName, $allowedMimeTypes)) {
+                        die("Error: The file uploaded for additional image $index is not a valid image format.");
+                    }
+                    
+                    $extension = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
+                    $uniqueName = uniqid('img_', true) . '.' . $extension;
+                    $destinationPath = $uploadDir . $uniqueName;
+                    $shortTermPath = $shortTermDir . $uniqueName;
+                    
+                    if (move_uploaded_file($tmpName, $destinationPath)) {
+                        copy($destinationPath, $shortTermPath);
+                        $additionalImages[] = $uniqueName;
+                    } else {
+                        die("Failed to upload additional image $index.");
+                    }
+                }
+            }
+        }
+        
         $house_img1 = $uploadedImages['house_img1'] ?? '';
         $house_img2 = $uploadedImages['house_img2'] ?? '';
         $house_img3 = $uploadedImages['house_img3'] ?? '';
@@ -1808,6 +1879,15 @@ include ("../inc/session.php");
         $insert_product2 = "INSERT into short_term_rentals_properties (agent, agent_img, agent_pno, agent_email, location, house_location, type, date, house_name, house_img1, house_img2, house_img3, house_img4, house_desc, amenities, house_label, distance, kitchen, bathroom, door, fence, water_source, status,date_due, house_id,multiple_room,how_many_multiple_room, house_owner, youtube_link) values ('$agent_fname', '', '$whatapp','$agent_email', '$location', '$house_location', '$house_type', NOW(),'$house_name','$house_img1','$house_img2','$house_img3','$house_img4','$house_desc','$amenities','$house_label','$distance', '$kitchen', '$bathroom', '$door', '$fence', '$water_source', 'no', '', '$house_id_short', '$multiple_room', '$how_many_multiple_room', '$landlord_reside', '$youtube')";
          
         $run_product2 = mysqli_query($con,$insert_product2);
+        
+        // Insert additional images into property_images table
+        if ($run_product1) {
+            $propertyId = mysqli_insert_id($con);
+            foreach ($additionalImages as $imagePath) {
+                $insertAdditionalImage = "INSERT into property_images (property_id, image_path) values ('$propertyId', '$imagePath')";
+                mysqli_query($con, $insertAdditionalImage);
+            }
+        }
         
         if ($run_product1 && $run_product2) {
             if (!empty($youtube)) {
