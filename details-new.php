@@ -1065,7 +1065,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                             <i class="fab fa-whatsapp"></i> Message Agent on WhatsApp
                         </a>
                         <div class="customer-care">
-                            If Agent is Unavailable, Please Call Our Hotline <span class="hotline">+2349151294786</span>
+                            If Agent is Unavailable, Please call/whatsapp our Customer Care Hotline: <span class="hotline">08160852570</span>
                         </div>
                     </div>
                 </div>
