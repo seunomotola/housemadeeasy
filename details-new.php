@@ -830,7 +830,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                     <!-- YouTube Video as main feature -->
                     <div class="youtube-container">
                         <iframe 
-                            src="https://www.youtube.com/embed/<?php echo $videoId; ?>?rel=0" 
+                            src="https://www.youtube.com/embed/<?php echo $videoId; ?>?rel=0&autoplay=1&mute=1" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen
@@ -1059,8 +1059,8 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 
                 <div class="agent-card">
                     <div class="agent-info">
-                        <h4 class="agent-name"><?php echo $post['agent']; ?></h4>
-                        <a href="https://wa.me/<?php echo preg_replace('/[^0-9]/', '', $post['agent_pno']); ?>?text=Hi%20<?php echo urlencode($post['agent']); ?>,%20I%20need%20to%20check%20out%20<?php echo urlencode($post['house_name']); ?>%20in%20<?php echo urlencode($post['location']); ?>.%20When%20can%20we%20meet?%20Thanks.." 
+                        <!-- <h4 class="agent-name"><?php echo $post['agent']; ?></h4> -->
+                        <a href="https://wa.me/<?php echo preg_replace('/[^0-9]/', '', $post['agent_pno']); ?>?text=Hi%20<?php echo urlencode($post['agent']); ?>,%20I%20need%20to%20check%20out%20<?php echo urlencode($post['house_name']); ?>%20in%20<?php echo urlencode($post['location']); ?>.%20Here%20is%20the%20property%20link:%20https://housemadeeasy.com.ng/details-new.php?id=<?php echo $id; ?>.%20When%20can%20we%20meet?%20Thanks.." 
                            class="whatsapp-button" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp"></i> Message Agent on WhatsApp
                         </a>
@@ -1072,7 +1072,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             </div>
 
             <!-- Booking Section -->
-            <div class="booking-section">
+            <div class="booking-section hidden">
                 <h3>Ready to Book?</h3>
                 <p>Don't miss out on this amazing property. Book now before it's too late!</p>
                 <a href="book.php?id=<?php echo $id; ?>" class="booking-button">
