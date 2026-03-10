@@ -322,6 +322,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
         .carousel-slide {
             min-width: 100%;
             position: relative;
+            cursor: pointer;
         }
         
         .carousel-slide img {
@@ -403,6 +404,117 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
         .carousel-indicator.active {
             background: white;
             transform: scale(1.2);
+        }
+        
+        /* Fullscreen Gallery Modal */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .gallery-modal.active {
+            display: flex;
+        }
+        
+        .gallery-modal-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            max-width: 1200px;
+        }
+        
+        .gallery-modal-slide {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .gallery-modal-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .gallery-modal-slide iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .gallery-modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            transition: var(--transition);
+            z-index: 10;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .gallery-modal-nav:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .gallery-modal-nav.prev {
+            left: -25px;
+        }
+        
+        .gallery-modal-nav.next {
+            right: -25px;
+        }
+        
+        .gallery-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+        
+        .gallery-modal-close:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Swipe gestures for mobile */
+        .gallery-modal-content {
+            touch-action: pan-y;
+        }
+        
+        .swipe-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.875rem;
+            text-align: center;
+            opacity: 0.7;
         }
         
         .thumbnail {
@@ -1003,6 +1115,23 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             </div>
         </div>
     </section>
+    
+    <!-- Fullscreen Gallery Modal -->
+    <div class="gallery-modal" id="galleryModal">
+        <div class="gallery-modal-content">
+            <button class="gallery-modal-close" onclick="closeGalleryModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="gallery-modal-nav prev" onclick="changeModalSlide(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="gallery-modal-nav next" onclick="changeModalSlide(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="gallery-modal-slide" id="modalSlideContainer"></div>
+            <div class="swipe-indicator">Swipe left/right to navigate</div>
+        </div>
+    </div>
 
     <!-- Property Details -->
     <section class="property-details">
@@ -1226,6 +1355,27 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             icon.className = navMenu.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
         });
         
+        // Gallery data storage
+        let galleryData = [];
+        
+        // Initialize gallery data based on current slides
+        function initializeGalleryData() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            slides.forEach(slide => {
+                const youtubeContainer = slide.querySelector('.youtube-container');
+                if (youtubeContainer) {
+                    const iframe = slide.querySelector('iframe');
+                    const src = iframe ? iframe.src : '';
+                    galleryData.push({ type: 'youtube', src: src });
+                } else {
+                    const img = slide.querySelector('img');
+                    if (img) {
+                        galleryData.push({ type: 'image', src: img.src });
+                    }
+                }
+            });
+        }
+        
         // Carousel functionality
         let currentSlide = 0;
         const track = document.querySelector('.carousel-track');
@@ -1234,6 +1384,8 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
         let autoSlideInterval;
         
         if (track && slides.length > 0) {
+            initializeGalleryData();
+            
             const totalSlides = slides.length;
             
             // Check if first slide contains YouTube video
@@ -1281,6 +1433,85 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             window.changeSlide = changeSlide;
             window.goToSlide = goToSlide;
         }
+        
+        // Fullscreen Gallery Modal Functionality
+        let modalCurrentSlide = 0;
+        let startX = 0;
+        let endX = 0;
+        
+        function openGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            const container = document.getElementById('modalSlideContainer');
+            modal.classList.add('active');
+            modalCurrentSlide = currentSlide;
+            updateModalSlide();
+        }
+        
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.remove('active');
+        }
+        
+        function updateModalSlide() {
+            const container = document.getElementById('modalSlideContainer');
+            const slideData = galleryData[modalCurrentSlide];
+            
+            if (slideData.type === 'youtube') {
+                container.innerHTML = `
+                    <iframe src="${slideData.src}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                `;
+            } else {
+                container.innerHTML = `
+                    <img src="${slideData.src}" alt="Property Image">
+                `;
+            }
+        }
+        
+        function changeModalSlide(direction) {
+            modalCurrentSlide = (modalCurrentSlide + direction + galleryData.length) % galleryData.length;
+            updateModalSlide();
+        }
+        
+        // Swipe gesture functionality
+        const modalContent = document.querySelector('.gallery-modal-content');
+        modalContent.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+        
+        modalContent.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next slide
+                    changeModalSlide(1);
+                } else {
+                    // Swipe right - previous slide
+                    changeModalSlide(-1);
+                }
+            }
+        }
+        
+        // Close modal with Esc key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeGalleryModal();
+            }
+        });
+        
+        // Open modal when clicking on carousel slides
+        document.querySelectorAll('.carousel-slide').forEach((slide, index) => {
+            slide.addEventListener('click', () => {
+                modalCurrentSlide = index;
+                openGalleryModal();
+            });
+        });
         
         // Update cart count
         function updateCartCount() {
