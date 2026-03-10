@@ -257,9 +257,14 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
         .youtube-container {
             position: relative;
             width: 100%;
-            height: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 500px; /* Match image height */
             background: #000;
+        }
+        
+        @media (max-width: 768px) {
+            .youtube-container {
+                height: 300px; /* Match mobile image height */
+            }
         }
         
         .youtube-container iframe {
@@ -1022,12 +1027,12 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 </div>
                 
                 <div class="property-price">
-                    ₦<?php echo number_format((float)$post['first_year_rent']); ?>
+                    ₦<?php echo number_format((float)str_replace(',', '', $post['first_year_rent'])); ?>
                 </div>
                 
                 <div class="price-details">
-                    First year rent: ₦<?php echo number_format((float)$post['first_year_rent']); ?><br>
-                    Subsequent years: ₦<?php echo number_format((float)$post['second_year_rent']); ?>
+                    First year rent: ₦<?php echo number_format((float)str_replace(',', '', $post['first_year_rent'])); ?><br>
+                    Subsequent years: ₦<?php echo number_format((float)str_replace(',', '', $post['second_year_rent'])); ?>
                 </div>
                 
                 <?php if ($post['negotiable'] == 'yes') { ?>
@@ -1231,6 +1236,9 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
         if (track && slides.length > 0) {
             const totalSlides = slides.length;
             
+            // Check if first slide contains YouTube video
+            const hasYouTubeVideo = slides.length > 0 && slides[0].querySelector('.youtube-container');
+            
             function updateCarousel() {
                 track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
                 
@@ -1253,9 +1261,12 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             }
             
             function startAutoSlide() {
-                autoSlideInterval = setInterval(() => {
-                    changeSlide(1);
-                }, 4000); // Change slide every 4 seconds
+                // Only start auto-slide if there are multiple slides and first slide is NOT YouTube
+                if (totalSlides > 1 && !hasYouTubeVideo) {
+                    autoSlideInterval = setInterval(() => {
+                        changeSlide(1);
+                    }, 4000); // Change slide every 4 seconds
+                }
             }
             
             function resetAutoSlide() {
