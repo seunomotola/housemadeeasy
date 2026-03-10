@@ -302,6 +302,104 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             gap: 1rem;
         }
         
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        @media (max-width: 768px) {
+            .carousel-slide img {
+                height: 300px;
+            }
+            
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .carousel-indicator {
+                width: 10px;
+                height: 10px;
+            }
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            transition: var(--transition);
+            z-index: 10;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .carousel-nav:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .carousel-nav.prev {
+            left: 1rem;
+        }
+        
+        .carousel-nav.next {
+            right: 1rem;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .carousel-indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
         .thumbnail {
             height: 100px;
             border-radius: 8px;
@@ -804,58 +902,9 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
     <!-- Property Gallery -->
     <section class="gallery-section">
         <div class="gallery-container">
-            <div class="main-image">
-                <?php 
-                // Debug information
-                echo '<!-- YouTube Link Debug: ' . $post['youtube_link'] . ' -->';
-                if (!empty($post['youtube_link'])) { 
-                    // Extract YouTube video ID
-                    $youtubeUrl = $post['youtube_link'];
-                    $videoId = '';
-                    
-                    // Short format: https://youtube.com/shorts/57EhITD-W64?si=... or https://www.youtube.com/shorts/57EhITD-W64
-                    $shortsMatch = preg_match('/shorts\/([^?&\/]+)/', $youtubeUrl, $shortsMatches);
-                    if ($shortsMatch) {
-                        $videoId = $shortsMatches[1];
-                    } else {
-                        // Other formats: https://youtu.be/57EhITD-W64, https://www.youtube.com/watch?v=57EhITD-W64, etc.
-                        $youtubeMatch = preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/', $youtubeUrl, $youtubeMatches);
-                        if ($youtubeMatch) {
-                            $videoId = $youtubeMatches[1];
-                        }
-                    }
-                    
-                    if (!empty($videoId)) {
-                ?>
-                    <!-- YouTube Video as main feature -->
-                    <div class="youtube-container">
-                        <iframe 
-                            src="https://www.youtube.com/embed/<?php echo $videoId; ?>?rel=0&autoplay=1&mute=1" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen
-                            id="mainVideo"
-                        ></iframe>
-                    </div>
-                <?php 
-                    } else {
-                        // Fallback to image if YouTube ID extraction fails
-                        echo '<img src="/assets/images/property/' . $post['house_img2'] . '" alt="' . $post['house_name'] . '" id="mainImage">';
-                    }
-                } else {
-                    // No YouTube link, show main image
-                    echo '<!-- YouTube Link is empty or null -->';
-                    echo '<img src="/assets/images/property/' . $post['house_img2'] . '" alt="' . $post['house_name'] . '" id="mainImage">';
-                } 
-                ?>
-                <div class="image-overlay">
-                    <h3><?php echo $post['house_name']; ?></h3>
-                    <p><?php echo $post['house_label']; ?></p>
-                </div>
-            </div>
-            
-            <div class="thumbnail-gallery">
+            <div class="carousel-container" id="imageCarousel">
                 <?php
+                // Get all images
                 $images = array();
                 if (!empty($post['house_img2'])) $images[] = $post['house_img2'];
                 if (!empty($post['house_img3'])) $images[] = $post['house_img3'];
@@ -870,12 +919,82 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                     $images[] = $additionalImage['image_path'];
                 }
                 
-                foreach ($images as $index => $img) {
-                    echo '<div class="thumbnail ' . ($index == 0 ? 'active' : '') . '" data-img="' . $img . '">';
-                    echo '<img src="/assets/images/property/' . $img . '" alt="Property Image ' . ($index + 1) . '">';
-                    echo '</div>';
+                // If no YouTube video, show carousel of images
+                if (empty($post['youtube_link']) && count($images) > 0) {
+                ?>
+                    <div class="carousel-track">
+                        <?php foreach ($images as $index => $img) { ?>
+                            <div class="carousel-slide">
+                                <img src="/assets/images/property/<?php echo $img; ?>" alt="Property Image <?php echo $index + 1; ?>">
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <button class="carousel-nav prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-nav next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-indicators">
+                        <?php foreach ($images as $index => $img) { ?>
+                            <button class="carousel-indicator <?php echo $index === 0 ? 'active' : ''; ?>" onclick="goToSlide(<?php echo $index; ?>)"></button>
+                        <?php } ?>
+                    </div>
+                <?php
+                } else {
+                    // Show YouTube video or fallback image
+                    if (!empty($post['youtube_link'])) {
+                        $youtubeUrl = $post['youtube_link'];
+                        $videoId = '';
+                        
+                        $shortsMatch = preg_match('/shorts\/([^?&\/]+)/', $youtubeUrl, $shortsMatches);
+                        if ($shortsMatch) {
+                            $videoId = $shortsMatches[1];
+                        } else {
+                            $youtubeMatch = preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/', $youtubeUrl, $youtubeMatches);
+                            if ($youtubeMatch) {
+                                $videoId = $youtubeMatches[1];
+                            }
+                        }
+                        
+                        if (!empty($videoId)) {
+                ?>
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <div class="youtube-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/<?php echo $videoId; ?>?rel=0&autoplay=1&mute=1" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen
+                                ></iframe>
+                            </div>
+                        </div>
+                        <?php if (count($images) > 0) { ?>
+                            <?php foreach ($images as $img) { ?>
+                                <div class="carousel-slide">
+                                    <img src="/assets/images/property/<?php echo $img; ?>" alt="Property Image">
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
+                    <button class="carousel-nav prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-nav next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-indicators">
+                        <button class="carousel-indicator active" onclick="goToSlide(0)"></button>
+                        <?php for ($i = 1; $i <= count($images); $i++) { ?>
+                            <button class="carousel-indicator" onclick="goToSlide(<?php echo $i; ?>)"></button>
+                        <?php } ?>
+                    </div>
+                <?php
+                        } else {
+                            echo '<img src="/assets/images/property/' . $post['house_img2'] . '" alt="' . $post['house_name'] . '">';
+                        }
+                    } else {
+                        echo '<img src="/assets/images/property/' . $post['house_img2'] . '" alt="' . $post['house_name'] . '">';
+                    }
                 }
                 ?>
+                <div class="image-overlay">
+                    <h3><?php echo $post['house_name']; ?></h3>
+                    <p><?php echo $post['house_label']; ?></p>
+                </div>
             </div>
         </div>
     </section>
@@ -903,12 +1022,12 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 </div>
                 
                 <div class="property-price">
-                    #<?php echo number_format((float)$post['first_year_rent']); ?>
+                    ₦<?php echo number_format((float)$post['first_year_rent']); ?>
                 </div>
                 
                 <div class="price-details">
-                    First year rent: #<?php echo number_format((float)$post['first_year_rent']); ?><br>
-                    Subsequent years: #<?php echo number_format((float)$post['second_year_rent']); ?>
+                    First year rent: ₦<?php echo number_format((float)$post['first_year_rent']); ?><br>
+                    Subsequent years: ₦<?php echo number_format((float)$post['second_year_rent']); ?>
                 </div>
                 
                 <?php if ($post['negotiable'] == 'yes') { ?>
@@ -1102,35 +1221,55 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             icon.className = navMenu.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
         });
         
-        // Gallery functionality
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        const mainImage = document.getElementById('mainImage');
-        const mainVideo = document.getElementById('mainVideo');
-        const youtubeContainer = document.querySelector('.youtube-container');
+        // Carousel functionality
+        let currentSlide = 0;
+        const track = document.querySelector('.carousel-track');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        let autoSlideInterval;
         
-        thumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('click', () => {
-                // Remove active class from all thumbnails
-                thumbnails.forEach(thumb => thumb.classList.remove('active'));
+        if (track && slides.length > 0) {
+            const totalSlides = slides.length;
+            
+            function updateCarousel() {
+                track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
                 
-                // Add active class to clicked thumbnail
-                thumbnail.classList.add('active');
-                
-                // Change main content (image or video)
-                const imagePath = thumbnail.getAttribute('data-img');
-                
-                if (mainVideo && youtubeContainer) {
-                    // If there's a video, replace it with image
-                    youtubeContainer.style.display = 'none';
-                    mainVideo.src = '';
-                }
-                
-                if (mainImage) {
-                    mainImage.src = 'assets/images/property/' + imagePath;
-                    mainImage.style.display = 'block';
-                }
-            });
-        });
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+            }
+            
+            function changeSlide(direction) {
+                currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+                updateCarousel();
+                resetAutoSlide();
+            }
+            
+            function goToSlide(index) {
+                currentSlide = index;
+                updateCarousel();
+                resetAutoSlide();
+            }
+            
+            function startAutoSlide() {
+                autoSlideInterval = setInterval(() => {
+                    changeSlide(1);
+                }, 4000); // Change slide every 4 seconds
+            }
+            
+            function resetAutoSlide() {
+                clearInterval(autoSlideInterval);
+                startAutoSlide();
+            }
+            
+            // Start auto-sliding
+            startAutoSlide();
+            
+            // Make functions global for button clicks
+            window.changeSlide = changeSlide;
+            window.goToSlide = goToSlide;
+        }
         
         // Update cart count
         function updateCartCount() {
