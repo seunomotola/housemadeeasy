@@ -8,20 +8,58 @@ include("inc/connect.inc.php");
 
 $basename= basename($_SERVER['PHP_SELF']);
 $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']); 
+
+// Check if ID parameter exists
+if (!isset($_GET['id']) || empty($_GET['id'])) {
+    header("Location: 404.php");
+    exit;
+}
+
+$id = $_GET['id'];
+$sql ="SELECT * FROM properties WHERE id='$id' ";
+$result = mysqli_query($con,$sql);
+$post = mysqli_fetch_assoc($result);
+
+// Check if property exists
+if (!$post) {
+    header("Location: 404.php");
+    exit;
+}
+
+$houseName = isset($post['house_name']) ? htmlspecialchars($post['house_name']) : 'Property Not Found';
+$houseLocation = isset($post['house_location']) ? htmlspecialchars($post['house_location']) : '';
+$location = isset($post['location']) ? htmlspecialchars($post['location']) : '';
+$propertyType = isset($post['type']) ? htmlspecialchars($post['type']) : '';
+$houseLabel = isset($post['house_label']) ? htmlspecialchars($post['house_label']) : '';
+$firstYearRent = isset($post['first_year_rent']) ? $post['first_year_rent'] : '0';
+$secondYearRent = isset($post['second_year_rent']) ? $post['second_year_rent'] : '0';
+$negotiable = isset($post['negotiable']) ? $post['negotiable'] : 'no';
+$distance = isset($post['distance']) ? htmlspecialchars($post['distance']) : 'N/A';
+$bathroom = isset($post['bathroom']) ? htmlspecialchars($post['bathroom']) : 'N/A';
+$kitchen = isset($post['kitchen']) ? htmlspecialchars($post['kitchen']) : 'N/A';
+$door = isset($post['door']) ? htmlspecialchars($post['door']) : 'N/A';
+$houseDesc = isset($post['house_desc']) ? $post['house_desc'] : '';
+$amenities = isset($post['amenities']) ? $post['amenities'] : '';
+$waterSource = isset($post['water_source']) ? htmlspecialchars($post['water_source']) : 'N/A';
+$houseOwner = isset($post['house_owner']) ? htmlspecialchars($post['house_owner']) : 'N/A';
+$fence = isset($post['fence']) ? htmlspecialchars($post['fence']) : 'N/A';
+$multipleRoom = isset($post['multiple_room']) ? $post['multiple_room'] : 'no';
+$roomsLeft = isset($post['how_many_multiple_room']) ? htmlspecialchars($post['how_many_multiple_room']) : '0';
+$agent = isset($post['agent']) ? htmlspecialchars($post['agent']) : '';
+$agentPno = isset($post['agent_pno']) ? $post['agent_pno'] : '';
+$houseImg1 = isset($post['house_img1']) ? $post['house_img1'] : '';
+$houseImg2 = isset($post['house_img2']) ? $post['house_img2'] : '';
+$houseImg3 = isset($post['house_img3']) ? $post['house_img3'] : '';
+$houseImg4 = isset($post['house_img4']) ? $post['house_img4'] : '';
+$youtubeLink = isset($post['youtube_link']) ? $post['youtube_link'] : '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php 
-        $id = $_GET['id'];
-        $sql ="SELECT * FROM properties WHERE id='$id' ";
-        $result = mysqli_query($con,$sql);
-        $post = mysqli_fetch_assoc($result);
-        echo $post['house_name'] . " | HouseMadeEasy";
-    ?></title>
-    <meta name="description" content="View details of <?php echo $post['house_name']; ?> on HouseMadeEasy. Find your dream accommodation in Sagamu campus of Olabisi Onabanjo University.">
+    <title><?php echo $houseName; ?> | HouseMadeEasy</title>
+    <meta name="description" content="View details of <?php echo $houseName; ?> on HouseMadeEasy. Find your dream accommodation in Sagamu campus of Olabisi Onabanjo University.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1011,8 +1049,8 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1><?php echo $post['house_name']; ?></h1>
-            <p><?php echo ucwords($post['type']); ?> in <?php echo ucwords($post['house_location']); ?>, <?php echo $post['location']; ?></p>
+            <h1><?php echo $houseName; ?></h1>
+            <p><?php echo ucwords($propertyType); ?> in <?php echo ucwords($houseLocation); ?>, <?php echo $location; ?></p>
         </div>
     </section>
 
@@ -1023,13 +1061,13 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 <?php
                 // Get all images
                 $images = array();
-                if (!empty($post['house_img2'])) $images[] = $post['house_img2'];
-                if (!empty($post['house_img3'])) $images[] = $post['house_img3'];
-                if (!empty($post['house_img4'])) $images[] = $post['house_img4'];
-                if (!empty($post['house_img1'])) $images[] = $post['house_img1'];
+                if (!empty($houseImg2)) $images[] = $houseImg2;
+                if (!empty($houseImg3)) $images[] = $houseImg3;
+                if (!empty($houseImg4)) $images[] = $houseImg4;
+                if (!empty($houseImg1)) $images[] = $houseImg1;
                 
                 // Get additional images from property_images table
-                $propertyId = $post['id'];
+                $propertyId = $id;
                 $additionalImagesQuery = "SELECT image_path FROM property_images WHERE property_id = '$propertyId'";
                 $additionalImagesResult = mysqli_query($con, $additionalImagesQuery);
                 while ($additionalImage = mysqli_fetch_assoc($additionalImagesResult)) {
@@ -1037,7 +1075,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 }
                 
                 // If no YouTube video, show carousel of images
-                if (empty($post['youtube_link']) && count($images) > 0) {
+                if (empty($youtubeLink) && count($images) > 0) {
                 ?>
                     <div class="carousel-track">
                         <?php foreach ($images as $index => $img) { ?>
@@ -1056,8 +1094,8 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 <?php
                 } else {
                     // Show YouTube video or fallback image
-                    if (!empty($post['youtube_link'])) {
-                        $youtubeUrl = $post['youtube_link'];
+                    if (!empty($youtubeLink)) {
+                        $youtubeUrl = $youtubeLink;
                         $videoId = '';
                         
                         $shortsMatch = preg_match('/shorts\/([^?&\/]+)/', $youtubeUrl, $shortsMatches);
@@ -1101,16 +1139,16 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                     </div>
                 <?php
                         } else {
-                            echo '<img src="/assets/images/property/' . $post['house_img2'] . '" alt="' . $post['house_name'] . '">';
+                            echo '<img src="/assets/images/property/' . $houseImg2 . '" alt="' . $houseName . '">';
                         }
                     } else {
-                        echo '<img src="/assets/images/property/' . $post['house_img2'] . '" alt="' . $post['house_name'] . '">';
+                        echo '<img src="/assets/images/property/' . $houseImg2 . '" alt="' . $houseName . '">';
                     }
                 }
                 ?>
                 <div class="image-overlay">
-                    <h3><?php echo $post['house_name']; ?></h3>
-                    <p><?php echo $post['house_label']; ?></p>
+                    <h3><?php echo $houseName; ?></h3>
+                    <p><?php echo $houseLabel; ?></p>
                 </div>
             </div>
         </div>
@@ -1138,33 +1176,33 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
         <div class="details-container">
             <!-- Property Header -->
             <div class="property-header">
-                <h2 class="property-title"><?php echo $post['house_name']; ?></h2>
+                <h2 class="property-title"><?php echo $houseName; ?></h2>
                 
                 <div class="property-meta">
                     <div class="meta-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span><?php echo ucwords($post['house_location']); ?>, <?php echo $post['location']; ?></span>
+                        <span><?php echo ucwords($houseLocation); ?>, <?php echo $location; ?></span>
                     </div>
                     <div class="meta-item">
                         <i class="fas fa-home"></i>
-                        <span><?php echo ucwords($post['type']); ?></span>
+                        <span><?php echo ucwords($propertyType); ?></span>
                     </div>
                     <div class="meta-item">
                         <i class="fas fa-tag"></i>
-                        <span><?php echo $post['house_label']; ?></span>
+                        <span><?php echo $houseLabel; ?></span>
                     </div>
                 </div>
                 
                 <div class="property-price">
-                    ₦<?php echo number_format((float)str_replace(',', '', $post['first_year_rent'])); ?>
+                    ₦<?php echo number_format((float)str_replace(',', '', $firstYearRent)); ?>
                 </div>
                 
                 <div class="price-details">
-                    First year rent: ₦<?php echo number_format((float)str_replace(',', '', $post['first_year_rent'])); ?><br>
-                    Subsequent years: ₦<?php echo number_format((float)str_replace(',', '', $post['second_year_rent'])); ?>
+                    First year rent: ₦<?php echo number_format((float)str_replace(',', '', $firstYearRent)); ?><br>
+                    Subsequent years: ₦<?php echo number_format((float)str_replace(',', '', $secondYearRent)); ?>
                 </div>
                 
-                <?php if ($post['negotiable'] == 'yes') { ?>
+                <?php if ($negotiable == 'yes') { ?>
                     <div class="price-details mt-1">
                         <i class="fas fa-tag"></i> Negotiable
                     </div>
@@ -1179,7 +1217,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                     </div>
                     <div class="feature-content">
                         <h4>Distance</h4>
-                        <p><?php echo $post['distance']; ?></p>
+                        <p><?php echo $distance; ?></p>
                     </div>
                 </div>
                 
@@ -1189,7 +1227,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                     </div>
                     <div class="feature-content">
                         <h4>Bathrooms</h4>
-                        <p><?php echo $post['bathroom']; ?></p>
+                        <p><?php echo $bathroom; ?></p>
                     </div>
                 </div>
                 
@@ -1199,7 +1237,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                     </div>
                     <div class="feature-content">
                         <h4>Kitchens</h4>
-                        <p><?php echo $post['kitchen']; ?></p>
+                        <p><?php echo $kitchen; ?></p>
                     </div>
                 </div>
                 
@@ -1209,7 +1247,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                     </div>
                     <div class="feature-content">
                         <h4>Doors</h4>
-                        <p><?php echo $post['door']; ?></p>
+                        <p><?php echo $door; ?></p>
                     </div>
                 </div>
             </div>
@@ -1220,7 +1258,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                     <i class="fas fa-info-circle"></i> Description
                 </h3>
                 <div class="property-description">
-                    <?php echo nl2br($post['house_desc']); ?>
+                    <?php echo nl2br($houseDesc); ?>
                 </div>
             </div>
 
@@ -1232,7 +1270,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 
                 <div class="amenities-grid">
                     <?php
-                    $amenities = explode(',', $post['amenities']);
+                    $amenitiesArray = !empty($amenities) ? explode(',', $amenities) : array();
                     $amenityIcons = array(
                         'water' => 'fas fa-tint',
                         'electricity' => 'fas fa-bolt',
@@ -1247,7 +1285,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                         'gym' => 'fas fa-dumbbell'
                     );
                     
-                    foreach ($amenities as $amenity) {
+                    foreach ($amenitiesArray as $amenity) {
                         $amenity = trim(strtolower($amenity));
                         if (!empty($amenity)) {
                             $icon = $amenityIcons[$amenity] ?? 'fas fa-check-circle';
@@ -1274,7 +1312,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                         </div>
                         <div class="feature-content">
                             <h4>Water Source</h4>
-                            <p><?php echo $post['water_source']; ?></p>
+                            <p><?php echo $waterSource; ?></p>
                         </div>
                     </div>
                     
@@ -1284,7 +1322,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                         </div>
                         <div class="feature-content">
                             <h4>House Owner</h4>
-                            <p><?php echo $post['house_owner']; ?></p>
+                            <p><?php echo $houseOwner; ?></p>
                         </div>
                     </div>
                     
@@ -1294,18 +1332,18 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                         </div>
                         <div class="feature-content">
                             <h4>Fence</h4>
-                            <p><?php echo $post['fence']; ?></p>
+                            <p><?php echo $fence; ?></p>
                         </div>
                     </div>
                     
-                    <?php if ($post['multiple_room'] == 'yes') { ?>
+                    <?php if ($multipleRoom == 'yes') { ?>
                         <div class="feature-item">
                             <div class="feature-icon">
                                 <i class="fas fa-door-closed"></i>
                             </div>
                             <div class="feature-content">
                                 <h4>Rooms Left</h4>
-                                <p><?php echo $post['how_many_multiple_room']; ?></p>
+                                <p><?php echo $roomsLeft; ?></p>
                             </div>
                         </div>
                     <?php } ?>
@@ -1320,8 +1358,8 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
                 
                 <div class="agent-card">
                     <div class="agent-info">
-                        <!-- <h4 class="agent-name"><?php echo $post['agent']; ?></h4> -->
-                        <a href="https://wa.me/<?php echo preg_replace('/[^0-9]/', '', $post['agent_pno']); ?>?text=Hi%20<?php echo urlencode($post['agent']); ?>,%20I%20need%20to%20check%20out%20<?php echo urlencode($post['house_name']); ?>%20in%20<?php echo urlencode($post['location']); ?>.%20Here%20is%20the%20property%20link:%20https://housemadeeasy.com.ng/details-new.php?id=<?php echo $id; ?>.%20When%20can%20we%20meet?%20Thanks.." 
+                        <!-- <h4 class="agent-name"><?php echo $agent; ?></h4> -->
+                        <a href="https://wa.me/<?php echo preg_replace('/[^0-9]/', '', $agentPno); ?>?text=Hi%20<?php echo urlencode($agent); ?>,%20I%20need%20to%20check%20out%20<?php echo urlencode($houseName); ?>%20in%20<?php echo urlencode($location); ?>.%20Here%20is%20the%20property%20link:%20https://housemadeeasy.com.ng/details-new.php?id=<?php echo $id; ?>.%20When%20can%20we%20meet?%20Thanks.." 
                            class="whatsapp-button" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp"></i> Message Agent on WhatsApp
                         </a>
