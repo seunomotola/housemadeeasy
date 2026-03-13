@@ -6,6 +6,11 @@ ini_set('display_errors', 1);
 ini_set('log_errors', 1);
 include ("../inc/connect.inc.php");
 include ("../inc/session.php"); 
+
+// Debug: Log when form is submitted
+if (isset($_POST['submit'])) {
+    error_log("HME Form submitted. Session ID: " . (isset($_SESSION['agentaffilate_id']) ? $_SESSION['agentaffilate_id'] : 'NOT SET'));
+}
 ?> 
 
 <!DOCTYPE html>
@@ -1390,6 +1395,13 @@ include ("../inc/session.php");
                     data: new FormData(this),
                     processData: false,
                     contentType: false,
+                    crossDomain: false,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                    },
                     success: function(response) {
                         clearInterval(progressInterval);
                         
@@ -1453,7 +1465,14 @@ include ("../inc/session.php");
                     error: function(xhr, status, error) {
                         clearInterval(progressInterval);
                         $('#progress-modal').hide();
-                        alert('Error uploading property: ' + error);
+                        
+                        // Show detailed error info
+                        let errorMsg = 'Error uploading property: ' + error + '\n\n';
+                        errorMsg += 'Status: ' + xhr.status + '\n';
+                        errorMsg += 'Response: ' + xhr.responseText;
+                        
+                        console.error('AJAX Error:', {xhr: xhr, status: status, error: error});
+                        alert(errorMsg);
                     }
                 });
             });
@@ -1833,12 +1852,30 @@ include ("../inc/session.php");
         
         if(isset($_SESSION['agentaffilate_id'])) {
             $query2 = mysqli_query($con,"SELECT * FROM hmeaffilate_user WHERE agentaffilate_id = '".$_SESSION['agentaffilate_id']."'");  
+            if (!$query2) {
+                $db_error = mysqli_error($con);
+                error_log("HME: User query failed: " . $db_error);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => false, 'message' => 'Database error: ' . $db_error]);
+                exit;
+            }
             $row2 = mysqli_fetch_assoc($query2);
+            if (!$row2) {
+                error_log("HME: User not found for agentaffilate_id: " . $_SESSION['agentaffilate_id']);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => false, 'message' => 'User not found. Please login again.']);
+                exit;
+            }
             $agent_fname= $row2['fname'];
             $agent_lname= $row2['lname'];
             $agent_email = $row2['email'];   
             $agent_pno = $row2['pno'];
             $agentaffilate_id=$row2['agentaffilate_id'];
+        } else {
+            error_log("HME: Session agentaffilate_id not set!");
+            header('Content-Type: application/json');
+            echo json_encode(['success' => false, 'message' => 'Session expired. Please login again.']);
+            exit;
         }
         
         $location = $_POST['location'];
