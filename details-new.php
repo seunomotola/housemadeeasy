@@ -1333,7 +1333,7 @@ $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']);
             </div>
 
             <!-- Booking Section -->
-            <div class="booking-section hidden">
+            <div class="booking-section" style="display:none"r>
                 <h3>Ready to Book?</h3>
                 <p>Don't miss out on this amazing property. Book now before it's too late!</p>
                 <a href="book.php?id=<?php echo $id; ?>" class="booking-button">

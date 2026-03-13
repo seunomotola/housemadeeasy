@@ -1139,6 +1139,20 @@ include ("../inc/session.php");
         </div>
     </footer>
     
+     <!-- Progress Modal -->
+    <div id="progress-modal" class="modal">
+        <div class="modal-content">
+            <div class="text-center">
+                <h3 class="mb-4">Uploading Property...</h3>
+                <div class="progress mb-4" style="height: 10px; border-radius: 5px;">
+                    <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div id="progress-text" class="mb-4">0%</div>
+                <div id="upload-status" class="text-muted">Preparing upload...</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Google OAuth Modal -->
     <div id="google-auth-modal" class="modal">
         <div class="modal-content">
@@ -1336,7 +1350,7 @@ include ("../inc/session.php");
                 }
             });
             
-            // Generate review content when on step 6
+             // Generate review content when on step 6
             $('#upload-house-form').on('stepChange', function(event, step) {
                 if (step === 6) {
                     generateReviewContent();
@@ -1346,6 +1360,136 @@ include ("../inc/session.php");
             // Auto-save form data on input changes
             $('#upload-house-form').on('input change', 'input, select, textarea', function() {
                 saveFormData();
+            });
+            
+            // Handle form submission with AJAX
+            $('#upload-house-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Show progress modal
+                $('#progress-modal').show();
+                
+                // Simulate progress bar animation
+                let progress = 0;
+                const progressInterval = setInterval(() => {
+                    progress += Math.floor(Math.random() * 10);
+                    if (progress > 90) {
+                        progress = 90;
+                        clearInterval(progressInterval);
+                        $('#upload-status').text('Processing data...');
+                    }
+                    
+                    $('#progress-bar').css('width', progress + '%').attr('aria-valuenow', progress);
+                    $('#progress-text').text(progress + '%');
+                }, 500);
+                
+                // Submit form data via AJAX
+                $.ajax({
+                    url: 'upload-house.php',
+                    type: 'POST',
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        clearInterval(progressInterval);
+                        
+                        // Complete progress bar
+                        $('#progress-bar').css('width', '100%').attr('aria-valuenow', 100);
+                        $('#progress-text').text('100%');
+                        $('#upload-status').text('Upload complete!');
+                        
+                        try {
+                            // Try to parse JSON response
+                            const result = JSON.parse(response);
+                            if (result.success) {
+                                setTimeout(() => {
+                                    $('#progress-modal').hide();
+                                    
+                                    // Show success message
+                                    const successModal = `
+                                        <div class="modal fade show" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="false" style="display: block;">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-success text-white">
+                                                        <h5 class="modal-title" id="successModalLabel">✅ Property Uploaded Successfully!</h5>
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Your house has been uploaded successfully to HouseMadeEasy!</p>
+                                                        <p>You will be redirected to your dashboard shortly to manage your property.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <a href="my-account.php" class="btn btn-success">Go to Dashboard</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    $('body').append(successModal);
+                                    
+                                    // Redirect after 3 seconds
+                                    setTimeout(() => {
+                                        window.location.href = result.redirect;
+                                    }, 3000);
+                                }, 1000);
+                            } else {
+                                // Show error message
+                                setTimeout(() => {
+                                    $('#progress-modal').hide();
+                                    alert('Upload failed: ' + result.message);
+                                }, 1000);
+                            }
+                        } catch (e) {
+                            // If response is not JSON, check if it contains success message
+                            if (response.includes('Successfully updated YouTube video metadata') || response.includes('Property Uploaded Successfully')) {
+                                setTimeout(() => {
+                                    $('#progress-modal').hide();
+                                    
+                                    const successModal = `
+                                        <div class="modal fade show" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="false" style="display: block;">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-success text-white">
+                                                        <h5 class="modal-title" id="successModalLabel">✅ Property Uploaded Successfully!</h5>
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Your house has been uploaded successfully to HouseMadeEasy!</p>
+                                                        <p>You will be redirected to your dashboard shortly to manage your property.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <a href="my-account.php" class="btn btn-success">Go to Dashboard</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    $('body').append(successModal);
+                                    
+                                    setTimeout(() => {
+                                        window.location.href = 'my-account.php';
+                                    }, 3000);
+                                }, 1000);
+                            } else {
+                                setTimeout(() => {
+                                    $('#progress-modal').hide();
+                                    alert('Upload failed. Please try again.');
+                                }, 1000);
+                            }
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        clearInterval(progressInterval);
+                        $('#progress-modal').hide();
+                        alert('Error uploading property: ' + error);
+                    }
+                });
             });
         });
         
@@ -1694,6 +1838,9 @@ include ("../inc/session.php");
         return $data;
     }
     
+    // Check if it's an AJAX request
+    $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+    
     if(isset($_POST['submit'])){
         if(isset($_SESSION['agentaffilate_id'])) {
             $query2 = mysqli_query($con,"SELECT * FROM hmeaffilate_user WHERE agentaffilate_id = '".$_SESSION['agentaffilate_id']."'");  
@@ -1953,39 +2100,58 @@ include ("../inc/session.php");
             }
             
             // Clear form data from localStorage
-            echo "<script>clearFormData();</script>";
-            
-            // Show success modal
-            echo '
-            <div class="modal fade show" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="false" style="display: block;">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-success text-white">
-                            <h5 class="modal-title" id="successModalLabel">✅ Property Uploaded Successfully!</h5>
-                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Your house has been uploaded successfully to HouseMadeEasy!</p>
-                            <p>You will be redirected to your dashboard shortly to manage your property.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <a href="my-account.php" class="btn btn-success">Go to Dashboard</a>
+            if ($isAjax) {
+                // For AJAX requests, send JSON response
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Property Uploaded Successfully!',
+                    'redirect' => 'my-account.php'
+                ]);
+                exit;
+            } else {
+                // For non-AJAX requests, show modal and redirect
+                echo "<script>clearFormData();</script>";
+                echo '
+                <div class="modal fade show" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="false" style="display: block;">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success text-white">
+                                <h5 class="modal-title" id="successModalLabel">✅ Property Uploaded Successfully!</h5>
+                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Your house has been uploaded successfully to HouseMadeEasy!</p>
+                                <p>You will be redirected to your dashboard shortly to manage your property.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a href="my-account.php" class="btn btn-success">Go to Dashboard</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <script>
-            // Redirect to my-account.php after 3 seconds
-            setTimeout(function() {
-                window.location.href = "my-account.php";
-            }, 3000);
-            </script>
-            ';
+                <script>
+                // Redirect to my-account.php after 3 seconds
+                setTimeout(function() {
+                    window.location.href = "my-account.php";
+                }, 3000);
+                </script>
+                ';
+            }
         } else {
-            die(mysqli_error($con));
+            if ($isAjax) {
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'success' => false,
+                    'message' => mysqli_error($con)
+                ]);
+                exit;
+            } else {
+                die(mysqli_error($con));
+            }
         }
     }
     ?>
