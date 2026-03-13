@@ -1443,45 +1443,11 @@ include ("../inc/session.php");
                                 }, 1000);
                             }
                         } catch (e) {
-                            // If response is not JSON, check if it contains success message
-                            if (response.includes('Successfully updated YouTube video metadata') || response.includes('Property Uploaded Successfully')) {
-                                setTimeout(() => {
-                                    $('#progress-modal').hide();
-                                    
-                                    const successModal = `
-                                        <div class="modal fade show" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="false" style="display: block;">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header bg-success text-white">
-                                                        <h5 class="modal-title" id="successModalLabel">✅ Property Uploaded Successfully!</h5>
-                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Your house has been uploaded successfully to HouseMadeEasy!</p>
-                                                        <p>You will be redirected to your dashboard shortly to manage your property.</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <a href="my-account.php" class="btn btn-success">Go to Dashboard</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    `;
-                                    $('body').append(successModal);
-                                    
-                                    setTimeout(() => {
-                                        window.location.href = 'my-account.php';
-                                    }, 3000);
-                                }, 1000);
-                            } else {
-                                setTimeout(() => {
-                                    $('#progress-modal').hide();
-                                    alert('Upload failed. Please try again.');
-                                }, 1000);
-                            }
+                            // If response is not JSON, show error
+                            setTimeout(() => {
+                                $('#progress-modal').hide();
+                                alert('Upload failed. Please try again or contact support.');
+                            }, 1000);
                         }
                     },
                     error: function(xhr, status, error) {
@@ -1842,6 +1808,29 @@ include ("../inc/session.php");
     $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
     
     if(isset($_POST['submit'])){
+        // Validate required fields
+        $required_fields = ['location', 'house_location', 'house_type', 'house_name', 'house_rent', 'whatapp'];
+        $missing_fields = [];
+        
+        foreach ($required_fields as $field) {
+            if (!isset($_POST[$field]) || empty($_POST[$field])) {
+                $missing_fields[] = $field;
+            }
+        }
+        
+        if (!empty($missing_fields)) {
+            if ($isAjax) {
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Missing required fields: ' . implode(', ', $missing_fields)
+                ]);
+                exit;
+            } else {
+                die('Missing required fields: ' . implode(', ', $missing_fields));
+            }
+        }
+        
         if(isset($_SESSION['agentaffilate_id'])) {
             $query2 = mysqli_query($con,"SELECT * FROM hmeaffilate_user WHERE agentaffilate_id = '".$_SESSION['agentaffilate_id']."'");  
             $row2 = mysqli_fetch_assoc($query2);
@@ -2023,6 +2012,13 @@ include ("../inc/session.php");
         $insert_product = "INSERT into properties (agent, agent_img, agent_pno, agent_email, location, house_location, type, date, house_name, house_img1, house_img2, house_img3, house_img4, house_desc, amenities, house_label, distance, kitchen, bathroom, door, fence, water_source, status,date_due, first_year_rent, second_year_rent, house_id,multiple_room,how_many_multiple_room, house_owner, youtube_link, negotiable, agentaffilate_id, how_many_multiple_room_new, electricity, gated, gender, roommate, agree_com, agent_fees,nepa_bills, clean_fees, damage_fees, security_fees,house_rent) values ('$agent_fname', '', '$whatapp','$agent_email', '$location', '$house_location', '$house_type', NOW(),'$house_name','$house_img1','$house_img2','$house_img3','$house_img4','$house_desc','$amenities','$house_label','$distance', '$kitchen', '$bathroom', '$door', '$fence', '$water_source', 'no', '', '$first_new', '$second', '$house_id', '$multiple_room', '$how_many_multiple_room', '$landlord_reside', '$youtube', '', '$agentaffilate_id', '$how_many_multiple_room', '$electricity', '$gated', '$gender', '$roommate', '$agreement_new', '$agent_fees', '$nepa', '$clean', '$damage', '$security', '$house_rent')";
         
         $run_product1 = mysqli_query($con,$insert_product);
+        
+        // Debug: Log query errors
+        if (!$run_product1) {
+            $db_error = mysqli_error($con);
+            error_log("Property insert error: " . $db_error);
+        }
+        
         $insert_product2 = "INSERT into short_term_rentals_properties (agent, agent_img, agent_pno, agent_email, location, house_location, type, date, house_name, house_img1, house_img2, house_img3, house_img4, house_desc, amenities, house_label, distance, kitchen, bathroom, door, fence, water_source, status,date_due, house_id,multiple_room,how_many_multiple_room, house_owner, youtube_link) values ('$agent_fname', '', '$whatapp','$agent_email', '$location', '$house_location', '$house_type', NOW(),'$house_name','$house_img1','$house_img2','$house_img3','$house_img4','$house_desc','$amenities','$house_label','$distance', '$kitchen', '$bathroom', '$door', '$fence', '$water_source', 'no', '', '$house_id_short', '$multiple_room', '$how_many_multiple_room', '$landlord_reside', '$youtube')";
          
         $run_product2 = mysqli_query($con,$insert_product2);
