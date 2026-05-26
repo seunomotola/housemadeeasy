@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('log_errors', 1);
 
 include ('inc/session.php');  
-include("inc/connect.inc.php");
+require_once __DIR__ . '/inc/property-data.inc.php';
 
 $basename= basename($_SERVER['PHP_SELF']);
 $domain= str_replace("$basename", "", $_SERVER['PHP_SELF']); 
@@ -15,43 +15,51 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
     exit;
 }
 
-$id = $_GET['id'];
-$sql ="SELECT * FROM properties WHERE id='$id' ";
-$result = mysqli_query($con,$sql);
-$post = mysqli_fetch_assoc($result);
+$id = (int) $_GET['id'];
+$property = hme_fetch_property_by_id($id);
 
 // Check if property exists
-if (!$post) {
+if (!$property) {
     header("Location: 404.php");
     exit;
 }
 
-$houseName = isset($post['house_name']) ? htmlspecialchars($post['house_name']) : 'Property Not Found';
-$houseLocation = isset($post['house_location']) ? htmlspecialchars($post['house_location']) : '';
-$location = isset($post['location']) ? htmlspecialchars($post['location']) : '';
-$propertyType = isset($post['type']) ? htmlspecialchars($post['type']) : '';
-$houseLabel = isset($post['house_label']) ? htmlspecialchars($post['house_label']) : '';
-$firstYearRent = isset($post['first_year_rent']) ? $post['first_year_rent'] : '0';
-$secondYearRent = isset($post['second_year_rent']) ? $post['second_year_rent'] : '0';
-$negotiable = isset($post['negotiable']) ? $post['negotiable'] : 'no';
-$distance = isset($post['distance']) ? htmlspecialchars($post['distance']) : 'N/A';
-$bathroom = isset($post['bathroom']) ? htmlspecialchars($post['bathroom']) : 'N/A';
-$kitchen = isset($post['kitchen']) ? htmlspecialchars($post['kitchen']) : 'N/A';
-$door = isset($post['door']) ? htmlspecialchars($post['door']) : 'N/A';
-$houseDesc = isset($post['house_desc']) ? $post['house_desc'] : '';
-$amenities = isset($post['amenities']) ? $post['amenities'] : '';
-$waterSource = isset($post['water_source']) ? htmlspecialchars($post['water_source']) : 'N/A';
-$houseOwner = isset($post['house_owner']) ? htmlspecialchars($post['house_owner']) : 'N/A';
-$fence = isset($post['fence']) ? htmlspecialchars($post['fence']) : 'N/A';
-$multipleRoom = isset($post['multiple_room']) ? $post['multiple_room'] : 'no';
-$roomsLeft = isset($post['how_many_multiple_room']) ? htmlspecialchars($post['how_many_multiple_room']) : '0';
-$agent = isset($post['agent']) ? htmlspecialchars($post['agent']) : '';
-$agentPno = isset($post['agent_pno']) ? $post['agent_pno'] : '';
-$houseImg1 = isset($post['house_img1']) ? $post['house_img1'] : '';
-$houseImg2 = isset($post['house_img2']) ? $post['house_img2'] : '';
-$houseImg3 = isset($post['house_img3']) ? $post['house_img3'] : '';
-$houseImg4 = isset($post['house_img4']) ? $post['house_img4'] : '';
-$youtubeLink = isset($post['youtube_link']) ? $post['youtube_link'] : '';
+$houseName = htmlspecialchars($property['display_title']);
+$houseLocation = htmlspecialchars($property['location_name'] ?: 'Location not specified');
+$location = htmlspecialchars($property['full_address'] ?: ($property['location_name'] ?: 'Location not specified'));
+$propertyType = htmlspecialchars($property['type_label']);
+$houseLabel = htmlspecialchars($property['status_label']);
+$priceDisplay = $property['price_display'];
+$basePriceDisplay = $property['base_price_display'];
+$totalPackageDisplay = $property['total_package_display'];
+$subsequentRentDisplay = $property['subsequent_rent_display'];
+$agreementPriceDisplay = $property['agreement_price_display'];
+$agentCommissionDisplay = $property['agent_commission_display'];
+$landlordCommissionDisplay = $property['landlord_commission_display'];
+$cautionDisplay = $property['caution_display'];
+$cleaningFeeDisplay = $property['cleaning_fee_display'];
+$serviceFeeDisplay = $property['service_fee_display'];
+$electricityBillDisplay = $property['electricity_bill_display'];
+$negotiable = hme_property_is_truthy($property['open_to_bargain'] ?? 0) ? 'yes' : 'no';
+$sizeDisplay = htmlspecialchars($property['size_display']);
+$availabilityDisplay = htmlspecialchars($property['availability_label']);
+$statusDisplay = htmlspecialchars($property['status_label']);
+$luxuryDisplay = htmlspecialchars($property['luxury_label']);
+$houseDesc = !empty($property['description']) ? $property['description'] : 'No description available yet.';
+$amenitiesArray = $property['utilities'] ?? [];
+$landmarks = $property['landmarks'] ?? [];
+$otherFees = $property['other_fees_list'] ?? [];
+$agent = htmlspecialchars($property['creator_name']);
+$agentPno = $property['creator_phone'] ?? '';
+$galleryImages = !empty($property['media_images'])
+    ? $property['media_images']
+    : [['url' => hme_property_placeholder_image(), 'name' => $property['display_title']]];
+$primaryLandmark = !empty($landmarks)
+    ? $landmarks[0]['name'] . ' (' . $landmarks[0]['distance_display'] . ')'
+    : 'Not specified';
+$pageDescription = htmlspecialchars(
+    $property['display_title'] . ' on HouseMadeEasy. View pricing, location, amenities, and listing details.'
+);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +67,7 @@ $youtubeLink = isset($post['youtube_link']) ? $post['youtube_link'] : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $houseName; ?> | HouseMadeEasy</title>
-    <meta name="description" content="View details of <?php echo $houseName; ?> on HouseMadeEasy. Find your dream accommodation in Sagamu campus of Olabisi Onabanjo University.">
+    <meta name="description" content="<?php echo $pageDescription; ?>">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1050,7 +1058,7 @@ $youtubeLink = isset($post['youtube_link']) ? $post['youtube_link'] : '';
     <section class="hero">
         <div class="hero-content">
             <h1><?php echo $houseName; ?></h1>
-            <p><?php echo ucwords($propertyType); ?> in <?php echo ucwords($houseLocation); ?>, <?php echo $location; ?></p>
+            <p><?php echo $propertyType; ?> in <?php echo $houseLocation; ?>, <?php echo $location; ?></p>
         </div>
     </section>
 
@@ -1059,28 +1067,13 @@ $youtubeLink = isset($post['youtube_link']) ? $post['youtube_link'] : '';
         <div class="gallery-container">
             <div class="carousel-container" id="imageCarousel">
                 <?php
-                // Get all images
-                $images = array();
-                if (!empty($houseImg2)) $images[] = $houseImg2;
-                if (!empty($houseImg3)) $images[] = $houseImg3;
-                if (!empty($houseImg4)) $images[] = $houseImg4;
-                if (!empty($houseImg1)) $images[] = $houseImg1;
-                
-                // Get additional images from property_images table
-                $propertyId = $id;
-                $additionalImagesQuery = "SELECT image_path FROM property_images WHERE property_id = '$propertyId'";
-                $additionalImagesResult = mysqli_query($con, $additionalImagesQuery);
-                while ($additionalImage = mysqli_fetch_assoc($additionalImagesResult)) {
-                    $images[] = $additionalImage['image_path'];
-                }
-                
-                // If no YouTube video, show carousel of images
-                if (empty($youtubeLink) && count($images) > 0) {
+                $images = $galleryImages;
+                if (count($images) > 0) {
                 ?>
                     <div class="carousel-track">
                         <?php foreach ($images as $index => $img) { ?>
                             <div class="carousel-slide">
-                                <img src="/assets/images/property/<?php echo $img; ?>" alt="Property Image <?php echo $index + 1; ?>">
+                                <img src="<?php echo htmlspecialchars($img['url']); ?>" alt="<?php echo $houseName; ?> image <?php echo $index + 1; ?>">
                             </div>
                         <?php } ?>
                     </div>
@@ -1093,57 +1086,7 @@ $youtubeLink = isset($post['youtube_link']) ? $post['youtube_link'] : '';
                     </div>
                 <?php
                 } else {
-                    // Show YouTube video or fallback image
-                    if (!empty($youtubeLink)) {
-                        $youtubeUrl = $youtubeLink;
-                        $videoId = '';
-                        
-                        $shortsMatch = preg_match('/shorts\/([^?&\/]+)/', $youtubeUrl, $shortsMatches);
-                        if ($shortsMatch) {
-                            $videoId = $shortsMatches[1];
-                        } else {
-                            $youtubeMatch = preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/', $youtubeUrl, $youtubeMatches);
-                            if ($youtubeMatch) {
-                                $videoId = $youtubeMatches[1];
-                            }
-                        }
-                        
-                        if (!empty($videoId)) {
-                ?>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <div class="youtube-container">
-                                <iframe 
-                                    src="https://www.youtube.com/embed/<?php echo $videoId; ?>?rel=0&autoplay=1&mute=1" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen
-                                ></iframe>
-                            </div>
-                        </div>
-                        <?php if (count($images) > 0) { ?>
-                            <?php foreach ($images as $img) { ?>
-                                <div class="carousel-slide">
-                                    <img src="/assets/images/property/<?php echo $img; ?>" alt="Property Image">
-                                </div>
-                            <?php } ?>
-                        <?php } ?>
-                    </div>
-                    <button class="carousel-nav prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-nav next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
-                    <div class="carousel-indicators">
-                        <button class="carousel-indicator active" onclick="goToSlide(0)"></button>
-                        <?php for ($i = 1; $i <= count($images); $i++) { ?>
-                            <button class="carousel-indicator" onclick="goToSlide(<?php echo $i; ?>)"></button>
-                        <?php } ?>
-                    </div>
-                <?php
-                        } else {
-                            echo '<img src="/assets/images/property/' . $houseImg2 . '" alt="' . $houseName . '">';
-                        }
-                    } else {
-                        echo '<img src="/assets/images/property/' . $houseImg2 . '" alt="' . $houseName . '">';
-                    }
+                    echo '<img src="' . htmlspecialchars(hme_property_placeholder_image()) . '" alt="' . $houseName . '">';
                 }
                 ?>
                 <div class="image-overlay">
@@ -1181,11 +1124,11 @@ $youtubeLink = isset($post['youtube_link']) ? $post['youtube_link'] : '';
                 <div class="property-meta">
                     <div class="meta-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span><?php echo ucwords($houseLocation); ?>, <?php echo $location; ?></span>
+                        <span><?php echo $houseLocation; ?>, <?php echo $location; ?></span>
                     </div>
                     <div class="meta-item">
                         <i class="fas fa-home"></i>
-                        <span><?php echo ucwords($propertyType); ?></span>
+                        <span><?php echo $propertyType; ?></span>
                     </div>
                     <div class="meta-item">
                         <i class="fas fa-tag"></i>
@@ -1193,6 +1136,7 @@ $youtubeLink = isset($post['youtube_link']) ? $post['youtube_link'] : '';
                     </div>
                 </div>
                 
+                <?php if (false) { ?>
                 <div class="property-price">
                     ₦<?php echo number_format((float)str_replace(',', '', $firstYearRent)); ?>
                 </div>
@@ -1370,8 +1314,301 @@ $youtubeLink = isset($post['youtube_link']) ? $post['youtube_link'] : '';
                 </div>
             </div>
 
+            <?php } ?>
+
+            <div class="property-price">
+                <?php echo htmlspecialchars($priceDisplay); ?>
+            </div>
+
+            <div class="price-details">
+                Base price: <?php echo htmlspecialchars($basePriceDisplay); ?><br>
+                Total package: <?php echo htmlspecialchars($totalPackageDisplay); ?>
+                <?php if ($subsequentRentDisplay !== 'Not specified') { ?><br>Subsequent rent: <?php echo htmlspecialchars($subsequentRentDisplay); ?><?php } ?>
+            </div>
+
+            <?php if ($negotiable == 'yes') { ?>
+                <div class="price-details mt-1">
+                    <i class="fas fa-tag"></i> Open to bargain
+                </div>
+            <?php } ?>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item animate-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Nearest Landmark</h4>
+                        <p><?php echo htmlspecialchars($primaryLandmark); ?></p>
+                    </div>
+                </div>
+
+                <div class="feature-item animate-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Size</h4>
+                        <p><?php echo $sizeDisplay; ?></p>
+                    </div>
+                </div>
+
+                <div class="feature-item animate-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Availability</h4>
+                        <p><?php echo $availabilityDisplay; ?></p>
+                    </div>
+                </div>
+
+                <div class="feature-item animate-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Luxury Listing</h4>
+                        <p><?php echo $luxuryDisplay; ?></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="description-section">
+                <h3 class="section-title">
+                    <i class="fas fa-info-circle"></i> Description
+                </h3>
+                <div class="property-description">
+                    <?php echo nl2br(htmlspecialchars($houseDesc)); ?>
+                </div>
+            </div>
+
+            <div class="amenities-section">
+                <h3 class="section-title">
+                    <i class="fas fa-star"></i> Amenities
+                </h3>
+
+                <div class="amenities-grid">
+                    <?php
+                    $amenityIcons = array(
+                        'water' => 'fas fa-tint',
+                        'electricity' => 'fas fa-bolt',
+                        'security' => 'fas fa-shield-alt',
+                        'parking' => 'fas fa-parking',
+                        'garden' => 'fas fa-leaf',
+                        'balcony' => 'fas fa-door-open',
+                        'wifi' => 'fas fa-wifi',
+                        'air' => 'fas fa-wind',
+                        'heating' => 'fas fa-fire',
+                        'elevator' => 'fas fa-building',
+                        'gym' => 'fas fa-dumbbell'
+                    );
+
+                    if (empty($amenitiesArray)) {
+                        echo '<div class="amenity-item"><i class="fas fa-circle-info"></i><span>Utilities not specified yet</span></div>';
+                    }
+
+                    foreach ($amenitiesArray as $amenity) {
+                        $normalizedAmenity = trim(strtolower((string) $amenity));
+                        if ($normalizedAmenity === '') {
+                            continue;
+                        }
+
+                        $icon = $amenityIcons[$normalizedAmenity] ?? 'fas fa-check-circle';
+                        echo '<div class="amenity-item">';
+                        echo '<i class="' . $icon . '"></i>';
+                        echo '<span>' . htmlspecialchars(ucwords((string) $amenity)) . '</span>';
+                        echo '</div>';
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <div class="description-section">
+                <h3 class="section-title">
+                    <i class="fas fa-list"></i> Property Details
+                </h3>
+
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Base Price</h4>
+                            <p><?php echo htmlspecialchars($basePriceDisplay); ?></p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Total Package</h4>
+                            <p><?php echo htmlspecialchars($totalPackageDisplay); ?></p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-signature"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Agreement Price</h4>
+                            <p><?php echo htmlspecialchars($agreementPriceDisplay); ?></p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-repeat"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Subsequent Rent</h4>
+                            <p><?php echo htmlspecialchars($subsequentRentDisplay); ?></p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Agent Commission</h4>
+                            <p><?php echo htmlspecialchars($agentCommissionDisplay); ?></p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-building-user"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Landlord Commission</h4>
+                            <p><?php echo htmlspecialchars($landlordCommissionDisplay); ?></p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-triangle-exclamation"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Caution</h4>
+                            <p><?php echo htmlspecialchars($cautionDisplay); ?></p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-screwdriver-wrench"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Service Fee</h4>
+                            <p><?php echo htmlspecialchars($serviceFeeDisplay); ?></p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-broom"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Cleaning Fee</h4>
+                            <p><?php echo htmlspecialchars($cleaningFeeDisplay); ?></p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Electricity Bill</h4>
+                            <p><?php echo htmlspecialchars($electricityBillDisplay); ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php if (!empty($otherFees)) { ?>
+                <div class="description-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-receipt"></i> Other Fees
+                    </h3>
+                    <div class="amenities-grid">
+                        <?php foreach ($otherFees as $fee) { ?>
+                            <div class="amenity-item">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span>
+                                    <?php echo htmlspecialchars($fee['name']); ?>
+                                    <?php if (!empty($fee['amount_display'])) { ?>
+                                        - <?php echo htmlspecialchars($fee['amount_display']); ?>
+                                    <?php } ?>
+                                </span>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            <?php } ?>
+
+            <?php if (!empty($landmarks)) { ?>
+                <div class="description-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-location-dot"></i> Nearby Landmarks
+                    </h3>
+                    <div class="amenities-grid">
+                        <?php foreach ($landmarks as $landmark) { ?>
+                            <div class="amenity-item">
+                                <i class="fas fa-map-pin"></i>
+                                <span><?php echo htmlspecialchars($landmark['name'] . ' - ' . $landmark['distance_display']); ?></span>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            <?php } ?>
+
+            <div class="agent-section">
+                <h3 class="section-title">
+                    <i class="fas fa-user-tie"></i> Listing Contact
+                </h3>
+
+                <?php
+                $agentWhatsappUrl = '';
+                if (!empty($agentPno)) {
+                    $agentWhatsappUrl = 'https://wa.me/' . preg_replace('/[^0-9]/', '', $agentPno)
+                        . '?text=' . rawurlencode(
+                            'Hi ' . htmlspecialchars_decode($agent)
+                            . ', I need to check out ' . htmlspecialchars_decode($houseName)
+                            . ' at ' . htmlspecialchars_decode($location)
+                            . '. Here is the property link: https://housemadeeasy.com.ng/details-new.php?id=' . $id
+                            . '. When can we meet? Thanks.'
+                        );
+                }
+                ?>
+                <div class="agent-card">
+                    <div class="agent-info">
+                        <h4 class="agent-name"><?php echo $agent; ?></h4>
+                        <?php if ($agentWhatsappUrl !== ''): ?>
+                            <a href="<?php echo htmlspecialchars($agentWhatsappUrl); ?>" class="whatsapp-button" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-whatsapp"></i> Message Agent on WhatsApp
+                            </a>
+                        <?php else: ?>
+                            <div class="customer-care">
+                                Direct agent phone is not available yet. Please use our customer care hotline below.
+                            </div>
+                        <?php endif; ?>
+                        <div class="customer-care">
+                            If Agent is unavailable, please call or WhatsApp our customer care hotline: <span class="hotline">08160852570</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Booking Section -->
-            <div class="booking-section" style="display:none"r>
+            <div class="booking-section" style="display:none">
                 <h3>Ready to Book?</h3>
                 <p>Don't miss out on this amazing property. Book now before it's too late!</p>
                 <a href="book.php?id=<?php echo $id; ?>" class="booking-button">

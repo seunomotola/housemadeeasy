@@ -1173,17 +1173,21 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
         </div>
         <div class="properties-grid">
             <?php
-            require 'inc/connect.inc.php';
+            require_once __DIR__ . '/inc/property-data.inc.php';
+            $featuredProperties = hme_fetch_featured_properties(6);
             
-            // Get featured properties
-            $sql = "SELECT * FROM properties ORDER BY id DESC LIMIT 6";
-            $result = mysqli_query($con, $sql);
-            
-            if (mysqli_num_rows($result) > 0) {
-                while ($property = mysqli_fetch_assoc($result)) {
-                    // Format price
-                    $price = !empty($property['first_year_rent']) ? $property['first_year_rent'] : (!empty($property['house_rent']) ? $property['house_rent'] : 'Price on request');
-                    if (is_numeric($price) && $price > 0) {
+            if (!empty($featuredProperties)) {
+                foreach ($featuredProperties as $property) {
+                    // Normalize property data for the legacy homepage card UI
+                    $title = htmlspecialchars($property['display_title']);
+                    $price = htmlspecialchars($property['price_display']);
+                    $type = htmlspecialchars($property['type_label']);
+                    $location = htmlspecialchars($property['location_name'] ?: $property['full_address'] ?: 'Location not specified');
+                    $image = htmlspecialchars($property['primary_image_url']);
+                    $unitType = htmlspecialchars($property['unit_type_display']);
+                    $size = htmlspecialchars($property['size_display']);
+                    $availability = htmlspecialchars($property['availability_label']);
+                    /*
                         $price = '₦' . number_format($price);
                     }
                     
@@ -1204,16 +1208,16 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                     $bedrooms = !empty($property['how_many_multiple_room']) ? $property['how_many_multiple_room'] : '1';
                     $bathrooms = !empty($property['bathroom']) ? $property['bathroom'] : '1';
                     $kitchen = !empty($property['kitchen']) ? $property['kitchen'] : '1';
-                    
+                    */
                     echo '
                     <div class="property-card fade-in">
                         <div class="property-image">
-                            <img src="' . $image . '" alt="' . $property['house_name'] . '">
+                            <img src="' . $image . '" alt="' . $title . '">
                             <div class="property-label">' . $type . '</div>
                         </div>
                         <div class="property-content">
                             <div class="property-header">
-                                <h3>' . $property['house_name'] . '</h3>
+                                <h3>' . $title . '</h3>
                                 <div class="property-price">' . $price . '</div>
                             </div>
                             <div class="property-location">
@@ -1222,20 +1226,20 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                             </div>
                             <div class="property-features">
                                 <div class="feature-item">
-                                    <i class="fas fa-bed"></i>
-                                    <span>' . $bedrooms . ' Bed</span>
+                                    <i class="fas fa-layer-group"></i>
+                                    <span>' . $unitType . '</span>
                                 </div>
                                 <div class="feature-item">
-                                    <i class="fas fa-bath"></i>
-                                    <span>' . $bathrooms . ' Bath</span>
+                                    <i class="fas fa-ruler-combined"></i>
+                                    <span>' . $size . '</span>
                                 </div>
                                 <div class="feature-item">
-                                    <i class="fas fa-utensils"></i>
-                                    <span>' . $kitchen . ' Kitchen</span>
+                                    <i class="fas fa-door-open"></i>
+                                    <span>' . $availability . '</span>
                                 </div>
                             </div>
                             <div class="property-actions">
-                                <a href="details-new.php?id=' . $property['id'] . '" class="btn btn-primary btn-sm">
+                                <a href="details-new.php?id=' . (int) $property['id'] . '" class="btn btn-primary btn-sm">
                                     <i class="fas fa-eye"></i> View Details
                                 </a>
                             </div>
@@ -1247,13 +1251,11 @@ if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_email'])) {
                 echo '
                 <div class="no-properties">
                     <i class="fas fa-home"></i>
-                    <h3>No properties available at the moment</h3>
-                    <p>Check back soon for new listings</p>
+                    <h3>No featured properties available right now</h3>
+                    <p>Connect the property database or check back soon for new listings</p>
                 </div>
                 ';
             }
-            
-            mysqli_close($con);
             ?>
         </div>
         <div class="properties-footer">
