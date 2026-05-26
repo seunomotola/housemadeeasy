@@ -188,6 +188,14 @@ if (!function_exists('hme_property_load_env')) {
         return '/assets/images/flatmate/house8.jpg';
     }
 
+    function hme_property_uploads_base_url()
+    {
+        hme_property_load_env();
+
+        $baseUrl = trim((string) ($_ENV['PROPERTY_UPLOADS_BASE_URL'] ?? 'https://api.housemadeeasy.com.ng'));
+        return rtrim($baseUrl, '/');
+    }
+
     function hme_property_media_url($filePath = '', $fileName = '')
     {
         $candidate = trim((string) ($filePath ?: $fileName));
@@ -197,11 +205,15 @@ if (!function_exists('hme_property_load_env')) {
 
         $candidate = str_replace('\\', '/', $candidate);
         if (preg_match('#^https?://#i', $candidate)) {
+            $path = (string) parse_url($candidate, PHP_URL_PATH);
+            if ($path !== '' && strpos($path, '/uploads/') === 0) {
+                return hme_property_uploads_base_url() . hme_property_encode_path($path);
+            }
             return $candidate;
         }
 
         if (strpos($candidate, 'uploads/') === 0 || strpos($candidate, '/uploads/') === 0) {
-            return hme_property_encode_path($candidate);
+            return hme_property_uploads_base_url() . hme_property_encode_path($candidate);
         }
 
         if (strpos($candidate, 'assets/') === 0 || strpos($candidate, '/assets/') === 0) {
@@ -214,7 +226,7 @@ if (!function_exists('hme_property_load_env')) {
         }
 
         $basename = basename($fileName ?: $candidate);
-        return hme_property_encode_path('uploads/' . $basename);
+        return hme_property_uploads_base_url() . hme_property_encode_path('uploads/' . $basename);
     }
 
     function hme_property_media_is_image(array $mediaRow)
